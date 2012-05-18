@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>workmarket</groupId>
-    <artifactId>workmarket-testsuite</artifactId>
+    <groupId>urbandaddy</groupId>
+    <artifactId>urbandaddy-testsuite</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>workmarket-test-suite</name>
+    <name>urbandaddy-test-suite</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -155,7 +155,7 @@
                     <!-- Skip the normal tests, we'll run them in the integration-test phase -->
                     <skip>true</skip>
 
-                    <!-- <systemPropertyVariables> <name>server</name> <value>{workmarket.qa.server_url}</value>
+                    <!-- <systemPropertyVariables> <name>server</name> <value>{urbandaddy.qa.server_url}</value>
                                             </systemPropertyVariables> -->
                     <suiteXmlFiles>
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
@@ -178,7 +178,7 @@
             </plugin>
         </plugins>
     </build>
-    <!-- <distributionManagement> <repository> <id>workmarket</id> <name>workmarket-snapshots</name>
-            <url>http://workmarket.artifactoryonline.com/workmarket/libs-snapshots-local</url>
+    <!-- <distributionManagement> <repository> <id>urbandaddy</id> <name>urbandaddy-snapshots</name>
+            <url>http://urbandaddy.artifactoryonline.com/urbandaddy/libs-snapshots-local</url>
             </repository> </distributionManagement> -->
 </project>
