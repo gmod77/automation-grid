@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Locators>
+	 
+	 <Assignments>
+   	  <SelectEmailAll><![CDATA[//*[@id='select-email-all']]]></SelectEmailAll>
+      <Save><![CDATA[//div[@class='actions']/button]]></Save>
+   	</Assignments>  
+     
+	<Gmail>
+      <Email><![CDATA[Email]]></Email>
+      <Password><![CDATA[Passwd]]></Password>
+      <SignIn><![CDATA[signIn]]></SignIn>
+      <SearchBox><![CDATA[#q]]></SearchBox>
+      <SearchMailButton><![CDATA[#nvp_site_mail]]></SearchMailButton>
+      <Email><![CDATA[css=font > font]]></Email>
+      <TargetPrefix><![CDATA[//div [@class='y6']/span[contains(.,']]></TargetPrefix>
+      <TargetSuffix><![CDATA[')]]]></TargetSuffix>
+   </Gmail>
+   
+   <Confirmation>
+      <ConfirmationMessage><![CDATA[//.//*[@id='login_form']/div[1]/ul/li]]></ConfirmationMessage>
+   </Confirmation>
+   
+</Locators>

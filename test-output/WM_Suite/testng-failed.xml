@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="10" name="Failed suite [WM_Suite]" parallel="tests">
+  <parameter name="driverType" value="Firefox"/>
+  <parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"/>
+  <test name="WM_Login(failed)" parallel="tests" preserve-order="true">
+    <parameter name="driverType" value="Firefox"/>
+    <parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"/>
+    <classes>
+      <class name="org.urbandaddy.tests.UD_RegistrationFlow2">
+        <methods>
+          <include name="beforeMainTest"/>
+          <include name="afterMainClass"/>
+          <include name="afterMainMethod"/>
+          <include name="afterMainTest"/>
+          <include name="flow1"/>
+          <include name="beforeMainClass"/>
+          <include name="beforeMainMethod"/>
+        </methods>
+      </class> <!-- org.urbandaddy.tests.UD_RegistrationFlow2 -->
+    </classes>
+  </test> <!-- WM_Login(failed) -->
+</suite> <!-- Failed suite [WM_Suite] -->

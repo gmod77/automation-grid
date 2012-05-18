@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WM_Suite Regression 01_12_12" parallel="false">
+	<parameter name="driverType" value="chrome"></parameter>
+	<parameter name="profilePath" value="/Users/gene/Library/Application Support/Firefox/Profiles/nt8qxxx3.WebDriver"></parameter>
+	
+	<test name="WM_Regression">
+		<classes>
+			<class name="org.urbandaddy.tests.Flow1a_Assignment_FullCycle" />
+			<class name="org.urbandaddy.tests.Flow1b_Assignment_SendViaTemplate" />
+			<class name="org.urbandaddy.tests.Flow1c_Assignment_CustomFields" />
+			<class name="org.urbandaddy.tests.Flow4_Assignment_ClientDisapprove" />
+			<class name="org.urbandaddy.tests.Flow5_Assignment_ClientEditDraft" />
+			<class name="org.urbandaddy.tests.Flow6_Assignment_ClientChangePriceDraft" />
+			<class name="org.urbandaddy.tests.Flow7_Assignment_ClientRescheduleDraft" />
+			<class name="org.urbandaddy.tests.Flow8_Assignment_ClientCopyDraft" />
+			<class name="org.urbandaddy.tests.Flow9_Assignment_ClientDeleteDraft" />
+			<class name="org.urbandaddy.tests.Flow10_Assignment_ClientEditSent" />
+			<class name="org.urbandaddy.tests.Flow11_Assignment_ClientChangePriceSent" />
+			<class name="org.urbandaddy.tests.Flow12_Assignment_ClientRescheduleSent" />
+			<class name="org.urbandaddy.tests.Flow13_Assignment_ClientCopySent" />
+			<class name="org.urbandaddy.tests.Flow14_Assignment_ClientVoidSent" />
+			<class name="org.urbandaddy.tests.Flow15_Assignment_ClientChangePriceAssigned" />
+			<class name="org.urbandaddy.tests.Flow16_Assignment_ClientRescheduleAssigned" />
+			<class name="org.urbandaddy.tests.Flow17_Assignment_ClientCopyAssigned" />
+			
+		</classes>
+		
+	</test>
+</suite>
+

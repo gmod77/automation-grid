@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+	<LoggedOutHeader>
+	 <Home><![CDATA[//.//*[@id='topHeadBox']/div[1]/p/a]]></Home>
+	 
+     <ChangeCity><![CDATA[//.//*[@id='topHeadBox']/div[3]/div/div[2]/a]]></ChangeCity>
+     <Atlanta><![CDATA[//.//*[@id='submenu']/ul/li[1]/a]]></Atlanta>
+     <Boston><![CDATA[//.//*[@id='submenu']/ul/li[2]/a]]></Boston>
+     <Chicago><![CDATA[//.//*[@id='submenu']/ul/li[3]/a]]></Chicago>
+     <Dallas><![CDATA[//.//*[@id='submenu']/ul/li[4]/a]]></Dallas>
+     <DC><![CDATA[//.//*[@id='submenu']/ul/li[5]/a]]></DC>
+     <Jetset><![CDATA[//.//*[@id='submenu']/ul/li[6]/a]]></Jetset>
+     <LasVegas><![CDATA[//.//*[@id='submenu']/ul/li[7]/a]]></LasVegas>
+     <LosAngeles><![CDATA[//.//*[@id='submenu']/ul/li[8]/a]]></LosAngeles>
+     <Miami><![CDATA[//.//*[@id='submenu']/ul/li[9]/a]]></Miami>
+     <National><![CDATA[//.//*[@id='submenu']/ul/li[10]/a]]></National>
+     <NewYork><![CDATA[//.//*[@id='submenu']/ul/li[11]/a]]></NewYork>
+     <SanFrancisco><![CDATA[//.//*[@id='submenu']/ul/li[12]/a]]></SanFrancisco>
+     <SkiBoard><![CDATA[//.//*[@id='submenu']/ul/li[13]/a]]></SkiBoard>
+     
+     <MemberLogIn><![CDATA[//.//*[@id='restTopLinks']/a[1]]]></MemberLogIn>
+	 <SignUp><![CDATA[//.//*[@id='restTopLinks']/a[2]]]></SignUp>
+	 
+	 <SearchBox><![CDATA[//.//*[@id='search_field2']]]></SearchBox>
+	 <SearchBoxGoButton><![CDATA[//.//*[@id='searchBox']/form/div[2]/input[2]]]></SearchBoxGoButton>
+	 
+	 <Nightlife><![CDATA[//.//*[@id='navBox']/ul/li[1]/a]]></Nightlife>
+	 <Food><![CDATA[//.//*[@id='navBox']/ul/li[2]/a]]></Food>
+	 <Style><![CDATA[//.//*[@id='navBox']/ul/li[3]/a]]></Style>
+	 <Gear><![CDATA[//.//*[@id='navBox']/ul/li[4]/a]]></Gear>
+	 <Leisure><![CDATA[//.//*[@id='navBox']/ul/li[5]/a]]></Leisure>
+	 <Driven><![CDATA[//.//*[@id='navBox']/ul/li[6]/a]]></Driven>
+	 <Perks><![CDATA[//.//*[@id='navBox']/ul/li[7]/a]]></Perks>
+	 <Parties><![CDATA[//.//*[@id='navBox']/ul/li[8]/a]]></Parties>
+	 <Kempt><![CDATA[//.//*[@id='navBox']/ul/li[9]/a]]></Kempt>
+	 <Mobile><![CDATA[//.//*[@id='navBox']/ul/li[10]/a]]></Mobile>
+	 
+	</LoggedOutHeader>
+	
+	<LoggedInHeader> 
+	 <Home><![CDATA[//.//*[@id='topHeadBox']/div[1]/p/a]]></Home>
+	
+	
+     <ChangeCity><![CDATA[//.//*[@id='topHeadBox']/div[3]/div/div[2]/a]]></ChangeCity>
+     <Atlanta><![CDATA[//.//*[@id='submenu']/ul/li[1]/a]]></Atlanta>
+     <Boston><![CDATA[//.//*[@id='submenu']/ul/li[2]/a]]></Boston>
+     <Chicago><![CDATA[//.//*[@id='submenu']/ul/li[3]/a]]></Chicago>
+     <Dallas><![CDATA[//.//*[@id='submenu']/ul/li[4]/a]]></Dallas>
+     <DC><![CDATA[//.//*[@id='submenu']/ul/li[5]/a]]></DC>
+     <Jetset><![CDATA[//.//*[@id='submenu']/ul/li[6]/a]]></Jetset>
+     <LasVegas><![CDATA[//.//*[@id='submenu']/ul/li[7]/a]]></LasVegas>
+     <LosAngeles><![CDATA[//.//*[@id='submenu']/ul/li[8]/a]]></LosAngeles>
+     <Miami><![CDATA[//.//*[@id='submenu']/ul/li[9]/a]]></Miami>
+     <National><![CDATA[//.//*[@id='submenu']/ul/li[10]/a]]></National>
+     <NewYork><![CDATA[//.//*[@id='submenu']/ul/li[11]/a]]></NewYork>
+     <SanFrancisco><![CDATA[//.//*[@id='submenu']/ul/li[12]/a]]></SanFrancisco>
+     <SkiBoard><![CDATA[//.//*[@id='submenu']/ul/li[13]/a]]></SkiBoard>
+     
+     <Logout><![CDATA[//.//*[@id='restTopLinks']/a[1]]]></Logout>
+	 <MyUD><![CDATA[//.//*[@id='restTopLinks']/a[2]]]></MyUD>
+	 
+	  <SearchBox><![CDATA[//.//*[@id='search_field2']]]></SearchBox>
+	 <SearchBoxGoButton><![CDATA[//.//*[@id='searchBox']/form/div[2]/input[2]]]></SearchBoxGoButton>
+	 
+	 <Nightlife><![CDATA[//.//*[@id='navBox']/ul/li[1]/a]]></Nightlife>
+	 <Food><![CDATA[//.//*[@id='navBox']/ul/li[2]/a]]></Food>
+	 <Style><![CDATA[//.//*[@id='navBox']/ul/li[3]/a]]></Style>
+	 <Gear><![CDATA[//.//*[@id='navBox']/ul/li[4]/a]]></Gear>
+	 <Leisure><![CDATA[//.//*[@id='navBox']/ul/li[5]/a]]></Leisure>
+	 <Driven><![CDATA[//.//*[@id='navBox']/ul/li[6]/a]]></Driven>
+	 <Perks><![CDATA[//.//*[@id='navBox']/ul/li[7]/a]]></Perks>
+	 <Parties><![CDATA[//.//*[@id='navBox']/ul/li[8]/a]]></Parties>
+	 <Kempt><![CDATA[//.//*[@id='navBox']/ul/li[9]/a]]></Kempt>
+	 <Mobile><![CDATA[//.//*[@id='navBox']/ul/li[10]/a]]></Mobile>
+	 
+	</LoggedInHeader> 
+	
+	<LoggedOutHeaderLasVegas>
+	 <Home><![CDATA[//.//*[@id='topHeadBox']/div[1]/p/a]]></Home>
+	 
+     <ChangeCity><![CDATA[//.//*[@id='topHeadBox']/div[3]/div/div[2]/a]]></ChangeCity>
+     <Atlanta><![CDATA[//.//*[@id='submenu']/ul/li[1]/a]]></Atlanta>
+     <Boston><![CDATA[//.//*[@id='submenu']/ul/li[2]/a]]></Boston>
+     <Chicago><![CDATA[//.//*[@id='submenu']/ul/li[3]/a]]></Chicago>
+     <Dallas><![CDATA[//.//*[@id='submenu']/ul/li[4]/a]]></Dallas>
+     <DC><![CDATA[//.//*[@id='submenu']/ul/li[5]/a]]></DC>
+     <Jetset><![CDATA[//.//*[@id='submenu']/ul/li[6]/a]]></Jetset>
+     <LasVegas><![CDATA[//.//*[@id='submenu']/ul/li[7]/a]]></LasVegas>
+     <LosAngeles><![CDATA[//.//*[@id='submenu']/ul/li[8]/a]]></LosAngeles>
+     <Miami><![CDATA[//.//*[@id='submenu']/ul/li[9]/a]]></Miami>
+     <National><![CDATA[//.//*[@id='submenu']/ul/li[10]/a]]></National>
+     <NewYork><![CDATA[//.//*[@id='submenu']/ul/li[11]/a]]></NewYork>
+     <SanFrancisco><![CDATA[//.//*[@id='submenu']/ul/li[12]/a]]></SanFrancisco>
+     <SkiBoard><![CDATA[//.//*[@id='submenu']/ul/li[13]/a]]></SkiBoard>
+     
+     <MemberLogIn><![CDATA[//.//*[@id='restTopLinks']/a[1]]]></MemberLogIn>
+	 <SignUp><![CDATA[//.//*[@id='restTopLinks']/a[2]]]></SignUp>
+	 
+	 <SearchBox><![CDATA[//.//*[@id='search_field2']]]></SearchBox>
+	 <SearchBoxGoButton><![CDATA[//.//*[@id='searchBox']/form/div[2]/input[2]]]></SearchBoxGoButton>
+	 
+	 <Nightlife><![CDATA[//.//*[@id='navBox']/ul/li[1]/a]]></Nightlife>
+	 <Food><![CDATA[//.//*[@id='navBox']/ul/li[2]/a]]></Food>
+	 <Entertainment><![CDATA[//.//*[@id='navBox']/ul/li[3]/a]]></Entertainment>
+	 <Perks><![CDATA[//.//*[@id='navBox']/ul/li[4]/a]]></Perks>
+	 <Parties><![CDATA[//.//*[@id='navBox']/ul/li[5]/a]]></Parties>
+	 <Kempt><![CDATA[//.//*[@id='navBox']/ul/li[6]/a]]></Kempt>
+	 <Mobile><![CDATA[//.//*[@id='navBox']/ul/li[7]/a]]></Mobile>	 
+	</LoggedOutHeaderLasVegas>
+	
+	<LoggedInHeaderLasVegas>
+	 <Home><![CDATA[//.//*[@id='topHeadBox']/div[1]/p/a]]></Home>
+	 
+     <ChangeCity><![CDATA[//.//*[@id='topHeadBox']/div[3]/div/div[2]/a]]></ChangeCity>
+     <Atlanta><![CDATA[//.//*[@id='submenu']/ul/li[1]/a]]></Atlanta>
+     <Boston><![CDATA[//.//*[@id='submenu']/ul/li[2]/a]]></Boston>
+     <Chicago><![CDATA[//.//*[@id='submenu']/ul/li[3]/a]]></Chicago>
+     <Dallas><![CDATA[//.//*[@id='submenu']/ul/li[4]/a]]></Dallas>
+     <DC><![CDATA[//.//*[@id='submenu']/ul/li[5]/a]]></DC>
+     <Jetset><![CDATA[//.//*[@id='submenu']/ul/li[6]/a]]></Jetset>
+     <LasVegas><![CDATA[//.//*[@id='submenu']/ul/li[7]/a]]></LasVegas>
+     <LosAngeles><![CDATA[//.//*[@id='submenu']/ul/li[8]/a]]></LosAngeles>
+     <Miami><![CDATA[//.//*[@id='submenu']/ul/li[9]/a]]></Miami>
+     <National><![CDATA[//.//*[@id='submenu']/ul/li[10]/a]]></National>
+     <NewYork><![CDATA[//.//*[@id='submenu']/ul/li[11]/a]]></NewYork>
+     <SanFrancisco><![CDATA[//.//*[@id='submenu']/ul/li[12]/a]]></SanFrancisco>
+     <SkiBoard><![CDATA[//.//*[@id='submenu']/ul/li[13]/a]]></SkiBoard>
+     
+     <MemberLogIn><![CDATA[//.//*[@id='restTopLinks']/a[1]]]></MemberLogIn>
+	 <SignUp><![CDATA[//.//*[@id='restTopLinks']/a[2]]]></SignUp>
+	 
+	 <SearchBox><![CDATA[//.//*[@id='search_field2']]]></SearchBox>
+	 <SearchBoxGoButton><![CDATA[//.//*[@id='searchBox']/form/div[2]/input[2]]]></SearchBoxGoButton>
+	 
+	 <Nightlife><![CDATA[//.//*[@id='navBox']/ul/li[1]/a]]></Nightlife>
+	 <Food><![CDATA[//.//*[@id='navBox']/ul/li[2]/a]]></Food>
+	 <Entertainment><![CDATA[//.//*[@id='navBox']/ul/li[3]/a]]></Entertainment>
+	 <Perks><![CDATA[//.//*[@id='navBox']/ul/li[4]/a]]></Perks>
+	 <Parties><![CDATA[//.//*[@id='navBox']/ul/li[5]/a]]></Parties>
+	 <Kempt><![CDATA[//.//*[@id='navBox']/ul/li[6]/a]]></Kempt>
+	 <Mobile><![CDATA[//.//*[@id='navBox']/ul/li[7]/a]]></Mobile>	 
+	</LoggedInHeaderLasVegas>
+	
+	<LoggedOutHeaderNational>
+	 <Home><![CDATA[//.//*[@id='topHeadBox']/div[1]/p/a]]></Home>
+	 
+     <ChangeCity><![CDATA[//.//*[@id='topHeadBox']/div[3]/div/div[2]/a]]></ChangeCity>
+     <Atlanta><![CDATA[//.//*[@id='submenu']/ul/li[1]/a]]></Atlanta>
+     <Boston><![CDATA[//.//*[@id='submenu']/ul/li[2]/a]]></Boston>
+     <Chicago><![CDATA[//.//*[@id='submenu']/ul/li[3]/a]]></Chicago>
+     <Dallas><![CDATA[//.//*[@id='submenu']/ul/li[4]/a]]></Dallas>
+     <DC><![CDATA[//.//*[@id='submenu']/ul/li[5]/a]]></DC>
+     <Jetset><![CDATA[//.//*[@id='submenu']/ul/li[6]/a]]></Jetset>
+     <LasVegas><![CDATA[//.//*[@id='submenu']/ul/li[7]/a]]></LasVegas>
+     <LosAngeles><![CDATA[//.//*[@id='submenu']/ul/li[8]/a]]></LosAngeles>
+     <Miami><![CDATA[//.//*[@id='submenu']/ul/li[9]/a]]></Miami>
+     <National><![CDATA[//.//*[@id='submenu']/ul/li[10]/a]]></National>
+     <NewYork><![CDATA[//.//*[@id='submenu']/ul/li[11]/a]]></NewYork>
+     <SanFrancisco><![CDATA[//.//*[@id='submenu']/ul/li[12]/a]]></SanFrancisco>
+     <SkiBoard><![CDATA[//.//*[@id='submenu']/ul/li[13]/a]]></SkiBoard>
+     
+     <MemberLogIn><![CDATA[//.//*[@id='restTopLinks']/a[1]]]></MemberLogIn>
+	 <SignUp><![CDATA[//.//*[@id='restTopLinks']/a[2]]]></SignUp>
+	 
+	 <SearchBox><![CDATA[//.//*[@id='search_field2']]]></SearchBox>
+	 <SearchBoxGoButton><![CDATA[//.//*[@id='searchBox']/form/div[2]/input[2]]]></SearchBoxGoButton>
+	 
+	 <FoodDrink><![CDATA[//.//*[@id='navBox']/ul/li[1]/a]]></FoodDrink>
+	 <Style><![CDATA[//.//*[@id='navBox']/ul/li[2]/a]]></Style>
+	 <Gear><![CDATA[//.//*[@id='navBox']/ul/li[3]/a]]></Gear>
+	 <Entertainment><![CDATA[//.//*[@id='navBox']/ul/li[4]/a]]></Entertainment>
+	 <Travel><![CDATA[//.//*[@id='navBox']/ul/li[5]/a]]></Travel>
+	 <Driven><![CDATA[//.//*[@id='navBox']/ul/li[6]/a]]></Driven>
+	 <Perks><![CDATA[//.//*[@id='navBox']/ul/li[7]/a]]></Perks>
+	 <Parties><![CDATA[//.//*[@id='navBox']/ul/li[8]/a]]></Parties> 
+	 <Kempt><![CDATA[//.//*[@id='navBox']/ul/li[9]/a]]></Kempt>
+	 <Mobile><![CDATA[//.//*[@id='navBox']/ul/li[10]/a]]></Mobile>	 
+	</LoggedOutHeaderNational>
+	
+	<LoggedInHeaderNational>
+	 <Home><![CDATA[//.//*[@id='topHeadBox']/div[1]/p/a]]></Home>
+	 
+     <ChangeCity><![CDATA[//.//*[@id='topHeadBox']/div[3]/div/div[2]/a]]></ChangeCity>
+     <Atlanta><![CDATA[//.//*[@id='submenu']/ul/li[1]/a]]></Atlanta>
+     <Boston><![CDATA[//.//*[@id='submenu']/ul/li[2]/a]]></Boston>
+     <Chicago><![CDATA[//.//*[@id='submenu']/ul/li[3]/a]]></Chicago>
+     <Dallas><![CDATA[//.//*[@id='submenu']/ul/li[4]/a]]></Dallas>
+     <DC><![CDATA[//.//*[@id='submenu']/ul/li[5]/a]]></DC>
+     <Jetset><![CDATA[//.//*[@id='submenu']/ul/li[6]/a]]></Jetset>
+     <LasVegas><![CDATA[//.//*[@id='submenu']/ul/li[7]/a]]></LasVegas>
+     <LosAngeles><![CDATA[//.//*[@id='submenu']/ul/li[8]/a]]></LosAngeles>
+     <Miami><![CDATA[//.//*[@id='submenu']/ul/li[9]/a]]></Miami>
+     <National><![CDATA[//.//*[@id='submenu']/ul/li[10]/a]]></National>
+     <NewYork><![CDATA[//.//*[@id='submenu']/ul/li[11]/a]]></NewYork>
+     <SanFrancisco><![CDATA[//.//*[@id='submenu']/ul/li[12]/a]]></SanFrancisco>
+     <SkiBoard><![CDATA[//.//*[@id='submenu']/ul/li[13]/a]]></SkiBoard>
+     
+     <MemberLogIn><![CDATA[//.//*[@id='restTopLinks']/a[1]]]></MemberLogIn>
+	 <SignUp><![CDATA[//.//*[@id='restTopLinks']/a[2]]]></SignUp>
+	 
+	 <SearchBox><![CDATA[//.//*[@id='search_field2']]]></SearchBox>
+	 <SearchBoxGoButton><![CDATA[//.//*[@id='searchBox']/form/div[2]/input[2]]]></SearchBoxGoButton>
+	 
+	 <FoodDrink><![CDATA[//.//*[@id='navBox']/ul/li[1]/a]]></FoodDrink>
+	 <Style><![CDATA[//.//*[@id='navBox']/ul/li[2]/a]]></Style>
+	 <Gear><![CDATA[//.//*[@id='navBox']/ul/li[3]/a]]></Gear>
+	 <Entertainment><![CDATA[//.//*[@id='navBox']/ul/li[4]/a]]></Entertainment>
+	 <Travel><![CDATA[//.//*[@id='navBox']/ul/li[5]/a]]></Travel>
+	 <Driven><![CDATA[//.//*[@id='navBox']/ul/li[6]/a]]></Driven>
+	 <Perks><![CDATA[//.//*[@id='navBox']/ul/li[7]/a]]></Perks>
+	 <Parties><![CDATA[//.//*[@id='navBox']/ul/li[8]/a]]></Parties> 
+	 <Kempt><![CDATA[//.//*[@id='navBox']/ul/li[9]/a]]></Kempt>
+	 <Mobile><![CDATA[//.//*[@id='navBox']/ul/li[10]/a]]></Mobile>	 
+	</LoggedInHeaderNational>
+		
+</locators>
