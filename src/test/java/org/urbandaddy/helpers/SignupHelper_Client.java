@@ -233,9 +233,9 @@ public class SignupHelper_Client extends IHelper_Client {
 	public void clickJoin(){
 		String str = signupReader.getLocator("Step1.Join");
 		this.WaitForElementVisible(str, 100);
-//		WebElement el = client.findElement(ByLocator(str));
-//		el.click();
-		seleniumClient.click(str);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+//		seleniumClient.click(str);
 
 		try {
 			Thread.sleep(8000);
