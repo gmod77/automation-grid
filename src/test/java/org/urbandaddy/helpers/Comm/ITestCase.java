@@ -105,7 +105,7 @@ else if (DriverType.FirefoxRemote12.toString().equals(driverType))
 			
 			try {
 				client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
-				
+				client.manage().window().maximize();
 //				client.manage().window().setSize(targetSize)
 //				resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
 //				wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
