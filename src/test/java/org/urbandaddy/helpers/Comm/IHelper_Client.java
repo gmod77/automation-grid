@@ -13,7 +13,7 @@ public abstract class IHelper_Client {
 
 	public IHelper_Client(WebDriver webdriver) {
 		client = webdriver;
-		seleniumClient = new WebDriverBackedSelenium(client, "https://qa.urbandaddy.com");
+		seleniumClient = new WebDriverBackedSelenium(client, "http://ud-branch.thedaddy.co");
 	}
 	
 	public void Log(String logMsg){

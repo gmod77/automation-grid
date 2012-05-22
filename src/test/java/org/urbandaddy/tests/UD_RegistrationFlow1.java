@@ -64,17 +64,17 @@ public class UD_RegistrationFlow1 extends ITestCase {
 		doChecksCityHomePageLoggedOut();
 		
 //go back to new york and signup		
-		changeCityFromUDHomepage();
-		accessNewYorkFromUDHomepage();
-
-		signUpUD_viaNewYork();
-		doChecksCityHomePageLoggedIn();
-		
-		logoutUD();
-		doChecksCityHomePageLoggedOut();
-		
-		loginUD();
-		doChecksCityHomePageLoggedIn();
+//		changeCityFromUDHomepage();
+//		accessNewYorkFromUDHomepage();
+//
+//		signUpUD_viaNewYork();
+//		doChecksCityHomePageLoggedIn();
+//		
+//		logoutUD();
+//		doChecksCityHomePageLoggedOut();
+//		
+//		loginUD();
+//		doChecksCityHomePageLoggedIn();
 
 		
 //		loginClient();
