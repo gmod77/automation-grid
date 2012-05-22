@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10">
-	<parameter name="driverType" value="Firefox"></parameter>
+	<parameter name="driverType" value="FirefoxRemote12"></parameter>
 	<parameter name="profilePath" value=""></parameter>
-		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	
+<!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->
 		
 	
