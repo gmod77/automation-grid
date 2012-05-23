@@ -191,12 +191,6 @@ public class SignupHelper_Client extends IHelper_Client {
 		this.WaitForElementVisible(str, 100);
 		WebElement el = client.findElement(ByLocator(str));
 		el.click();
-		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
 	}
 	
 	public void checkBostonPerks(){
@@ -237,11 +231,11 @@ public class SignupHelper_Client extends IHelper_Client {
 		el.click();
 //		seleniumClient.click(str);
 
-		try {
-			Thread.sleep(8000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(8000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 //Singup modal 2 (Help Us Help You)	
@@ -327,11 +321,11 @@ public void clickSubmit(){
 		WebElement el = client.findElement(ByLocator(str));
 		el.click();
 
-	try {
-	Thread.sleep(5000);
-	} catch (InterruptedException e) {
-	e.printStackTrace();
-		}
+//	try {
+//	Thread.sleep(5000);
+//	} catch (InterruptedException e) {
+//	e.printStackTrace();
+//		}
 }
 
 // Signup modal 3: Invite Friends
@@ -393,11 +387,11 @@ public void clickInvite(){
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
 
-	try {
-	Thread.sleep(6000);
-	} catch (InterruptedException e) {
-	e.printStackTrace();
-		}
+//	try {
+//	Thread.sleep(6000);
+//	} catch (InterruptedException e) {
+//	e.printStackTrace();
+//		}
 }
 
 public void clickSkip(){

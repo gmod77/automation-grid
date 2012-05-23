@@ -43,7 +43,7 @@ public class HeaderHelper_Client extends IHelper_Client {
 		el.click();
 		
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 			} catch (InterruptedException e) {
 			e.printStackTrace();
 				}
@@ -54,6 +54,10 @@ public class HeaderHelper_Client extends IHelper_Client {
 		this.WaitForElementPresent(str, 20);
 		WebElement el = client.findElement(ByLocator(str));
 		el.click();
+	}
+	
+	public void openSignUpNewTab(){
+		this.client.navigate().to(UDdomain+"/myud/signup/location/login_bar/group/badge/edition#signupform");
 	}
 	
 	public void clickChangeCity(){
@@ -380,7 +384,7 @@ public void clickNightlife(){
 	el.click();
 	
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -404,7 +408,7 @@ WebElement el = client.findElement(ByLocator(str));
 el.click();
 
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -621,7 +625,7 @@ public void clickGear(){
 	el.click();
 	
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -645,7 +649,7 @@ WebElement el = client.findElement(ByLocator(str));
 el.click();
 
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -669,7 +673,7 @@ public void clickLeisure(){
 	el.click();
 	
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -691,6 +695,12 @@ public boolean isDrivenAccessible(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
+	
+	try {
+		Thread.sleep(4000);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
 
 	if (client.getCurrentUrl().equals("http://driven.urbandaddy.com/"))
 		return true;
@@ -738,7 +748,7 @@ public void clickPerks(){
 	el.click();
 	
 	try {
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -762,7 +772,7 @@ public void clickPerksLV(){
 	el.click();
 	
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -786,7 +796,7 @@ public void clickPerksNational(){
 	el.click();
 	
 	try {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -808,6 +818,12 @@ public boolean isPartiesAccessible(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
+	
+	try {
+		Thread.sleep(4000);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
 	
 	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
 		return true;
@@ -875,6 +891,12 @@ public boolean isKemptAccessible(){
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
 	
+	try {
+		Thread.sleep(4000);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
+	
 	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
 		return true;
 	return false;
@@ -940,6 +962,12 @@ public boolean isMobileAccessible(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
+	
+	try {
+		Thread.sleep(4000);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
 	
 	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
 		return true;

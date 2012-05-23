@@ -28,6 +28,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import org.openqa.selenium.Cookie;
 
 //Workflow specific imports
 
@@ -167,9 +168,11 @@ else if (DriverType.FirefoxRemote12.toString().equals(driverType))
 public void visitUDFirstTime(){
 	
 	// enter UDdomain name, hit enter, arrive on homepage
+			client.navigate().to(UDdomain);
+			client.manage().deleteAllCookies();
+//			this.client.manage().deleteAllCookies();
 			this.client.navigate().to(UDdomain);
-			this.client.manage().deleteAllCookies();
-			this.client.navigate().to(UDdomain);	
+			this.client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
 			
 	//do all homepage checks
 		homepageHelper_Client = new HomepageHelper_Client(client);
@@ -579,6 +582,10 @@ public void signUpUD_viaNewYorkStep1(){
 		//a. Click SignUp Seal
 		headerHelper_Client.clickSignUp();
 		
+		//or open new tab or go to the signup url
+		
+		//headerHelper_Client.openSignUpNewTab();
+		
 //		try {
 //			Thread.sleep(5000);
 //		} catch (InterruptedException e) {
@@ -626,12 +633,6 @@ public void signUpUD_viaNewYorkStep1(){
 		signupHelper_Client.checkNationalPerks();
 		
 		//click "JOIN" button
-		
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
 		
 		signupHelper_Client.clickJoin();
 }
@@ -746,16 +747,22 @@ public void signUpUD_viaNewYorkStep4(){
 public void signUpUD_viaNewYork(){
 	
 this.signUpUD_viaNewYorkStep1();
-while (signupHelper_Client.isStupidErrorAfterStep1Present())
-{for(int n=2; n<20; n++){
-	System.out.println(n);
-	this.signUpUD_viaNewYorkStep1();}}
 this.signUpUD_viaNewYorkStep2();
 this.signUpUD_viaNewYorkStep3();
-while (signupHelper_Client.isStupidErrorAfterStep3Present())
-{this.signUpUD_viaNewYorkStep3();}
 this.signUpUD_viaNewYorkStep4();
 }
+
+//this.signUpUD_viaNewYorkStep1();
+//while (signupHelper_Client.isStupidErrorAfterStep1Present())
+//{for(int n=2; n<20; n++){
+//	System.out.println(n);
+//	this.signUpUD_viaNewYorkStep1();}}
+//this.signUpUD_viaNewYorkStep2();
+//this.signUpUD_viaNewYorkStep3();
+//while (signupHelper_Client.isStupidErrorAfterStep3Present())
+//{this.signUpUD_viaNewYorkStep3();}
+////this.signUpUD_viaNewYorkStep4();
+//}
 
 public void loginToGmail(){
 	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
