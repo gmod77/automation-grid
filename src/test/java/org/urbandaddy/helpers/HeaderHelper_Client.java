@@ -43,7 +43,7 @@ public class HeaderHelper_Client extends IHelper_Client {
 		el.click();
 		
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 			} catch (InterruptedException e) {
 			e.printStackTrace();
 				}
@@ -384,7 +384,7 @@ public void clickNightlife(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -408,7 +408,7 @@ WebElement el = client.findElement(ByLocator(str));
 el.click();
 
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -433,7 +433,7 @@ public void clickFood(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -457,7 +457,7 @@ public void clickFoodLV(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -481,7 +481,7 @@ public void clickFoodDrinkNational(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -505,7 +505,7 @@ public void clickEntertainmentLV(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -529,7 +529,7 @@ public void clickEntertainmentNational(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -553,7 +553,7 @@ public void clickTravelNational(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -577,7 +577,7 @@ public void clickStyle(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -601,7 +601,7 @@ WebElement el = client.findElement(ByLocator(str));
 el.click();
 
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -625,7 +625,7 @@ public void clickGear(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -649,7 +649,7 @@ WebElement el = client.findElement(ByLocator(str));
 el.click();
 
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -673,7 +673,7 @@ public void clickLeisure(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -697,7 +697,7 @@ public boolean isDrivenAccessible(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -748,7 +748,7 @@ public void clickPerks(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -772,7 +772,7 @@ public void clickPerksLV(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -796,7 +796,7 @@ public void clickPerksNational(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -820,7 +820,7 @@ public boolean isPartiesAccessible(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -892,7 +892,7 @@ public boolean isKemptAccessible(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -964,7 +964,7 @@ public boolean isMobileAccessible(){
 	el.click();
 	
 	try {
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}

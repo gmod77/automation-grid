@@ -299,6 +299,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		String sb = checkEmailReader.getLocator("Gmail.SearchBox");		
 		this.WaitForElementPresent(sb, 20);		
 		WebElement el1 = client.findElement(ByLocator(sb));
+		el1.clear();
 		el1.sendKeys(searchString);
 		
 		//find search mail button and click it

@@ -18,9 +18,9 @@ public class UD_RegistrationFlow2 extends ITestCase {
 		doChecksCityHomePageLoggedIn();
 				
 		logoutUD();
-		doChecksCityHomePageLoggedOut();
-		
 		resetPasswordUD();
+		
+		doChecksCityHomePageLoggedOut();
 		
 		loginToGmail();
 		verifyWelcomeEmailReceived();
