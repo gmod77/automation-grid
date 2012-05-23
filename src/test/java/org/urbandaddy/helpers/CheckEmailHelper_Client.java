@@ -16,7 +16,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 	public CheckEmailHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub
-		checkEmailReader = new LocatorReader("checkEmail.xml");
+		checkEmailReader = new LocatorReader("CheckEmail.xml");
 	}
 
 	public void clientLogInToGmail(){
