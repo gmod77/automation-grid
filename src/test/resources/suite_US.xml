@@ -2,19 +2,20 @@
 <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10">
 	<parameter name="driverType" value="FirefoxRemote12"></parameter>
 	<parameter name="profilePath" value=""></parameter>
+<!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/fadehsi2.WebDriver"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->
 		
 	
-<!-- 	<test name="UD_Smoke"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_RegistrationFlow1" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
-	
-		<test name="UD_Smoke">
+	<test name="UD_Smoke">
 		<classes>
-			<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />	
+			<class name="org.urbandaddy.tests.UD_RegistrationFlow1" />
+		</classes>
+	</test>
+	
+		<test name="UD_Admin_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />	
 		</classes>
 	</test>
 	

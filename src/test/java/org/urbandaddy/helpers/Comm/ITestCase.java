@@ -5,15 +5,18 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 //import java.util.concurrent.TimeUnit;
-//import java.util.Random;
+import java.util.*;
 //
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -154,6 +157,7 @@ else if (DriverType.FirefoxRemote12.toString().equals(driverType))
 	String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
 		
 	private String UDdomain = "http://ud-branch.thedaddy.co";
+	private String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
 	private String Perksdomain = "http://perks-branch.thedaddy.co";
 //	private String UDdomain = "http://www.urbandaddy.com";
 //	private String Perksdomain = "http://perks.urbandaddy.com";
@@ -201,6 +205,491 @@ public void visitUDFirstTime(){
 		footerHelper_Client = new FooterHelper_Client(client); 
 		this.checkUDHomepageFooter();
 }
+
+public void loginUDAdmin(){
+	this.client.manage().deleteAllCookies();
+	this.client.navigate().to(UD_Admin_domain);
+	client.findElement(By.id("username")).sendKeys("gmodin");
+	client.findElement(By.id("password")).sendKeys("UD@dmin900");
+	client.findElement(By.name("commit")).click();
+	//client.get(UD_Admin_domain+"/admin.php/articles");
+}
+
+public void createArticleThreeColumn(){
+	
+	client.get(UD_Admin_domain+"/articles/create");
+	//client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li/input")).click();
+	
+	//Set Status to Approved
+    WebElement status = client.findElement(By.id("article_article_status_id"));
+    List<WebElement> status_options = status.findElements(By.tagName("option"));
+    for(WebElement option : status_options){
+        if(option.getText().equals("Approved")) {
+            option.click();
+            break;
+        }
+    }
+    
+    //Check Dedicated
+	client.findElement(By.id("article_is_dedicated")).click();
+
+	//Select Three-Column Template
+    WebElement template = client.findElement(By.id("article_article_template_id"));
+    List<WebElement> template_options = template.findElements(By.tagName("option"));
+    for(WebElement option : template_options){
+        if(option.getText().equals("Three-Column")) {
+            option.click();
+            break;
+        }
+    }
+    
+    //Select Author: Russ Brandom
+    WebElement author = client.findElement(By.id("article_author_id"));
+    List<WebElement> author_options = author.findElements(By.tagName("option"));
+    for(WebElement option : author_options){
+        if(option.getText().equals("Russ Brandom")) {
+            option.click();
+            break;
+        }
+    }
+
+    //From display
+    
+	client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
+    
+    //Select Segment: QA
+    WebElement segment = client.findElement(By.id("details_segment"));
+    List<WebElement> segment_options = segment.findElements(By.tagName("option"));
+    for(WebElement option : segment_options){
+        if(option.getText().equals("QA Addresses")) {
+            option.click();
+            break;
+        }
+    }
+    
+    //Enter Article Title:
+
+	//client.findElement(By.id("article_name")).clear();
+	client.findElement(By.id("article_name")).sendKeys("Test Article Title "+emailFormat.format(now));
+    
+	//Enter Business Name/Subject
+	//client.findElement(By.id("article_business_name")).clear();
+	client.findElement(By.id("article_business_name")).sendKeys("Test Business Name "+emailFormat.format(now));
+	
+	//Enter Article Subheader
+	client.findElement(By.id("article_teaser")).sendKeys("Test Article Subheader "+emailFormat.format(now));
+
+	//Enter Email Subject Line
+	client.findElement(By.id("article_email_subject_line")).sendKeys("Test Email Subject "+emailFormat.format(now));
+
+	//Save
+	client.findElement(By.name("save")).click();
+	
+// Get Article ID
+	
+	String articleLink = client.getCurrentUrl();
+	
+    String[] separated = articleLink.split("/");
+    String articleID = separated[separated.length - 1];
+//	System.out.println(articleID);
+	
+//Add images to Article
+	
+	// go to create image page
+	client.get(UD_Admin_domain+"/article_images/create");
+	
+//browse to 1st image
+	client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image001_optionA.jpg");
+	
+	//enter Article ID
+	client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+	
+	//enter Position for 1st image: Option A Left Column
+	
+    WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
+    List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
+    for(WebElement option : position_options1){
+        if(option.getText().equals("Option_A_Left_Column")) {
+            option.click();
+            break;
+        }
+    }
+    
+    //click "save and add" button
+    
+	client.findElement(By.name("save_and_add")).click();
+	
+	
+//browse to 2nd image
+		client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image002_EmailBanner.jpg");
+		
+		//enter Article ID
+		client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+		
+		//enter Position for 1st image: Option A Left Column
+		
+	    WebElement article2_position = client.findElement(By.id("article_image_article_image_position_id"));
+	    List<WebElement> position_options2 = article2_position.findElements(By.tagName("option"));
+	    for(WebElement option : position_options2){
+	        if(option.getText().equals("Email_Banner")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    
+	    //click "save and add" button
+	    
+		client.findElement(By.name("save_and_add")).click();
+		
+//browse to 3rd image
+		client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image003_thumbnail.jpg");
+				
+		//enter Article ID
+		client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+				
+		//enter Position for 1st image: Option A Left Column
+				
+			    WebElement article3_position = client.findElement(By.id("article_image_article_image_position_id"));
+			    List<WebElement> position_options3 = article3_position.findElements(By.tagName("option"));
+			    for(WebElement option : position_options3){
+			        if(option.getText().equals("Thumbnail")) {
+			            option.click();
+			            break;
+			        }
+			    }
+			    
+//click "save and add" button
+			    
+		client.findElement(By.name("save")).click();
+
+//go back to the article
+		client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
+		
+//enter photo credits
+		client.findElement(By.id("article[photo_credit]")).sendKeys("Photo Credits Test "+emailFormat.format(now));
+
+//enter Article/Feature introduction
+		client.findElement(By.id("article[short]")).sendKeys("Article/Feature Introduction Test "+emailFormat.format(now));
+		
+//enter Copy !!!Figure out how to interact with this version of FCK editor
+	
+		
+//Article Blurb
+		client.findElement(By.id("article[blurb]")).sendKeys("Article Blurb Test "+emailFormat.format(now));
+
+//iPhone Blurb
+		client.findElement(By.id("article[blurb_iphone]")).sendKeys("iPhone Blurb Test "+emailFormat.format(now));
+
+//Twitter Blurb
+		client.findElement(By.id("article_blurb_twitter")).sendKeys("Twitter Blurb Test "+emailFormat.format(now));
+		
+//enter Note !!!Figure out how to interact with this version of FCK editor
+
+//Legal Line
+		client.findElement(By.id("article[footer_additional]")).sendKeys("Legal Line Test "+emailFormat.format(now));
+
+//Keywords
+		client.findElement(By.id("article_keywords")).sendKeys("Keywords Test Keywords "+emailFormat.format(now));
+
+//Business type
+		
+	    WebElement business_type = client.findElement(By.id("article_business_type_id"));
+	    List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
+	    for(WebElement option : business_type_options){
+	        if(option.getText().equals("Clothing")) {
+	            option.click();
+	            break;
+	        }
+	    }
+//Business specialty
+		
+		client.findElement(By.id("article_business_specialty")).sendKeys("Business Specialty Test "+emailFormat.format(now));
+
+//Save
+		client.findElement(By.name("save")).click();
+		
+// Add Vitals to the Left Module,
+		
+		WebElement left_components = client.findElement(By.id("_select_modules_left"));
+	    List<WebElement> left_components_options = left_components.findElements(By.tagName("option"));
+	    for(WebElement option : left_components_options){
+	        if(option.getText().equals("Vitals")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    
+//Add Sponsored Love to the Left Module,	    
+	    
+		WebElement left_components2 = client.findElement(By.id("_select_modules_left"));
+	    List<WebElement> left_components_options2 = left_components2.findElements(By.tagName("option"));
+
+	    for(WebElement option : left_components_options2){
+	        if(option.getText().equals("Sponsored Love")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    
+		//set main window handle before pop-ups pop up
+		String mwh=client.getWindowHandle();
+	    
+	    //click on "Sponsored Love" 
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[3]/table/tbody/tr/td[5]/a")).click(); 
+	    
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// Save default selection / assignment of newsletter slot
+		
+		//handle pop-up window
+		Set<?> s=client.getWindowHandles();
+		//this method will you handle of all opened windows
+
+		Iterator<?> ite=s.iterator();
+
+		while(ite.hasNext())
+		{
+		    String popupHandle=ite.next().toString();
+		    if(!popupHandle.contains(mwh))
+		    {
+		                client.switchTo().window(popupHandle);
+		                // click save
+		                client.findElement(By.id("save_button")).click(); 
+
+		                //After finished your operation in pop-up just select the main window again
+		                client.switchTo().window(mwh);
+		    }
+		}
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}   
+	    
+//Add Tools to the left Module,
+	    
+		WebElement left_components3 = client.findElement(By.id("_select_modules_left"));
+	    List<WebElement> left_components_options3 = left_components3.findElements(By.tagName("option"));
+	    
+	    for(WebElement option : left_components_options3){
+	        if(option.getText().equals("Tools")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	   
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    
+//Add an Ad to the Bottom Module, 
+	    
+		WebElement bottom_components = client.findElement(By.id("_select_modules_center"));
+	    List<WebElement> bottom_components_options = bottom_components.findElements(By.tagName("option"));
+	    for(WebElement option : bottom_components_options){
+	        if(option.getText().equals("Ad")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    
+	    try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    
+	    //click on "Ad" 
+		client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click(); 
+	    
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// Save default selection / assignment of newsletter slot
+		
+				//handle pop-up window
+				Set<?> s2=client.getWindowHandles();
+				//this method will you handle of all opened windows
+
+				Iterator<?> ite2=s2.iterator();
+
+				while(ite2.hasNext())
+				{
+				    String popupHandle=ite2.next().toString();
+				    if(!popupHandle.contains(mwh))
+				    {
+				                client.switchTo().window(popupHandle);
+				                // click save
+				                client.findElement(By.id("save_button")).click(); 
+
+				                //After finished your operation in pop-up just select the main window again
+				                client.switchTo().window(mwh);
+				    }
+				}
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} 
+		
+//Add an Ad to the Right Module, 
+	    
+		WebElement right_components = client.findElement(By.id("_select_modules_right"));
+	    List<WebElement> right_components_options = right_components.findElements(By.tagName("option"));
+	    for(WebElement option : right_components_options){
+	        if(option.getText().equals("Ad")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    
+	    try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    
+	    //click on "Ad" 
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click(); 
+	    
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// Save default selection / assignment of newsletter slot
+		
+		//handle pop-up window
+		Set<?> s3=client.getWindowHandles();
+		//this method will you handle of all opened windows
+
+		Iterator<?> ite3=s3.iterator();
+
+		while(ite3.hasNext())
+		{
+		    String popupHandle=ite3.next().toString();
+		    if(!popupHandle.contains(mwh))
+		    {
+		                client.switchTo().window(popupHandle);
+		                // click save
+		                client.findElement(By.id("save_button")).click(); 
+
+		                //After finished your operation in pop-up just select the main window again
+		                client.switchTo().window(mwh);
+		    }
+		}
+			   
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+//Click Save, 
+	
+		client.findElement(By.name("save")).click(); 
+		
+//Click HTML Newsletter, 
+//Click Send Email, 
+		//client.findElement(By.xpath("//html/body/div[3]/div/div/table/tbody/tr/td[2]/a[2]"));  
+		//or
+		client.get(UD_Admin_domain+"/articles/sendMailing/id/"+articleID);
+		
+//Click send Test Mailing, 
+		client.findElement(By.name("is_test")).click();
+// Confirm Alert
+		// Get a handle to the open alert, prompt or confirmation
+		Alert alert = client.switchTo().alert();
+		// Get the text of the alert or prompt
+		alert.getText();  
+		// And acknowledge the alert (equivalent to clicking "OK")
+		alert.accept();
+		
+		// Verify "Test email has been sent" success message
+		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
+
+//Add an e-mail address to the Send To field, Click Send Test Mailing, 
+		client.findElement(By.id("mailing_send_to")).sendKeys("udtestergene@gmail.com");
+		
+		//Click send Test Mailing, 
+				client.findElement(By.name("is_test")).click();
+		// Confirm Alert
+				// Get a handle to the open alert, prompt or confirmation
+				Alert alert2 = client.switchTo().alert();
+				// Get the text of the alert or prompt
+				alert2.getText();  
+				// And acknowledge the alert (equivalent to clicking "OK")
+				alert2.accept();
+				
+		// Verify "Test email has been sent" success message
+		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
+
+//Click Back to Article, Change Status to Ready to Send, Click Save, Click Send E-mail, Click Send Mailing at bottom of page
+		//go back to the article
+				client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
+				
+		//Change Status to Ready to Send, Click Save,
+				
+				//Set Status to Approved
+			    WebElement status2 = client.findElement(By.id("article_article_status_id"));
+			    List<WebElement> status_options2 = status2.findElements(By.tagName("option"));
+			    for(WebElement option : status_options2){
+			        if(option.getText().equals("Ready to Send")) {
+			            option.click();
+			            break;
+			        }
+			    }
+			    
+				//Save
+				client.findElement(By.name("save")).click();
+				
+				//Click Send E-mail or go to sendMailing page
+				client.get(UD_Admin_domain+"/articles/sendMailing/id/"+articleID);
+				
+				//click "Send Mailing" button 
+				client.findElement(By.xpath("//html/body/div[3]/div/form/div/input")).click();
+				
+				// Confirm Alert
+				// Get a handle to the open alert, prompt or confirmation
+				Alert alert3 = client.switchTo().alert();
+				// Get the text of the alert or prompt
+				alert3.getText();  
+				// And acknowledge the alert (equivalent to clicking "OK")
+				alert3.accept();
+				
+				try {
+					Thread.sleep(4000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+// Verify "Email has been sent successfully." success message
+				Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Email has been sent successfully."));
+
+		
+	}
 
 public void goBackToUDHomepage(){
 	this.client.navigate().to(UDdomain);
