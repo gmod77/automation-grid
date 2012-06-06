@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10">
+<suite name="UD_Smoke" verbose="10">
+<!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
+
 	<parameter name="driverType" value="FirefoxRemote12"></parameter>
 	<parameter name="profilePath" value=""></parameter>
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/fadehsi2.WebDriver"></parameter>	 -->
