@@ -307,7 +307,7 @@ public void createArticleThreeColumn() {
 
 	//Save
 	client.findElement(By.name("save")).click();
-	this.pause3();
+	this.pause1();
 	
 // Get Article ID
 	
@@ -342,7 +342,7 @@ public void createArticleThreeColumn() {
     //click "save and add" button
     
 	client.findElement(By.name("save_and_add")).click();
-	this.pause3();
+	this.pause1();
 	
 	
 //browse to 2nd image
@@ -471,6 +471,7 @@ public void createArticleThreeColumn() {
 
 //Save
 		client.findElement(By.name("save")).click();
+		this.pause1();
 		
 // Add Vitals to the Left Module,
 		
