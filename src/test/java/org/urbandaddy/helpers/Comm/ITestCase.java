@@ -56,7 +56,7 @@ import org.urbandaddy.helpers.SignupHelper_Client;
 public abstract class ITestCase {
 
 	enum DriverType {
-		Firefox, IE, Ghrome, FirefoxRemote12
+		Firefox, IE, Ghrome, FirefoxRemote13
 	}
 
 	public WebDriver client;
@@ -91,7 +91,7 @@ public abstract class ITestCase {
 //			cms = new ChromeDriver();
 			
 		} 
-else if (DriverType.FirefoxRemote12.toString().equals(driverType)) 
+else if (DriverType.FirefoxRemote13.toString().equals(driverType)) 
 			
 		{
 			DesiredCapabilities capability = DesiredCapabilities.firefox();
@@ -105,7 +105,7 @@ else if (DriverType.FirefoxRemote12.toString().equals(driverType))
 			capability.setCapability("javascriptEnabled ", true);
 			//FirefoxProfile ffPrfile;
             //ffprofile.setPreference("javascript.enabled", true);
-			capability.setVersion("12");
+			capability.setVersion("13");
 			
 			
 			try {
