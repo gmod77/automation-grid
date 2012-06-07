@@ -181,7 +181,13 @@ else if (DriverType.FirefoxRemote13.toString().equals(driverType))
 			e.printStackTrace();
 		}
 	}
-
+	public void pause3(){
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 ///// Sign-up methods
 	
@@ -335,6 +341,7 @@ public void createArticleThreeColumn() {
     //click "save and add" button
     
 	client.findElement(By.name("save_and_add")).click();
+	this.pause3();
 	
 	
 //browse to 2nd image
