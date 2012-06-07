@@ -11,7 +11,7 @@
 	
 	<test name="UD_Smoke">
 		<classes>
-			<class name="org.urbandaddy.tests.UD_RegistrationFlow1" />
+			<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />
 		</classes>
 	</test>
 	

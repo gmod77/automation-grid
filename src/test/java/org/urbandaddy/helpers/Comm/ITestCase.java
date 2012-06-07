@@ -8,15 +8,15 @@ import java.util.Date;
 import java.util.List;
 //import java.util.concurrent.TimeUnit;
 import java.util.*;
-//
+
+//import org.openqa.selenium.JavascriptExecutor;
+//import org.sikuli.script.*;
+
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.Keys;
 import org.openqa.selenium.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -136,7 +136,7 @@ else if (DriverType.FirefoxRemote12.toString().equals(driverType))
 	private HeaderHelper_Client headerHelper_Client;
 	private FooterHelper_Client footerHelper_Client;
 	private SealHelper_Client sealHelper_Client;
-	private ResetEmailHelper_Client resetEmailHelper_Client;
+//	private ResetEmailHelper_Client resetEmailHelper_Client;
 //	private ReauthenticateHelper_Client reauthenticateHelper_Client;
 //	private SettingsHelper_Client settingsHelper_Client;
 	private SignupHelper_Client signupHelper_Client;
@@ -164,7 +164,24 @@ else if (DriverType.FirefoxRemote12.toString().equals(driverType))
 	private String UDcity = "";
 	private String UDcityPerks = "";
 	private String password="12345";
-	private String newpassword="1234";
+//	private String newpassword="1234";
+	
+	public void pause1(){
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void pause2(){
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 ///// Sign-up methods
 	
@@ -215,7 +232,7 @@ public void loginUDAdmin(){
 	//client.get(UD_Admin_domain+"/admin.php/articles");
 }
 
-public void createArticleThreeColumn(){
+public void createArticleThreeColumn() {
 	
 	client.get(UD_Admin_domain+"/articles/create");
 	//client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li/input")).click();
@@ -369,10 +386,49 @@ public void createArticleThreeColumn(){
 		client.findElement(By.id("article[photo_credit]")).sendKeys("Photo Credits Test "+emailFormat.format(now));
 
 //enter Article/Feature introduction
-		client.findElement(By.id("article[short]")).sendKeys("Article/Feature Introduction Test "+emailFormat.format(now));
+		client.findElement(By.id("article[short]")).sendKeys("Article/Feature Introduction Test "+emailFormat.format(now)); 
 		
 //enter Copy !!!Figure out how to interact with this version of FCK editor
-	
+//		((JavascriptExecutor)client).executeScript("CKEDITOR.instances['editor1'].setData('hello world');");
+//		client.switchTo().frame("article[content]___Frame");
+//		client.switchTo().activeElement();
+//		client.findElement(By.id("xEditingArea")).sendKeys("Test");
+		
+		// The image would be considered a match if 90% of it matches the source image
+		// by default this is 70%
+//		Settings.MinSimilarity = 0.9;
+
+
+		// set the image location. This is where the source images are stored
+		//ImageLocator imageLocator = new ImageLocator();
+		//ImageLocator.addImagePath("file:///c:/");
+
+		// Declare a new screen object
+//		Screen screen = new Screen();
+
+
+		// wait for the "Next" button. If it does not appear in 180 seconds,
+		// this line will throw an exception
+//		try {
+//			screen.wait("src/test/upload_data/wysiwyg.png", 180);
+//		} catch (FindFailed e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		// Click the next button
+//		try {
+//			screen.click("src/test/upload_data/wysiwyg.png", 0);
+//		} catch (FindFailed e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//		try {
+//			screen.type("Test", 0);
+//		} catch (FindFailed e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		
 //Article Blurb
 		client.findElement(By.id("article[blurb]")).sendKeys("Article Blurb Test "+emailFormat.format(now));
@@ -711,25 +767,38 @@ public void checkUDHomepageCityHeaderLoggedOut(){
 	Assert.assertTrue(headerHelper_Client.isMobilePresent());
 	
 	headerHelper_Client.clickNightlife();
+	this.pause1();
 	Assert.assertTrue(isNightlifeAccessible());
 	headerHelper_Client.clickFood();
+	this.pause1();
 	Assert.assertTrue(isFoodAccessible());
 	headerHelper_Client.clickStyle();
+	this.pause1();
 	Assert.assertTrue(isStyleAccessible());
 	headerHelper_Client.clickGear();
+	this.pause1();
 	Assert.assertTrue(isGearAccessible());
 	headerHelper_Client.clickLeisure();
+	this.pause1();
 	Assert.assertTrue(isLeisureAccessible());
-	
+	headerHelper_Client.clickDriven();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isDrivenAccessible());
 	this.client.navigate().back();
 	headerHelper_Client.clickPerks();
+	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickParties();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isPartiesAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickKempt();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isKemptAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickMobile();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isMobileAccessible());
 	this.client.navigate().back();
 
@@ -748,19 +817,29 @@ public void checkUDHomepageLasVegasHeaderLoggedOut(){
 	Assert.assertTrue(headerHelper_Client.isMobileLVPresent());
 	
 	headerHelper_Client.clickNightlifeLV();
+	this.pause1();
 	Assert.assertTrue(isNightlifeAccessible());
 	headerHelper_Client.clickFoodLV();
+	this.pause1();
 	Assert.assertTrue(isFoodAccessible());
 	headerHelper_Client.clickEntertainmentLV();
+	this.pause1();
 	Assert.assertTrue(isEntertainmentAccessible());
 
 	headerHelper_Client.clickPerksLV();
+	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickPartiesLV();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isPartiesLVAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickKemptLV();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isKemptLVAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickMobileLV();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isMobileLVAccessible());
 	this.client.navigate().back();
 
@@ -783,25 +862,37 @@ public void checkUDHomepageNationalHeaderLoggedOut(){
 	Assert.assertTrue(headerHelper_Client.isMobileNationalPresent());
 	
 	headerHelper_Client.clickFoodDrinkNational();
+	this.pause1();
 	Assert.assertTrue(isFoodDrinkNationalAccessible());
 	headerHelper_Client.clickStyleNational();
+	this.pause1();
 	Assert.assertTrue(isStyleAccessible());
 	headerHelper_Client.clickGearNational();
+	this.pause1();
 	Assert.assertTrue(isGearAccessible());
 	headerHelper_Client.clickEntertainmentNational();
+	this.pause1();
 	Assert.assertTrue(isEntertainmentAccessible());
 	headerHelper_Client.clickTravelNational();
+	this.pause1();
 	Assert.assertTrue(isTravelAccessible());
 	
 	Assert.assertTrue(headerHelper_Client.isDrivenNationalAccessible());
 	this.client.navigate().back();
 	headerHelper_Client.clickPerks();
+	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickPartiesNational();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isPartiesNationalAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickKemptNational();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isKemptNationalAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickMobileNational();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isMobileNationalAccessible());
 	this.client.navigate().back();
 }
@@ -821,25 +912,37 @@ public void checkUDHomepageCityHeaderLoggedIn(){
 	Assert.assertTrue(headerHelper_Client.isKemptPresent());
 	
 	headerHelper_Client.clickNightlife();
+	this.pause1();
 	Assert.assertTrue(isNightlifeAccessible());
 	headerHelper_Client.clickFood();
+	this.pause1();
 	Assert.assertTrue(isFoodAccessible());
 	headerHelper_Client.clickStyle();
+	this.pause1();
 	Assert.assertTrue(isStyleAccessible());
 	headerHelper_Client.clickGear();
+	this.pause1();
 	Assert.assertTrue(isGearAccessible());
 	headerHelper_Client.clickLeisure();
+	this.pause1();
 	Assert.assertTrue(isLeisureAccessible());
-	
+	headerHelper_Client.clickDriven();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isDrivenAccessible());
 	this.client.navigate().back();
 	headerHelper_Client.clickPerks();
+	//this.pause1();
 	this.client.navigate().back();
 	headerHelper_Client.clickPerks();
+	this.pause1();
 	Assert.assertTrue(isPerksAccessible());	
 	this.client.navigate().back();
+	headerHelper_Client.clickParties();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isPartiesAccessible());
 	this.client.navigate().back();
+	headerHelper_Client.clickKempt();
+	this.pause1();
 	Assert.assertTrue(headerHelper_Client.isKemptAccessible());
 	this.client.navigate().back();
 	
@@ -1259,6 +1362,8 @@ public void loginToGmail(){
 	//go to gmail and confirm your email address
 	this.client.navigate().to("https://mail.google.com/");
 	checkEmailHelper_Client.clientLogInToGmail();
+	
+	this.pause2();
 }
 
 public void verifyWelcomeEmailReceived(){
@@ -1280,7 +1385,7 @@ public void verifyInvitationsEmailsReceived(){
 
 public void verifyResetPasswordRequestReceivedandPasswordReset(){
 	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-	resetEmailHelper_Client = new ResetEmailHelper_Client(client);
+//	resetEmailHelper_Client = new ResetEmailHelper_Client(client);
 	sealHelper_Client = new SealHelper_Client(client);
 	
 	checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");

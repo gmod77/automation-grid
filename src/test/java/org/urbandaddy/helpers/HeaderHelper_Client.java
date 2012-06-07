@@ -383,11 +383,6 @@ public void clickNightlife(){
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
 	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isNightlifeLVPresent(){
@@ -406,12 +401,6 @@ String str = headerReader.getLocator("LoggedInHeaderLasVegas.Nightlife");
 this.WaitForElementPresent(str,20);		
 WebElement el = client.findElement(ByLocator(str));
 el.click();
-
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 	
@@ -431,12 +420,6 @@ public void clickFood(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isFoodLVPresent(){
@@ -455,12 +438,6 @@ public void clickFoodLV(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isFoodDrinkNationalPresent(){
@@ -479,12 +456,6 @@ public void clickFoodDrinkNational(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isEntertainmentLVPresent(){
@@ -503,12 +474,6 @@ public void clickEntertainmentLV(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isEntertainmentNationalPresent(){
@@ -527,12 +492,6 @@ public void clickEntertainmentNational(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isTravelNationalPresent(){
@@ -551,12 +510,6 @@ public void clickTravelNational(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isStylePresent(){
@@ -575,12 +528,6 @@ public void clickStyle(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isStyleNationalPresent(){
@@ -599,12 +546,6 @@ String str = headerReader.getLocator("LoggedInHeaderNational.Style");
 this.WaitForElementPresent(str,20);		
 WebElement el = client.findElement(ByLocator(str));
 el.click();
-
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isGearPresent(){
@@ -623,12 +564,6 @@ public void clickGear(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isGearNationalPresent(){
@@ -647,12 +582,6 @@ String str = headerReader.getLocator("LoggedInHeaderNational.Gear");
 this.WaitForElementPresent(str,20);		
 WebElement el = client.findElement(ByLocator(str));
 el.click();
-
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isLeisurePresent(){
@@ -671,12 +600,6 @@ public void clickLeisure(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 	
 public Boolean isDrivenPresent(){
@@ -689,18 +612,15 @@ public Boolean isDrivenPresent(){
 		return result;
 }
 
-public boolean isDrivenAccessible(){
+public void clickDriven(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Driven");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
+}
+
+public boolean isDrivenAccessible(){
 
 	if (client.getCurrentUrl().equals("http://driven.urbandaddy.com/"))
 		return true;
@@ -746,12 +666,6 @@ public void clickPerks(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isPerksLVPresent(){
@@ -770,12 +684,6 @@ public void clickPerksLV(){
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
 }
 
 public Boolean isPerksNationalPresent(){
@@ -812,18 +720,15 @@ public Boolean isPartiesPresent(){
 		return result;
 }
 
-public boolean isPartiesAccessible(){
+public void clickParties(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Parties");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
+}
+
+public boolean isPartiesAccessible(){
 	
 	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
 		return true;
@@ -840,12 +745,15 @@ public Boolean isPartiesLVPresent(){
 	return result;
 }
 
-public boolean isPartiesLVAccessible(){
+public void clickPartiesLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Parties");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
+}
+
+public boolean isPartiesLVAccessible(){
 	
 	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
 		return true;
@@ -862,13 +770,16 @@ public Boolean isPartiesNationalPresent(){
 	return result;
 }
 
-public boolean isPartiesNationalAccessible(){
+public void clickPartiesNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Parties");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
+}
+
+public boolean isPartiesNationalAccessible(){
+		
 	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
 		return true;
 	return false;
@@ -884,18 +795,15 @@ public Boolean isKemptPresent(){
 		return result;
 }
 
-public boolean isKemptAccessible(){
+public void clickKempt(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Kempt");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
+}
+
+public boolean isKemptAccessible(){
 	
 	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
 		return true;
@@ -912,13 +820,16 @@ public Boolean isKemptLVPresent(){
 	return result;
 }
 
-public boolean isKemptLVAccessible(){
+public void clickKemptLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Kempt");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
+}
+
+public boolean isKemptLVAccessible(){
+
 	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
 		return true;
 	return false;
@@ -934,13 +845,16 @@ public Boolean isKemptNationalPresent(){
 	return result;
 }
 
-public boolean isKemptNationalAccessible(){
+public void clickKemptNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Kempt");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
+}
+
+public boolean isKemptNationalAccessible(){
+		
 	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
 		return true;
 	return false;
@@ -956,18 +870,15 @@ public Boolean isMobilePresent(){
 		return result;
 	}
 
-public boolean isMobileAccessible(){
+public void clickMobile(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Mobile");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
+}
+
+public boolean isMobileAccessible(){
 	
 	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
 		return true;
@@ -984,12 +895,15 @@ public Boolean isMobileLVPresent(){
 	return result;
 }
 
-public boolean isMobileLVAccessible(){
+public void clickMobileLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Mobile");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
+}
+
+public boolean isMobileLVAccessible(){
 	
 	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
 		return true;
@@ -1006,13 +920,16 @@ public Boolean isMobileNationalPresent(){
 	return result;
 }
 
-public boolean isMobileNationalAccessible(){
+public void clickMobileNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Mobile");
 	this.WaitForElementPresent(str,20);		
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
-	
+}
+
+public boolean isMobileNationalAccessible(){
+		
 	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
 		return true;
 	return false;
