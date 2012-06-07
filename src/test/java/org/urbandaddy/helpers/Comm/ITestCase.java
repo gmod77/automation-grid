@@ -307,6 +307,7 @@ public void createArticleThreeColumn() {
 
 	//Save
 	client.findElement(By.name("save")).click();
+	this.pause3();
 	
 // Get Article ID
 	
