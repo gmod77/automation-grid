@@ -365,6 +365,7 @@ public void createArticleThreeColumn() {
 	    //click "save and add" button
 	    
 		client.findElement(By.name("save_and_add")).click();
+		this.pause1();
 		
 //browse to 3rd image
 		client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image003_thumbnail.jpg");
@@ -386,6 +387,7 @@ public void createArticleThreeColumn() {
 //click "save and add" button
 			    
 		client.findElement(By.name("save")).click();
+		this.pause1();
 
 //go back to the article
 		client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
