@@ -188,6 +188,14 @@ else if (DriverType.FirefoxRemote13.toString().equals(driverType))
 			e.printStackTrace();
 		}
 	}
+	
+	public void pause4(){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 ///// Sign-up methods
 	
@@ -1229,6 +1237,7 @@ public void createArticleThreeColumn() {
 				    {
 				                client.switchTo().window(popupHandle);
 				                // click save
+				                this.pause4();
 				                client.findElement(By.id("save_button")).click(); 
 
 				                //After finished your operation in pop-up just select the main window again
@@ -1283,6 +1292,7 @@ public void createArticleThreeColumn() {
 		    {
 		                client.switchTo().window(popupHandle);
 		                // click save
+		                this.pause4();
 		                client.findElement(By.id("save_button")).click(); 
 
 		                //After finished your operation in pop-up just select the main window again
@@ -1314,8 +1324,10 @@ public void createArticleThreeColumn() {
 		// Get the text of the alert or prompt
 		alert.getText();  
 		// And acknowledge the alert (equivalent to clicking "OK")
+		this.pause4();
 		alert.accept();
 		
+		this.pause3();
 		// Verify "Test email has been sent" success message
 		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
@@ -1331,6 +1343,7 @@ public void createArticleThreeColumn() {
 				alert2.getText();  
 				// And acknowledge the alert (equivalent to clicking "OK")
 				alert2.accept();
+				this.pause4();
 				
 		// Verify "Test email has been sent" success message
 		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
