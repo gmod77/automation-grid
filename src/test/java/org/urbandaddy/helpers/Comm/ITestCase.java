@@ -1351,6 +1351,7 @@ public void createArticleThreeColumn() {
 //Click Back to Article, Change Status to Ready to Send, Click Save, Click Send E-mail, Click Send Mailing at bottom of page
 		//go back to the article
 				client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
+				this.pause3();
 				
 		//Change Status to Ready to Send, Click Save,
 				
