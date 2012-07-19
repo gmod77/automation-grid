@@ -1237,7 +1237,7 @@ public void createArticleThreeColumn() {
 				    {
 				                client.switchTo().window(popupHandle);
 				                // click save
-				                this.pause4();
+				                this.pause3();
 				                client.findElement(By.id("save_button")).click(); 
 
 				                //After finished your operation in pop-up just select the main window again
