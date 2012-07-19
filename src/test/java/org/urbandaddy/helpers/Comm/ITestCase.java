@@ -1292,7 +1292,7 @@ public void createArticleThreeColumn() {
 		    {
 		                client.switchTo().window(popupHandle);
 		                // click save
-		                this.pause4();
+		                this.pause3();
 		                client.findElement(By.id("save_button")).click(); 
 
 		                //After finished your operation in pop-up just select the main window again
@@ -1324,7 +1324,7 @@ public void createArticleThreeColumn() {
 		// Get the text of the alert or prompt
 		alert.getText();  
 		// And acknowledge the alert (equivalent to clicking "OK")
-		this.pause4();
+		this.pause3();
 		alert.accept();
 		
 		this.pause3();
@@ -1343,7 +1343,7 @@ public void createArticleThreeColumn() {
 				alert2.getText();  
 				// And acknowledge the alert (equivalent to clicking "OK")
 				alert2.accept();
-				this.pause4();
+				this.pause3();
 				
 		// Verify "Test email has been sent" success message
 		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
