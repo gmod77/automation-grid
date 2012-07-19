@@ -101,11 +101,11 @@ else if (DriverType.FirefoxRemote13.toString().equals(driverType))
 			//capability.setBrowserName("firefox10");
 	    	//capability.setCapability("firefox_binary" , "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
 			//capability.setCapability("maxInstances", 5);		
-			capability.setCapability("jenkins.nodeName", "WindowsSlave1");
+			capability.setCapability("jenkins.nodeName", "WindowsSlave2");
 			capability.setCapability("javascriptEnabled ", true);
 			//FirefoxProfile ffPrfile;
             //ffprofile.setPreference("javascript.enabled", true);
-			capability.setVersion("13");
+			capability.setVersion("14");
 			
 			
 			try {
@@ -238,10 +238,631 @@ public void loginUDAdmin(){
 	//client.get(UD_Admin_domain+"/admin.php/articles");
 }
 
+public void createArticleWeekender() {
+
+//	1. Log in to the UD admin 
+//	2. Click on articles
+//	3. Click on create	
+	
+	client.get(UD_Admin_domain+"/articles/create");
+	this.pause1();
+
+//	4. Change status to Approved
+	
+    WebElement status = client.findElement(By.id("article_article_status_id"));
+    List<WebElement> status_options = status.findElements(By.tagName("option"));
+    for(WebElement option : status_options){
+        if(option.getText().equals("Approved")) {
+            option.click();
+            break;
+        }
+    }
+    
+//	5.  Click Dedicated
+    
+	client.findElement(By.id("article_is_dedicated")).click();
+    
+//	6.  Change Template to Weekender
+	
+    WebElement template = client.findElement(By.id("article_article_template_id"));
+    List<WebElement> template_options = template.findElements(By.tagName("option"));
+    for(WebElement option : template_options){
+        if(option.getText().equals("Weekender")) {
+            option.click();
+            break;
+        }
+    }
+	
+//	7.  Choose any ad campaign
+    
+    WebElement ad_campaign = client.findElement(By.id("article_article_template_id"));
+    List<WebElement> ad_campaign_options = ad_campaign.findElements(By.tagName("option"));
+    for(WebElement option : ad_campaign_options){
+        if(option.getText().equals("Groupon")) {
+            option.click();
+            break;
+        }
+    }
+    
+//	8.  Choose any Author
+    
+    WebElement author = client.findElement(By.id("article_author_id"));
+    List<WebElement> author_options = author.findElements(By.tagName("option"));
+    for(WebElement option : author_options){
+        if(option.getText().equals("Russ Brandom")) {
+            option.click();
+            break;
+        }
+    }
+    
+//	9.  Enter in From Display “test <test@test.com>”
+    
+	client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
+    
+//	10.   Choose QA Segment
+	
+    WebElement segment = client.findElement(By.id("details_segment"));
+    List<WebElement> segment_options = segment.findElements(By.tagName("option"));
+    for(WebElement option : segment_options){
+        if(option.getText().equals("QA Addresses")) {
+            option.click();
+            break;
+        }
+    }
+    
+//	11.   Enter an Article title
+    
+	client.findElement(By.id("article_name")).sendKeys("Test Weekender Article Title "+emailFormat.format(now));
+	    
+//	12.   Enter a Business Name/Subject
+    
+	client.findElement(By.id("article_business_name")).sendKeys("Test Weekender Business Name "+emailFormat.format(now));
+
+//	13.   Enter an Article Subheader
+    
+	client.findElement(By.id("article_teaser")).sendKeys("Test Weekender Article Subheader "+emailFormat.format(now));
+    
+//	14.   Enter a Email Subject Line
+    
+	client.findElement(By.id("article_email_subject_line")).sendKeys("Test Weekender Email Subject "+emailFormat.format(now));
+    
+//	15.   Choose any weekender category
+    
+    //default selection is "NYC: Nightlife"
+    
+//	16.   Click Save
+	
+	client.findElement(By.name("save")).click();
+	this.pause1();
+	
+	// Get Article ID
+	
+		String articleLink = client.getCurrentUrl();
+		
+	    String[] separated = articleLink.split("/");
+	    String articleID = separated[separated.length - 1];
+    
+//	17.   Add Images: Email Banner, Option_A_Left_Column, and Thumbnail
+	
+	// go to create image page
+	client.get(UD_Admin_domain+"/article_images/create");
+	this.pause1();
+	
+	//browse to 1st image
+	client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image001_optionA.jpg");
+	
+	//enter Article ID
+	client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+	
+	//enter Position for 1st image: Option A Left Column
+	
+    WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
+    List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
+    for(WebElement option : position_options1){
+        if(option.getText().equals("Option_A_Left_Column")) {
+            option.click();
+            break;
+        }
+    }
+    
+    //click "save and add" button
+    
+	client.findElement(By.name("save_and_add")).click();
+	this.pause1();
+	
+	
+	//browse to 2nd image
+		client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image002_EmailBanner.jpg");
+		
+		//enter Article ID
+		client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+		
+		//enter Position for 1st image: Option A Left Column
+		
+	    WebElement article2_position = client.findElement(By.id("article_image_article_image_position_id"));
+	    List<WebElement> position_options2 = article2_position.findElements(By.tagName("option"));
+	    for(WebElement option : position_options2){
+	        if(option.getText().equals("Email_Banner")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    
+	    //click "save and add" button
+	    
+		client.findElement(By.name("save_and_add")).click();
+		this.pause1();
+		
+		//browse to 3rd image
+		client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image003_thumbnail.jpg");
+				
+		//enter Article ID
+		client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+				
+		//enter Position for 1st image: Option A Left Column
+				
+			    WebElement article3_position = client.findElement(By.id("article_image_article_image_position_id"));
+			    List<WebElement> position_options3 = article3_position.findElements(By.tagName("option"));
+			    for(WebElement option : position_options3){
+			        if(option.getText().equals("Thumbnail")) {
+			            option.click();
+			            break;
+			        }
+			    }
+			    
+		//click "save and add" button
+			    
+		client.findElement(By.name("save")).click();
+		this.pause1();
+		
+		//go back to the article
+		client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);	
+	
+//	18.   Enter text in photo credit
+		
+		client.findElement(By.id("article[photo_credit]")).sendKeys("Weekender Photo Credits Test "+emailFormat.format(now));
+
+//	19.   Enter text in Article Feature
+		
+		client.findElement(By.id("article[short]")).sendKeys("Weekender Article/Feature Introduction Test "+emailFormat.format(now)); 
+
+//	20.   Copy is not needed
+//	21.   Enter text in Article Blurb
+		
+		client.findElement(By.id("article[blurb]")).sendKeys("Weekender Article Blurb Test "+emailFormat.format(now));
+		
+//	22.   Enter Text in iPhone Blurb
+		
+		client.findElement(By.id("article[blurb_iphone]")).sendKeys("Weekender iPhone Blurb Test "+emailFormat.format(now));
+
+//	23.   Enter Text in Twitter Blurb
+		
+		client.findElement(By.id("article_blurb_twitter")).sendKeys("Weekender Twitter Blurb Test "+emailFormat.format(now));
+
+//	24.   Enter Text in Note
+		
+		//!!!Figure out how to interact with this version of FCK editor
+		
+//	25.   Enter Text in Legal Line
+		
+		client.findElement(By.id("article[footer_additional]")).sendKeys("Weekender Legal Line Test "+emailFormat.format(now));
+
+//	26.   Add Ad to Bottom module
+//		a.	Select ad from component dropdown
+		
+		WebElement add_bottom_components = client.findElement(By.id("_select_modules_center"));
+	    List<WebElement> add_bottom_components_options = add_bottom_components.findElements(By.tagName("option"));
+
+	    for(WebElement option : add_bottom_components_options){
+	        if(option.getText().equals("Ad")) {
+	            option.click();
+	            break;
+	        }
+	    }
+	    try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    
+//		b.	Click on newsletter_ad
+	    
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click(); 
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+//		c.	Choose any Footer ad.   
+		//set main window handle before pop-ups pop up
+		String mwh=client.getWindowHandle();
+		
+		//handle pop-up window
+				Set<?> s_add1=client.getWindowHandles();
+				//this method will you handle of all opened windows
+
+				Iterator<?> ite_add1=s_add1.iterator();
+
+				while(ite_add1.hasNext())
+				{
+				    String popupHandle=ite_add1.next().toString();
+				    if(!popupHandle.contains(mwh))
+				    {
+				                client.switchTo().window(popupHandle);
+							 
+							// select Footer template
+						
+			    WebElement bottom_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
+			    List<WebElement> bottom_ad_type_options = bottom_ad_type.findElements(By.tagName("option"));
+			    for(WebElement option : bottom_ad_type_options){
+			        if(option.getText().equals("49ers SF 11-8-11 footer (Footer)")) {
+			            option.click();
+			            break;
+			        }
+			    }	
+
+		//				d. 	Click Save
+                client.findElement(By.id("save_button")).click(); 
+                this.pause1();
+			    
+                //After finished your operation in pop-up just select the main window again
+                client.switchTo().window(mwh);
+				    }
+				}
+		
+
+		
+//	27.   Add Ad to Right Module
+//		a.	Select ad from component dropdown
+                
+//        		a.	Select ad from component dropdown
+        		
+        		WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
+        	    List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
+
+        	    for(WebElement option : add_right_components_options){
+        	        if(option.getText().equals("Ad")) {
+        	            option.click();
+        	            break;
+        	        }
+        	    }
+        	    try {
+        			Thread.sleep(2000);
+        		} catch (InterruptedException e) {
+        			e.printStackTrace();
+        		}
+//		b.	Click on newsletter_ad
+        	    
+        		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click(); 
+        		
+        		try {
+        			Thread.sleep(3000);
+        		} catch (InterruptedException e) {
+        			e.printStackTrace();
+        		}
+
+//		c.	Choose any Tower add.      
+        		//set main window handle before pop-ups pop up
+        		String mwh2=client.getWindowHandle();
+        		
+        		//handle pop-up window
+        				Set<?> s_add2=client.getWindowHandles();
+        				//this method will you handle of all opened windows
+
+        				Iterator<?> ite_add2=s_add2.iterator();
+
+        				while(ite_add2.hasNext())
+        				{
+        				    String popupHandle2=ite_add2.next().toString();
+        				    if(!popupHandle2.contains(mwh2))
+        				    {
+        				                client.switchTo().window(popupHandle2);
+        							 
+        							// select Footer template
+        						
+        			    WebElement right_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
+        			    List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
+        			    for(WebElement option : right_ad_type_options){
+        			        if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
+        			            option.click();
+        			            break;
+        			        }
+        			    }	
+//        d.	Click Save
+                        client.findElement(By.id("save_button")).click(); 
+                        this.pause1();
+        			    
+		                //After finished your operation in pop-up just select the main window again
+		                client.switchTo().window(mwh2);
+        				    }
+        				}
+
+		
+//	28.   Enter text in keywords
+		
+		client.findElement(By.id("article_keywords")).sendKeys("Weekender Keywords Test Keywords "+emailFormat.format(now));
+
+//	29.   Choose business type
+		
+	    WebElement business_type = client.findElement(By.id("article_business_type_id"));
+	    List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
+	    for(WebElement option : business_type_options){
+	        if(option.getText().equals("Clothing")) {
+	            option.click();
+	            break;
+	        }
+	    }
+		
+//	30.   Enter text in business specialty
+	    
+		client.findElement(By.id("article_business_specialty")).sendKeys("Weekender Business Specialty Test "+emailFormat.format(now));
+	    
+//	31.   Click save
+		
+		client.findElement(By.name("save")).click();
+		this.pause1();
+		
+		
+//	32.   Click “here” next to Template this takes you to individual weekenders
+		//html/body/div[3]/div/div[2]/form/fieldset/div[5]/div/a
+
+//		or:
+		
+		client.get(UD_Admin_domain+"/multiarticle/edit/id/"+articleID);
+		this.pause1();
+		
+//	33.   For each template, 3 is a good number:
+		
+		//1
+//		a.       Choose the day 
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/select
+		
+		WebElement day1 = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/select"));
+	    List<WebElement> day1_options = day1.findElements(By.tagName("option"));
+	    for(WebElement option : day1_options){
+	        if(option.getText().equals("Monday")) {
+	            option.click();
+	            break;
+	        }
+	    }
+		
+//		b.      Click show day image in title
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/input
+	    
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/input[2]")).click();
+
+		
+//		c.       Enter text in Header
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input")).sendKeys("Weekender Header1 Test "+emailFormat.format(now));
+
+		
+//		d.      Enter text in Subheader
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+emailFormat.format(now));
+
+		
+//		e.      Put in some url for subheader URl
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[7]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[7]/input")).sendKeys("www.google.com");
+
+
+//		f.        Click choose file under image and put in an image
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input 
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\solon.jpg");
+
+
+//		g.       Check image url
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[9]/input    
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[9]/input")).click();
+
+		
+//		h.      Put in some url for image url
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[9]/input[2]
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[9]/input[2]")).sendKeys("http://images.sodahead.com/polls/001076173/even_kittens_are_going_bad_answer_2_xlarge.jpeg");
+
+
+//		i.         Enter text in Alt
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+emailFormat.format(now));
+
+
+//		j.        Enter text in Copy
+//		k.       Enter text in 411
+		
+//		l.         Repeat for others
+		
+		
+		//2
+//		a.       Choose the day    
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/select
+		
+		WebElement day2 = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/select"));
+	    List<WebElement> day2_options = day2.findElements(By.tagName("option"));
+	    for(WebElement option : day2_options){
+	        if(option.getText().equals("Tuesday")) {
+	            option.click();
+	            break;
+	        }
+	    }
+		
+//		b.      Click show day image in title
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/input
+	    
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/input[2]")).click();
+		
+//		c.       Enter text in Header
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input")).sendKeys("Weekender Header2 Test "+emailFormat.format(now));
+		
+//		d.      Enter text in Subheader
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[6]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[6]/input")).sendKeys("Weekender SubHeader2 Test "+emailFormat.format(now));
+
+		
+//		e.      Put in some url for subheader URl
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[7]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[7]/input")).sendKeys("www.yahoo.com");
+
+
+//		f.        Click choose file under image and put in an image
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\plato.jpg");
+
+
+//		g.       Check image url
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[9]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[9]/input")).click();
+
+		
+//		h.      Put in some url for image url
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[9]/input[2]
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[9]/input[2]")).sendKeys("http://t0.gstatic.com/images?q=tbn:ANd9GcTYj5WyrHaLj6lqad-dIiNUTQSaKkuJmJtUKiPX3SbIpCfS-1aFqyr-mDWF");
+
+
+//		i.         Enter text in Alt
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[10]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[10]/input")).sendKeys("Weekender Alt2 Test"+emailFormat.format(now));
+
+
+//		j.        Enter text in Copy
+//		k.       Enter text in 411
+//		l.         Repeat for others
+
+		
+		//3
+		
+//		a.       Choose the day   
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/select
+		
+		WebElement day3 = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/select"));
+	    List<WebElement> day3_options = day3.findElements(By.tagName("option"));
+	    for(WebElement option : day3_options){
+	        if(option.getText().equals("Thursday")) {
+	            option.click();
+	            break;
+	        }
+	    }
+		
+//		b.      Click show day image in title
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/input
+	    
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/input[2]")).click();
+
+		
+//		c.       Enter text in Header
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[5]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[5]/input")).sendKeys("Weekender Header3 Test "+emailFormat.format(now));
+		
+		
+//		d.      Enter text in Subheader
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[6]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[6]/input")).sendKeys("Weekender SubHeader3 Test "+emailFormat.format(now));
+
+		
+//		e.      Put in some url for subheader URl
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[7]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[7]/input")).sendKeys("www.cnn.com");
+
+
+//		f.        Click choose file under image and put in an image
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\socrates.jpg");
+
+
+//		g.       Check image url
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[9]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[9]/input")).click();
+		
+//		h.      Put in some url for image url
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[9]/input[2]
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[9]/input[2]")).sendKeys("http://imagecache6.allposters.com/LRG/38/3842/UJXYF00Z.jpg");
+
+
+//		i.         Enter text in Alt
+		
+		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[10]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[10]/input")).sendKeys("Weekender Alt3 Test"+emailFormat.format(now));
+
+
+//		j.        Enter text in Copy
+//		k.       Enter text in 411
+	
+		
+//		m.    Delete slots you do not want to use
+//		slot 4:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
+		this.pause1();
+
+//		slot 5:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[10]/td/div[11]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[10]/td/div[11]/input")).click();
+		this.pause1();
+
+//		slot 6:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[12]/td/div[11]/input
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[12]/td/div[11]/input")).click();
+		this.pause1();
+
+
+
+		
+		//		n.      Click Save
+		
+		client.findElement(By.name("save")).click();
+
+       }		    
+
 public void createArticleThreeColumn() {
 	
 	client.get(UD_Admin_domain+"/articles/create");
-	//client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li/input")).click();
 	
 	//Set Status to Approved
     WebElement status = client.findElement(By.id("article_article_status_id"));
@@ -293,17 +914,17 @@ public void createArticleThreeColumn() {
     //Enter Article Title:
 
 	//client.findElement(By.id("article_name")).clear();
-	client.findElement(By.id("article_name")).sendKeys("Test Article Title "+emailFormat.format(now));
+	client.findElement(By.id("article_name")).sendKeys("Test Three-Column Article Title "+emailFormat.format(now));
     
 	//Enter Business Name/Subject
 	//client.findElement(By.id("article_business_name")).clear();
-	client.findElement(By.id("article_business_name")).sendKeys("Test Business Name "+emailFormat.format(now));
+	client.findElement(By.id("article_business_name")).sendKeys("Test Three-Column Business Name "+emailFormat.format(now));
 	
 	//Enter Article Subheader
-	client.findElement(By.id("article_teaser")).sendKeys("Test Article Subheader "+emailFormat.format(now));
+	client.findElement(By.id("article_teaser")).sendKeys("Test Three-Column Article Subheader "+emailFormat.format(now));
 
 	//Enter Email Subject Line
-	client.findElement(By.id("article_email_subject_line")).sendKeys("Test Email Subject "+emailFormat.format(now));
+	client.findElement(By.id("article_email_subject_line")).sendKeys("Test Three-Column Email Subject "+emailFormat.format(now));
 
 	//Save
 	client.findElement(By.name("save")).click();
@@ -393,10 +1014,10 @@ public void createArticleThreeColumn() {
 		client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
 		
 //enter photo credits
-		client.findElement(By.id("article[photo_credit]")).sendKeys("Photo Credits Test "+emailFormat.format(now));
+		client.findElement(By.id("article[photo_credit]")).sendKeys("Three-Column Photo Credits Test "+emailFormat.format(now));
 
 //enter Article/Feature introduction
-		client.findElement(By.id("article[short]")).sendKeys("Article/Feature Introduction Test "+emailFormat.format(now)); 
+		client.findElement(By.id("article[short]")).sendKeys("Three-Column Article/Feature Introduction Test "+emailFormat.format(now)); 
 		
 //enter Copy !!!Figure out how to interact with this version of FCK editor
 //		((JavascriptExecutor)client).executeScript("CKEDITOR.instances['editor1'].setData('hello world');");
@@ -441,21 +1062,21 @@ public void createArticleThreeColumn() {
 //		}
 		
 //Article Blurb
-		client.findElement(By.id("article[blurb]")).sendKeys("Article Blurb Test "+emailFormat.format(now));
+		client.findElement(By.id("article[blurb]")).sendKeys("Three-Column Article Blurb Test "+emailFormat.format(now));
 
 //iPhone Blurb
-		client.findElement(By.id("article[blurb_iphone]")).sendKeys("iPhone Blurb Test "+emailFormat.format(now));
+		client.findElement(By.id("article[blurb_iphone]")).sendKeys("Three-Column iPhone Blurb Test "+emailFormat.format(now));
 
 //Twitter Blurb
-		client.findElement(By.id("article_blurb_twitter")).sendKeys("Twitter Blurb Test "+emailFormat.format(now));
+		client.findElement(By.id("article_blurb_twitter")).sendKeys("Three-Column Twitter Blurb Test "+emailFormat.format(now));
 		
 //enter Note !!!Figure out how to interact with this version of FCK editor
 
 //Legal Line
-		client.findElement(By.id("article[footer_additional]")).sendKeys("Legal Line Test "+emailFormat.format(now));
+		client.findElement(By.id("article[footer_additional]")).sendKeys("Three-Column Legal Line Test "+emailFormat.format(now));
 
 //Keywords
-		client.findElement(By.id("article_keywords")).sendKeys("Keywords Test Keywords "+emailFormat.format(now));
+		client.findElement(By.id("article_keywords")).sendKeys("Three-Column Keywords Test Keywords "+emailFormat.format(now));
 
 //Business type
 		
@@ -469,7 +1090,7 @@ public void createArticleThreeColumn() {
 	    }
 //Business specialty
 		
-		client.findElement(By.id("article_business_specialty")).sendKeys("Business Specialty Test "+emailFormat.format(now));
+		client.findElement(By.id("article_business_specialty")).sendKeys("Three-Column Business Specialty Test "+emailFormat.format(now));
 
 //Save
 		client.findElement(By.name("save")).click();
@@ -677,6 +1298,7 @@ public void createArticleThreeColumn() {
 //Click Save, 
 	
 		client.findElement(By.name("save")).click(); 
+		this.pause1();
 		
 //Click HTML Newsletter, 
 //Click Send Email, 
