@@ -12,6 +12,22 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 
 	private LocatorReader checkEmailReader;
 	private String UDdomain = "http://ud-branch.thedaddy.co";
+	
+	public void pause1(){
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void pause2(){
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public CheckEmailHelper_Client(WebDriver client) {
 		super(client);
@@ -27,12 +43,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		this.WaitForElementPresent(Email, 20);		
 		WebElement em = client.findElement(ByLocator(Email));
 		em.sendKeys("udtestergene@gmail.com");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		this.pause1();
 		
 		String Passwd = checkEmailReader.getLocator("Gmail.Password");
 		this.WaitForElementPresent(Passwd, 20);
@@ -45,12 +56,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		si.click();
 		
 		// wait for email to arrive
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause2();
 		
 		// refresh
 		client.navigate().refresh();
@@ -81,12 +87,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click();  
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause2();
 
 		
 		//do some checks
@@ -124,12 +125,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		WebElement el2 = client.findElement(ByLocator(smb));
 		el2.click();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 		
 		//assuming the single correct result came back, click that email
 		
@@ -137,12 +133,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click(); 	
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 	}
 	
 	public void findInvitationEmail2 (String searchString){
@@ -161,12 +152,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		WebElement el2 = client.findElement(ByLocator(smb));
 		el2.click();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 		
 		//assuming the single correct result came back, click that email
 		
@@ -174,12 +160,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click(); 	
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 	}
 	
 	public void findInvitationEmail3 (String searchString){
@@ -198,12 +179,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		WebElement el2 = client.findElement(ByLocator(smb));
 		el2.click();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 		
 		//assuming the single correct result came back, click that email
 		
@@ -211,12 +187,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click(); 	
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 	}
 	
 	public void findInvitationEmail4 (String searchString){
@@ -235,12 +206,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		WebElement el2 = client.findElement(ByLocator(smb));
 		el2.click();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 		
 		//assuming the single correct result came back, click that email
 		
@@ -248,12 +214,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click(); 
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 	}
 	
 	public void findInvitationEmail5 (String searchString){
@@ -273,12 +234,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		
 		el2.click();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 		
 		//assuming the single correct result came back, click that email
 		
@@ -286,12 +242,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click(); 
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 	}
 	
 	public void findResetEmailRequest (String searchString){
@@ -314,12 +265,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 //		emailtitle.getAttribute("value");
 		client.findElement(By.cssSelector("span.ts")).click();  
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pause1();
 	}
 	
 	public void clickResetEmailRequestLink (){
