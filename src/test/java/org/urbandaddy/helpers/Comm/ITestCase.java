@@ -501,6 +501,7 @@ public void createArticleWeekender() {
 				                client.switchTo().window(popupHandle);
 							 
 							// select Footer template
+				                this.pause3();
 						
 			    WebElement bottom_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
 			    List<WebElement> bottom_ad_type_options = bottom_ad_type.findElements(By.tagName("option"));
@@ -567,6 +568,8 @@ public void createArticleWeekender() {
         				    if(!popupHandle2.contains(mwh2))
         				    {
         				                client.switchTo().window(popupHandle2);
+        				                
+        				                this.pause3();
         							 
         							// select Footer template
         						
@@ -847,16 +850,17 @@ public void createArticleWeekender() {
 //		slot 4:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input
 		
 		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
+		
 		this.pause1();
 
 //		slot 5:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[10]/td/div[11]/input
 		
-		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[10]/td/div[11]/input")).click();
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
 		this.pause1();
 
 //		slot 6:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[12]/td/div[11]/input
 		
-		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[12]/td/div[11]/input")).click();
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
 		this.pause1();
 
 
@@ -1164,6 +1168,7 @@ public void createArticleThreeColumn() {
 		    if(!popupHandle.contains(mwh))
 		    {
 		                client.switchTo().window(popupHandle);
+		                this.pause3();
 		                // click save
 		                client.findElement(By.id("save_button")).click(); 
 
