@@ -11,6 +11,7 @@ public class UD_Admin_Article_Three_Column extends ITestCase {
 	public void flow1(){
 		loginUDAdmin();
 		createArticleThreeColumn();
+		
 	}
 	
 	@Override
