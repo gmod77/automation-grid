@@ -9,8 +9,10 @@ public class UD_Admin_Article_Three_Column extends ITestCase {
 	
 	@Test (groups = "Smoke")
 	public void flow1(){
-		loginUDAdmin();
-		createArticleThreeColumn();
+	
+		
+	loginUDAdmin();
+	createArticleThreeColumn();
 		
 	}
 	
