@@ -8,9 +8,7 @@ import org.testng.annotations.Test;
 public class UD_Admin_Article_Weekender extends ITestCase {
 	
 	@Test (groups = "Smoke")
-	public void flow1(){
-		loginUDAdmin(); 
-		createArticleWeekender();
+	public void flow1(){loginUDAdmin();createArticleWeekender();
 	}
 	
 	@Override
