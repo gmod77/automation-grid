@@ -11,7 +11,6 @@ public class UD_Admin_Article_Weekender extends ITestCase {
 	public void flow1(){
 		loginUDAdmin();
 		createArticleWeekender();
-	
 	}
 	
 	@Override
