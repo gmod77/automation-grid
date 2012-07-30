@@ -48,6 +48,7 @@
    	  <SelectEditionsSkiBoard><![CDATA[member_editions_25]]></SelectEditionsSkiBoard>
    	  
    	  <MoreLinkNewYork1><![CDATA[//html/body/div[7]/div/div/div/form/div[4]/label/a]]></MoreLinkNewYork1>
+<!-- 				<MoreLinkNewYork1NonModal><![CDATA[//.//*[@id='signupMoreEditions']/label/a]]></MoreLinkNewYork1NonModal> -->
    	  
    	  <SelectEditorialEditionsAtlanta><![CDATA[member_editions_22]]></SelectEditorialEditionsAtlanta>
    	  <SelectEditorialEditionsBoston><![CDATA[member_editions_16]]></SelectEditorialEditionsBoston>
@@ -59,6 +60,7 @@
    	  <SelectEditorialEditionsSanFranciso><![CDATA[member_editions_14]]></SelectEditorialEditionsSanFranciso>
    	  
    	  <MoreLinkNewYork2><![CDATA[//html/body/div[7]/div/div/div/form/div[5]/label/a]]></MoreLinkNewYork2>
+<!--    	 <MoreLinkNewYork2NonModal><![CDATA[//.//*[@id='signupPerksEditions']/label/a]]></MoreLinkNewYork2NonModal> -->
    	  
    	  <SelectPerksEditionsBostonPerks><![CDATA[member_editions_30]]></SelectPerksEditionsBostonPerks>
    	  <SelectPerksEditionsChicagoPerks><![CDATA[member_editions_29]]></SelectPerksEditionsChicagoPerks>
@@ -83,6 +85,13 @@
    	  <EnterZipCode><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[7]/input]]></EnterZipCode>
    	  <EnterBirthday><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[8]/input]]></EnterBirthday>
    	  <ClickSubmit><![CDATA[//html/body/div[7]/div/div/div/form/div[3]/div[1]/input]]></ClickSubmit> 
+<!--       <EnterFirstNameNonModal><![CDATA[flowFirstName]]></EnterFirstNameNonModal> -->
+<!--    	  <EnterLastNameNonModal><![CDATA[flowLastName]]></EnterLastNameNonModal> -->
+<!--    	  <SelectGenderNonModal><![CDATA[flowGender]]></SelectGenderNonModal> -->
+<!--    	  <SelectIncomeRangeNonModal><![CDATA[flowIncome]]></SelectIncomeRangeNonModal> -->
+<!--    	  <EnterZipCodeNonModal><![CDATA[flowZip]]></EnterZipCodeNonModal> -->
+<!--    	  <EnterBirthdayNonModal><![CDATA[flowBirthday]]></EnterBirthdayNonModal> -->
+<!--    	  <ClickSubmitNonModal><![CDATA[#submit]]></ClickSubmitNonModal> -->
    	    
    </Step2>
    
@@ -95,6 +104,7 @@
    	  <InviteEmail5><![CDATA[misc_email_5]]></InviteEmail5>
    	  
    	  <ClickInvite><![CDATA[//html/body/div[7]/div/div/div/form/div/div/input]]></ClickInvite>
+<!--    	  <ClickInvite><![CDATA[#submit]]></ClickInvite> -->
    	  <ClickSkip><![CDATA[//html/body/div[7]/div/div/div/div[5]/a]]></ClickSkip>
    	  
    	  <ErrorMessage><![CDATA[//.//*[@id='misc_email_1']]]></ErrorMessage>
