@@ -22,13 +22,13 @@ import org.urbandaddy.locators.LocatorReader;
 
 
 
-public class HomepageHelper_Client extends IHelper_Client {
+public class Perks_HomepageHelper_Client extends IHelper_Client {
 	
 	private String domain = "https://qa.urbandaddy.com";
 
 	private LocatorReader signupReader;
 	
-	public HomepageHelper_Client(WebDriver client) {
+	public Perks_HomepageHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub	
 		signupReader = new LocatorReader("UD_HomePage.xml");

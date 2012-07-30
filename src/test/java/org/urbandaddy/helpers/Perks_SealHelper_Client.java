@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
 
-public class SealHelper_Client extends IHelper_Client {
+public class Perks_SealHelper_Client extends IHelper_Client {
 
 	private LocatorReader sealReader;
 	
-	public SealHelper_Client(WebDriver client) {
+	public Perks_SealHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub
 		

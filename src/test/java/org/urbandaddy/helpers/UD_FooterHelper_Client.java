@@ -7,12 +7,12 @@ import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
 //import org.openqa.selenium.interactions.*;
 
-public class FooterHelper_Client extends IHelper_Client {
+public class UD_FooterHelper_Client extends IHelper_Client {
 
 	private LocatorReader headerReader;
 	private String UDdomain = "http://ud-branch.thedaddy.co";
 
-	public FooterHelper_Client(WebDriver client) {
+	public UD_FooterHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub
 		headerReader = new LocatorReader("UD_Footer.xml");

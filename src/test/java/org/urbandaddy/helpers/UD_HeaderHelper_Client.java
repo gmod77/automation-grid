@@ -6,14 +6,14 @@ import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
 import org.openqa.selenium.interactions.*;
 
-public class HeaderHelper_Client extends IHelper_Client {
+public class UD_HeaderHelper_Client extends IHelper_Client {
 
 	private LocatorReader headerReader;
 	private String UDdomain = "http://ud-branch.thedaddy.co";
 //	private String UDdomain = "http://www.urbandaddy.com";
 
 
-	public HeaderHelper_Client(WebDriver client) {
+	public UD_HeaderHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub
 		headerReader = new LocatorReader("UD_Header.xml");

@@ -36,13 +36,20 @@ import org.openqa.selenium.Cookie;
 //Workflow specific imports
 
 
-import org.urbandaddy.helpers.FooterHelper_Client;
-import org.urbandaddy.helpers.HeaderHelper_Client;
-//import org.urbandaddy.helpers.InvitationsHelper_Client;
-import org.urbandaddy.helpers.SealHelper_Client;
-//import org.urbandaddy.helpers.ReauthenticateHelper_Client;
-//import org.urbandaddy.helpers.SettingsHelper_Client;
-import org.urbandaddy.helpers.HomepageHelper_Client;
+import org.urbandaddy.helpers.UD_FooterHelper_Client;
+import org.urbandaddy.helpers.UD_HeaderHelper_Client;
+import org.urbandaddy.helpers.UD_SealHelper_Client;
+import org.urbandaddy.helpers.UD_HomepageHelper_Client;
+import org.urbandaddy.helpers.UD_SignupHelper_Client;
+
+
+import org.urbandaddy.helpers.Perks_FooterHelper_Client;
+import org.urbandaddy.helpers.Perks_HeaderHelper_Client;
+import org.urbandaddy.helpers.Perks_SealHelper_Client;
+import org.urbandaddy.helpers.Perks_HomepageHelper_Client;
+import org.urbandaddy.helpers.Perks_SignupHelper_Client;
+
+
 import org.urbandaddy.helpers.CheckEmailHelper_Client;
 import org.urbandaddy.helpers.ResetEmailHelper_Client;
 
@@ -51,7 +58,6 @@ import org.urbandaddy.helpers.ResetEmailHelper_Client;
 //import org.testng.annotations.Test;
 //import org.urbandaddy.helpers.SignupHelper;
 
-import org.urbandaddy.helpers.SignupHelper_Client;
 
 public abstract class ITestCase {
 
@@ -132,14 +138,18 @@ else if (DriverType.FirefoxRemote13.toString().equals(driverType))
 
 	//declare helpers
 	
-	private HomepageHelper_Client homepageHelper_Client;
-	private HeaderHelper_Client headerHelper_Client;
-	private FooterHelper_Client footerHelper_Client;
-	private SealHelper_Client sealHelper_Client;
-//	private ResetEmailHelper_Client resetEmailHelper_Client;
-//	private ReauthenticateHelper_Client reauthenticateHelper_Client;
-//	private SettingsHelper_Client settingsHelper_Client;
-	private SignupHelper_Client signupHelper_Client;
+	private UD_HomepageHelper_Client ud_homepageHelper_Client;
+	private UD_HeaderHelper_Client ud_headerHelper_Client;
+	private UD_FooterHelper_Client ud_footerHelper_Client;
+	private UD_SealHelper_Client ud_sealHelper_Client;
+	private UD_SignupHelper_Client ud_signupHelper_Client;
+	
+	private Perks_HomepageHelper_Client perks_homepageHelper_Client;
+	private Perks_HeaderHelper_Client perks_headerHelper_Client;
+	private Perks_FooterHelper_Client perks_footerHelper_Client;
+	private Perks_SealHelper_Client perks_sealHelper_Client;
+	private Perks_SignupHelper_Client perks_signupHelper_Client;
+	
 	private CheckEmailHelper_Client checkEmailHelper_Client;
 
 	
@@ -199,8 +209,226 @@ else if (DriverType.FirefoxRemote13.toString().equals(driverType))
 
 ///// Sign-up methods
 	
-// 	Client
+// Perks
+	public void visitPerksFirstTime(){
+		
+		// enter UDdomain name, hit enter, arrive on homepage
+				this.client.navigate().to(Perksdomain);
+				this.client.manage().deleteAllCookies();
+				this.client.navigate().to(Perksdomain);
+	}
 	
+	
+	public void signUpPerks_viaNewYork(){
+		
+		this.signUpPerks_viaNewYorkStep1();
+		this.signUpPerks_viaNewYorkStep2();
+		this.signUpPerks_viaNewYorkStep3();
+		this.signUpPerks_viaNewYorkStep4();
+		}
+	
+	public void logoutPerks(){
+		
+	}
+	
+	public void resetPasswordPerks(){
+		
+	}
+	
+	public void verifyWelcomePerksEmailReceived(){
+		
+	}
+	
+	public void verifyInvitationsPerksEmailsReceived(){
+		
+	}
+	
+	public void verifyResetPasswordPerksRequestReceivedandPasswordReset(){
+		
+	}
+	
+	public void signUpPerks_viaNewYorkStep1(){
+		
+		
+		perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
+		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+		
+		perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
+				
+		System.out.println(emailClient);
+		
+
+		
+		//go to /home/nyc
+//		perks_homepageHelper_Client.clickNewYork();
+				
+		//step1, 1st signup modal: 
+		//a. Click SignUp Seal
+		ud_headerHelper_Client.clickSignUp();
+		
+		//or open new tab or go to the signup url
+		
+		//headerHelper_Client.openSignUpNewTab();
+		
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		
+		//b. Enter email address
+		ud_signupHelper_Client.enterEmail(emailClient);
+		//c. Select Editions
+		//New York, New York Perks are selected by default
+		//check Driven
+		ud_signupHelper_Client.checkDriven();
+		ud_signupHelper_Client.checkJetset();
+		ud_signupHelper_Client.checkLasVegas();
+		ud_signupHelper_Client.checkNational();
+		ud_signupHelper_Client.checkSkiBoard();
+		
+		//click "more" link to show all Editorials
+		ud_signupHelper_Client.clickMoreLinkNewYork1();
+		
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		// check all of them
+		ud_signupHelper_Client.checkAtlanta();
+		ud_signupHelper_Client.checkBoston();
+		ud_signupHelper_Client.checkChicago();
+		ud_signupHelper_Client.checkDallas();
+		ud_signupHelper_Client.checkDC();
+		ud_signupHelper_Client.checkLosAngeles();
+		ud_signupHelper_Client.checkMiami();
+		ud_signupHelper_Client.checkSanFrancisco();
+		
+		//click "more" link to see the Perks editions
+		ud_signupHelper_Client.clickMoreLinkNewYork2();
+		
+		// check all of them
+		ud_signupHelper_Client.checkBostonPerks();
+		ud_signupHelper_Client.checkChicagoPerks();
+		ud_signupHelper_Client.checkDCPerks();
+		ud_signupHelper_Client.checkLosAngelesPerks();
+		ud_signupHelper_Client.checkMiamiPerks();
+		ud_signupHelper_Client.checkNationalPerks();
+		
+		//click "JOIN" button
+		
+		ud_signupHelper_Client.clickJoin();
+}
+	
+
+public void signUpPerks_viaNewYorkStep2(){
+	
+	
+	ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+	
+	ud_signupHelper_Client = new UD_SignupHelper_Client(client);
+		
+		
+//handling the silly behaviour of ajax, when the form comes back with "You must enter an email address." message as if email was not entered		
+//		You must enter an email address.
+//		client.findElement(By.xpath("//html/body/div[7]/div/div/div/div[2]/div/div")).click();
+		
+		
+//		Assert.assertFalse(client.findElement(By.xpath("//html/body/div[7]/div/div/div/div[2]/div/div")).isDisplayed()); 
+		
+		
+//		Assert.assertFalse(ud_signupHelper_Client.isStupidErrorAfterStep1Present());
+		
+//		try {
+//			ud_signupHelper_Client.isStupidErrorAfterStep1Present();
+//		}
+
+		
+		//step2, 2nd signup modal: 
+		//enter password
+		ud_signupHelper_Client.enterPassword(password);
+		//confirm password
+		ud_signupHelper_Client.confirmPassword(password);
+		//First Name
+		ud_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+		//Last Name
+		ud_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+		//Gender
+		ud_signupHelper_Client.selectGender("Male");
+		//ud_signupHelper_Client.selectGender("Female");
+		//ud_signupHelper_Client.selectGenderRandom();
+
+		//Income Range
+		ud_signupHelper_Client.selectIncomeRange("Less than $30,000");
+//		ud_signupHelper_Client.selectIncomeRange("$30,000-$44,999");
+//		ud_signupHelper_Client.selectIncomeRange("$45,000-$59,999");
+//		ud_signupHelper_Client.selectIncomeRange("$60,000-$74,999");
+//		ud_signupHelper_Client.selectIncomeRange("$75,000-$99,999");
+//		ud_signupHelper_Client.selectIncomeRange("$100,000-$199,999");
+//		ud_signupHelper_Client.selectIncomeRange("$200,000-$299,999");
+//		ud_signupHelper_Client.selectIncomeRange("$300,000-$499,999");
+//		ud_signupHelper_Client.selectIncomeRange("$500,000+");
+//		ud_signupHelper_Client.selectIncomeRangeRandom();
+
+		//Zip Code
+		ud_signupHelper_Client.enterZipCode("10001");
+		//Birthday (MM/DD/YYYY)
+		ud_signupHelper_Client.enterBirthday("07/07/1977");
+		//click "SUBMIT" button
+		
+		try {
+			Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			e.printStackTrace();
+				}
+		ud_signupHelper_Client.clickSubmit();
+}
+
+
+public void signUpPerks_viaNewYorkStep3(){
+	
+	
+	ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+	
+	ud_signupHelper_Client = new UD_SignupHelper_Client(client);
+		
+//step3, 3rd signup modal: Invite Friends
+		
+//		ud_signupHelper_Client.clickInvite();
+		
+		ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
+		ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
+		ud_signupHelper_Client.enterEmailFriend3(emailFriend3);
+		ud_signupHelper_Client.enterEmailFriend4(emailFriend4);
+		ud_signupHelper_Client.enterEmailFriend5(emailFriend5);
+		
+		System.out.println(emailFriend1);
+		System.out.println(emailFriend2);
+		System.out.println(emailFriend3);
+		System.out.println(emailFriend4);
+		System.out.println(emailFriend5);
+		
+		try {
+			Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			e.printStackTrace();
+				}
+		
+		ud_signupHelper_Client.clickInvite();
+		
+//		ud_signupHelper_Client.clickSkip();
+	}	
+
+public void signUpPerks_viaNewYorkStep4(){
+	//step4, 4th signup modal confirmation, close final confirm signup box		
+			ud_signupHelper_Client.clickCloseFinalModal();
+	//end of registration
+		}
+	
+// UD	
 public void visitUDFirstTime(){
 	
 	// enter UDdomain name, hit enter, arrive on homepage
@@ -210,30 +438,30 @@ public void visitUDFirstTime(){
 			this.client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
 			
 	//do all homepage checks
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 		
 		//Verify All items are present on HomePage
-		Assert.assertTrue(homepageHelper_Client.isUDLogoPresent());
-		Assert.assertTrue(homepageHelper_Client.isClickableCopyPresent());
-		Assert.assertTrue(homepageHelper_Client.isSignUpSealPresent());
-		Assert.assertTrue(homepageHelper_Client.isAtlantaLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isBostonLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isChicagoLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isDallasLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isWashingtonDCLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isDrivenLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isJetsetLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isLasVegasLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isLosAngelesLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isMiamiLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isNationalLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isNewYorkLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isSanFranciscoLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isSkiBoardLinkPresent());
-		Assert.assertTrue(homepageHelper_Client.isUDLogoPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isUDLogoPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isClickableCopyPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isSignUpSealPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isAtlantaLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isBostonLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isChicagoLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isDallasLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isWashingtonDCLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isDrivenLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isJetsetLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isLasVegasLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isLosAngelesLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isMiamiLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isNationalLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isNewYorkLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isSanFranciscoLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isSkiBoardLinkPresent());
+		Assert.assertTrue(ud_homepageHelper_Client.isUDLogoPresent());
 		
 	// do all footer checks	
-		footerHelper_Client = new FooterHelper_Client(client); 
+		ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 		this.checkUDHomepageFooter();
 }
 
@@ -1406,52 +1634,52 @@ public void goBackToUDHomepage(){
 public void checkUDHomepageCityHeaderLoggedOut(){
 	
 	//do all homepage footer checks
-	headerHelper_Client = new HeaderHelper_Client(client);
-	Assert.assertTrue(headerHelper_Client.isNightlifePresent());
-	Assert.assertTrue(headerHelper_Client.isFoodPresent());
-	Assert.assertTrue(headerHelper_Client.isStylePresent());
-	Assert.assertTrue(headerHelper_Client.isGearPresent());
-	Assert.assertTrue(headerHelper_Client.isLeisurePresent());
-	Assert.assertTrue(headerHelper_Client.isDrivenPresent());
-	Assert.assertTrue(headerHelper_Client.isPerksPresent());
-	Assert.assertTrue(headerHelper_Client.isPartiesPresent());
-	Assert.assertTrue(headerHelper_Client.isKemptPresent());
-	Assert.assertTrue(headerHelper_Client.isMobilePresent());
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+	Assert.assertTrue(ud_headerHelper_Client.isNightlifePresent());
+	Assert.assertTrue(ud_headerHelper_Client.isFoodPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isStylePresent());
+	Assert.assertTrue(ud_headerHelper_Client.isGearPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isLeisurePresent());
+	Assert.assertTrue(ud_headerHelper_Client.isDrivenPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPerksPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isMobilePresent());
 	
-	headerHelper_Client.clickNightlife();
+	ud_headerHelper_Client.clickNightlife();
 	this.pause1();
 	Assert.assertTrue(isNightlifeAccessible());
-	headerHelper_Client.clickFood();
+	ud_headerHelper_Client.clickFood();
 	this.pause1();
 	Assert.assertTrue(isFoodAccessible());
-	headerHelper_Client.clickStyle();
+	ud_headerHelper_Client.clickStyle();
 	this.pause1();
 	Assert.assertTrue(isStyleAccessible());
-	headerHelper_Client.clickGear();
+	ud_headerHelper_Client.clickGear();
 	this.pause1();
 	Assert.assertTrue(isGearAccessible());
-	headerHelper_Client.clickLeisure();
+	ud_headerHelper_Client.clickLeisure();
 	this.pause1();
 	Assert.assertTrue(isLeisureAccessible());
-	headerHelper_Client.clickDriven();
+	ud_headerHelper_Client.clickDriven();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isDrivenAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickPerks();
+	ud_headerHelper_Client.clickPerks();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickParties();
+	ud_headerHelper_Client.clickParties();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isPartiesAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickKempt();
+	ud_headerHelper_Client.clickKempt();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isKemptAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickMobile();
+	ud_headerHelper_Client.clickMobile();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isMobileAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible());
 	this.client.navigate().back();
 
 }
@@ -1459,40 +1687,40 @@ public void checkUDHomepageCityHeaderLoggedOut(){
 public void checkUDHomepageLasVegasHeaderLoggedOut(){
 	
 	//do all homepage footer checks
-	headerHelper_Client = new HeaderHelper_Client(client);
-	Assert.assertTrue(headerHelper_Client.isNightlifeLVPresent());
-	Assert.assertTrue(headerHelper_Client.isFoodLVPresent());
-	Assert.assertTrue(headerHelper_Client.isEntertainmentLVPresent());
-	Assert.assertTrue(headerHelper_Client.isPerksLVPresent());
-	Assert.assertTrue(headerHelper_Client.isPartiesLVPresent());
-	Assert.assertTrue(headerHelper_Client.isKemptLVPresent());
-	Assert.assertTrue(headerHelper_Client.isMobileLVPresent());
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+	Assert.assertTrue(ud_headerHelper_Client.isNightlifeLVPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isFoodLVPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isEntertainmentLVPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPerksLVPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesLVPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptLVPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isMobileLVPresent());
 	
-	headerHelper_Client.clickNightlifeLV();
+	ud_headerHelper_Client.clickNightlifeLV();
 	this.pause1();
 	Assert.assertTrue(isNightlifeAccessible());
-	headerHelper_Client.clickFoodLV();
+	ud_headerHelper_Client.clickFoodLV();
 	this.pause1();
 	Assert.assertTrue(isFoodAccessible());
-	headerHelper_Client.clickEntertainmentLV();
+	ud_headerHelper_Client.clickEntertainmentLV();
 	this.pause1();
 	Assert.assertTrue(isEntertainmentAccessible());
 
-	headerHelper_Client.clickPerksLV();
+	ud_headerHelper_Client.clickPerksLV();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickPartiesLV();
+	ud_headerHelper_Client.clickPartiesLV();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isPartiesLVAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesLVAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickKemptLV();
+	ud_headerHelper_Client.clickKemptLV();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isKemptLVAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptLVAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickMobileLV();
+	ud_headerHelper_Client.clickMobileLV();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isMobileLVAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isMobileLVAccessible());
 	this.client.navigate().back();
 
 	
@@ -1501,101 +1729,101 @@ public void checkUDHomepageLasVegasHeaderLoggedOut(){
 public void checkUDHomepageNationalHeaderLoggedOut(){
 	
 	//do all homepage footer checks
-	headerHelper_Client = new HeaderHelper_Client(client);
-	Assert.assertTrue(headerHelper_Client.isFoodDrinkNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isStyleNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isGearNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isEntertainmentNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isTravelNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isDrivenNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isPerksNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isPartiesNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isKemptNationalPresent());
-	Assert.assertTrue(headerHelper_Client.isMobileNationalPresent());
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+	Assert.assertTrue(ud_headerHelper_Client.isFoodDrinkNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isStyleNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isGearNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isEntertainmentNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isTravelNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isDrivenNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPerksNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptNationalPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isMobileNationalPresent());
 	
-	headerHelper_Client.clickFoodDrinkNational();
+	ud_headerHelper_Client.clickFoodDrinkNational();
 	this.pause1();
 	Assert.assertTrue(isFoodDrinkNationalAccessible());
-	headerHelper_Client.clickStyleNational();
+	ud_headerHelper_Client.clickStyleNational();
 	this.pause1();
 	Assert.assertTrue(isStyleAccessible());
-	headerHelper_Client.clickGearNational();
+	ud_headerHelper_Client.clickGearNational();
 	this.pause1();
 	Assert.assertTrue(isGearAccessible());
-	headerHelper_Client.clickEntertainmentNational();
+	ud_headerHelper_Client.clickEntertainmentNational();
 	this.pause1();
 	Assert.assertTrue(isEntertainmentAccessible());
-	headerHelper_Client.clickTravelNational();
+	ud_headerHelper_Client.clickTravelNational();
 	this.pause1();
 	Assert.assertTrue(isTravelAccessible());
 	
-	Assert.assertTrue(headerHelper_Client.isDrivenNationalAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isDrivenNationalAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickPerks();
+	ud_headerHelper_Client.clickPerks();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickPartiesNational();
+	ud_headerHelper_Client.clickPartiesNational();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isPartiesNationalAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesNationalAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickKemptNational();
+	ud_headerHelper_Client.clickKemptNational();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isKemptNationalAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptNationalAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickMobileNational();
+	ud_headerHelper_Client.clickMobileNational();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isMobileNationalAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isMobileNationalAccessible());
 	this.client.navigate().back();
 }
 
 public void checkUDHomepageCityHeaderLoggedIn(){
 	
 	//do all homepage footer checks
-	headerHelper_Client = new HeaderHelper_Client(client);
-	Assert.assertTrue(headerHelper_Client.isNightlifePresent());
-	Assert.assertTrue(headerHelper_Client.isFoodPresent());
-	Assert.assertTrue(headerHelper_Client.isStylePresent());
-	Assert.assertTrue(headerHelper_Client.isGearPresent());
-	Assert.assertTrue(headerHelper_Client.isLeisurePresent());
-	Assert.assertTrue(headerHelper_Client.isDrivenPresent());
-	Assert.assertTrue(headerHelper_Client.isPerksPresent());
-	Assert.assertTrue(headerHelper_Client.isPartiesPresent());
-	Assert.assertTrue(headerHelper_Client.isKemptPresent());
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+	Assert.assertTrue(ud_headerHelper_Client.isNightlifePresent());
+	Assert.assertTrue(ud_headerHelper_Client.isFoodPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isStylePresent());
+	Assert.assertTrue(ud_headerHelper_Client.isGearPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isLeisurePresent());
+	Assert.assertTrue(ud_headerHelper_Client.isDrivenPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPerksPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesPresent());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptPresent());
 	
-	headerHelper_Client.clickNightlife();
+	ud_headerHelper_Client.clickNightlife();
 	this.pause1();
 	Assert.assertTrue(isNightlifeAccessible());
-	headerHelper_Client.clickFood();
+	ud_headerHelper_Client.clickFood();
 	this.pause1();
 	Assert.assertTrue(isFoodAccessible());
-	headerHelper_Client.clickStyle();
+	ud_headerHelper_Client.clickStyle();
 	this.pause1();
 	Assert.assertTrue(isStyleAccessible());
-	headerHelper_Client.clickGear();
+	ud_headerHelper_Client.clickGear();
 	this.pause1();
 	Assert.assertTrue(isGearAccessible());
-	headerHelper_Client.clickLeisure();
+	ud_headerHelper_Client.clickLeisure();
 	this.pause1();
 	Assert.assertTrue(isLeisureAccessible());
-	headerHelper_Client.clickDriven();
+	ud_headerHelper_Client.clickDriven();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isDrivenAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickPerks();
+	ud_headerHelper_Client.clickPerks();
 	//this.pause1();
 	this.client.navigate().back();
-	headerHelper_Client.clickPerks();
+	ud_headerHelper_Client.clickPerks();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());	
 	this.client.navigate().back();
-	headerHelper_Client.clickParties();
+	ud_headerHelper_Client.clickParties();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isPartiesAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
 	this.client.navigate().back();
-	headerHelper_Client.clickKempt();
+	ud_headerHelper_Client.clickKempt();
 	this.pause1();
-	Assert.assertTrue(headerHelper_Client.isKemptAccessible());
+	Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
 	this.client.navigate().back();
 	
 }
@@ -1603,107 +1831,107 @@ public void checkUDHomepageCityHeaderLoggedIn(){
 public void checkUDHomepageFooter(){
 	
 	//do all homepage footer checks
-	footerHelper_Client = new FooterHelper_Client(client);
-	Assert.assertTrue(footerHelper_Client.isAboutUsHomePresent());
-	Assert.assertTrue(footerHelper_Client.isSignUpHomePresent());
-	Assert.assertTrue(footerHelper_Client.isMyUDHomePresent());
-	Assert.assertTrue(footerHelper_Client.isContactHomePresent());
-	Assert.assertTrue(footerHelper_Client.isJobsHomePresent());
-	Assert.assertTrue(footerHelper_Client.isAdvertiseHomePresent());
-	Assert.assertTrue(footerHelper_Client.isTipsHomePresent());
-	Assert.assertTrue(footerHelper_Client.isEmailIssuesHomePresent());
-	Assert.assertTrue(footerHelper_Client.isPrivacyPolicyHomePresent());
-	Assert.assertTrue(footerHelper_Client.isUserAgreementHomePresent());
-	Assert.assertTrue(footerHelper_Client.isUnsubscribeHomePresent());
-	Assert.assertTrue(footerHelper_Client.isEditorialPolicyHomePresent());
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client);
+	Assert.assertTrue(ud_footerHelper_Client.isAboutUsHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSignUpHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMyUDHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isContactHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isJobsHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isAdvertiseHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isTipsHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isEmailIssuesHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isPrivacyPolicyHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isUserAgreementHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isUnsubscribeHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isEditorialPolicyHomePresent());
 	
 	
-	Assert.assertTrue(footerHelper_Client.isAtlantaHomePresent());
-	Assert.assertTrue(footerHelper_Client.isBostonHomePresent());
-	Assert.assertTrue(footerHelper_Client.isChicagoHomePresent());
-	Assert.assertTrue(footerHelper_Client.isDallasHomePresent());
-	Assert.assertTrue(footerHelper_Client.isDCHomePresent());
-	Assert.assertTrue(footerHelper_Client.isDrivenHomePresent());
-	Assert.assertTrue(footerHelper_Client.isJetsetHomePresent());
-	Assert.assertTrue(footerHelper_Client.isLasVegasHomePresent());
-	Assert.assertTrue(footerHelper_Client.isLosAngelesHomePresent());
-	Assert.assertTrue(footerHelper_Client.isMiamiHomePresent());
-	Assert.assertTrue(footerHelper_Client.isNationalHomePresent());
-	Assert.assertTrue(footerHelper_Client.isNewYorkHomePresent());
-	Assert.assertTrue(footerHelper_Client.isSanFranciscoHomePresent());
-	Assert.assertTrue(footerHelper_Client.isSkiBoardHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isAtlantaHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isBostonHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isChicagoHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDallasHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDCHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDrivenHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isJetsetHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isLasVegasHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isLosAngelesHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMiamiHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isNationalHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isNewYorkHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSanFranciscoHomePresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSkiBoardHomePresent());
 	
 }
 
 public void checkUDHomepageCityFooterLoggedIn(){
 	
 	//do all city homepage footer checks for logged in state
-	footerHelper_Client = new FooterHelper_Client(client);
-	Assert.assertTrue(footerHelper_Client.isAboutUsCityPresent());
-//	Assert.assertTrue(footerHelper_Client.isSignUpPresentCity());
-	Assert.assertTrue(footerHelper_Client.isMyUDCityPresent());
-	Assert.assertTrue(footerHelper_Client.isContactCityPresent());
-	Assert.assertTrue(footerHelper_Client.isJobsCityPresent());
-	Assert.assertTrue(footerHelper_Client.isAdvertiseCityPresent());
-	Assert.assertTrue(footerHelper_Client.isTipsCityPresent());
-	Assert.assertTrue(footerHelper_Client.isUnsubscribeCityPresent());
-	Assert.assertTrue(footerHelper_Client.isMobileSiteCityPresent());
-	Assert.assertTrue(footerHelper_Client.isEmailIssuesCityPresent());
-	Assert.assertTrue(footerHelper_Client.isPrivacyPolicyCityPresent());
-	Assert.assertTrue(footerHelper_Client.isUserAgreementCityPresent());
-	Assert.assertTrue(footerHelper_Client.isEditorialPolicyCityPresent());
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client);
+	Assert.assertTrue(ud_footerHelper_Client.isAboutUsCityPresent());
+//	Assert.assertTrue(ud_footerHelper_Client.isSignUpPresentCity());
+	Assert.assertTrue(ud_footerHelper_Client.isMyUDCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isContactCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isJobsCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isAdvertiseCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isTipsCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isUnsubscribeCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMobileSiteCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isEmailIssuesCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isPrivacyPolicyCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isUserAgreementCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isEditorialPolicyCityPresent());
 	
 	
-	Assert.assertTrue(footerHelper_Client.isAtlantaCityPresent());
-	Assert.assertTrue(footerHelper_Client.isBostonCityPresent());
-	Assert.assertTrue(footerHelper_Client.isChicagoCityPresent());
-	Assert.assertTrue(footerHelper_Client.isDallasCityPresent());
-	Assert.assertTrue(footerHelper_Client.isDCCityPresent());
-	Assert.assertTrue(footerHelper_Client.isDrivenCityPresent());
-	Assert.assertTrue(footerHelper_Client.isJetsetCityPresent());
-	Assert.assertTrue(footerHelper_Client.isLasVegasCityPresent());
-	Assert.assertTrue(footerHelper_Client.isLosAngelesCityPresent());
-	Assert.assertTrue(footerHelper_Client.isMiamiCityPresent());
-	Assert.assertTrue(footerHelper_Client.isNationalCityPresent());
-	Assert.assertTrue(footerHelper_Client.isNewYorkCityPresent());
-	Assert.assertTrue(footerHelper_Client.isSanFranciscoCityPresent());
-	Assert.assertTrue(footerHelper_Client.isSkiBoardCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isAtlantaCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isBostonCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isChicagoCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDallasCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDCCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDrivenCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isJetsetCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isLasVegasCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isLosAngelesCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMiamiCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isNationalCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isNewYorkCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSanFranciscoCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSkiBoardCityPresent());
 	
 }
 
 public void checkUDHomepageCityFooterLoggedOut(){
 	
 	//do all city homepage footer checks for logged out state
-	footerHelper_Client = new FooterHelper_Client(client);
-	Assert.assertTrue(footerHelper_Client.isAboutUsCityPresent());
-	Assert.assertTrue(footerHelper_Client.isSignUpCityPresent());
-	Assert.assertTrue(footerHelper_Client.isMyUDCityPresent());
-	Assert.assertTrue(footerHelper_Client.isContactCityPresent());
-	Assert.assertTrue(footerHelper_Client.isJobsCityPresent());
-	Assert.assertTrue(footerHelper_Client.isAdvertiseCityPresent());
-	Assert.assertTrue(footerHelper_Client.isTipsCityPresent());
-	Assert.assertTrue(footerHelper_Client.isUnsubscribeCityPresent());
-	Assert.assertTrue(footerHelper_Client.isMobileSiteCityPresent());
-	Assert.assertTrue(footerHelper_Client.isEmailIssuesCityPresent());
-	Assert.assertTrue(footerHelper_Client.isPrivacyPolicyCityPresent());
-	Assert.assertTrue(footerHelper_Client.isUserAgreementCityPresent());
-	Assert.assertTrue(footerHelper_Client.isEditorialPolicyCityPresent());
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client);
+	Assert.assertTrue(ud_footerHelper_Client.isAboutUsCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSignUpCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMyUDCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isContactCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isJobsCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isAdvertiseCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isTipsCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isUnsubscribeCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMobileSiteCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isEmailIssuesCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isPrivacyPolicyCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isUserAgreementCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isEditorialPolicyCityPresent());
 	
 	
-	Assert.assertTrue(footerHelper_Client.isAtlantaCityPresent());
-	Assert.assertTrue(footerHelper_Client.isBostonCityPresent());
-	Assert.assertTrue(footerHelper_Client.isChicagoCityPresent());
-	Assert.assertTrue(footerHelper_Client.isDallasCityPresent());
-	Assert.assertTrue(footerHelper_Client.isDCCityPresent());
-	Assert.assertTrue(footerHelper_Client.isDrivenCityPresent());
-	Assert.assertTrue(footerHelper_Client.isJetsetCityPresent());
-	Assert.assertTrue(footerHelper_Client.isLasVegasCityPresent());
-	Assert.assertTrue(footerHelper_Client.isLosAngelesCityPresent());
-	Assert.assertTrue(footerHelper_Client.isMiamiCityPresent());
-	Assert.assertTrue(footerHelper_Client.isNationalCityPresent());
-	Assert.assertTrue(footerHelper_Client.isNewYorkCityPresent());
-	Assert.assertTrue(footerHelper_Client.isSanFranciscoCityPresent());
-	Assert.assertTrue(footerHelper_Client.isSkiBoardCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isAtlantaCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isBostonCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isChicagoCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDallasCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDCCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isDrivenCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isJetsetCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isLasVegasCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isLosAngelesCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isMiamiCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isNationalCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isNewYorkCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSanFranciscoCityPresent());
+	Assert.assertTrue(ud_footerHelper_Client.isSkiBoardCityPresent());
 	
 }
 
@@ -1781,28 +2009,28 @@ public boolean isPerksAccessible(){
 
 public void doChecksCityHomePageLoggedOut() {
 	// do all footer checks	for logged out state
-	footerHelper_Client = new FooterHelper_Client(client); 
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 	this.checkUDHomepageCityFooterLoggedOut();
 	this.checkUDHomepageCityHeaderLoggedOut();
 }
 
 public void doChecksCityHomePageLoggedIn(){
 	// do all footer checks	for logged in state
-	footerHelper_Client = new FooterHelper_Client(client); 
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 	this.checkUDHomepageCityFooterLoggedIn();
 	this.checkUDHomepageCityHeaderLoggedIn();
 }
 
 public void doChecksLVPageLoggedOut() {
 	// do all footer checks	for logged out state
-	footerHelper_Client = new FooterHelper_Client(client); 
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 	this.checkUDHomepageCityFooterLoggedOut();
 	this.checkUDHomepageLasVegasHeaderLoggedOut();
 }
 
 public void doChecksNationalPageLoggedOut() {
 	// do all footer checks	for logged out state
-	footerHelper_Client = new FooterHelper_Client(client); 
+	ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 	this.checkUDHomepageCityFooterLoggedOut();
 	this.checkUDHomepageNationalHeaderLoggedOut();
 }
@@ -1810,21 +2038,21 @@ public void doChecksNationalPageLoggedOut() {
 public void signUpUD_viaNewYorkStep1(){
 		
 		
-		homepageHelper_Client = new HomepageHelper_Client(client);
-		headerHelper_Client = new HeaderHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+		ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 		
-		signupHelper_Client = new SignupHelper_Client(client);
+		ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 				
 		System.out.println(emailClient);
 		
 
 		
 		//go to /home/nyc
-//		homepageHelper_Client.clickNewYork();
+//		ud_homepageHelper_Client.clickNewYork();
 				
 		//step1, 1st signup modal: 
 		//a. Click SignUp Seal
-		headerHelper_Client.clickSignUp();
+		ud_headerHelper_Client.clickSignUp();
 		
 		//or open new tab or go to the signup url
 		
@@ -1837,18 +2065,18 @@ public void signUpUD_viaNewYorkStep1(){
 //		}
 		
 		//b. Enter email address
-		signupHelper_Client.enterEmail(emailClient);
+		ud_signupHelper_Client.enterEmail(emailClient);
 		//c. Select Editions
 		//New York, New York Perks are selected by default
 		//check Driven
-		signupHelper_Client.checkDriven();
-		signupHelper_Client.checkJetset();
-		signupHelper_Client.checkLasVegas();
-		signupHelper_Client.checkNational();
-		signupHelper_Client.checkSkiBoard();
+		ud_signupHelper_Client.checkDriven();
+		ud_signupHelper_Client.checkJetset();
+		ud_signupHelper_Client.checkLasVegas();
+		ud_signupHelper_Client.checkNational();
+		ud_signupHelper_Client.checkSkiBoard();
 		
 		//click "more" link to show all Editorials
-		signupHelper_Client.clickMoreLinkNewYork1();
+		ud_signupHelper_Client.clickMoreLinkNewYork1();
 		
 //		try {
 //			Thread.sleep(2000);
@@ -1856,39 +2084,39 @@ public void signUpUD_viaNewYorkStep1(){
 //			e.printStackTrace();
 //		}
 		// check all of them
-		signupHelper_Client.checkAtlanta();
-		signupHelper_Client.checkBoston();
-		signupHelper_Client.checkChicago();
-		signupHelper_Client.checkDallas();
-		signupHelper_Client.checkDC();
-		signupHelper_Client.checkLosAngeles();
-		signupHelper_Client.checkMiami();
-		signupHelper_Client.checkSanFrancisco();
+		ud_signupHelper_Client.checkAtlanta();
+		ud_signupHelper_Client.checkBoston();
+		ud_signupHelper_Client.checkChicago();
+		ud_signupHelper_Client.checkDallas();
+		ud_signupHelper_Client.checkDC();
+		ud_signupHelper_Client.checkLosAngeles();
+		ud_signupHelper_Client.checkMiami();
+		ud_signupHelper_Client.checkSanFrancisco();
 		
 		//click "more" link to see the Perks editions
-		signupHelper_Client.clickMoreLinkNewYork2();
+		ud_signupHelper_Client.clickMoreLinkNewYork2();
 		
 		// check all of them
-		signupHelper_Client.checkBostonPerks();
-		signupHelper_Client.checkChicagoPerks();
-		signupHelper_Client.checkDCPerks();
-		signupHelper_Client.checkLosAngelesPerks();
-		signupHelper_Client.checkMiamiPerks();
-		signupHelper_Client.checkNationalPerks();
+		ud_signupHelper_Client.checkBostonPerks();
+		ud_signupHelper_Client.checkChicagoPerks();
+		ud_signupHelper_Client.checkDCPerks();
+		ud_signupHelper_Client.checkLosAngelesPerks();
+		ud_signupHelper_Client.checkMiamiPerks();
+		ud_signupHelper_Client.checkNationalPerks();
 		
 		//click "JOIN" button
 		
-		signupHelper_Client.clickJoin();
+		ud_signupHelper_Client.clickJoin();
 }
 	
 
 public void signUpUD_viaNewYorkStep2(){
 	
 	
-	homepageHelper_Client = new HomepageHelper_Client(client);
-	headerHelper_Client = new HeaderHelper_Client(client);
+	ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 	
-	signupHelper_Client = new SignupHelper_Client(client);
+	ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 		
 		
 //handling the silly behaviour of ajax, when the form comes back with "You must enter an email address." message as if email was not entered		
@@ -1899,43 +2127,43 @@ public void signUpUD_viaNewYorkStep2(){
 //		Assert.assertFalse(client.findElement(By.xpath("//html/body/div[7]/div/div/div/div[2]/div/div")).isDisplayed()); 
 		
 		
-//		Assert.assertFalse(signupHelper_Client.isStupidErrorAfterStep1Present());
+//		Assert.assertFalse(ud_signupHelper_Client.isStupidErrorAfterStep1Present());
 		
 //		try {
-//			signupHelper_Client.isStupidErrorAfterStep1Present();
+//			ud_signupHelper_Client.isStupidErrorAfterStep1Present();
 //		}
 
 		
 		//step2, 2nd signup modal: 
 		//enter password
-		signupHelper_Client.enterPassword(password);
+		ud_signupHelper_Client.enterPassword(password);
 		//confirm password
-		signupHelper_Client.confirmPassword(password);
+		ud_signupHelper_Client.confirmPassword(password);
 		//First Name
-		signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+		ud_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
 		//Last Name
-		signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+		ud_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
 		//Gender
-		signupHelper_Client.selectGender("Male");
-		//signupHelper_Client.selectGender("Female");
-		//signupHelper_Client.selectGenderRandom();
+		ud_signupHelper_Client.selectGender("Male");
+		//ud_signupHelper_Client.selectGender("Female");
+		//ud_signupHelper_Client.selectGenderRandom();
 
 		//Income Range
-		signupHelper_Client.selectIncomeRange("Less than $30,000");
-//		signupHelper_Client.selectIncomeRange("$30,000-$44,999");
-//		signupHelper_Client.selectIncomeRange("$45,000-$59,999");
-//		signupHelper_Client.selectIncomeRange("$60,000-$74,999");
-//		signupHelper_Client.selectIncomeRange("$75,000-$99,999");
-//		signupHelper_Client.selectIncomeRange("$100,000-$199,999");
-//		signupHelper_Client.selectIncomeRange("$200,000-$299,999");
-//		signupHelper_Client.selectIncomeRange("$300,000-$499,999");
-//		signupHelper_Client.selectIncomeRange("$500,000+");
-//		signupHelper_Client.selectIncomeRangeRandom();
+		ud_signupHelper_Client.selectIncomeRange("Less than $30,000");
+//		ud_signupHelper_Client.selectIncomeRange("$30,000-$44,999");
+//		ud_signupHelper_Client.selectIncomeRange("$45,000-$59,999");
+//		ud_signupHelper_Client.selectIncomeRange("$60,000-$74,999");
+//		ud_signupHelper_Client.selectIncomeRange("$75,000-$99,999");
+//		ud_signupHelper_Client.selectIncomeRange("$100,000-$199,999");
+//		ud_signupHelper_Client.selectIncomeRange("$200,000-$299,999");
+//		ud_signupHelper_Client.selectIncomeRange("$300,000-$499,999");
+//		ud_signupHelper_Client.selectIncomeRange("$500,000+");
+//		ud_signupHelper_Client.selectIncomeRangeRandom();
 
 		//Zip Code
-		signupHelper_Client.enterZipCode("10001");
+		ud_signupHelper_Client.enterZipCode("10001");
 		//Birthday (MM/DD/YYYY)
-		signupHelper_Client.enterBirthday("07/07/1977");
+		ud_signupHelper_Client.enterBirthday("07/07/1977");
 		//click "SUBMIT" button
 		
 		try {
@@ -1943,27 +2171,27 @@ public void signUpUD_viaNewYorkStep2(){
 			} catch (InterruptedException e) {
 			e.printStackTrace();
 				}
-		signupHelper_Client.clickSubmit();
+		ud_signupHelper_Client.clickSubmit();
 }
 
 
 public void signUpUD_viaNewYorkStep3(){
 	
 	
-	homepageHelper_Client = new HomepageHelper_Client(client);
-	headerHelper_Client = new HeaderHelper_Client(client);
+	ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 	
-	signupHelper_Client = new SignupHelper_Client(client);
+	ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 		
 //step3, 3rd signup modal: Invite Friends
 		
-//		signupHelper_Client.clickInvite();
+//		ud_signupHelper_Client.clickInvite();
 		
-		signupHelper_Client.enterEmailFriend1(emailFriend1);
-		signupHelper_Client.enterEmailFriend2(emailFriend2);
-		signupHelper_Client.enterEmailFriend3(emailFriend3);
-		signupHelper_Client.enterEmailFriend4(emailFriend4);
-		signupHelper_Client.enterEmailFriend5(emailFriend5);
+		ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
+		ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
+		ud_signupHelper_Client.enterEmailFriend3(emailFriend3);
+		ud_signupHelper_Client.enterEmailFriend4(emailFriend4);
+		ud_signupHelper_Client.enterEmailFriend5(emailFriend5);
 		
 		System.out.println(emailFriend1);
 		System.out.println(emailFriend2);
@@ -1977,14 +2205,14 @@ public void signUpUD_viaNewYorkStep3(){
 			e.printStackTrace();
 				}
 		
-		signupHelper_Client.clickInvite();
+		ud_signupHelper_Client.clickInvite();
 		
-//		signupHelper_Client.clickSkip();
+//		ud_signupHelper_Client.clickSkip();
 	}	
 
 public void signUpUD_viaNewYorkStep4(){
 	//step4, 4th signup modal confirmation, close final confirm signup box		
-			signupHelper_Client.clickCloseFinalModal();
+			ud_signupHelper_Client.clickCloseFinalModal();
 	//end of registration
 		}
 
@@ -1997,13 +2225,13 @@ this.signUpUD_viaNewYorkStep4();
 }
 
 //this.signUpUD_viaNewYorkStep1();
-//while (signupHelper_Client.isStupidErrorAfterStep1Present())
+//while (ud_signupHelper_Client.isStupidErrorAfterStep1Present())
 //{for(int n=2; n<20; n++){
 //	System.out.println(n);
 //	this.signUpUD_viaNewYorkStep1();}}
 //this.signUpUD_viaNewYorkStep2();
 //this.signUpUD_viaNewYorkStep3();
-//while (signupHelper_Client.isStupidErrorAfterStep3Present())
+//while (ud_signupHelper_Client.isStupidErrorAfterStep3Present())
 //{this.signUpUD_viaNewYorkStep3();}
 ////this.signUpUD_viaNewYorkStep4();
 //}
@@ -2018,14 +2246,14 @@ public void loginToGmail(){
 	this.pause2();
 }
 
-public void verifyWelcomeEmailReceived(){
+public void verifyWelcomeUDEmailReceived(){
 	
 	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
 	checkEmailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
 	}
 
-public void verifyInvitationsEmailsReceived(){
+public void verifyInvitationsUDEmailsReceived(){
 	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 	
 	checkEmailHelper_Client.findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
@@ -2035,10 +2263,10 @@ public void verifyInvitationsEmailsReceived(){
 	checkEmailHelper_Client.findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
 }
 
-public void verifyResetPasswordRequestReceivedandPasswordReset(){
+public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
 	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 //	resetEmailHelper_Client = new ResetEmailHelper_Client(client);
-	sealHelper_Client = new SealHelper_Client(client);
+	ud_sealHelper_Client = new UD_SealHelper_Client(client);
 	
 	checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
 	checkEmailHelper_Client.clickResetEmailRequestLink();
@@ -2053,111 +2281,111 @@ public void verifyResetPasswordRequestReceivedandPasswordReset(){
 
 	public void changeCityFromUDHomepage(){
 		//click on "Change City" from any city home page, navigate back to home page
-	headerHelper_Client = new HeaderHelper_Client(client);
+	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 
-	headerHelper_Client.clickChangeCity();
+	ud_headerHelper_Client.clickChangeCity();
 	}
 
 	public void accessAtlantaFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickAtlanta();
+		ud_homepageHelper_Client.clickAtlanta();
 		UDcity = "atl";
 		UDcityPerks = "/national.html";
 	}
 	
 	public void accessBostonFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickBoston();
+		ud_homepageHelper_Client.clickBoston();
 		UDcity = "bos";
 		UDcityPerks = "/boston.html";
 	}
 	
 	public void accessChicagoFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickChicago();
+		ud_homepageHelper_Client.clickChicago();
 		UDcity = "chi";
 		UDcityPerks = "/chicago.html";
 	}
 	
 	public void accessDallasFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickDallas();
+		ud_homepageHelper_Client.clickDallas();
 		UDcity = "dal";
 		UDcityPerks = "/national.html";
 	}
 	
 	public void accessWashingtonDCFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickWashington();
+		ud_homepageHelper_Client.clickWashington();
 		UDcity = "dc";
 		UDcityPerks = "/washington-dc.html";
 	}
 	
 	public void accessJetsetFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickJetset();
+		ud_homepageHelper_Client.clickJetset();
 		UDcity = "jt";
 		UDcityPerks = "/national.html";
 	}
 	
 	public void accessLasVegasFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickLasVegas();
+		ud_homepageHelper_Client.clickLasVegas();
 		UDcity = "lv";
 		UDcityPerks = "/national.html";
 	}
 	
 	public void accessLosAngelesFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickLosAngeles();
+		ud_homepageHelper_Client.clickLosAngeles();
 		UDcity = "la";
 		UDcityPerks = "/los-angeles.html";
 	}
 	
 	public void accessMiamiFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickMiami();
+		ud_homepageHelper_Client.clickMiami();
 		UDcity = "mia";
 		UDcityPerks = "/miami.html";
 	}
 	
 	public void accessNationalFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickNational();
+		ud_homepageHelper_Client.clickNational();
 		UDcity = "ntl";
 		UDcityPerks = "/national.html";
 	}
 	
 	public void accessNewYorkFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickNewYork();
+		ud_homepageHelper_Client.clickNewYork();
 		UDcity = "nyc";
 		UDcityPerks = "/new-york.html";
 	}
 	
 	public void accessSanFranciscoFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickSanFrancisco();
+		ud_homepageHelper_Client.clickSanFrancisco();
 		UDcity = "sfo";
 		UDcityPerks = "/national.html";
 	}
 	
 	public void accessSkiBoardFromUDHomepage(){
-		homepageHelper_Client = new HomepageHelper_Client(client);
+		ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
-		homepageHelper_Client.clickSkiBoard();
+		ud_homepageHelper_Client.clickSkiBoard();
 		UDcity = "bos";
 		UDcityPerks = "/boston.html";
 	}
@@ -2168,8 +2396,8 @@ public void verifyResetPasswordRequestReceivedandPasswordReset(){
 	
 	
 	public void loginUD(){
-		headerHelper_Client = new HeaderHelper_Client(client);
-		sealHelper_Client = new SealHelper_Client(client);
+		ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+		ud_sealHelper_Client = new UD_SealHelper_Client(client);
 		
 		this.client.navigate().to(UDdomain);
 
@@ -2182,48 +2410,48 @@ public void verifyResetPasswordRequestReceivedandPasswordReset(){
 		//close the signup modal
 		//client.findElement(By.xpath("//div[@id='signInWrapper']/div")).click();
 		
-		headerHelper_Client.clickMembrerLogIn();
-		sealHelper_Client.enterEmailAddress(emailClient);
-		sealHelper_Client.enterPassword("1234");
-		sealHelper_Client.clickLogin();
+		ud_headerHelper_Client.clickMembrerLogIn();
+		ud_sealHelper_Client.enterEmailAddress(emailClient);
+		ud_sealHelper_Client.enterPassword("1234");
+		ud_sealHelper_Client.clickLogin();
 		
 		// do all footer checks	for logged in state
-		footerHelper_Client = new FooterHelper_Client(client); 
+		ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 		this.checkUDHomepageCityFooterLoggedIn();
 	} 
 	 	
 
 	public void logoutUD(){
-		headerHelper_Client = new HeaderHelper_Client(client);
+		ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 		
-		headerHelper_Client.clickLogout();
+		ud_headerHelper_Client.clickLogout();
 		
 		// do all footer checks	for logged out state
-		footerHelper_Client = new FooterHelper_Client(client); 
+		ud_footerHelper_Client = new UD_FooterHelper_Client(client); 
 		this.checkUDHomepageCityFooterLoggedOut();
 		
 	}
 	
 	public void resetPasswordUD(){
-		sealHelper_Client = new SealHelper_Client(client);
-		headerHelper_Client = new HeaderHelper_Client(client);
+		ud_sealHelper_Client = new UD_SealHelper_Client(client);
+		ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 		
-		headerHelper_Client.clickMembrerLogIn();
-		sealHelper_Client.clickResetPassword();
-		sealHelper_Client.enterEmailToReset(emailClient);
-		sealHelper_Client.clickSend();	
+		ud_headerHelper_Client.clickMembrerLogIn();
+		ud_sealHelper_Client.clickResetPassword();
+		ud_sealHelper_Client.enterEmailToReset(emailClient);
+		ud_sealHelper_Client.clickSend();	
 		
 	}
 
 ///check email methods
 	
 //	public void checkEmailWelcome(){
-//		signupHelper_Client = new SignupHelper_Client(client);
+//		ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 //		checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 //		
 //		//go to gmail and confirm your email address
 //		this.client.navigate().to("https://mail.google.com/");
-//		signupHelper_Client.clientLogInToGmail();
+//		ud_signupHelper_Client.clientLogInToGmail();
 //		checkEmailHelper_Client.searchAndFindEmailWelcome(groupname);
 //		this.client.navigate().to(UDdomain +"/home");
 //	}

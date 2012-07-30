@@ -5,27 +5,25 @@ import org.testng.annotations.Test;
 
 
 
-public class UD_RegistrationFlow2 extends ITestCase {
+public class Perks_RegistrationFlow1 extends ITestCase {
 	
 	@Test (groups = "Smoke")
 	public void flow1(){
-		visitUDFirstTime();
+		visitPerksFirstTime();
 		//1. client signs up and logs in
 
-		accessNewYorkFromUDHomepage();
-
-		signUpUD_viaNewYork();
-		doChecksCityHomePageLoggedIn();
+		signUpPerks_viaNewYork();
+		//doChecksCityHomePageLoggedIn();
 				
-		logoutUD();
-		resetPasswordUD();
+		logoutPerks();
+		resetPasswordPerks();
 		
-		doChecksCityHomePageLoggedOut();
+		//doChecksCityHomePageLoggedOut();
 		
 		loginToGmail();
-		verifyWelcomeUDEmailReceived();
-		verifyInvitationsUDEmailsReceived();
-		verifyResetPasswordUDRequestReceivedandPasswordReset();
+		verifyWelcomePerksEmailReceived();
+		verifyInvitationsPerksEmailsReceived();
+		verifyResetPasswordPerksRequestReceivedandPasswordReset();
 
 //		
 //		logoutUD();
