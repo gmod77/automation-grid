@@ -62,7 +62,7 @@ import org.urbandaddy.helpers.ResetEmailHelper_Client;
 public abstract class ITestCase {
 
 	enum DriverType {
-		Firefox, IE, Ghrome, FirefoxRemote13
+		Firefox, IE, Ghrome, FirefoxRemote14
 	}
 
 	public WebDriver client;
@@ -97,7 +97,7 @@ public abstract class ITestCase {
 //			cms = new ChromeDriver();
 			
 		} 
-else if (DriverType.FirefoxRemote13.toString().equals(driverType)) 
+else if (DriverType.FirefoxRemote14.toString().equals(driverType)) 
 			
 		{
 			DesiredCapabilities capability = DesiredCapabilities.firefox();
