@@ -15,17 +15,17 @@
 		</classes>
 	</test>
 	
-<!-- 		<test name="UD_Admin_Smoke_3column"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />	 -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+		<test name="UD_Admin_Smoke_3column">
+		<classes>
+			<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />	
+		</classes>
+	</test>
 
-<!-- 		<test name="UD_Admin_Smoke_Weekender"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />	 -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+		<test name="UD_Admin_Smoke_Weekender">
+		<classes>
+			<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />	
+		</classes>
+	</test>
 	
 <!-- 	<test name="UD_Smoke" preserve-order="true"> -->
 <!-- 		<groups> -->
