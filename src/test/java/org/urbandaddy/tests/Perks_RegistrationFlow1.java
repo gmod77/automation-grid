@@ -29,7 +29,7 @@ public class Perks_RegistrationFlow1 extends ITestCase {
 //		logoutUD();
 //		doChecksCityHomePageLoggedOut();
 //		
- 		signInPerks();
+		signInPerks();
 //		doChecksCityHomePageLoggedIn();
 
 		
