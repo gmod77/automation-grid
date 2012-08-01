@@ -16,20 +16,20 @@ public class Perks_RegistrationFlow1 extends ITestCase {
 		//doChecksCityHomePageLoggedIn();
 				
 		logoutPerks();
-		resetPasswordPerks();
+		//resetPasswordPerks();
 		
 		//doChecksCityHomePageLoggedOut();
 		
 		loginToGmail();
 		verifyWelcomePerksEmailReceived();
 		verifyInvitationsPerksEmailsReceived();
-		verifyResetPasswordPerksRequestReceivedandPasswordReset();
+		//verifyResetPasswordPerksRequestReceivedandPasswordReset();
 
 //		
 //		logoutUD();
 //		doChecksCityHomePageLoggedOut();
 //		
- 		loginUD();
+ 		signInPerks();
 //		doChecksCityHomePageLoggedIn();
 
 		

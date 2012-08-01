@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+
+<Step1>
+   	  <JoinEmail><![CDATA[email]]></JoinEmail>
+   	  <SigninEmail><![CDATA[loginEmail]]></SigninEmail>
+   	  <SigninPassword><![CDATA[flowPassword]]></SigninPassword>
+   	  <Accept><![CDATA[//form[@id='signup-form']/div[2]/a/span]]></Accept>
+   	  <SignIn><![CDATA[//form[@id='login-form']/div/div[2]/a/span]]></SignIn>
+   	  
+   	  <SelectEditionsNewYorkPerks><![CDATA[member_editions_26]]></SelectEditionsNewYorkPerks>
+   	  <SelectEditionsNewYorkEditorial><![CDATA[member_editions_1]]></SelectEditionsNewYorkEditorial>
+   	  
+   	  <SelectEditionsBostonPerks><![CDATA[member_editions_30]]></SelectEditionsBostonPerks>
+   	  <SelectEditionsChicagoPerks><![CDATA[member_editions_29]]></SelectEditionsChicagoPerks>
+   	  <SelectEditionsDCPerks><![CDATA[member_editions_32]]></SelectEditionsDCPerks>
+   	  <SelectEditionsLAPerks><![CDATA[member_editions_27]]></SelectEditionsLAPerks>
+   	  <SelectEditionsMiamiPerks><![CDATA[member_editions_31]]></SelectEditionsMiamiPerks>
+   	  <SelectEditionsNationalPerks><![CDATA[member_editions_28]]></SelectEditionsNationalPerks>
+   	  
+   	  <MoreLinkNewYork1><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div[2]/label/a]]></MoreLinkNewYork1>
+
+
+<!-- See our Editorial editions -->
+   	  
+   	  <SelectEditorialEditionsAtlanta><![CDATA[member_editions_22]]></SelectEditorialEditionsAtlanta>
+   	  <SelectEditorialEditionsBoston><![CDATA[member_editions_16]]></SelectEditorialEditionsBoston>
+   	  <SelectEditorialEditionsChicago><![CDATA[member_editions_15]]></SelectEditorialEditionsChicago>
+   	  <SelectEditorialEditionsDallas><![CDATA[member_editions_17]]></SelectEditorialEditionsDallas>
+   	  <SelectEditorialEditionsDC><![CDATA[member_editions_21]]></SelectEditorialEditionsDC>
+   	  <SelectEditorialEditionsDriven><![CDATA[member_editions_33]]></SelectEditorialEditionsDriven>
+   	  <SelectEditorialEditionsJetset><![CDATA[member_editions_13]]></SelectEditorialEditionsJetset>
+   	  <SelectEditorialEditionsLasVegas><![CDATA[member_editions_18]]></SelectEditorialEditionsLasVegas>
+   	  <SelectEditorialEditionsLosAngeles><![CDATA[member_editions_11]]></SelectEditorialEditionsLosAngeles>
+   	  <SelectEditorialEditionsMiami><![CDATA[member_editions_19]]></SelectEditorialEditionsMiami>
+   	  <SelectEditorialEditionsNational><![CDATA[member_editions_12]]></SelectEditorialEditionsNational>
+   	  <SelectEditorialEditionsSanFranciso><![CDATA[member_editions_14]]></SelectEditorialEditionsSanFranciso>
+   	  <SelectEditorialEditionsSkiBoard><![CDATA[member_editions_25]]></SelectEditorialEditionsSkiBoard>
+   	
+   	  <Submit1><![CDATA[//div[@id='modalContent']/div/div[2]/div[2]/div/form/div[4]/div/a/span]]></Submit1>
+   	  <ErrorMessage><![CDATA[//]]></ErrorMessage>
+   	   	  
+   </Step1>
+
+   	  
+   <Step2>
+   
+   	  <EnterPassword><![CDATA[flowPassword]]></EnterPassword>
+   	  <ConfirmPassword><![CDATA[flowPasswordRetype]]></ConfirmPassword>
+      <EnterFirstName><![CDATA[flowFirstName]]></EnterFirstName>
+   	  <EnterLastName><![CDATA[flowLastName]]></EnterLastName>
+   	  <SelectGender><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/fieldset/ul/li[5]/div/div]]></SelectGender>
+   	  <SelectIncomeRange><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/fieldset/ul/li[6]/div/div]]></SelectIncomeRange>
+   	  <EnterZipCode><![CDATA[//.//*[@id="flowZip"]]]></EnterZipCode>
+   	  <EnterBirthday><![CDATA[//.//*[@id="flowBirthday"]]]></EnterBirthday>
+   	  <ClickSubmit><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div[3]/div/a]]></ClickSubmit> 
+   	  
+   	  <PrivacyPolicy><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div[5]/a]]></PrivacyPolicy>
+   	  <UserAgreement><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div[5]/a[2]]]></UserAgreement>
+   	    
+   </Step2>
+   
+   <Step3>
+   
+   	  <InviteEmail1><![CDATA[misc_email_1]]></InviteEmail1>
+   	  <InviteEmail2><![CDATA[misc_email_2]]></InviteEmail2>
+   	  <InviteEmail3><![CDATA[misc_email_3]]></InviteEmail3>
+   	  <InviteEmail4><![CDATA[misc_email_4]]></InviteEmail4>
+   	  <InviteEmail5><![CDATA[misc_email_5]]></InviteEmail5>
+   	  
+   	  <ClickInvite><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div/div/a/span]]></ClickInvite>
+   	  
+   	  <ClickSkip><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div/div/a]]></ClickSkip>
+   	  
+   	  <ErrorMessage><![CDATA[//]]]></ErrorMessage>
+   	  
+   </Step3>
+   
+   <Step4>
+   	  <FinalConfirmationModal><![CDATA[//html/body/div[5]/div[2]/div/div]]></FinalConfirmationModal>
+   </Step4>
+   
+</locators>

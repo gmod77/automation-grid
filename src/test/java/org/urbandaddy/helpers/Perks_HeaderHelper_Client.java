@@ -16,7 +16,7 @@ public class Perks_HeaderHelper_Client extends IHelper_Client {
 	public Perks_HeaderHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub
-		headerReader = new LocatorReader("UD_Header.xml");
+		headerReader = new LocatorReader("Perks_Header.xml");
 	}
 
 	public Boolean isLogoutPresent(){

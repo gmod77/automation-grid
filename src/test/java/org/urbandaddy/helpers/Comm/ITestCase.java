@@ -1,6 +1,7 @@
 package org.urbandaddy.helpers.Comm;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,6 +19,7 @@ import java.util.*;
 //import org.openqa.selenium.Keys;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -62,10 +64,11 @@ import org.urbandaddy.helpers.ResetEmailHelper_Client;
 public abstract class ITestCase {
 
 	enum DriverType {
-		Firefox, IE, Ghrome, FirefoxRemote14
+		Firefox, IE, Ghrome, FFRemote14, IERemote, ChromeRemote
 	}
 
 	public WebDriver client;
+	private static ChromeDriverService service;
 //	public WebDriver resource;
 //	public WebDriver wald;
 	
@@ -97,7 +100,7 @@ public abstract class ITestCase {
 //			cms = new ChromeDriver();
 			
 		} 
-else if (DriverType.FirefoxRemote14.toString().equals(driverType)) 
+else if (DriverType.FFRemote14.toString().equals(driverType)) 
 			
 		{
 			DesiredCapabilities capability = DesiredCapabilities.firefox();
@@ -126,6 +129,66 @@ else if (DriverType.FirefoxRemote14.toString().equals(driverType))
 			}
 			
 		}
+		
+else if (DriverType.IERemote.toString().equals(driverType)) 
+	
+{
+	DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
+	capability.setCapability("seleniumProtocol", "WebDriver");
+	
+	//capability.setCapability("browserName", "firefox10");
+	//capability.setBrowserName("firefox10");
+	//capability.setCapability("firefox_binary" , "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
+	//capability.setCapability("maxInstances", 5);		
+	capability.setCapability("jenkins.nodeName", "WindowsSlave2");
+	//capability.setCapability("javascriptEnabled ", true);
+	//FirefoxProfile ffPrfile;
+    //ffprofile.setPreference("javascript.enabled", true);
+	//capability.setVersion("14");
+	
+	
+	try {
+		client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
+		client.manage().window().maximize();
+//		client.manage().window().setSize(targetSize)
+//		resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
+//		wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
+	} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+		
+else if (DriverType.ChromeRemote.toString().equals(driverType)) 
+	
+{
+	DesiredCapabilities capability = DesiredCapabilities.chrome();
+	capability.setCapability("seleniumProtocol", "WebDriver");
+	
+	//capability.setCapability("browserName", "firefox10");
+	//capability.setBrowserName("firefox10");
+	//capability.setCapability("firefox_binary" , "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
+	//capability.setCapability("maxInstances", 5);		
+	capability.setCapability("jenkins.nodeName", "WindowsSlave2");
+	//capability.setCapability("javascriptEnabled ", true);
+	//FirefoxProfile ffPrfile;
+    //ffprofile.setPreference("javascript.enabled", true);
+	//capability.setVersion("14");
+	
+	
+	try {
+		client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
+		client.manage().window().maximize();
+//		client.manage().window().setSize(targetSize)
+//		resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
+//		wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
+	} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
 		
 		else {
 			client = new FirefoxDriver();
@@ -227,7 +290,44 @@ else if (DriverType.FirefoxRemote14.toString().equals(driverType))
 		this.signUpPerks_viaNewYorkStep4();
 		}
 	
+	public void signInPerks(){
+		
+		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+		perks_sealHelper_Client = new Perks_SealHelper_Client(client);
+		
+		this.client.navigate().to(Perksdomain);
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		//click signup
+		perks_headerHelper_Client.clickSignUp();
+		
+		//b. Enter email address
+		perks_signupHelper_Client.enterSigninEmail(emailClient);	
+		perks_signupHelper_Client.enterSigninPassword(password);	
+		
+		perks_signupHelper_Client.clickSignIn();	
+
+		
+		// do all footer checks	for logged in state
+		perks_footerHelper_Client = new Perks_FooterHelper_Client(client); 
+		//this.checkPerksHomepageCityFooterLoggedIn();
+		
+	}
+	
 	public void logoutPerks(){
+
+			perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+			
+			perks_headerHelper_Client.clickLogout();
+			
+			// do all footer checks	for logged out state
+			//perks_footerHelper_Client = new Perks_FooterHelper_Client(client); 
+			//this.checkPerksHomepageCityFooterLoggedOut();
 		
 	}
 	
@@ -256,126 +356,82 @@ else if (DriverType.FirefoxRemote14.toString().equals(driverType))
 		perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 				
 		System.out.println(emailClient);
-		
-
-		
-		//go to /home/nyc
-//		perks_homepageHelper_Client.clickNewYork();
 				
 		//step1, 1st signup modal: 
 		//a. Click SignUp Seal
-		ud_headerHelper_Client.clickSignUp();
-		
-		//or open new tab or go to the signup url
-		
-		//headerHelper_Client.openSignUpNewTab();
-		
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+		perks_headerHelper_Client.clickSignUp();
 		
 		//b. Enter email address
-		ud_signupHelper_Client.enterEmail(emailClient);
+		perks_signupHelper_Client.enterJoinEmail(emailClient);	
+				
+		perks_signupHelper_Client.clickAccept();	
+  
 		//c. Select Editions
 		//New York, New York Perks are selected by default
 		//check Driven
-		ud_signupHelper_Client.checkDriven();
-		ud_signupHelper_Client.checkJetset();
-		ud_signupHelper_Client.checkLasVegas();
-		ud_signupHelper_Client.checkNational();
-		ud_signupHelper_Client.checkSkiBoard();
+		perks_signupHelper_Client.checkBostonPerks();
+		perks_signupHelper_Client.checkChicagoPerks();
+		perks_signupHelper_Client.checkDCPerks();
+		perks_signupHelper_Client.checkLosAngelesPerks();
+		perks_signupHelper_Client.checkMiamiPerks();
+		perks_signupHelper_Client.checkNationalPerks();
 		
 		//click "more" link to show all Editorials
-		ud_signupHelper_Client.clickMoreLinkNewYork1();
-		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-		// check all of them
-		ud_signupHelper_Client.checkAtlanta();
-		ud_signupHelper_Client.checkBoston();
-		ud_signupHelper_Client.checkChicago();
-		ud_signupHelper_Client.checkDallas();
-		ud_signupHelper_Client.checkDC();
-		ud_signupHelper_Client.checkLosAngeles();
-		ud_signupHelper_Client.checkMiami();
-		ud_signupHelper_Client.checkSanFrancisco();
-		
-		//click "more" link to see the Perks editions
-		ud_signupHelper_Client.clickMoreLinkNewYork2();
+		perks_signupHelper_Client.clickMoreLinkNewYork1();
 		
 		// check all of them
-		ud_signupHelper_Client.checkBostonPerks();
-		ud_signupHelper_Client.checkChicagoPerks();
-		ud_signupHelper_Client.checkDCPerks();
-		ud_signupHelper_Client.checkLosAngelesPerks();
-		ud_signupHelper_Client.checkMiamiPerks();
-		ud_signupHelper_Client.checkNationalPerks();
+		perks_signupHelper_Client.checkAtlanta();
+		perks_signupHelper_Client.checkBoston();
+		perks_signupHelper_Client.checkChicago();
+		perks_signupHelper_Client.checkDallas();
+		perks_signupHelper_Client.checkDC();
+		perks_signupHelper_Client.checkDriven();
+		perks_signupHelper_Client.checkJetset();
+		perks_signupHelper_Client.checkLasVegas();
+		perks_signupHelper_Client.checkLosAngeles();
+		perks_signupHelper_Client.checkMiami();
+		perks_signupHelper_Client.checkNational();
+		perks_signupHelper_Client.checkSanFrancisco();
+		perks_signupHelper_Client.checkSkiBoard();
 		
 		//click "JOIN" button
 		
-		ud_signupHelper_Client.clickJoin();
+		perks_signupHelper_Client.clickSubmit1();
 }
 	
 
 public void signUpPerks_viaNewYorkStep2(){
-	
-	
-	ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
-	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
-	
-	ud_signupHelper_Client = new UD_SignupHelper_Client(client);
-		
-		
-//handling the silly behaviour of ajax, when the form comes back with "You must enter an email address." message as if email was not entered		
-//		You must enter an email address.
-//		client.findElement(By.xpath("//html/body/div[7]/div/div/div/div[2]/div/div")).click();
-		
-		
-//		Assert.assertFalse(client.findElement(By.xpath("//html/body/div[7]/div/div/div/div[2]/div/div")).isDisplayed()); 
-		
-		
-//		Assert.assertFalse(ud_signupHelper_Client.isStupidErrorAfterStep1Present());
-		
-//		try {
-//			ud_signupHelper_Client.isStupidErrorAfterStep1Present();
-//		}
-
 		
 		//step2, 2nd signup modal: 
 		//enter password
-		ud_signupHelper_Client.enterPassword(password);
+		perks_signupHelper_Client.enterPassword(password);
 		//confirm password
-		ud_signupHelper_Client.confirmPassword(password);
+		perks_signupHelper_Client.confirmPassword(password);
 		//First Name
-		ud_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+		perks_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
 		//Last Name
-		ud_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+		perks_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
 		//Gender
-		ud_signupHelper_Client.selectGender("Male");
-		//ud_signupHelper_Client.selectGender("Female");
-		//ud_signupHelper_Client.selectGenderRandom();
+		perks_signupHelper_Client.selectGender("Male");
+		//perks_signupHelper_Client.selectGender("Female");
+		//perks_signupHelper_Client.selectGenderRandom();
 
 		//Income Range
-		ud_signupHelper_Client.selectIncomeRange("Less than $30,000");
-//		ud_signupHelper_Client.selectIncomeRange("$30,000-$44,999");
-//		ud_signupHelper_Client.selectIncomeRange("$45,000-$59,999");
-//		ud_signupHelper_Client.selectIncomeRange("$60,000-$74,999");
-//		ud_signupHelper_Client.selectIncomeRange("$75,000-$99,999");
-//		ud_signupHelper_Client.selectIncomeRange("$100,000-$199,999");
-//		ud_signupHelper_Client.selectIncomeRange("$200,000-$299,999");
-//		ud_signupHelper_Client.selectIncomeRange("$300,000-$499,999");
-//		ud_signupHelper_Client.selectIncomeRange("$500,000+");
-//		ud_signupHelper_Client.selectIncomeRangeRandom();
+		perks_signupHelper_Client.selectIncomeRange("Less than $30,000");
+//		perks_signupHelper_Client.selectIncomeRange("$30,000-$44,999");
+//		perks_signupHelper_Client.selectIncomeRange("$45,000-$59,999");
+//		perks_signupHelper_Client.selectIncomeRange("$60,000-$74,999");
+//		perks_signupHelper_Client.selectIncomeRange("$75,000-$99,999");
+//		perks_signupHelper_Client.selectIncomeRange("$100,000-$199,999");
+//		perks_signupHelper_Client.selectIncomeRange("$200,000-$299,999");
+//		perks_signupHelper_Client.selectIncomeRange("$300,000-$499,999");
+//		perks_signupHelper_Client.selectIncomeRange("$500,000+");
+//		perks_signupHelper_Client.selectIncomeRangeRandom();
 
 		//Zip Code
-		ud_signupHelper_Client.enterZipCode("10001");
+		perks_signupHelper_Client.enterZipCode("10001");
 		//Birthday (MM/DD/YYYY)
-		ud_signupHelper_Client.enterBirthday("07/07/1977");
+		perks_signupHelper_Client.enterBirthday("07/07/1977");
 		//click "SUBMIT" button
 		
 		try {
@@ -383,27 +439,27 @@ public void signUpPerks_viaNewYorkStep2(){
 			} catch (InterruptedException e) {
 			e.printStackTrace();
 				}
-		ud_signupHelper_Client.clickSubmit();
+		perks_signupHelper_Client.clickSubmit();
 }
 
 
 public void signUpPerks_viaNewYorkStep3(){
 	
 	
-	ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
-	ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
-	
-	ud_signupHelper_Client = new UD_SignupHelper_Client(client);
+//	perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
+//	perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+//	
+//	perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 		
 //step3, 3rd signup modal: Invite Friends
 		
 //		ud_signupHelper_Client.clickInvite();
 		
-		ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
-		ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
-		ud_signupHelper_Client.enterEmailFriend3(emailFriend3);
-		ud_signupHelper_Client.enterEmailFriend4(emailFriend4);
-		ud_signupHelper_Client.enterEmailFriend5(emailFriend5);
+		perks_signupHelper_Client.enterEmailFriend1(emailFriend1);
+		perks_signupHelper_Client.enterEmailFriend2(emailFriend2);
+		perks_signupHelper_Client.enterEmailFriend3(emailFriend3);
+		perks_signupHelper_Client.enterEmailFriend4(emailFriend4);
+		perks_signupHelper_Client.enterEmailFriend5(emailFriend5);
 		
 		System.out.println(emailFriend1);
 		System.out.println(emailFriend2);
@@ -417,14 +473,15 @@ public void signUpPerks_viaNewYorkStep3(){
 			e.printStackTrace();
 				}
 		
-		ud_signupHelper_Client.clickInvite();
+		perks_signupHelper_Client.clickInvite();
 		
-//		ud_signupHelper_Client.clickSkip();
+//		perks_signupHelper_Client.clickSkip();
 	}	
 
 public void signUpPerks_viaNewYorkStep4(){
 	//step4, 4th signup modal confirmation, close final confirm signup box		
-			ud_signupHelper_Client.clickCloseFinalModal();
+			this.pause4();
+			perks_signupHelper_Client.clickCloseFinalModal();
 	//end of registration
 		}
 	
@@ -2463,21 +2520,56 @@ public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
 	}
 
 	@BeforeClass
+	
+// BeforeClass for ChromeDriverService
+//	  public  void createAndStartService() {
+//	    service = new ChromeDriverService.Builder()
+//	        .usingChromeDriverExecutable(new File("src/test/util/chromedriver_mac"))
+//	        .usingPort(5556)//.usingAnyFreePort()
+//	        .build();
+//	    try {
+//			service.start();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    }
+//	
+
+	
 	public void beforeMainClass() {
 		this.beforeClass();
+		
+		
 	}
 
 	@AfterClass
+//   for ChromeDriverService	
+//	  public static void createAndStopService() {
+//	    service.stop();
+//	  }
+
+	
 	public void afterMainClass() {
 		this.afterClass();
 	}
 
 	@BeforeTest
+//	  public void createDriver() {
+//	    client = new RemoteWebDriver(service.getUrl(),
+//	        DesiredCapabilities.chrome());
+//	  }
+
 	public void beforeMainTest() {
 		this.beforeTest();
 	}
 
 	@AfterTest
+//  Stop ChromeDriverService
+//	  public void quitDriver() {
+//	    client.quit();
+//	  }
+
 	public void afterMainTest() {
 		this.afterTest();
 	}
