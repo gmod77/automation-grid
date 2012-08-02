@@ -9,23 +9,23 @@
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->
 		
 	
-<!-- 	<test name="UD_Smoke"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_RegistrationFlow2" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	<test name="UD_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />
+		</classes>
+	</test>
 	
-<!-- 		<test name="UD_Admin_Smoke_3column"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />	 -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+		<test name="UD_Admin_Smoke_3column">
+		<classes>
+			<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />	
+		</classes>
+	</test>
 
-<!-- 		<test name="UD_Admin_Smoke_Weekender"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />	 -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+		<test name="UD_Admin_Smoke_Weekender">
+		<classes>
+			<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />	
+		</classes>
+	</test>
 	
 			<test name="Perks_Smoke">
 		<classes>
