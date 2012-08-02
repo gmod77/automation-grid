@@ -2,7 +2,7 @@
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
 
-	<parameter name="driverType" value="FFRemote14"></parameter>
+	<parameter name="driverType" value="IERemote"></parameter>
 	<parameter name="profilePath" value=""></parameter>
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/fadehsi2.WebDriver"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
