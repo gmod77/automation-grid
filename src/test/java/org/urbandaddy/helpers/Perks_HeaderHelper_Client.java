@@ -36,18 +36,18 @@ public class Perks_HeaderHelper_Client extends IHelper_Client {
 		el.click();
 	}
 	
-	public void clickMembrerLogIn(){
-		String str = headerReader.getLocator("LoggedOutHeader.MemberLogIn");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
-		el.click();
-		
-		try {
-			Thread.sleep(5000);
-			} catch (InterruptedException e) {
-			e.printStackTrace();
-				}
-	}
+//	public void clickMembrerLogIn(){
+//		String str = headerReader.getLocator("LoggedOutHeader.MemberLogIn");
+//		this.WaitForElementPresent(str, 20);
+//		WebElement el = client.findElement(ByLocator(str));
+//		el.click();
+//		
+//		try {
+//			Thread.sleep(5000);
+//			} catch (InterruptedException e) {
+//			e.printStackTrace();
+//				}
+//	}
 	
 	public void clickSignUp(){
 		String str = headerReader.getLocator("LoggedOutHeader.SignUp");

@@ -325,6 +325,11 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 			
 			perks_headerHelper_Client.clickLogout();
 			
+			//click logout confirmation OK
+			this.pause3();
+    		client.findElement(By.xpath("//html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span")).click(); 
+
+			
 			// do all footer checks	for logged out state
 			//perks_footerHelper_Client = new Perks_FooterHelper_Client(client); 
 			//this.checkPerksHomepageCityFooterLoggedOut();
@@ -332,6 +337,24 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 	}
 	
 	public void resetPasswordPerks(){
+		
+//		perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
+//		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+//		
+//		perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
+				
+		System.out.println(emailClient);
+				
+		//step1, 1st signup modal: 
+		//a. Click SignUp Seal
+		perks_headerHelper_Client.clickSignUp();
+		
+		perks_signupHelper_Client.clickForgotYourPassword();	
+		
+		perks_signupHelper_Client.enterForgotPasswordEmail(emailClient);
+		
+		perks_signupHelper_Client.clickSend();
+		
 		
 	}
 	

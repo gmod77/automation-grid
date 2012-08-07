@@ -62,14 +62,16 @@ public class Perks_SignupHelper_Client extends IHelper_Client {
 //		el.click();
 //	}
 	
-	public void clickMemberLogInHeaderLink(){
-		String str = signupReader.getLocator("Header.MemberLogInHeaderLink");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
-		el.click();
-	}
+//	public void clickMemberLogInHeaderLink(){
+//		String str = signupReader.getLocator("Header.MemberLogInHeaderLink");
+//		this.WaitForElementPresent(str, 20);
+//		WebElement el = client.findElement(ByLocator(str));
+//		el.click();
+//	}
 	
 //Singup/SignIn modal 1 
+	
+	///Join Section
 	
 	public void enterJoinEmail(String email){
 		
@@ -80,6 +82,17 @@ public class Perks_SignupHelper_Client extends IHelper_Client {
 		el.sendKeys(email);
 	}
 	
+	public void clickAccept(){
+		String str = signupReader.getLocator("Step1.Accept");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	///Join Section ends here
+	
+	
+	///SignIn Section
 	public void enterSigninEmail(String email){
 		
 		String str = signupReader.getLocator("Step1.SigninEmail");		
@@ -98,19 +111,37 @@ public class Perks_SignupHelper_Client extends IHelper_Client {
 		el.sendKeys(password);
 	}
 	
-	public void clickAccept(){
-		String str = signupReader.getLocator("Step1.Accept");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
-		el.click();
-	}
-	
 	public void clickSignIn(){
 		String str = signupReader.getLocator("Step1.SignIn");
 		this.WaitForElementVisible(str, 100);
 		WebElement el = client.findElement(ByLocator(str));
 		el.click();
 	}
+
+	/// Forgot/Reset Password Section
+	public void clickForgotYourPassword(){
+		String str = signupReader.getLocator("Step1.ForgotPasswordLink");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	public void enterForgotPasswordEmail(String email){
+		
+		String str = signupReader.getLocator("Step1.SigninPassword");		
+		this.WaitForElementVisible(str, 100);		
+		WebElement el = client.findElement(ByLocator(str));
+		el.clear();
+		el.sendKeys(email);
+	}
+	
+	public void clickSend(){
+		String str = signupReader.getLocator("Step1.Send");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	/// Forgot/Reset Password Section ends here
 
 // Select Editions
 	public void checkBostonPerks(){

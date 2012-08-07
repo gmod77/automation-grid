@@ -5,6 +5,8 @@
    	  <JoinEmail><![CDATA[email]]></JoinEmail>
    	  <SigninEmail><![CDATA[loginEmail]]></SigninEmail>
    	  <SigninPassword><![CDATA[flowPassword]]></SigninPassword>
+   	  <ForgotPasswordLink><![CDATA[//html/body/div[5]/div[2]/div/div[3]/div[2]/div/div[2]/form/div/a]]></ForgotPasswordLink>
+   	  <Send><![CDATA[//form[@id='forgotpass-form']/div/div[3]/a/span]]></Send>   	  
    	  <Accept><![CDATA[//form[@id='signup-form']/div[2]/a/span]]></Accept>
    	  <SignIn><![CDATA[//form[@id='login-form']/div/div[2]/a/span]]></SignIn>
    	  
