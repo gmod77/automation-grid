@@ -354,6 +354,8 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 		perks_signupHelper_Client.enterForgotPasswordEmail(emailClient);
 		
 		perks_signupHelper_Client.clickSend();
+		this.pause3();
+
 		
 		
 	}
@@ -503,7 +505,7 @@ public void signUpPerks_viaNewYorkStep3(){
 
 public void signUpPerks_viaNewYorkStep4(){
 	//step4, 4th signup modal confirmation, close final confirm signup box		
-			this.pause4();
+			this.pause3();
 			perks_signupHelper_Client.clickCloseFinalModal();
 	//end of registration
 		}

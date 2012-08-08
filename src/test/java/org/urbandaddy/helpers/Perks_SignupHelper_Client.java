@@ -128,7 +128,7 @@ public class Perks_SignupHelper_Client extends IHelper_Client {
 	
 	public void enterForgotPasswordEmail(String email){
 		
-		String str = signupReader.getLocator("Step1.SigninPassword");		
+		String str = signupReader.getLocator("Step1.ForgotEmail");		
 		this.WaitForElementVisible(str, 100);		
 		WebElement el = client.findElement(ByLocator(str));
 		el.clear();
