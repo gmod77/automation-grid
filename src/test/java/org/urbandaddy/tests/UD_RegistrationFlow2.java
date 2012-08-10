@@ -15,6 +15,10 @@ public class UD_RegistrationFlow2 extends ITestCase {
 		accessNewYorkFromUDHomepage();
 
 		signUpUD_viaNewYork();
+		
+ 		editSettingsUD();
+
+ 		
 		doChecksCityHomePageLoggedIn();
 				
 		logoutUD();
@@ -26,12 +30,15 @@ public class UD_RegistrationFlow2 extends ITestCase {
 		verifyWelcomeUDEmailReceived();
 		verifyInvitationsUDEmailsReceived();
 		verifyResetPasswordUDRequestReceivedandPasswordReset();
+		verifyEditSettingsUDEmailReceived();
+
 
 //		
 //		logoutUD();
 //		doChecksCityHomePageLoggedOut();
 //		
  		loginUD();
+ 		logoutUD();
 //		doChecksCityHomePageLoggedIn();
 
 		

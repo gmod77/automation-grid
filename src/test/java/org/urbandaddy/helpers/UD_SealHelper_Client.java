@@ -87,4 +87,67 @@ public class UD_SealHelper_Client extends IHelper_Client {
 		return false;
 			
 	}
+	
+	///Edit Settings
+	
+	public void clickEditSettings(){
+		String str = sealReader.getLocator("Settings.EditSettings");
+		this.WaitForElementPresent(str, 20);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	public void enterPasswordMyUD(String password){
+		
+		String str = sealReader.getLocator("Settings.PasswordMyUD");		
+		this.WaitForElementPresent(str, 20);		
+		WebElement el = client.findElement(ByLocator(str));
+		el.sendKeys(password);
+	}
+	
+	public void confirmPasswordMyUD(String password){
+		
+		String str = sealReader.getLocator("Settings.PasswordConfirmMyUD");		
+		this.WaitForElementPresent(str, 20);		
+		WebElement el = client.findElement(ByLocator(str));
+		el.sendKeys(password);
+	}
+	
+	public void checkDC(){
+		String str = sealReader.getLocator("Settings.EditionsDC");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	public void checkPhilly(){
+		String str = sealReader.getLocator("Settings.EditionsPhilly");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	public void checkSeattle(){
+		String str = sealReader.getLocator("Settings.EditionsSeattle");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	public void checkDCPerks(){
+		String str = sealReader.getLocator("Settings.PerksDC");
+		this.WaitForElementVisible(str, 100);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	public void clickUpdate(){
+		String str = sealReader.getLocator("Settings.Update");
+		this.WaitForElementPresent(str, 20);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
+	
+	
 }

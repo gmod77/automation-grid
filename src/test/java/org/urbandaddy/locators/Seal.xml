@@ -14,6 +14,37 @@
    	  <Send><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[2]]]></Send>
    	  <SendSub><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[3]/form/input[2]]]></SendSub>
    </ResetPassword>
+   <Settings>
+   	  <EditSettings><![CDATA[//.//html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div[3]/a[2]]]></EditSettings>
+   	  <PasswordMyUD><![CDATA[input_password]]></PasswordMyUD>
+   	  <PasswordConfirmMyUD><![CDATA[input_password_retype]]></PasswordConfirmMyUD>
+   	  <EditionsAtlanta><![CDATA[member_editions_22]]></EditionsAtlanta>
+   	  <EditionsBoston><![CDATA[member_editions_16]]></EditionsBoston>
+   	  <EditionsChicago><![CDATA[member_editions_15]]></EditionsChicago>
+   	  <EditionsDallas><![CDATA[member_editions_17]]></EditionsDallas>
+   	  <EditionsDC><![CDATA[member_editions_21]]></EditionsDC>
+   	  <EditionsDriven><![CDATA[member_editions_33]]></EditionsDriven>
+   	  <EditionsJetset><![CDATA[member_editions_13]]></EditionsJetset>
+   	  <EditionsLV><![CDATA[member_editions_18]]></EditionsLV>
+   	  <EditionsLA><![CDATA[member_editions_11]]></EditionsLA>
+   	  <EditionsMiami><![CDATA[member_editions_19]]></EditionsMiami>
+   	  <EditionsNational><![CDATA[member_editions_12]]></EditionsNational>
+   	  <EditionsNY><![CDATA[member_editions_1]]></EditionsNY>
+   	  <EditionsPhilly><![CDATA[member_editions_24]]></EditionsPhilly>
+   	  <EditionsSF><![CDATA[member_editions_14]]></EditionsSF>
+   	  <EditionsSeattle><![CDATA[member_editions_23]]></EditionsSeattle>
+   	  <EditionsSkiBoard><![CDATA[member_editions_25]]></EditionsSkiBoard>
+   	  
+   	  <PerksBoston><![CDATA[member_editions_30]]></PerksBoston>
+   	  <PerksChicago><![CDATA[member_editions_29]]></PerksChicago>
+   	  <PerksDC><![CDATA[member_editions_32]]></PerksDC>
+   	  <PerksLA><![CDATA[member_editions_27]]></PerksLA>
+   	  <PerksMiami><![CDATA[member_editions_31]]></PerksMiami>
+   	  <PerksNational><![CDATA[member_editions_28]]></PerksNational>
+   	  <PerksNY><![CDATA[member_editions_26]]></PerksNY>
+   	  
+   	  <Update><![CDATA[//html/body/div[5]/div/div/div/div[2]/form/div[3]/div/input]]></Update>
+   </Settings>
    <LoggedIn>
       <Name><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[1]/b]]></Name>
    </LoggedIn>

@@ -13,6 +13,7 @@ public class Perks_RegistrationFlow1 extends ITestCase {
 		//1. client signs up and logs in
 
 		signUpPerks_viaNewYork();
+		editSettingsPerks();
 		//doChecksCityHomePageLoggedIn();
 				
 		logoutPerks();
@@ -21,30 +22,22 @@ public class Perks_RegistrationFlow1 extends ITestCase {
 		//doChecksCityHomePageLoggedOut();
 		
 		loginToGmail();
-//		verifyWelcomePerksEmailReceived();
-//		verifyInvitationsPerksEmailsReceived();
-//		verifyResetPasswordPerksRequestReceivedandPasswordReset();
 		
 		verifyWelcomeUDEmailReceived();
 		verifyInvitationsUDEmailsReceived();
+		//verifyEditSettingsUDEmailReceived();
 		verifyResetPasswordUDRequestReceivedandPasswordReset();
+		
 
 //		
 //		logoutUD();
 //		doChecksCityHomePageLoggedOut();
 //		
-		signInPerks();
+//		signInPerks();
+//		editSettingsPerks();
+//		logoutPerks();
+		
 //		doChecksCityHomePageLoggedIn();
-
-		
-//		loginClient();
-		
-		//check the header is in place
-//		checkHeaderClient();
-		
-		
-		// both sign out
-//		signOutClient();
 
 	}
 	

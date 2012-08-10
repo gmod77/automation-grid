@@ -228,6 +228,8 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 	String emailFriend3 = "udtestergene+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
 	String emailFriend4 = "udtestergene+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
 	String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+	
+	String emailClient2 = "udtestergene2+"+emailFormat.format(now) + "@gmail.com";
 		
 	private String UDdomain = "http://ud-branch.thedaddy.co";
 	private String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
@@ -289,6 +291,7 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 		this.signUpPerks_viaNewYorkStep3();
 		this.signUpPerks_viaNewYorkStep4();
 		}
+
 	
 	public void signInPerks(){
 		
@@ -360,17 +363,6 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 		
 	}
 	
-	public void verifyWelcomePerksEmailReceived(){
-		
-	}
-	
-	public void verifyInvitationsPerksEmailsReceived(){
-		
-	}
-	
-	public void verifyResetPasswordPerksRequestReceivedandPasswordReset(){
-		
-	}
 	
 	public void signUpPerks_viaNewYorkStep1(){
 		
@@ -2348,7 +2340,7 @@ public void verifyInvitationsUDEmailsReceived(){
 public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
 	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 //	resetEmailHelper_Client = new ResetEmailHelper_Client(client);
-	ud_sealHelper_Client = new UD_SealHelper_Client(client);
+	//ud_sealHelper_Client = new UD_SealHelper_Client(client);
 	
 	checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
 	checkEmailHelper_Client.clickResetEmailRequestLink();
@@ -2356,8 +2348,13 @@ public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
 //	resetEmailHelper_Client.confirmNewPassword(newpassword);
 //	resetEmailHelper_Client.clickSubmit();
 //	Assert.assertTrue(sealHelper_Client.isSignedIn());
+}
 
-
+public void verifyEditSettingsUDEmailReceived(){
+	checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+	
+	checkEmailHelper_Client.findInvitationEmail1("to: "+emailClient+" subject: You've Changed");
+	
 }
 
 
@@ -2522,6 +2519,31 @@ public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
 		ud_sealHelper_Client.clickResetPassword();
 		ud_sealHelper_Client.enterEmailToReset(emailClient);
 		ud_sealHelper_Client.clickSend();	
+		
+	}
+	
+	public void editSettingsUD(){
+		ud_sealHelper_Client = new UD_SealHelper_Client(client);
+		
+		ud_sealHelper_Client.clickEditSettings();
+		ud_sealHelper_Client.enterPasswordMyUD(password);
+		ud_sealHelper_Client.confirmPasswordMyUD(password);
+
+		ud_sealHelper_Client.checkDC();
+		ud_sealHelper_Client.checkPhilly();
+		ud_sealHelper_Client.checkSeattle();
+		ud_sealHelper_Client.checkDCPerks();
+		
+		ud_sealHelper_Client.clickUpdate();	
+		
+	}
+	
+	public void editSettingsPerks(){
+		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+		
+		perks_headerHelper_Client.clickMyAccount();
+		perks_headerHelper_Client.isMyAccountAccessible();
+		this.client.navigate().back();
 		
 	}
 
