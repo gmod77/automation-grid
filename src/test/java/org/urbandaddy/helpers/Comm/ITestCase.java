@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 //import java.util.concurrent.TimeUnit;
 import java.util.*;
+import org.openqa.selenium.JavascriptExecutor;
 
 //import org.openqa.selenium.JavascriptExecutor;
 //import org.sikuli.script.*;
@@ -230,6 +231,7 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 	String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
 	
 	String emailClient2 = "udtestergene2+"+emailFormat.format(now) + "@gmail.com";
+	String membersource = "Member Source "+emailFormat.format(now);
 		
 	private String UDdomain = "http://ud-branch.thedaddy.co";
 	private String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
@@ -737,6 +739,9 @@ public void createArticleWeekender() {
 		client.findElement(By.id("article[short]")).sendKeys("Weekender Article/Feature Introduction Test "+emailFormat.format(now)); 
 
 //	20.   Copy is not needed
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Weekender Article Copy Test'))");
+
 //	21.   Enter text in Article Blurb
 		
 		client.findElement(By.id("article[blurb]")).sendKeys("Weekender Article Blurb Test "+emailFormat.format(now));
@@ -751,7 +756,8 @@ public void createArticleWeekender() {
 
 //	24.   Enter Text in Note
 		
-		//!!!Figure out how to interact with this version of FCK editor
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Weekender Article Copy Test'))");
 		
 //	25.   Enter Text in Legal Line
 		
@@ -1333,48 +1339,9 @@ public void createArticleThreeColumn() {
 //enter Article/Feature introduction
 		client.findElement(By.id("article[short]")).sendKeys("Three-Column Article/Feature Introduction Test "+emailFormat.format(now)); 
 		
-//enter Copy !!!Figure out how to interact with this version of FCK editor
-//		((JavascriptExecutor)client).executeScript("CKEDITOR.instances['editor1'].setData('hello world');");
-//		client.switchTo().frame("article[content]___Frame");
-//		client.switchTo().activeElement();
-//		client.findElement(By.id("xEditingArea")).sendKeys("Test");
-		
-		// The image would be considered a match if 90% of it matches the source image
-		// by default this is 70%
-//		Settings.MinSimilarity = 0.9;
+//enter Copy  
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Three-Column Article Copy Test'))");
 
-
-		// set the image location. This is where the source images are stored
-		//ImageLocator imageLocator = new ImageLocator();
-		//ImageLocator.addImagePath("file:///c:/");
-
-		// Declare a new screen object
-//		Screen screen = new Screen();
-
-
-		// wait for the "Next" button. If it does not appear in 180 seconds,
-		// this line will throw an exception
-//		try {
-//			screen.wait("src/test/upload_data/wysiwyg.png", 180);
-//		} catch (FindFailed e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		// Click the next button
-//		try {
-//			screen.click("src/test/upload_data/wysiwyg.png", 0);
-//		} catch (FindFailed e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		
-//		try {
-//			screen.type("Test", 0);
-//		} catch (FindFailed e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		
 //Article Blurb
 		client.findElement(By.id("article[blurb]")).sendKeys("Three-Column Article Blurb Test "+emailFormat.format(now));
 
@@ -1384,7 +1351,8 @@ public void createArticleThreeColumn() {
 //Twitter Blurb
 		client.findElement(By.id("article_blurb_twitter")).sendKeys("Three-Column Twitter Blurb Test "+emailFormat.format(now));
 		
-//enter Note !!!Figure out how to interact with this version of FCK editor
+//enter Note 
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Three-Column Article Footer Test'))");
 
 //Legal Line
 		client.findElement(By.id("article[footer_additional]")).sendKeys("Three-Column Legal Line Test "+emailFormat.format(now));
@@ -1634,7 +1602,7 @@ public void createArticleThreeColumn() {
 		this.pause3();
 		alert.accept();
 		
-		this.pause3();
+		this.pause1();
 		// Verify "Test email has been sent" success message
 		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
@@ -1700,6 +1668,133 @@ public void createArticleThreeColumn() {
 
 		
 	}
+public void createMemberSource(){
+	
+	//1. Click create member source 
+	//2. Enter name for member source 
+	//3. Choose subscribe type (can use default  one if you want) 
+	//4. Click save 
+	
+	client.get(UD_Admin_domain+"/member_sources/edit");
+	this.pause3();
+	//enter Unique Name
+	client.findElement(By.id("member_source_name")).sendKeys(membersource);
+	
+	//hit save
+	client.findElement(By.name("save_and_list")).click();
+
+
+
+}
+
+public void createPMT(){
+	//1.    Go to Campaign Templates under Partnerships 
+	//2. Click on Create 
+	
+	client.get(UD_Admin_domain+"/pmt_universal_settings/create");
+	this.pause3();
+	
+	//3. Enter Name 
+	
+	client.findElement(By.id("pmt_universal_settings_name")).sendKeys("PMT "+ emailFormat.format(now));
+
+	//4. Choose Campaign end date some day in the future 
+	
+	client.findElement(By.id("pmt_universal_settings_campaign_end_date")).sendKeys("2013-08-23 17:39");
+	
+	//5. Uncheck Campaign Disabled  
+	
+	client.findElement(By.id("pmt_universal_settings_campaign_disabled")).click();
+	
+	//Select Meber source created earlier
+	
+    WebElement status = client.findElement(By.id("pmt_universal_settings_member_source_id"));
+    List<WebElement> status_options = status.findElements(By.tagName("option"));
+    for(WebElement option : status_options){
+        if(option.getText().equals(membersource)) {
+            option.click();
+            break;
+        }
+    }
+	
+	//6. Check User picks editions 
+	
+	client.findElement(By.id("pmt_universal_settings_user_picks_editions")).click();
+	
+	//7. Check User invites friends 
+	
+	client.findElement(By.id("pmt_universal_settings_user_invites_friends")).click();
+
+	//8. Choose a background image, must be 1280 by 568 
+	
+	client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\background image.jpg");
+
+	//9. Choose a logo, must be 250 by 100 
+	
+	//selected by Default
+
+	//10. Choose a new Accent color hex, ex: 00FFFF 
+	client.findElement(By.id("pmt_universal_settings_accent_color_hex")).clear();
+	client.findElement(By.id("pmt_universal_settings_accent_color_hex")).sendKeys("00FFFF");
+
+	//11. Enter footer text 
+	// figure out how to write to wysiwyg editor NOW!!!
+	((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_universal_settings[footer_text]').SetHTML('Footer Text Test'))");
+	
+	//12. Link to a pdf for Rules and regs 
+	
+	client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\rules & regulations.pdf");
+	
+	//13. Click SAVE  
+	//???	 ↓ Only PDF files are allowed  ↓ for Rules and Regulations field???
+	
+	client.findElement(By.name("save")).click();
+	this.pause1();
+
+
+
+	//18. Click Next Step 
+	//19. Click Add Partner 
+	//20. Enter partner name 
+	//21. Enter opt in text 
+	//22. Enter privacy policy url 
+	//23. Enter text in privacy policy lable 
+	//24. Choose logo, must be 170 by 97  
+	//25. Click Save  
+	//26. Click List 
+	//27. Repeat Steps 20-27 for 2nd partner slot  
+	//28. Click Next Step 
+	//29. Add Header text 
+	//30. Add Subhead text  
+	//31. Add Bottom text  
+	//32. Click next step 
+	//33. Select all editions 
+	//34. Click Right blue arrow to move them to the Selected column 
+	//35. Add Header text 
+	//36. Add subheader text 
+	//37. Add bottom text 
+	//38. Click Next Step 
+	//39. Add inv Head text 
+	//40. Add inv Subhead text 
+	//41. Add inv bot text 
+	//42. Click Next Step  
+	//43. Add thank you head text 
+	//44. Add thank you sub text 
+	//45. Add thank you bot text 
+	//46. Add twitter copy 
+	//47. Add FB title 
+	//48. Add FB Copy  
+	//49. Choose FB image, must be 50 X 50 
+	//50. Choose Module 1 Image 
+	//51. Add Module 1 URL  
+	//52. Choose Module 2 image 
+	//53. Add module 2 url 
+	//54. Choose Module 3 image 
+	//55. Add module 3 url  
+	//56. Click Next Step  
+	//57. Repeat Steps 44-57 for the Closed page 
+	//58. Choose Header Image"
+}
 
 public void goBackToUDHomepage(){
 	this.client.navigate().to(UDdomain);
