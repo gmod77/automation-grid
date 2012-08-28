@@ -1618,7 +1618,7 @@ public void createArticleThreeColumn() {
 				alert2.getText();  
 				// And acknowledge the alert (equivalent to clicking "OK")
 				alert2.accept();
-				this.pause3();
+				this.pause1();
 				
 		// Verify "Test email has been sent" success message
 		Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
