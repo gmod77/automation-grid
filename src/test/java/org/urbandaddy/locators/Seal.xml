@@ -44,6 +44,7 @@
    	  <PerksNY><![CDATA[member_editions_26]]></PerksNY>
    	  
    	  <Update><![CDATA[//html/body/div[5]/div/div/div/div[2]/form/div[3]/div/input]]></Update>
+   	  <Close><![CDATA[//html/body/div[5]/div/div/div/div/div[2]/a]]></Close>
    </Settings>
    <LoggedIn>
       <Name><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[1]/b]]></Name>

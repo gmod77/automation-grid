@@ -148,6 +148,13 @@ public class UD_SealHelper_Client extends IHelper_Client {
 		el.click();
 	}
 	
+	public void clickClose(){
+		String str = sealReader.getLocator("Settings.Close");
+		this.WaitForElementPresent(str, 20);
+		WebElement el = client.findElement(ByLocator(str));
+		el.click();
+	}
+	
 	
 	
 }

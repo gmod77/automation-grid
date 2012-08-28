@@ -1022,12 +1022,12 @@ public void createArticleWeekender() {
 	            break;
 	        }
 	    }
-		
+	    		
 //		b.      Click show day image in title
 		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/input
 	    
-		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/input[2]")).click();
-		
+		//client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/input[2]")).click();
+				
 //		c.       Enter text in Header
 		
 		//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input
@@ -2630,6 +2630,8 @@ public void verifyEditSettingsUDEmailReceived(){
 		ud_sealHelper_Client.checkDCPerks();
 		
 		ud_sealHelper_Client.clickUpdate();	
+		this.pause3();
+		ud_sealHelper_Client.clickClose();
 		
 	}
 	
