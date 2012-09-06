@@ -1,7 +1,7 @@
 package org.urbandaddy.helpers.Comm;
 
 import java.io.File;
-import java.io.IOException;
+//import java.io.IOException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,6 +10,8 @@ import java.util.List;
 //import java.util.concurrent.TimeUnit;
 import java.util.*;
 import org.openqa.selenium.JavascriptExecutor;
+import java.util.concurrent.TimeUnit;
+
 
 //import org.openqa.selenium.JavascriptExecutor;
 //import org.sikuli.script.*;
@@ -20,7 +22,8 @@ import org.openqa.selenium.JavascriptExecutor;
 //import org.openqa.selenium.Keys;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.support.ui.Select;
+//import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -34,7 +37,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-import org.openqa.selenium.Cookie;
+//import org.openqa.selenium.Cookie;
 
 //Workflow specific imports
 
@@ -54,7 +57,7 @@ import org.urbandaddy.helpers.Perks_SignupHelper_Client;
 
 
 import org.urbandaddy.helpers.CheckEmailHelper_Client;
-import org.urbandaddy.helpers.ResetEmailHelper_Client;
+//import org.urbandaddy.helpers.ResetEmailHelper_Client;
 
 //import org.urbandaddy.helpers.Comm.ITestCase;
 //import org.testng.Assert;
@@ -65,13 +68,11 @@ import org.urbandaddy.helpers.ResetEmailHelper_Client;
 public abstract class ITestCase {
 
 	enum DriverType {
-		Firefox, IE, Ghrome, FFRemote14, IERemote, ChromeRemote
+		Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, MacFF14Sauce, MacSafariSauce
 	}
 
 	public WebDriver client;
-	private static ChromeDriverService service;
-//	public WebDriver resource;
-//	public WebDriver wald;
+//	private static ChromeDriverService service;
 	
 	@BeforeMethod
 	@Parameters({ "driverType", "profilePath" })
@@ -101,7 +102,7 @@ public abstract class ITestCase {
 //			cms = new ChromeDriver();
 			
 		} 
-else if (DriverType.FFRemote14.toString().equals(driverType)) 
+else if (DriverType.Win7FF14Remote.toString().equals(driverType)) 
 			
 		{
 			DesiredCapabilities capability = DesiredCapabilities.firefox();
@@ -131,7 +132,7 @@ else if (DriverType.FFRemote14.toString().equals(driverType))
 			
 		}
 		
-else if (DriverType.IERemote.toString().equals(driverType)) 
+else if (DriverType.Win7IE9Remote.toString().equals(driverType)) 
 	
 {
 	DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
@@ -161,36 +162,94 @@ else if (DriverType.IERemote.toString().equals(driverType))
 	
 }
 		
-else if (DriverType.ChromeRemote.toString().equals(driverType)) 
+else if (DriverType.IESauce.toString().equals(driverType)) 
 	
 {
-	DesiredCapabilities capability = DesiredCapabilities.chrome();
-	capability.setCapability("seleniumProtocol", "WebDriver");
 	
-	//capability.setCapability("browserName", "firefox10");
-	//capability.setBrowserName("firefox10");
-	//capability.setCapability("firefox_binary" , "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-	//capability.setCapability("maxInstances", 5);		
-	capability.setCapability("jenkins.nodeName", "WindowsSlave2");
-	//capability.setCapability("javascriptEnabled ", true);
-	//FirefoxProfile ffPrfile;
-    //ffprofile.setPreference("javascript.enabled", true);
-	//capability.setVersion("14");
-	
-	
-	try {
-		client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
-		client.manage().window().maximize();
-//		client.manage().window().setSize(targetSize)
-//		resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-//		wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
+	DesiredCapabilities capabillities = DesiredCapabilities.internetExplorer();
+//  capabillities.setCapability("browser", "android");
+  capabillities.setCapability("version", "8");
+  capabillities.setCapability("platform", "Windows 2003");
+  capabillities.setCapability("name", "Win7 IE8 Regression test");
+
+  try {
+	this.client = new RemoteWebDriver(
+	     new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+	     capabillities);
+} catch (MalformedURLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+  client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
 }
 		
+else if (DriverType.ChromeSauce.toString().equals(driverType)) 
+	
+{
+	
+	DesiredCapabilities capabillities = DesiredCapabilities.chrome();
+//  capabillities.setCapability("browser", "android");
+//  capabillities.setCapability("version", "5");
+  capabillities.setCapability("platform", "Windows 2003");
+  capabillities.setCapability("name", "Win7 Chrome Regression test");
+
+  try {
+	this.client = new RemoteWebDriver(
+	     new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+	     capabillities);
+} catch (MalformedURLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+  client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+}
+		
+else if (DriverType.MacFF14Sauce.toString().equals(driverType)) 
+	
+{
+	
+	DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+//  capabillities.setCapability("browser", "android");
+  capabillities.setCapability("version", "14");
+  capabillities.setCapability("platform", "Mac 10.6");
+  capabillities.setCapability("name", "Mac FF14 Regression test");
+
+  try {
+	this.client = new RemoteWebDriver(
+	     new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+	     capabillities);
+} catch (MalformedURLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+  client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+}
+		
+else if (DriverType.MacSafariSauce.toString().equals(driverType)) 
+	
+{
+	
+	DesiredCapabilities capabillities = DesiredCapabilities.safari();
+//  capabillities.setCapability("browser", "android");
+  capabillities.setCapability("version", "5");
+  capabillities.setCapability("platform", "Mac 10.6");
+  capabillities.setCapability("name", "Mac Safari Regression test");
+
+  try {
+	this.client = new RemoteWebDriver(
+	     new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+	     capabillities);
+} catch (MalformedURLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+  client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+}
+				
 		else {
 			client = new FirefoxDriver();
 //			cms = new FirefoxDriver();
@@ -229,6 +288,7 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 	String emailFriend3 = "udtestergene+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
 	String emailFriend4 = "udtestergene+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
 	String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+	String emailFriend6 = "udtestergene+"+"friend_6_"+emailFormat.format(now) + "@gmail.com";
 	
 	String emailClient2 = "udtestergene2+"+emailFormat.format(now) + "@gmail.com";
 	String membersource = "Member Source "+emailFormat.format(now);
@@ -242,6 +302,7 @@ else if (DriverType.ChromeRemote.toString().equals(driverType))
 	private String UDcityPerks = "";
 	private String password="12345";
 //	private String newpassword="1234";
+	private String lastURL = "";
 	
 	public void pause1(){
 		try {
@@ -1695,8 +1756,8 @@ public void createPMT(){
 	this.pause3();
 	
 	//3. Enter Name 
-	
-	client.findElement(By.id("pmt_universal_settings_name")).sendKeys("PMT "+ emailFormat.format(now));
+	String campaignName ="PMT "+ emailFormat.format(now);
+	client.findElement(By.id("pmt_universal_settings_name")).sendKeys(campaignName);
 
 	//4. Choose Campaign end date some day in the future 
 	
@@ -1743,6 +1804,7 @@ public void createPMT(){
 	
 	//12. Link to a pdf for Rules and regs 
 	
+	// not sure why this won't work
 	client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\rules & regulations.pdf");
 	
 	//13. Click SAVE  
@@ -1751,49 +1813,452 @@ public void createPMT(){
 	client.findElement(By.name("save")).click();
 	this.pause1();
 
-
-
 	//18. Click Next Step 
+	
+	client.findElement(By.name("save_and_add")).click();
+	this.pause3();
+
+
 	//19. Click Add Partner 
+		// Partner 1
+	
+	client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[2]/input")).click();
+	this.pause3();
+	
 	//20. Enter partner name 
+	
+	client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner1 "+ emailFormat.format(now));
+
 	//21. Enter opt in text 
+	
+	client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text1 "+ emailFormat.format(now));
+
 	//22. Enter privacy policy url 
-	//23. Enter text in privacy policy lable 
+	
+	client.findElement(By.id("pmt_partner_settings_privacy_policy_url")).sendKeys("http://ud-branch.thedaddy.co/privacypolicy");
+
+	//23. Enter text in privacy policy label 
+	
+	client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label1 "+ emailFormat.format(now));
+
 	//24. Choose logo, must be 170 by 97  
+	
+	client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\partner logo-1.png");
+
 	//25. Click Save  
+	
+	client.findElement(By.name("save")).click();
+	this.pause3();
+	
 	//26. Click List 
-	//27. Repeat Steps 20-27 for 2nd partner slot  
+	
+	client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li/input")).click();
+	this.pause3();
+	
+	//27. Repeat Steps 19-26 for 2nd partner slot  
+	
+		//19. Click Add Partner 
+		// Partner 2
+	
+		client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[2]/input")).click();
+		this.pause3();
+		
+		//20. Enter partner name 
+		
+		client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner2 "+ emailFormat.format(now));
+
+		//21. Enter opt in text 
+		
+		client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text2 "+ emailFormat.format(now));
+
+		//22. Enter privacy policy url 
+		
+		client.findElement(By.id("pmt_partner_settings_privacy_policy_url")).sendKeys("http://ud-branch.thedaddy.co/privacypolicy");
+
+		//23. Enter text in privacy policy label 
+		
+		client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label2 "+ emailFormat.format(now));
+
+		//24. Choose logo, must be 170 by 97  
+		
+		client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\partner logo-2.png");
+
+		//25. Click Save  
+		
+		client.findElement(By.name("save")).click();
+		this.pause3();
+		
+		//26. Click List 
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li/input")).click();
+		this.pause3();
+	
+	
 	//28. Click Next Step 
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
+		this.pause3();
+		
+
 	//29. Add Header text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
+
 	//30. Add Subhead text  
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header2_text]').SetHTML('Signup Subheader Text Test'))");
+
 	//31. Add Bottom text  
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[bottom_text]').SetHTML('Signup Bottom Text Test'))");
+		
 	//32. Click next step 
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
+		this.pause3();
+
 	//33. Select all editions 
+		
+		//find editions selector
+	    Select EditionsMulitpleSelection = new Select(client.findElement(By.id("unassociated_preselected_editions")));
+	    
+	    //select all editions
+	    EditionsMulitpleSelection.selectByVisibleText("National");
+	    EditionsMulitpleSelection.selectByVisibleText("National Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("Atlanta");
+	    EditionsMulitpleSelection.selectByVisibleText("Boston");
+	    EditionsMulitpleSelection.selectByVisibleText("Boston Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("Chicago");
+	    EditionsMulitpleSelection.selectByVisibleText("Chicago Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("Dallas");
+	    EditionsMulitpleSelection.selectByVisibleText("DC");
+	    EditionsMulitpleSelection.selectByVisibleText("DC Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("Los Angeles");
+	    EditionsMulitpleSelection.selectByVisibleText("Los Angeles Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("Miami");
+	    EditionsMulitpleSelection.selectByVisibleText("Miami Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("New York");
+	    EditionsMulitpleSelection.selectByVisibleText("New York Perks");
+	    EditionsMulitpleSelection.selectByVisibleText("Philly");
+	    EditionsMulitpleSelection.selectByVisibleText("San Francisco");
+	    EditionsMulitpleSelection.selectByVisibleText("Seattle");
+	    EditionsMulitpleSelection.selectByVisibleText("Driven");
+	    EditionsMulitpleSelection.selectByVisibleText("Jetset");
+	    EditionsMulitpleSelection.selectByVisibleText("Las Vegas");
+	    EditionsMulitpleSelection.selectByVisibleText("Ski & Board");
+		
 	//34. Click Right blue arrow to move them to the Selected column 
+	    
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/div[2]/div/div/div[2]/input")).click();
+	    
 	//35. Add Header text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
+		this.pause4();
+
 	//36. Add subheader text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
+		this.pause4();
+
 	//37. Add bottom text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
+		this.pause4();
+		
 	//38. Click Next Step 
-	//39. Add inv Head text 
-	//40. Add inv Subhead text 
-	//41. Add inv bot text 
-	//42. Click Next Step  
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
+		this.pause3();
+
+	//39. Add Invite Friends Head text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
+		this.pause4();
+
+	//40. Add Invite Friends Subhead text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
+		this.pause4();
+
+	//41. Add Invite Friends bottom text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
+		this.pause4();
+
+	//42. Click Next Step 
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
+		this.pause3();
+
 	//43. Add thank you head text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header1_text]').SetHTML('Thank You Header Text Test'))");
+
 	//44. Add thank you sub text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header2_text]').SetHTML('Thank You Subheader Text Test'))");
+
 	//45. Add thank you bot text 
+		
+		((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[bottom_text]').SetHTML('Thank You Bottom Text Test'))");
+
 	//46. Add twitter copy 
+		
+		client.findElement(By.id("pmt_thank_you_settings_twitter_copy")).sendKeys("Twitter copy "+ emailFormat.format(now));
+
 	//47. Add FB title 
+		
+		client.findElement(By.id("pmt_thank_you_settings_facebook_title")).sendKeys("FB Title copy "+ emailFormat.format(now));
+
 	//48. Add FB Copy  
+		
+		client.findElement(By.id("pmt_thank_you_settings_facebook_copy")).sendKeys("FB copy "+ emailFormat.format(now));
+
 	//49. Choose FB image, must be 50 X 50 
+		
+		client.findElement(By.id("pmt_thank_you_settings_facebook_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\fb-image-test.jpg");
+
 	//50. Choose Module 1 Image 
+		
+		client.findElement(By.id("pmt_thank_you_settings_module1_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-driven.jpg");
+
 	//51. Add Module 1 URL  
+		
+		client.findElement(By.id("pmt_thank_you_settings_module1_url")).sendKeys("http://www.ThankYouSettingsModule1url.com");
+
 	//52. Choose Module 2 image 
+		
+		client.findElement(By.id("pmt_thank_you_settings_module2_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-jetset.jpg");
+
 	//53. Add module 2 url 
+		
+		client.findElement(By.id("pmt_thank_you_settings_module2_url")).sendKeys("http://www.ThankYouSettingsModule2url.com");
+
 	//54. Choose Module 3 image 
+		
+		client.findElement(By.id("pmt_thank_you_settings_module3_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-perks.jpg");
+
 	//55. Add module 3 url  
+		
+		client.findElement(By.id("pmt_thank_you_settings_module3_url")).sendKeys("http://www.ThankYouSettingsModule3url.com");
+
 	//56. Click Next Step  
-	//57. Repeat Steps 44-57 for the Closed page 
-	//58. Choose Header Image"
+		
+		client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
+		this.pause3();
+		
+	//57. Repeat Steps for the Closed page 
+		
+		//Add Closed head text 
+		
+				((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header1_text]').SetHTML('Closed Page Header Text Test'))");
+
+		//Add thank you sub text 
+				
+				((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header2_text]').SetHTML('Closed Page Subheader Text Test'))");
+
+		//Add thank you bot text 
+				
+				((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[bottom_text]').SetHTML('Closed Page Bottom Text Test'))");
+
+
+			// Choose Module 1 Image 
+				
+				client.findElement(By.id("pmt_closed_settings_module1_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-driven.jpg");
+
+			//51. Add Module 1 URL  
+				
+				client.findElement(By.id("pmt_closed_settings_module1_url")).sendKeys("http://www.ClosedSettingsModule1url.com");
+
+			//52. Choose Module 2 image 
+				
+				client.findElement(By.id("pmt_closed_settings_module2_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-jetset.jpg");
+
+			//53. Add module 2 url 
+				
+				client.findElement(By.id("pmt_closed_settings_module2_url")).sendKeys("http://www.ClosedSettingsModule2url.com");
+
+			//54. Choose Module 3 image 
+				
+				client.findElement(By.id("pmt_closed_settings_module3_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-perks.jpg");
+
+			//55. Add module 3 url  
+				
+				client.findElement(By.id("pmt_closed_settings_module3_url")).sendKeys("http://www.ClosedSettingsModule3url.com");
+				
+			//56. Click Next Step  
+				
+				client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
+				this.pause3();
+				
+	//58. Invite Email Settings
+				
+				//Choose Invite Email Header Image
+				
+				client.findElement(By.id("pmt_invite_email_settings_header_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email-header Image.jpg");
+				
+				//Subject Text
+				
+				client.findElement(By.id("pmt_invite_email_settings_subject_text")).sendKeys("Email subject text "+ emailFormat.format(now));
+				
+				//Email Body Text
+				
+				((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_email_settings[body_text]').SetHTML('Invite Email Text Test'))");
+
+				// Click Next Step  
+				
+				client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
+				this.pause3();
+				
+	//59. Go to newly created campaign
+				
+				//Back to PMT Universal Settings List
+				
+				client.get(UD_Admin_domain+"/pmt_universal_settings");
+				this.pause3();			
+				
+				// Click on the campaign just created
+				System.out.println(campaignName);
+				client.findElement(By.linkText(campaignName)).click();
+				this.pause3();
+
+	//60. 		Check for elements
+				
+				//a. Campaign Name = Title of the Page
+				//Assert.assertTrue(client.getTitle().equalsIgnoreCase(campaignName));
+
+				//b. Signup Settings Header Text
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section/h1")).getText().contains("Signup Header Text Test"));  
+
+				//c. Signup Settings Subheader Text 
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section/h2")).getText().contains("Signup Subheader Text Test"));
+				
+				//d. Signup Settings Bottom Text 
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section/p")).getText().contains("Signup Bottom Text Test"));
+				
+				//e. Optin Text1 
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/ul/li[2]/label")).getText().contains("Opt in text1 " + emailFormat.format(now)));
+				
+				//f. Optin Text2 
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/ul/li[3]/label")).getText().contains("Opt in text2 " + emailFormat.format(now)));
+				
+				//g. Footer Text Test
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
+
+				//h. Privacy Policy label1
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+
+				//h. Privacy Policy label2
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+				
+	//61. 		Enter Email
+				
+//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/input")).sendKeys(emailClient);
+
+	//62. 		Enter Zip
+				
+//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/input[2]")).sendKeys("10003");
+				
+	// leave all check boxes that were checked by default onload checked
+
+	//63. 		Click Enter Button
+				
+//				client.findElement(By.name("commit")).click();
+//				this.pause3();
+	//64.  On the Editions Page 
+				//do checks
+				
+				// Edition Settings Bottom Text Test
+				
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/p")).getText().contains("Editions Bottom Text Test"));
+
+				//g. Footer Text Test
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
+
+				//h. Privacy Policy label1
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+
+				//h. Privacy Policy label2
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+				
+	//65. Click Enter Button
+				
+//				client.findElement(By.name("commit")).click();
+//				this.pause3();
+				
+	//66. On Invite Friends Page
+				// do checks
+								
+				// Invite Friends Settings Bottom Text Test
+				
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/p")).getText().contains("Invite Friends Bottom Text Test"));
+
+				//g. Footer Text Test
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
+
+				//h. Privacy Policy label1
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+
+				//h. Privacy Policy label2
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+				
+	//67. click "More" link thrice
+//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/div[2]/ul/li[4]/a")).click();
+//				this.pause4();
+//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/div[2]/ul/li[4]/a")).click();
+//				this.pause4();
+//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/div[2]/ul/li[4]/a")).click();
+//				this.pause4();
+				
+	//68. enter all the fields
+				// Your name	
+//				client.findElement(By.id("from_name")).sendKeys("UD Tester");
+
+				// Friend 1
+				
+//				client.findElement(By.id("friends")).sendKeys(emailFriend1);
+				
+				// Friend 2
+
+//				client.findElement(By.xpath("(//input[@id='friends'])[2]")).sendKeys(emailFriend3);
+
+				// Friend 3
+				
+//				client.findElement(By.xpath("(//input[@id='friends'])[3]")).sendKeys(emailFriend3);
+
+				// Friend 4
+				
+//				client.findElement(By.xpath("(//input[@id='friends'])[4]")).sendKeys(emailFriend4);
+
+				// Friend 5
+				
+//				client.findElement(By.xpath("(//input[@id='friends'])[5]")).sendKeys(emailFriend5);
+
+				// Friend 6
+				
+//				client.findElement(By.xpath("(//input[@id='friends'])[6]")).sendKeys(emailFriend6);
+
+				
+	//67. Click Invite
+//				client.findElement(By.name("commit")).click();
+//				this.pause3();
+	//68. On Thank you page
+				//do checks
+				
+				// Thank You Settings Bottom Text Test
+				
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/section[2]/p")).getText().contains("Thank You Bottom Text Test"));
+
+				//g. Footer Text Test
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
+
+				//h. Privacy Policy label1
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+
+				//h. Privacy Policy label2
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+
 }
 
 public void goBackToUDHomepage(){
@@ -1829,27 +2294,40 @@ public void checkUDHomepageCityHeaderLoggedOut(){
 	Assert.assertTrue(isGearAccessible());
 	ud_headerHelper_Client.clickLeisure();
 	this.pause1();
+	
+	lastURL = this.client.getCurrentUrl();
+	
 	Assert.assertTrue(isLeisureAccessible());
 	ud_headerHelper_Client.clickDriven();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickPerks();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickParties();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickKempt();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickMobile();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 
 }
 
@@ -1873,24 +2351,32 @@ public void checkUDHomepageLasVegasHeaderLoggedOut(){
 	Assert.assertTrue(isFoodAccessible());
 	ud_headerHelper_Client.clickEntertainmentLV();
 	this.pause1();
+	lastURL = this.client.getCurrentUrl();
 	Assert.assertTrue(isEntertainmentAccessible());
 
 	ud_headerHelper_Client.clickPerksLV();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickPartiesLV();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isPartiesLVAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickKemptLV();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isKemptLVAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickMobileLV();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isMobileLVAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
 
 	
 }
@@ -1924,26 +2410,38 @@ public void checkUDHomepageNationalHeaderLoggedOut(){
 	Assert.assertTrue(isEntertainmentAccessible());
 	ud_headerHelper_Client.clickTravelNational();
 	this.pause1();
+	lastURL = this.client.getCurrentUrl();
+
 	Assert.assertTrue(isTravelAccessible());
 	
 	Assert.assertTrue(ud_headerHelper_Client.isDrivenNationalAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickPerks();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickPartiesNational();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isPartiesNationalAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickKemptNational();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isKemptNationalAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickMobileNational();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isMobileNationalAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back();
+	this.client.navigate().to(lastURL);
+
 }
 
 public void checkUDHomepageCityHeaderLoggedIn(){
@@ -1974,26 +2472,39 @@ public void checkUDHomepageCityHeaderLoggedIn(){
 	Assert.assertTrue(isGearAccessible());
 	ud_headerHelper_Client.clickLeisure();
 	this.pause1();
+	
+	lastURL = this.client.getCurrentUrl();
+	
 	Assert.assertTrue(isLeisureAccessible());
 	ud_headerHelper_Client.clickDriven();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
-	this.client.navigate().back();
+	
+	//this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.  
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickPerks();
 	//this.pause1();
-	this.client.navigate().back();
+	//this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.  
+	this.client.navigate().to(lastURL);
+
 	ud_headerHelper_Client.clickPerks();
 	this.pause1();
 	Assert.assertTrue(isPerksAccessible());	
-	this.client.navigate().back();
+	//this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.  
+	this.client.navigate().to(lastURL);	
+	
 	ud_headerHelper_Client.clickParties();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.  
+	this.client.navigate().to(lastURL);	
+	
 	ud_headerHelper_Client.clickKempt();
 	this.pause1();
 	Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
-	this.client.navigate().back();
+	//this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.  
+	this.client.navigate().to(lastURL);
 	
 }
 
@@ -2223,16 +2734,6 @@ public void signUpUD_viaNewYorkStep1(){
 		//a. Click SignUp Seal
 		ud_headerHelper_Client.clickSignUp();
 		
-		//or open new tab or go to the signup url
-		
-		//headerHelper_Client.openSignUpNewTab();
-		
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-		
 		//b. Enter email address
 		ud_signupHelper_Client.enterEmail(emailClient);
 		//c. Select Editions
@@ -2274,7 +2775,7 @@ public void signUpUD_viaNewYorkStep1(){
 		ud_signupHelper_Client.checkNationalPerks();
 		
 		//click "JOIN" button
-		
+				
 		ud_signupHelper_Client.clickJoin();
 }
 	
@@ -2638,10 +3139,13 @@ public void verifyEditSettingsUDEmailReceived(){
 	public void editSettingsPerks(){
 		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
 		
+		lastURL = this.client.getCurrentUrl();
+
 		perks_headerHelper_Client.clickMyAccount();
 		perks_headerHelper_Client.isMyAccountAccessible();
-		this.client.navigate().back();
+		//this.client.navigate().back();
 		
+		this.client.navigate().to(lastURL);
 	}
 
 ///check email methods
