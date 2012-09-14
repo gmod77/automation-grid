@@ -2,18 +2,21 @@
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
 
-	<parameter name="driverType" value="FFRemote14"></parameter>
-	<parameter name="profilePath" value=""></parameter>
+	<parameter name="driverType" value="Firefox" />
+	<parameter name="profilePath" value="" />
+    <parameter name="domain" value="http://ud-branch.thedaddy.co" />
+    <parameter name="perksDomain" value="http://perks-branch.thedaddy.co" />
+
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/fadehsi2.WebDriver"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->
-		
-	
-<!-- 	<test name="UD_Smoke"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_RegistrationFlow2" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+
+
+ 	<!--<test name="UD_Smoke">-->
+ 		<!--<classes>-->
+ 			<!--<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />-->
+ 		<!--</classes>-->
+ 	<!--</test>-->
 	
 <!-- 		<test name="UD_Admin_Smoke_3column"> -->
 <!-- 		<classes> -->
@@ -27,13 +30,24 @@
 <!-- 		</classes> -->
 <!-- 	</test> -->
 	
-			<test name="Perks_Smoke">
-		<classes>
-			<class name="org.urbandaddy.tests.Perks_RegistrationFlow1" />	
-		</classes>
-	</test>
-	
-<!-- 	<test name="UD_Smoke" preserve-order="true"> -->
+	<!--<test name="Perks_Smoke">-->
+		<!--<classes>-->
+			<!--<class name="org.urbandaddy.tests.Perks_RegistrationFlow1" />	-->
+		<!--</classes>-->
+	<!--</test>-->
+
+    <test name="Create_RoundUP">
+        <classes>
+            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />
+        </classes>
+    </test>
+    <!--<test name="Weekender">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!-- 	<test name="UD_Smoke" preserve-order="true"> -->
 <!-- 		<groups> -->
 <!--     		<run> -->
 <!--      			 <include name="Smoke"/> -->
