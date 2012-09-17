@@ -42,21 +42,7 @@ import org.testng.annotations.Parameters;
 //Workflow specific imports
 
 
-import org.urbandaddy.helpers.UD_FooterHelper_Client;
-import org.urbandaddy.helpers.UD_HeaderHelper_Client;
-import org.urbandaddy.helpers.UD_SealHelper_Client;
-import org.urbandaddy.helpers.UD_HomepageHelper_Client;
-import org.urbandaddy.helpers.UD_SignupHelper_Client;
-
-
-import org.urbandaddy.helpers.Perks_FooterHelper_Client;
-import org.urbandaddy.helpers.Perks_HeaderHelper_Client;
-import org.urbandaddy.helpers.Perks_SealHelper_Client;
-import org.urbandaddy.helpers.Perks_HomepageHelper_Client;
-import org.urbandaddy.helpers.Perks_SignupHelper_Client;
-
-
-import org.urbandaddy.helpers.CheckEmailHelper_Client;
+import org.urbandaddy.helpers.*;
 //import org.urbandaddy.helpers.ResetEmailHelper_Client;
 
 //import org.urbandaddy.helpers.Comm.ITestCase;
@@ -255,6 +241,7 @@ public abstract class ITestCase {
     private UD_FooterHelper_Client ud_footerHelper_Client;
     private UD_SealHelper_Client ud_sealHelper_Client;
     private UD_SignupHelper_Client ud_signupHelper_Client;
+    private UD_RoundUP_Client ud_roundUP_client;
 
     private Perks_HomepageHelper_Client perks_homepageHelper_Client;
     private Perks_HeaderHelper_Client perks_headerHelper_Client;
@@ -287,7 +274,7 @@ public abstract class ITestCase {
     private String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
     private String Perksdomain = "http://perks-branch.thedaddy.co";
     //	private String UDdomain = "http://www.urbandaddy.com";
-//	private String Perksdomain = "http://perks.urbandaddy.com";
+    //	private String Perksdomain = "http://perks.urbandaddy.com";
     private String UDcity = "";
     private String UDcityPerks = "";
     private String password="12345";
@@ -601,7 +588,7 @@ public abstract class ITestCase {
         //client.get(UD_Admin_domain+"/admin.php/articles");
     }
 
-    public void createRoundUP() {
+    public String createRoundUP() {
         // 1. log into the UD admin
         // 2. Click on articles
         // 3. click on create
@@ -902,6 +889,20 @@ public abstract class ITestCase {
 
         // 40. Click back to article to continue preview and mailing tests
 
+        return articleID;
+    }
+
+    public void confirmRoundUP(String articleID) {
+        client.get("http://ud-branch.thedaddy.co/newsletter/roundup/" + articleID + "?preview=true");
+        ud_roundUP_client = new UD_RoundUP_Client(client);
+        Assert.assertTrue(ud_roundUP_client.isArticleTitle1Present());
+/*        Assert.assertTrue(ud_roundUP_client.isBlurb1Present());
+        Assert.assertTrue(ud_roundUP_client.isFourOneOne1Present());
+        Assert.assertTrue(ud_roundUP_client.isHeaderImagePresent());
+        Assert.assertTrue(ud_roundUP_client.isHeading1Present());
+        Assert.assertTrue(ud_roundUP_client.isSubHeader1Present());
+        Assert.assertTrue(ud_roundUP_client.isThumbImage1Present());
+        Assert.assertTrue(ud_roundUP_client.isTowerAdPresent()); */
     }
 
     public void createArticleWeekender() {

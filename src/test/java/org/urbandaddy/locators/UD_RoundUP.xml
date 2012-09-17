@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+    <RoundUPPage>
+        <HeaderImage><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/img]]></HeaderImage>
+        <TowerAd><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/div/table/tbody/tr[2]/td[2]/a/img]]></TowerAd>
+        <Title1><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td/div[2]]]></Title1>
+        <Heading1><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr/td[3]/table/tbody/tr/td]]></Heading1>
+        <SubHeader1><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr/td[3]/table/tbody/tr[2]/td]]></SubHeader1>
+        <Blurb1><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr/td[3]/table/tbody/tr[4]/td]]></Blurb1>
+        <FourOneOne1><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr/td[3]/table/tbody/tr[6]/td/table/tbody/tr[2]/td[2]/div]]></FourOneOne1>
+        <ThumbImage1><![CDATA[//html/body/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr/td/img]]></ThumbImage1>
+	</RoundUPPage>
+</locators>

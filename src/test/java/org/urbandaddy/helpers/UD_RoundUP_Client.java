@@ -15,11 +15,12 @@ public class UD_RoundUP_Client extends IHelper_Client {
 
     public UD_RoundUP_Client(WebDriver client) {
         super(client);
-        roundUPreader = new LocatorReader("UD_RoundUP_Client.xml");
+        roundUPreader = new LocatorReader("UD_RoundUP.xml");
     }
 //Article Page
 
     public Boolean isHeaderImagePresent(){
+
         String str = roundUPreader.getLocator("RoundUPPage.HeaderImage");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -27,6 +28,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isTowerAdPresent(){
+
         String str = roundUPreader.getLocator("RoundUPPage.TowerAd");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -34,6 +36,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isThumbImage1Present(){
+
         String str = roundUPreader.getLocator("RoundUPPage.ThumbImage1");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -41,6 +44,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isArticleTitle1Present(){
+
         String str = roundUPreader.getLocator("RoundUPPage.Title1");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -48,6 +52,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isHeading1Present(){
+
         String str = roundUPreader.getLocator("RoundUPPage.Heading1");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -55,6 +60,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isSubHeader1Present(){
+
         String str = roundUPreader.getLocator("RoundUPPage.SubHeader1");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -62,6 +68,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isBlurb1Present(){
+
         String str = roundUPreader.getLocator("RoundUPPage.Blurb1");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
@@ -69,6 +76,7 @@ public class UD_RoundUP_Client extends IHelper_Client {
     }
 
     public Boolean isFourOneOne1Present(){
+
         String str = roundUPreader.getLocator("RoundUPPage.FourOneOne1");
         this.WaitForElementPresent(str,20);
         result = this.isElementPresent(str);
