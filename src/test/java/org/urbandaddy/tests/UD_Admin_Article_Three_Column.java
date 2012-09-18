@@ -1,11 +1,11 @@
 package org.urbandaddy.tests;
-import org.urbandaddy.helpers.Comm.ITestCase;
+import org.urbandaddy.helpers.Comm.iTestCaseUD;
 import org.testng.annotations.Test;
 
 
 
 
-public class UD_Admin_Article_Three_Column extends ITestCase {
+public class UD_Admin_Article_Three_Column extends iTestCaseUD {
 	
 	@Test (groups = "Smoke")
 	public void flow1(){

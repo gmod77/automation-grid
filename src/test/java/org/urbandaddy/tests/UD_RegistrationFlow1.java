@@ -1,11 +1,11 @@
 package org.urbandaddy.tests;
-import org.urbandaddy.helpers.Comm.ITestCase;
+import org.urbandaddy.helpers.Comm.iTestCaseUD;
 import org.testng.annotations.Test;
 
 
 
 
-public class UD_RegistrationFlow1 extends ITestCase {
+public class UD_RegistrationFlow1 extends iTestCaseUD {
 	
 	@Test (groups = "Smoke")
 	public void flow1(){

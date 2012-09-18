@@ -1,15 +1,18 @@
 package org.urbandaddy.tests;
-import org.urbandaddy.helpers.Comm.ITestCase;
+import org.testng.annotations.Parameters;
+import org.urbandaddy.helpers.Comm.iTestCasePerks;
+import org.urbandaddy.helpers.Comm.iTestCaseUD;
 import org.testng.annotations.Test;
 
 
 
 
-public class Perks_RegistrationFlow1 extends ITestCase {
+public class Perks_RegistrationFlow1 extends iTestCasePerks {
 	
 	@Test (groups = "Smoke")
-	public void flow1(){
-		visitPerksFirstTime();
+    @Parameters({"perksDomain"})
+	public void flow1(String perksDomain){
+		visitPerksFirstTime(perksDomain);
 		//1. client signs up and logs in
 
 		signUpPerks_viaNewYork();

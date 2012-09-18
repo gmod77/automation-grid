@@ -1,10 +1,10 @@
 package org.urbandaddy.tests;
 
 import org.testng.annotations.Test;
-import org.urbandaddy.helpers.Comm.ITestCase;
+import org.urbandaddy.helpers.Comm.iTestCaseUD;
 
 
-public class UD_Admin_Create_RoundUP extends ITestCase {
+public class UD_Admin_Create_RoundUP extends iTestCaseUD {
 
     //Declare articleID to pass to the checker
     String articleID;

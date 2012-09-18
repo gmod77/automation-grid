@@ -1,11 +1,12 @@
 package org.urbandaddy.tests;
-import org.urbandaddy.helpers.Comm.ITestCase;
+
+import org.urbandaddy.helpers.Comm.iTestCaseUD;
 import org.testng.annotations.Test;
 
 
 
 
-public class UD_Admin_Create_PMT extends ITestCase {
+public class UD_Admin_Create_PMT extends iTestCaseUD {
 
 @Test (groups = "Smoke")
 public void flow1(){
