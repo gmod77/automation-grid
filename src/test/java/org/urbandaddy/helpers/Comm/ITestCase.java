@@ -249,7 +249,7 @@ public abstract class ITestCase {
 
     //set unique role names using time stamp
     protected Date now = new java.util.Date();
-    protected java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("HH_mm_SSS");
+    protected java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
 
     String emailClient = "udtestergene+"+emailFormat.format(now) + "@gmail.com";
     String emailFriend1 = "udtestergene+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
