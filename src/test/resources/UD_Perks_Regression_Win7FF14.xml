@@ -4,6 +4,7 @@
 
 	<parameter name="driverType" value="Win7FF14Remote"></parameter>
 	<parameter name="profilePath" value=""></parameter>
+
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/fadehsi2.WebDriver"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->

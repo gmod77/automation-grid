@@ -1,4 +1,5 @@
 package org.urbandaddy.tests;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.urbandaddy.helpers.Comm.iTestCasePerks;
 import org.urbandaddy.helpers.Comm.iTestCaseUD;
@@ -10,9 +11,8 @@ import org.testng.annotations.Test;
 public class Perks_RegistrationFlow1 extends iTestCasePerks {
 	
 	@Test (groups = "Smoke")
-    @Parameters({"perksDomain"})
-	public void flow1(String perksDomain){
-		visitPerksFirstTime(perksDomain);
+	public void flow1(){
+		visitPerksFirstTime();
 		//1. client signs up and logs in
 
 		signUpPerks_viaNewYork();

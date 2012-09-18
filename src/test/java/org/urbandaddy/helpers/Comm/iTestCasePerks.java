@@ -14,8 +14,8 @@ import org.urbandaddy.helpers.*;
 
 
 public abstract class iTestCasePerks extends ITestCase {
-
     // Perks
+
 
     public void editSettingsPerks(){
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
@@ -29,12 +29,12 @@ public abstract class iTestCasePerks extends ITestCase {
         this.client.navigate().to(lastURL);
     }
 
-    public void visitPerksFirstTime(String domain){
+    public void visitPerksFirstTime(){
 
         // enter UDdomain name, hit enter, arrive on homepage
-        this.client.navigate().to(domain);
+        this.client.navigate().to(Perksdomain);
         this.client.manage().deleteAllCookies();
-        this.client.navigate().to(domain);
+        this.client.navigate().to(Perksdomain);
     }
 
     public void signUpPerks_viaNewYork(){
@@ -250,7 +250,7 @@ public abstract class iTestCasePerks extends ITestCase {
         perks_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }
-
+/*
     public abstract void beforeMethod();
 
     public abstract void afterMethod();
@@ -262,4 +262,5 @@ public abstract class iTestCasePerks extends ITestCase {
     public abstract void beforeTest();
 
     public abstract void afterTest();
+    */
 }
