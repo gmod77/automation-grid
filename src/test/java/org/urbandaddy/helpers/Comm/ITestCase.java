@@ -6,7 +6,6 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
-//import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeUnit;
 
 
@@ -16,8 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-//import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -34,11 +31,8 @@ import org.testng.annotations.Parameters;
 
 //Workflow specific imports
 
-
 import org.urbandaddy.helpers.*;
 //import org.urbandaddy.helpers.ResetEmailHelper_Client;
-
-//import org.urbandaddy.helpers.Comm.ITestCase;
 //import org.testng.Assert;
 //import org.testng.annotations.Test;
 //import org.urbandaddy.helpers.SignupHelper;
@@ -303,6 +297,9 @@ public abstract class ITestCase {
         }
     }
 
+
+    // Global Email Check Methods
+
     public void loginToGmail(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
@@ -332,15 +329,15 @@ public abstract class ITestCase {
 
     public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-//	resetEmailHelper_Client = new ResetEmailHelper_Client(client);
-        //ud_sealHelper_Client = new UD_SealHelper_Client(client);
+        //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
+        //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
         checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
         checkEmailHelper_Client.clickResetEmailRequestLink();
-//	resetEmailHelper_Client.enterNewPassword(newpassword);
-//	resetEmailHelper_Client.confirmNewPassword(newpassword);
-//	resetEmailHelper_Client.clickSubmit();
-//	Assert.assertTrue(sealHelper_Client.isSignedIn());
+        //	resetEmailHelper_Client.enterNewPassword(newpassword);
+        //	resetEmailHelper_Client.confirmNewPassword(newpassword);
+        //	resetEmailHelper_Client.clickSubmit();
+        //	Assert.assertTrue(sealHelper_Client.isSignedIn());
     }
 
     public void verifyEditSettingsUDEmailReceived(){

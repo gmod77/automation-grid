@@ -23,7 +23,7 @@ public class Perks_RegistrationFlow1 extends iTestCasePerks {
 		resetPasswordPerks();
 		
 		//doChecksCityHomePageLoggedOut();
-		
+
 		loginToGmail();
 		
 		verifyWelcomeUDEmailReceived();

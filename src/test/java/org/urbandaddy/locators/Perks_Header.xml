@@ -35,8 +35,8 @@
      
      <MyPerks><![CDATA[//.]]></MyPerks>
      
-     <MyAccount><![CDATA[//html/body/div/div/div[4]/ul/li[2]/a]]></MyAccount>
-      
+     <!--<MyAccount><![CDATA[//html/body/div/div/div[4]/ul/li[2]/a]]></MyAccount>-->
+     <MyAccount><![CDATA[//.//*[@id='header']/div[1]/div[4]/ul/li[2]/a]]></MyAccount>
      <Logout><![CDATA[//html/body/div/div/div[4]/ul/li[3]/a]]></Logout>
      
      <Cart><![CDATA[//.]]></Cart>     
