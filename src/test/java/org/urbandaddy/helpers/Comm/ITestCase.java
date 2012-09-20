@@ -245,15 +245,15 @@ public abstract class ITestCase {
     protected Date now = new java.util.Date();
     protected java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
 
-    String emailClient = "udtestergene+"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend1 = "udtestergene+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend2 = "udtestergene+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend3 = "udtestergene+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend4 = "udtestergene+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend6 = "udtestergene+"+"friend_6_"+emailFormat.format(now) + "@gmail.com";
+    String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
+    String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
+    String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
+    String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
+    String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
+    String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+    String emailFriend6 = "udtesterjenkins+"+"friend_6_"+emailFormat.format(now) + "@gmail.com";
 
-    String emailClient2 = "udtestergene2+"+emailFormat.format(now) + "@gmail.com";
+    String emailClient2 = "udtesterjenkins2+"+emailFormat.format(now) + "@gmail.com";
     String membersource = "Member Source "+emailFormat.format(now);
 
 

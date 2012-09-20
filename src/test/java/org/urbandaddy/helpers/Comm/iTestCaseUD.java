@@ -76,8 +76,8 @@ public abstract class iTestCaseUD extends ITestCase {
     public void loginUDAdmin(){
         this.client.manage().deleteAllCookies();
         this.client.navigate().to(UD_Admin_domain);
-        client.findElement(By.id("username")).sendKeys("gmodin");
-        client.findElement(By.id("password")).sendKeys("UD@dmin900");
+        client.findElement(By.id("username")).sendKeys("jenkins");
+        client.findElement(By.id("password")).sendKeys("jenkins900!!");
         client.findElement(By.name("commit")).click();
         //client.get(UD_Admin_domain+"/admin.php/articles");
     }
@@ -1476,7 +1476,7 @@ public abstract class iTestCaseUD extends ITestCase {
         Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
 //Add an e-mail address to the Send To field, Click Send Test Mailing, 
-        client.findElement(By.id("mailing_send_to")).sendKeys("udtestergene@gmail.com");
+        client.findElement(By.id("mailing_send_to")).sendKeys("udtesterjenkins@gmail.com");
 
         //Click send Test Mailing,
         client.findElement(By.name("is_test")).click();

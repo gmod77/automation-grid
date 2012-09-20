@@ -40,7 +40,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		String Email = checkEmailReader.getLocator("Gmail.Email");		
 		this.WaitForElementPresent(Email, 20);		
 		WebElement em = client.findElement(ByLocator(Email));
-		em.sendKeys("udtestergene@gmail.com");
+		em.sendKeys("udtesterjenkins@gmail.com");
 		this.pause1();
 		
 		String Passwd = checkEmailReader.getLocator("Gmail.Password");
