@@ -23,7 +23,7 @@ public class UD_test1_mobile {
 	public void main() throws MalformedURLException {
 		Date now = new java.util.Date(); 
 		java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("MM_dd_yyyy_HH_mm_SSS");
-		String emailClient = "udtestergene+"+ emailFormat.format(now) + "@gmail.com";
+		String emailClient = "udtesterjenkins+"+ emailFormat.format(now) + "@gmail.com";
 		System.out.println(emailClient);
 
 		
