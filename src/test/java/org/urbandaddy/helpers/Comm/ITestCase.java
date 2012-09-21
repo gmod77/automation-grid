@@ -97,7 +97,6 @@ public abstract class ITestCase {
 //				wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
             }
             catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -124,7 +123,6 @@ public abstract class ITestCase {
                 //		wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
             }
             catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -142,7 +140,6 @@ public abstract class ITestCase {
                         capabillities);
             }
             catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -161,7 +158,6 @@ public abstract class ITestCase {
                         capabillities);
             }
             catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -183,7 +179,6 @@ public abstract class ITestCase {
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
                         capabillities);
             } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -205,7 +200,6 @@ public abstract class ITestCase {
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
                         capabillities);
             } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -301,6 +295,9 @@ public abstract class ITestCase {
 
     // Global Email Check Methods
 
+    /**
+     * Log into Gmail and wait
+     */
     public void loginToGmail(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
@@ -311,6 +308,9 @@ public abstract class ITestCase {
         this.pause2();
     }
 
+    /**
+     * Check for Welcome to UD email is received
+     */
     public void verifyWelcomeUDEmailReceived(){
 
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
@@ -318,6 +318,9 @@ public abstract class ITestCase {
         checkEmailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
     }
 
+    /**
+     * Check that invitation emails were received
+     */
     public void verifyInvitationsUDEmailsReceived(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
@@ -328,6 +331,9 @@ public abstract class ITestCase {
         checkEmailHelper_Client.findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
     }
 
+    /**
+     * Check that the password reset email was received
+     */
     public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
         //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
@@ -341,6 +347,9 @@ public abstract class ITestCase {
         //	Assert.assertTrue(sealHelper_Client.isSignedIn());
     }
 
+    /**
+     * Check that the edit settings email is received
+     */
     public void verifyEditSettingsUDEmailReceived(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
@@ -366,7 +375,6 @@ public abstract class ITestCase {
 //	    try {
 //			service.start();
 //		} catch (IOException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 //	    }
