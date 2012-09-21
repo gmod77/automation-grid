@@ -12,20 +12,16 @@ import java.util.*;
 import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 
 //Workflow specific imports
 
 import org.urbandaddy.helpers.*;
-import javax.annotation.Nullable;
 
 
 public abstract class iTestCaseUD extends ITestCase {
-
 
 ///// Sign-up methods
 
@@ -1542,6 +1538,9 @@ public abstract class iTestCaseUD extends ITestCase {
 
     }
 
+    /**
+     * Create a member source
+     */
     public void createMemberSource(){
 
         //1. Click create member source
@@ -1558,6 +1557,9 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.name("save_and_list")).click();
     }
 
+    /**
+     * Create a PMT
+     */
     public void createPMT(){
         //1.    Go to Campaign Templates under Partnerships
         //2. Click on Create
@@ -2627,19 +2629,25 @@ public abstract class iTestCaseUD extends ITestCase {
         this.checkUDHomepageNationalHeaderLoggedOut();
     }
 
+    /**
+     * Run this method after logging in to unsubscribe
+     * from all perks and editorial emails
+     *
+     */
     public void unSubscribeFromEmails(){
-
+        // Declare helpers
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
-        ud_sealHelper_Client.clickEditSettings();
         ud_unSubscribeHelper_client = new UD_UnSubscribeHelper_Client(client);
 
+        // Assume logged in, edit settings
+        ud_sealHelper_Client.clickEditSettings();
+
+        // Pause for a couple secs until ajax window shows up
         pause3();
 
-
+        // Uncheck all the editorial boxes
         WebElement editorial = client.findElement(By.className("myUDpopupEditorials"));
-        System.out.println("Editorial to string> " + editorial.getTagName());
         List<WebElement> editions = editorial.findElements(By.tagName("div"));
-        System.out.println("Editions to string> " + editions.size());
             for (int i = 0; i < editions.size(); i++) {
                 if (editions.get(i).findElement(By.tagName("input")).isSelected()) {
                     WebElement box = editions.get(i).findElement(By.tagName("input"));
@@ -2647,6 +2655,7 @@ public abstract class iTestCaseUD extends ITestCase {
                 }
             }
 
+        // Uncheck all the perks boxes
         WebElement perksList = client.findElement(By.className("htmlEditionsHolder"));
         List<WebElement> perks = perksList.findElements(By.tagName("div"));
             for (int i = 0; i < perks.size(); i++) {
@@ -2656,16 +2665,24 @@ public abstract class iTestCaseUD extends ITestCase {
                 }
         }
 
+        // Click update
         ud_unSubscribeHelper_client.clickUpdate();
         pause3();
+        // Confirm unsubscription
         ud_unSubscribeHelper_client.confirmUpdate();
         pause3();
 
+        // Close the lightbox
         WebElement closeButton = client.findElement(By.className("ajaxClose"));
         closeButton.click();
 
     }
 
+    /**
+     * Sign up and register for perks & editorial
+     * via New York UD edition
+     *
+     */
     public void signUpUD_viaNewYorkStep1(){
 
 
@@ -2730,6 +2747,10 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_signupHelper_Client.clickJoin();
     }
 
+    /**
+     * Complete registration form by filling out
+     * name, gender, income range, zip code, etc.
+     */
     public void signUpUD_viaNewYorkStep2(){
 
 
@@ -2794,6 +2815,9 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_signupHelper_Client.clickSubmit();
     }
 
+    /**
+     * Fills out the refer a friend form.
+     */
     public void signUpUD_viaNewYorkStep3(){
 
 
@@ -2829,12 +2853,19 @@ public abstract class iTestCaseUD extends ITestCase {
 //		ud_signupHelper_Client.clickSkip();
     }
 
+    /**
+     * Close the sign up form.
+     */
     public void signUpUD_viaNewYorkStep4(){
         //step4, 4th signup modal confirmation, close final confirm signup box
         ud_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }
 
+    /**
+     * Runs all the New York sign up methods
+     *
+     */
     public void signUpUD_viaNewYork(){
 
         this.signUpUD_viaNewYorkStep1();
@@ -2855,7 +2886,9 @@ public abstract class iTestCaseUD extends ITestCase {
     ////this.signUpUD_viaNewYorkStep4();
     //}
 
-
+    /**
+     * Click the change city link from the homepage
+     */
     public void changeCityFromUDHomepage(){
         //click on "Change City" from any city home page, navigate back to home page
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
@@ -2863,6 +2896,9 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_headerHelper_Client.clickChangeCity();
     }
 
+    /**
+     * Click the Atlanta link from the homepage
+     */
     public void accessAtlantaFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2871,6 +2907,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/national.html";
     }
 
+    /**
+     * Click the Boston link from the homepage
+     */
     public void accessBostonFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2879,6 +2918,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/boston.html";
     }
 
+    /**
+     * Click the Chicago link from the homepage
+     */
     public void accessChicagoFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2887,6 +2929,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/chicago.html";
     }
 
+    /**
+     * Click the Dallas link from the homepage
+     */
     public void accessDallasFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2895,6 +2940,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/national.html";
     }
 
+    /**
+     * Click the DC link from the homepage
+     */
     public void accessWashingtonDCFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2903,6 +2951,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/washington-dc.html";
     }
 
+    /**
+     * Click the Jetset link from the homepage
+     */
     public void accessJetsetFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2911,6 +2962,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/national.html";
     }
 
+    /**
+     * Click the Las Vegas link from the homepage
+     */
     public void accessLasVegasFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2919,6 +2973,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/national.html";
     }
 
+    /**
+     * Click the LA link from the homepage
+     */
     public void accessLosAngelesFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2927,6 +2984,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/los-angeles.html";
     }
 
+    /**
+     * Click the Miami link from the homepage
+     */
     public void accessMiamiFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2935,6 +2995,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/miami.html";
     }
 
+    /**
+     * Click the National edition link from the homepage
+     */
     public void accessNationalFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2943,6 +3006,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/national.html";
     }
 
+    /**
+     * Click the New York link from the homepage
+     */
     public void accessNewYorkFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2951,6 +3017,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/new-york.html";
     }
 
+    /**
+     * Click the San Francisco link from the homepage
+     */
     public void accessSanFranciscoFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -2959,6 +3028,9 @@ public abstract class iTestCaseUD extends ITestCase {
         UDcityPerks = "/national.html";
     }
 
+    /**
+     * Click the Ski Board link from the home page
+     */
     public void accessSkiBoardFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
@@ -3001,7 +3073,7 @@ public abstract class iTestCaseUD extends ITestCase {
     }
 
     /**
-     * Overloaded class, use to pass email and password in via
+     * Overloaded login class, use to pass email and password in via
      * other tests.
      * ex. currently used in UD_Unsubscribe_EditionsPerks
      * @param email Email address
@@ -3026,6 +3098,10 @@ public abstract class iTestCaseUD extends ITestCase {
 
     }
 
+    /**
+     * Logout of UD and do checks on the footer
+     *
+     */
     public void logoutUD(){
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 
@@ -3037,6 +3113,9 @@ public abstract class iTestCaseUD extends ITestCase {
 
     }
 
+    /**
+     * Perform a password reset.
+     */
     public void resetPasswordUD(){
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
@@ -3048,6 +3127,11 @@ public abstract class iTestCaseUD extends ITestCase {
 
     }
 
+    /**
+     * Login to the UD site then update your account
+     * by checking some editions and perks
+     *
+     */
     public void editSettingsUD(){
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
@@ -3065,101 +3149,4 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_sealHelper_Client.clickClose();
 
     }
-
-    public void WaitForElementPresent(String locator, int timeout) {
-
-        for (int i = 0; i < timeout; i++) {
-            if (isElementPresent(locator)) {
-                break;
-            }
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public Boolean isElementPresent(String locator) {
-
-        Boolean result = false;
-        try {
-            client.findElement(ByLocator(locator));
-            result = true;
-        } catch (Exception ex) {
-
-        }
-
-        return result;
-    }
-
-    public By ByLocator(String locator) {
-        By result = null;
-
-        if (locator.startsWith("//")) {
-            result = By.xpath(locator);
-        } else if (locator.startsWith("css=")) {
-            result = By.cssSelector(locator.replace("css=", ""));
-        } else if (locator.startsWith("link=")) {
-            result = By.linkText(locator.replace("#", ""));
-        } else if (locator.startsWith("#")) {
-            result = By.name(locator.replace("#", ""));
-        } else {
-            result = By.id(locator);
-        }
-
-        return result;
-    }
-
-///check email methods
-
-//	public void checkEmailWelcome(){
-//		ud_signupHelper_Client = new UD_SignupHelper_Client(client);
-//		checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-//		
-//		//go to gmail and confirm your email address
-//		this.client.navigate().to("https://mail.google.com/");
-//		ud_signupHelper_Client.clientLogInToGmail();
-//		checkEmailHelper_Client.searchAndFindEmailWelcome(groupname);
-//		this.client.navigate().to(UDdomain +"/home");
-//	}
-
-    /*
-
-    public void afterMainMethod() {
-        this.afterMethod();
-        client.quit();
-    }
-
-    public void beforeMainClass() {
-        this.beforeClass();
-
-
-    }
-
-    public void afterMainClass() {
-        this.afterClass();
-    }
-
-    public void beforeMainTest() {
-        this.beforeTest();
-    }
-
-    public void afterMainTest() {
-        this.afterTest();
-    }
-
-    public abstract void beforeMethod();
-
-    public abstract void afterMethod();
-
-    public abstract void beforeClass();
-
-    public abstract void afterClass();
-
-    public abstract void beforeTest();
-
-    public abstract void afterTest();
-    */
 }
