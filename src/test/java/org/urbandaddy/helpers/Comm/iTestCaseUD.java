@@ -1,9 +1,3 @@
-/**
- *  Urban Daddy Domain Test Methods
- *
- *
- */
-
 package org.urbandaddy.helpers.Comm;
 
 import java.util.List;
@@ -20,7 +14,11 @@ import org.testng.Assert;
 
 import org.urbandaddy.helpers.*;
 
-
+/**
+ *  Urban Daddy Domain Test Methods
+ *
+ *
+ */
 public abstract class iTestCaseUD extends ITestCase {
 
 ///// Sign-up methods

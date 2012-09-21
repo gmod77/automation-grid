@@ -1,22 +1,20 @@
 package org.urbandaddy.helpers.Comm;
 
-
-//import java.util.concurrent.TimeUnit;
-
-
 import org.openqa.selenium.By;
-
-
 
 //Workflow specific imports
 
 import org.urbandaddy.helpers.*;
 
-
+/**
+ * This class contains all Perks domain specific tests
+ */
 public abstract class iTestCasePerks extends ITestCase {
     // Perks
 
-
+    /**
+     * After login navigate to account settings
+     */
     public void editSettingsPerks(){
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
 
@@ -29,6 +27,10 @@ public abstract class iTestCasePerks extends ITestCase {
         this.client.navigate().to(lastURL);
     }
 
+    /**
+     * Navigate to the Perks domain
+     *
+     */
     public void visitPerksFirstTime(){
 
         // enter UDdomain name, hit enter, arrive on homepage
@@ -37,6 +39,10 @@ public abstract class iTestCasePerks extends ITestCase {
         this.client.navigate().to(Perksdomain);
     }
 
+    /**
+     * Execute all steps to sign up for perks
+     * via the New York edition of UD
+     */
     public void signUpPerks_viaNewYork(){
 
         this.signUpPerks_viaNewYorkStep1();
@@ -45,6 +51,9 @@ public abstract class iTestCasePerks extends ITestCase {
         this.signUpPerks_viaNewYorkStep4();
     }
 
+    /**
+     * Sign into the perks site
+     */
     public void signInPerks(){
 
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
@@ -74,6 +83,9 @@ public abstract class iTestCasePerks extends ITestCase {
 
     }
 
+    /**
+     * Log out of perks
+     */
     public void logoutPerks(){
 
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
@@ -91,12 +103,16 @@ public abstract class iTestCasePerks extends ITestCase {
 
     }
 
+    /**
+     * Send a perks password reset email
+     *
+     */
     public void resetPasswordPerks(){
 
-//		perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
-//		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-//		
-//		perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
+		// perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
+		// perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+
+		// perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
         System.out.println(emailClient);
 
@@ -110,11 +126,12 @@ public abstract class iTestCasePerks extends ITestCase {
 
         perks_signupHelper_Client.clickSend();
         this.pause3();
-
-
-
     }
 
+    /**
+     * Navigate to the perks home page and sign up
+     * for perks by clicking editions and editorials.
+     */
     public void signUpPerks_viaNewYorkStep1(){
 
 
@@ -167,6 +184,10 @@ public abstract class iTestCasePerks extends ITestCase {
         perks_signupHelper_Client.clickSubmit1();
     }
 
+    /**
+     * Fill out the perks registration form providing
+     * Name, Gender, Income Range, etc.
+     */
     public void signUpPerks_viaNewYorkStep2(){
 
         //step2, 2nd signup modal:
@@ -209,15 +230,19 @@ public abstract class iTestCasePerks extends ITestCase {
         perks_signupHelper_Client.clickSubmit();
     }
 
+    /**
+     * Enter friend referrals and print the emails
+     * used to the log
+     */
     public void signUpPerks_viaNewYorkStep3(){
 
 
-//	perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
-//	perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-//	
-//	perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
+        //	perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
+        //	perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+        //
+        //	perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
-//step3, 3rd signup modal: Invite Friends
+        //step3, 3rd signup modal: Invite Friends
 
 //		ud_signupHelper_Client.clickInvite();
 
@@ -244,23 +269,15 @@ public abstract class iTestCasePerks extends ITestCase {
 //		perks_signupHelper_Client.clickSkip();
     }
 
+    /**
+     * After friend referral submission
+     * close the perks signup form
+     */
     public void signUpPerks_viaNewYorkStep4(){
         //step4, 4th signup modal confirmation, close final confirm signup box
         this.pause3();
         perks_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }
-/*
-    public abstract void beforeMethod();
 
-    public abstract void afterMethod();
-
-    public abstract void beforeClass();
-
-    public abstract void afterClass();
-
-    public abstract void beforeTest();
-
-    public abstract void afterTest();
-    */
 }
