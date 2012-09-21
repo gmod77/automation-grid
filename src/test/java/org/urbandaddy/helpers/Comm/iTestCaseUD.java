@@ -12,12 +12,16 @@ import java.util.*;
 import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 
 //Workflow specific imports
 
 import org.urbandaddy.helpers.*;
+import javax.annotation.Nullable;
 
 
 public abstract class iTestCaseUD extends ITestCase {
@@ -2623,6 +2627,45 @@ public abstract class iTestCaseUD extends ITestCase {
         this.checkUDHomepageNationalHeaderLoggedOut();
     }
 
+    public void unSubscribeFromEmails(){
+
+        ud_sealHelper_Client = new UD_SealHelper_Client(client);
+        ud_sealHelper_Client.clickEditSettings();
+        ud_unSubscribeHelper_client = new UD_UnSubscribeHelper_Client(client);
+
+        pause3();
+
+
+        WebElement editorial = client.findElement(By.className("myUDpopupEditorials"));
+        System.out.println("Editorial to string> " + editorial.getTagName());
+        List<WebElement> editions = editorial.findElements(By.tagName("div"));
+        System.out.println("Editions to string> " + editions.size());
+            for (int i = 0; i < editions.size(); i++) {
+                if (editions.get(i).findElement(By.tagName("input")).isSelected()) {
+                    WebElement box = editions.get(i).findElement(By.tagName("input"));
+                    box.click();
+                }
+            }
+
+        WebElement perksList = client.findElement(By.className("htmlEditionsHolder"));
+        List<WebElement> perks = perksList.findElements(By.tagName("div"));
+            for (int i = 0; i < perks.size(); i++) {
+                if (perks.get(i).findElement(By.tagName("input")).isSelected()) {
+                    WebElement box = perks.get(i).findElement(By.tagName("input"));
+                    box.click();
+                }
+        }
+
+        ud_unSubscribeHelper_client.clickUpdate();
+        pause3();
+        ud_unSubscribeHelper_client.confirmUpdate();
+        pause3();
+
+        WebElement closeButton = client.findElement(By.className("ajaxClose"));
+        closeButton.click();
+
+    }
+
     public void signUpUD_viaNewYorkStep1(){
 
 
@@ -2928,7 +2971,10 @@ public abstract class iTestCaseUD extends ITestCase {
 
 ///////////////  Login/SignOut methods
 
-
+    /**
+     * Login using params from this class
+     *
+     */
     public void loginUD(){
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
@@ -2944,7 +2990,7 @@ public abstract class iTestCaseUD extends ITestCase {
         //close the signup modal
         //client.findElement(By.xpath("//div[@id='signInWrapper']/div")).click();
 
-        ud_headerHelper_Client.clickMembrerLogIn();
+        ud_headerHelper_Client.clickMemberLogIn();
         ud_sealHelper_Client.enterEmailAddress(emailClient);
         ud_sealHelper_Client.enterPassword("1234");
         ud_sealHelper_Client.clickLogin();
@@ -2952,6 +2998,32 @@ public abstract class iTestCaseUD extends ITestCase {
         // do all footer checks	for logged in state
         ud_footerHelper_Client = new UD_FooterHelper_Client(client);
         this.checkUDHomepageCityFooterLoggedIn();
+    }
+
+    /**
+     * Overloaded class, use to pass email and password in via
+     * other tests.
+     * ex. currently used in UD_Unsubscribe_EditionsPerks
+     * @param email Email address
+     * @param pw Password
+     */
+    public void loginUD(String email, String pw){
+        ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+        ud_sealHelper_Client = new UD_SealHelper_Client(client);
+
+        this.client.navigate().to(UDdomain);
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ud_headerHelper_Client.clickMemberLogIn();
+        ud_sealHelper_Client.enterEmailAddress(email);
+        ud_sealHelper_Client.enterPassword(pw);
+        ud_sealHelper_Client.clickLogin();
+
     }
 
     public void logoutUD(){
@@ -2969,7 +3041,7 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 
-        ud_headerHelper_Client.clickMembrerLogIn();
+        ud_headerHelper_Client.clickMemberLogIn();
         ud_sealHelper_Client.clickResetPassword();
         ud_sealHelper_Client.enterEmailToReset(emailClient);
         ud_sealHelper_Client.clickSend();
@@ -2994,7 +3066,51 @@ public abstract class iTestCaseUD extends ITestCase {
 
     }
 
+    public void WaitForElementPresent(String locator, int timeout) {
 
+        for (int i = 0; i < timeout; i++) {
+            if (isElementPresent(locator)) {
+                break;
+            }
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Boolean isElementPresent(String locator) {
+
+        Boolean result = false;
+        try {
+            client.findElement(ByLocator(locator));
+            result = true;
+        } catch (Exception ex) {
+
+        }
+
+        return result;
+    }
+
+    public By ByLocator(String locator) {
+        By result = null;
+
+        if (locator.startsWith("//")) {
+            result = By.xpath(locator);
+        } else if (locator.startsWith("css=")) {
+            result = By.cssSelector(locator.replace("css=", ""));
+        } else if (locator.startsWith("link=")) {
+            result = By.linkText(locator.replace("#", ""));
+        } else if (locator.startsWith("#")) {
+            result = By.name(locator.replace("#", ""));
+        } else {
+            result = By.id(locator);
+        }
+
+        return result;
+    }
 
 ///check email methods
 

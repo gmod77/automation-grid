@@ -36,7 +36,7 @@ public class UD_HeaderHelper_Client extends IHelper_Client {
 		el.click();
 	}
 	
-	public void clickMembrerLogIn(){
+	public void clickMemberLogIn(){
 		String str = headerReader.getLocator("LoggedOutHeader.MemberLogIn");
 		this.WaitForElementPresent(str, 20);
 		WebElement el = client.findElement(ByLocator(str));

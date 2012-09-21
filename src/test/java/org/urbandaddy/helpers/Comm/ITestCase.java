@@ -229,6 +229,7 @@ public abstract class ITestCase {
     protected UD_SealHelper_Client ud_sealHelper_Client;
     protected UD_SignupHelper_Client ud_signupHelper_Client;
     protected UD_RoundUP_Client ud_roundUP_client;
+    protected UD_UnSubscribeHelper_Client ud_unSubscribeHelper_client;
 
     protected Perks_HomepageHelper_Client perks_homepageHelper_Client;
     protected Perks_HeaderHelper_Client perks_headerHelper_Client;
@@ -245,16 +246,16 @@ public abstract class ITestCase {
     protected Date now = new java.util.Date();
     protected java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
 
-    String emailClient = "udtestergene+"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend1 = "udtestergene+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend2 = "udtestergene+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend3 = "udtestergene+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend4 = "udtestergene+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend6 = "udtestergene+"+"friend_6_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailClient = "udtestergene+"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend1 = "udtestergene+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend2 = "udtestergene+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend3 = "udtestergene+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend4 = "udtestergene+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend5 = "udtestergene+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend6 = "udtestergene+"+"friend_6_"+emailFormat.format(now) + "@gmail.com";
 
-    String emailClient2 = "udtestergene2+"+emailFormat.format(now) + "@gmail.com";
-    String membersource = "Member Source "+emailFormat.format(now);
+    protected String emailClient2 = "udtestergene2+"+emailFormat.format(now) + "@gmail.com";
+    protected String membersource = "Member Source "+emailFormat.format(now);
 
 
     protected String UDdomain = "http://ud-branch.thedaddy.co";

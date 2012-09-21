@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <locators>
-	<HomePageFirstTimeVisitor>
+    <HomePageFirstTimeVisitor>
 	  <UDLogo><![CDATA[//html/body/div[1]/div[1]/div/div[1]/img]]></UDLogo>
 	  <ClickableCopy><![CDATA[//html/body/div[1]/div[1]/div/div[1]/a/img]]></ClickableCopy>
       <SignUpSeal><![CDATA[//html/body/div[1]/div[1]/div/div[2]/div/div[1]/div/a/img]]></SignUpSeal>
@@ -20,12 +20,12 @@
   	  <SkiBoardLink><![CDATA[//html/body/div[1]/div[1]/div/div[2]/div/div[2]/a[14]/img]]></SkiBoardLink>    
    </HomePageFirstTimeVisitor>
    
-   <Header>
+    <Header>
    <MemberLogInHeaderLink><![CDATA[//html/body/div[1]/div[2]/div[1]/div[3]/div/div[1]/a[1]]]></MemberLogInHeaderLink>
    <SignUpHeaderLink><![CDATA[//html/body/div[1]/div[2]/div[1]/div[3]/div/div[1]/a[2]]]></SignUpHeaderLink>
    </Header>
    
-   <Gmail>
+    <Gmail>
       <Email><![CDATA[Email]]></Email>
       <Password><![CDATA[Passwd]]></Password>
       <SignIn><![CDATA[signIn]]></SignIn>
@@ -36,7 +36,7 @@
       <TargetSuffix><![CDATA[')]]]></TargetSuffix>
    </Gmail>
    
-   <Step1>
+    <Step1>
    	  <Email><![CDATA[email]]></Email>
    	  <SelectEditionsNational><![CDATA[member_editions_12]]></SelectEditionsNational>
    	  <SelectEditionsNationalPerks><![CDATA[member_editions_28]]></SelectEditionsNationalPerks>
@@ -72,9 +72,8 @@
    	  <ErrorMessage><![CDATA[//html/body/div[7]/div/div/div/div[2]/div/div]]></ErrorMessage>
    	   	  
    </Step1>
-
    	  
-   <Step2>
+    <Step2>
    
    	  <EnterPassword><![CDATA[flowPassword]]></EnterPassword>
    	  <ConfirmPassword><![CDATA[flowPasswordRetype]]></ConfirmPassword>
@@ -95,7 +94,7 @@
    	    
    </Step2>
    
-   <Step3>
+    <Step3>
    
    	  <InviteEmail1><![CDATA[misc_email_1]]></InviteEmail1>
    	  <InviteEmail2><![CDATA[misc_email_2]]></InviteEmail2>
@@ -111,8 +110,39 @@
    	  
    </Step3>
    
-   <Step4>
+    <Step4>
    	  <FinalConfirmationModal><![CDATA[//html/body/div[7]/div/div/div/a]]></FinalConfirmationModal>
    </Step4>
+
+    <Update>
+        <Atlanta><![CDATA[member_editions_22]]></Atlanta>
+        <Boston><![CDATA[member_editions_16]]></Boston>
+        <Chicago><![CDATA[member_editions_15]]></Chicago>
+        <Dallas><![CDATA[member_editions_17]]></Dallas>
+        <DC><![CDATA[member_editions_21]]></DC>
+        <Driven><![CDATA[member_editions_33]]></Driven>
+        <JetsetWeekly><![CDATA[member_editions_13]]></JetsetWeekly>
+        <LasVegas><![CDATA[member_editions_18]]></LasVegas>
+        <LosAngeles><![CDATA[member_editions_11]]></LosAngeles>
+        <Miami><![CDATA[member_editions_19]]></Miami>
+        <National><![CDATA[member_editions_12]]></National>
+        <NewYork><![CDATA[member_editions_1]]></NewYork>
+        <Philly><![CDATA[member_editions_24]]></Philly>
+        <SanFrancisco><![CDATA[member_editions_14]]></SanFrancisco>
+        <Seattle><![CDATA[member_editions_23]]></Seattle>
+        <SkiBoard><![CDATA[member_editions_25]]></SkiBoard>
+
+        <BostonPerks><![CDATA[member_editions_30]]></BostonPerks>
+        <ChicagoPerks><![CDATA[member_editions_29]]></ChicagoPerks>
+        <DCPerks><![CDATA[member_editions_32]]></DCPerks>
+        <LosAngelesPerks><![CDATA[member_editions_27]]></LosAngelesPerks>
+        <MiamiPerks><![CDATA[member_editions_31]]></MiamiPerks>
+        <NationalPerks><![CDATA[member_editions_28]]></NationalPerks>
+        <NewYorkPerks><![CDATA[member_editions_26]]></NewYorkPerks>
+
+        <UpdateButton><![CDATA[myaccount_edit_form]]></UpdateButton>
+        <ConfirmButton><![CDATA[myaccount_edit_popup_form]]></ConfirmButton>
+
+    </Update>
    
 </locators>

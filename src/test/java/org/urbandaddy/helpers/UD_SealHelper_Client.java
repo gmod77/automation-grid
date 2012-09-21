@@ -17,7 +17,7 @@ public class UD_SealHelper_Client extends IHelper_Client {
 		sealReader = new LocatorReader("Seal.xml");
 	}
 	
-//	public void clickMembrerLogIn(){
+//	public void clickMemberLogIn(){
 //		String str = sealReader.getLocator("Signon.HeaderLoginLink");
 //		this.WaitForElementPresent(str, 20);
 //		WebElement el = client.findElement(ByLocator(str));
@@ -112,7 +112,21 @@ public class UD_SealHelper_Client extends IHelper_Client {
 		WebElement el = client.findElement(ByLocator(str));
 		el.sendKeys(password);
 	}
-	
+
+    /**
+     * Maybe use this guy to clean up the code a bit
+     * probably no reason to have a method for each checkbox.
+     * Just send the parameter to check.
+     *
+     * @param check
+     */
+    public void boxChecker(String check) {
+        String str = sealReader.getLocator(check);
+        this.WaitForElementVisible(str, 100);
+        WebElement el = client.findElement(ByLocator(str));
+        el.click();
+    }
+
 	public void checkDC(){
 		String str = sealReader.getLocator("Settings.EditionsDC");
 		this.WaitForElementVisible(str, 100);
