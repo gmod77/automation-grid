@@ -55,24 +55,24 @@ public abstract class ITestCase {
 
             if (profilePath == null || profilePath.isEmpty()) {
                 client = new FirefoxDriver();
-//				cms = new FirefoxDriver();
+                //	cms = new FirefoxDriver();
                 client.manage().window().maximize();
 
             } else {
                 File file = new File(profilePath);
                 FirefoxProfile profile = new FirefoxProfile(file);
                 client = new FirefoxDriver(profile);
-//				cms = new FirefoxDriver(profile);
+                //	cms = new FirefoxDriver(profile);
                 client.manage().window().maximize();
             }
 
         } else if (DriverType.IE.toString().equals(driverType)) {
             client = new InternetExplorerDriver();
-//			cms = new InternetExplorerDriver();
+            //	cms = new InternetExplorerDriver();
 
         } else if (DriverType.Ghrome.toString().equals(driverType)) {
             client = new ChromeDriver();
-//			cms = new ChromeDriver();
+            //	cms = new ChromeDriver();
 
         } else if (DriverType.Win7FF14Remote.toString().equals(driverType)) {
             DesiredCapabilities capability = DesiredCapabilities.firefox();
@@ -92,9 +92,9 @@ public abstract class ITestCase {
             try {
                 client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
                 client.manage().window().maximize();
-//				client.manage().window().setSize(targetSize)
-//				resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-//				wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
+                //	client.manage().window().setSize(targetSize)
+                //	resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
+                //	wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
             }
             catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -128,16 +128,16 @@ public abstract class ITestCase {
 
         } else if (DriverType.IESauce.toString().equals(driverType)) {
 
-            DesiredCapabilities capabillities = DesiredCapabilities.internetExplorer();
-            //  capabillities.setCapability("browser", "android");
-            capabillities.setCapability("version", "8");
-            capabillities.setCapability("platform", "Windows 2003");
-            capabillities.setCapability("name", "Win7 IE8 Regression test");
+            DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+            //  capabilities.setCapability("browser", "android");
+            capabilities.setCapability("version", "8");
+            capabilities.setCapability("platform", "Windows 2003");
+            capabilities.setCapability("name", "Win7 IE8 Regression test");
 
             try {
                 this.client = new RemoteWebDriver(
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabillities);
+                        capabilities);
             }
             catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -146,16 +146,16 @@ public abstract class ITestCase {
 
         } else if (DriverType.ChromeSauce.toString().equals(driverType)) {
 
-            DesiredCapabilities capabillities = DesiredCapabilities.chrome();
-            //  capabillities.setCapability("browser", "android");
-            //  capabillities.setCapability("version", "5");
-            capabillities.setCapability("platform", "Windows 2003");
-            capabillities.setCapability("name", "Win7 Chrome Regression test");
+            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+            //  capabilities.setCapability("browser", "android");
+            //  capabilities.setCapability("version", "5");
+            capabilities.setCapability("platform", "Windows 2003");
+            capabilities.setCapability("name", "Win7 Chrome Regression test");
 
             try {
                 this.client = new RemoteWebDriver(
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabillities);
+                        capabilities);
             }
             catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -168,16 +168,16 @@ public abstract class ITestCase {
 
         {
 
-            DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-//  capabillities.setCapability("browser", "android");
-            capabillities.setCapability("version", "14");
-            capabillities.setCapability("platform", "Mac 10.6");
-            capabillities.setCapability("name", "Mac FF14 Regression test");
+            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+            //  capabilities.setCapability("browser", "android");
+            capabilities.setCapability("version", "14");
+            capabilities.setCapability("platform", "Mac 10.6");
+            capabilities.setCapability("name", "Mac FF14 Regression test");
 
             try {
                 this.client = new RemoteWebDriver(
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabillities);
+                        capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -189,16 +189,16 @@ public abstract class ITestCase {
 
         {
 
-            DesiredCapabilities capabillities = DesiredCapabilities.safari();
-//  capabillities.setCapability("browser", "android");
-            capabillities.setCapability("version", "5");
-            capabillities.setCapability("platform", "Mac 10.6");
-            capabillities.setCapability("name", "Mac Safari Regression test");
+            DesiredCapabilities capabilities = DesiredCapabilities.safari();
+            //  capabilities.setCapability("browser", "android");
+            capabilities.setCapability("version", "5");
+            capabilities.setCapability("platform", "Mac 10.6");
+            capabilities.setCapability("name", "Mac Safari Regression test");
 
             try {
                 this.client = new RemoteWebDriver(
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabillities);
+                        capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -208,7 +208,7 @@ public abstract class ITestCase {
 
         else {
             client = new FirefoxDriver();
-//			cms = new FirefoxDriver();
+            //  cms = new FirefoxDriver();
 
         }
 
@@ -263,6 +263,9 @@ public abstract class ITestCase {
     //	private String newpassword="1234";
     protected String lastURL = "";
 
+    /**
+     * Pause for 7 seconds
+     */
     public void pause1(){
         try {
             Thread.sleep(7000);
@@ -270,6 +273,10 @@ public abstract class ITestCase {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Pause for 20 seconds
+     */
     public void pause2(){
         try {
             Thread.sleep(20000);
@@ -277,6 +284,10 @@ public abstract class ITestCase {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Pause for 3 seconds
+     */
     public void pause3(){
         try {
             Thread.sleep(3000);
@@ -284,6 +295,10 @@ public abstract class ITestCase {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Pause for 1 seconds
+     */
     public void pause4(){
         try {
             Thread.sleep(1000);
@@ -292,6 +307,17 @@ public abstract class ITestCase {
         }
     }
 
+    /**
+     * Set your own pause time
+     * @param time Time in ms
+     */
+    public void pause(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Global Email Check Methods
 
