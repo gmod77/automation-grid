@@ -216,7 +216,7 @@ public abstract class iTestCaseUD extends ITestCase {
         // 25. Upload Email_Banner size 552 x 135
 
         // Local Mac
-        client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
+        //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
         // For PC
         //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
         String image1 = imagePath + "email banner 3.jpg";
@@ -224,6 +224,23 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.id("article_image_name")).sendKeys(image1);
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+
+        // 26. choose position Email_banner
+
+        WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
+        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
+        for(WebElement option : position_options1){
+            if(option.getText().equals("Email_Banner")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 27. click  save
+
+        client.findElement(By.name("save_and_add")).click();
+        this.pause1();
+
     }
 
         /**
@@ -367,7 +384,7 @@ public abstract class iTestCaseUD extends ITestCase {
         // 25. Upload Email_Banner size 552 x 135
 
         // Local Mac
-        client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
+        //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
         // For PC
         //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
         String image1 = imagePath + "email banner 3.jpg";
