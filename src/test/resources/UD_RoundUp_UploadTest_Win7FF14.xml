@@ -2,7 +2,7 @@
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
 
-	<parameter name="driverType" value="ChromeSauce"></parameter>
+	<parameter name="driverType" value="Win7FF14Sauce"></parameter>
 	<parameter name="profilePath" value=""></parameter>
 
     <test name="UD_Admin_Create_RoundUp">

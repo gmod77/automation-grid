@@ -43,7 +43,7 @@ import org.urbandaddy.helpers.*;
 public abstract class ITestCase {
 
     enum DriverType {
-        Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, MacFF14Sauce, MacSafariSauce
+        Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
     }
 
     public WebDriver client;
@@ -207,7 +207,21 @@ public abstract class ITestCase {
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         }
+        else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
+            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
+            capabilities.setCapability("platform", "Windows 2003");
+            capabilities.setCapability("name", "Win7 FireFox Regression test");
+
+            try {
+                this.client = new RemoteWebDriver(
+                        new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+                        capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        }
         else {
             client = new FirefoxDriver();
             //  cms = new FirefoxDriver();
