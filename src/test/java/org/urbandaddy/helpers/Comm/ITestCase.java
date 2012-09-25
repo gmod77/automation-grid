@@ -3,10 +3,12 @@ package org.urbandaddy.helpers.Comm;
 import java.io.File;
 //import java.io.IOException;
 
+import java.lang.System;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
 
 
 //import org.openqa.selenium.JavascriptExecutor;
@@ -263,6 +265,18 @@ public abstract class ITestCase {
     //	private String newpassword="1234";
     protected String lastURL = "";
 
+    protected String curDir = System.getProperty("user.dir");
+
+    public String returnImgPath () {
+        if (System.getProperty("os.name").contains("Windows")) {
+            return curDir + "\\src\\test\\upload_data\\";
+        } else {
+            return curDir + "/src/test/upload_data/";
+        }
+    }
+
+    protected String imagePath = returnImgPath();
+
     /**
      * Pause for 7 seconds
      */
@@ -380,7 +394,25 @@ public abstract class ITestCase {
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
         checkEmailHelper_Client.findInvitationEmail1("to: "+emailClient+" subject: You've Changed");
+    }
 
+    /**
+     * Check that the edit settings email is received
+     *
+     * @param email Enter email to search with
+     */
+    public void verifyEditSettingsUDEmailReceived(String email){
+        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+        checkEmailHelper_Client.findInvitationEmail1("to: "+email+" subject: You've Changed");
+    }
+
+    /**
+     * Log out of Gmail
+     */
+    public void logoutGmail() {
+        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+        checkEmailHelper_Client.clientLogoutGmail();
     }
 
 

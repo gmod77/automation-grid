@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="UD_Smoke" verbose="10">
+<!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
+
+	<parameter name="driverType" value="MacFF14Sauce"></parameter>
+	<parameter name="profilePath" value=""></parameter>
+
+    <test name="UD_Admin_Create_RoundUp">
+        <classes>
+            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP_Upload" />
+        </classes>
+    </test>
+	
+
+</suite>
+

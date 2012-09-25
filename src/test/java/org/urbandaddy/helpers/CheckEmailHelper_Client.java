@@ -1,10 +1,18 @@
 package org.urbandaddy.helpers;
 
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.openqa.selenium.*;
 //import org.openqa.selenium.WebElement;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
+
+import javax.annotation.Nullable;
+import java.util.List;
 //import org.openqa.selenium.interactions.*;
 
 public class CheckEmailHelper_Client extends IHelper_Client {
@@ -62,7 +70,12 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		//this.client.navigate().to("https://mail.google.com/mail/?ui=html&zy=h");
 		
 	}	
-	
+
+    public void clientLogoutGmail() {
+        WebElement signOut = this.client.findElement(By.id("gb_71"));
+        signOut.click();
+    }
+
 	public void doEmailSearch (String searchString) {
         Boolean flag = false;
         Integer counter = 0;
@@ -341,4 +354,96 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		client.findElement(By.partialLinkText("here")).click(); 
 
 	}
+
+    public boolean searchEmailBody (String searchString) {
+        WebElement content = client.findElement(By.className("msg"));
+        String data = content.getText();
+        return (data.contains(searchString));
+    }
+
+    public void searchEmail(String searchString) {
+        try {
+           Assert.assertTrue(searchEmailBody(searchString));
+        } catch (AssertionError e) {
+            System.out.println("This is probably not the unsubscribe email.");
+        }
+    }
+
+    public void silverPopLogin(String email, String pass) {
+        client.navigate().to("https://login5.silverpop.com/");
+        WebElement username = client.findElement(By.id("username"));
+        username.sendKeys(email);
+        WebElement password = client.findElement(By.id("password"));
+        password.sendKeys(pass);
+        WebElement login = client.findElement(By.className("button"));
+        login.click();
+    }
+
+    public void navigateToSearch() {
+
+        WebElement dbSection = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver d) {
+                return d.findElement(By.className("borderRight"));
+            }
+        });
+
+        dbSection.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/table/tbody/tr/td/div/div/div[3]/div/table[2]/tbody/tr[2]/td/ul/li[5]/a")).click();
+
+        WebElement dbs = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver d) {
+                return d.findElement(By.xpath("//*[@id=\"UD Dev\"]"));
+            }
+        });
+        dbs.click();
+
+        WebElement searchTab = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver d) {
+                return d.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div/div[4]/div/div[3]/div/div/div/span"));
+            }
+        });
+        searchTab.click();
+    }
+
+    public boolean optOutSearch(String email) {
+        boolean flag;
+        flag = false;
+        WebElement searchOptOutBox = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver d) {
+                return d.findElement(By.id("searchOptOutsCheckBox"));
+            }
+        });
+        searchOptOutBox.click();
+
+        Select select = new Select(client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[3]/select")));
+        select.deselectAll();
+        select.selectByVisibleText("equals");
+
+        WebElement searchText = client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[4]/input"));
+        searchText.clear();
+        searchText.sendKeys(email);
+
+        WebElement searchButton = client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[5]/button"));
+        searchButton.click();
+
+        WebElement result = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply( WebDriver d) {
+                return d.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[5]/table/tbody/tr"));
+            }
+        });
+
+        List<WebElement> columns = result.findElements(By.tagName("td"));
+
+        for (WebElement column : columns) {
+            if (column.getText().equals("Opted Out")) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
 }

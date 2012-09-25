@@ -2,7 +2,7 @@
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
 
-	<parameter name="driverType" value="Firefox" />
+	<parameter name="driverType" value="Win7FF14Remote" />
 	<parameter name="profilePath" value="" />
     <parameter name="domain" value="http://ud-branch.thedaddy.co" />
     <parameter name="perksDomain" value="http://perks-branch.thedaddy.co" />
@@ -36,17 +36,17 @@
 		<!--</classes>-->
 	<!--</test>-->
 
-    <test name="UnsubscribePerks">
-        <classes>
-            <class name="org.urbandaddy.tests.UD_Unsubscribe_EditionsPerks" />
-        </classes>
-    </test>
-
-    <!--<test name="Create_RoundUP">-->
+    <!--<test name="UnsubscribePerks">-->
         <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />-->
+            <!--<class name="org.urbandaddy.tests.UD_Unsubscribe_EditionsPerks" />-->
         <!--</classes>-->
     <!--</test>-->
+
+    <test name="Create_RoundUP">
+        <classes>
+            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />
+        </classes>
+    </test>
 
     <!--<test name="Weekender">-->
         <!--<classes>-->

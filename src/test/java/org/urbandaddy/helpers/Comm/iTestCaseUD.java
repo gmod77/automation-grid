@@ -80,12 +80,10 @@ public abstract class iTestCaseUD extends ITestCase {
         //client.get(UD_Admin_domain+"/admin.php/articles");
     }
 
-    /**
-     * Create a round up article
-     *
-     * @return The article id which was just created to do checks on the HTML email/article
-     */
-    public String createRoundUP() {
+    public void createRoundUPUpload() {
+
+        System.out.println(imagePath);
+        System.out.println(System.getProperty("os.name"));
         // 1. log into the UD admin
         // 2. Click on articles
         // 3. click on create
@@ -218,10 +216,163 @@ public abstract class iTestCaseUD extends ITestCase {
         // 25. Upload Email_Banner size 552 x 135
 
         // Local Mac
-        //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
         // For PC
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
+        //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
+        String image1 = imagePath + "email banner 3.jpg";
+        System.out.println(image1);
+        client.findElement(By.id("article_image_name")).sendKeys(image1);
+        //enter Article ID
+        client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
+    }
 
+        /**
+        * Create a round up article
+        *
+        * @return The article id which was just created to do checks on the HTML email/article
+        */
+    public String createRoundUP() {
+
+        System.out.println(imagePath);
+        System.out.println(System.getProperty("os.name"));
+        // 1. log into the UD admin
+        // 2. Click on articles
+        // 3. click on create
+
+        // After login go to create the article
+        client.get(UD_Admin_domain+"/articles/create");
+        this.pause1();
+
+        // 4. change status to approved
+        WebElement status = client.findElement(By.id("article_article_status_id"));
+        List<WebElement> status_options = status.findElements(By.tagName("option"));
+        for(WebElement option : status_options){
+            if(option.getText().equals("Approved")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 5. click dedicated
+        client.findElement(By.id("article_is_dedicated")).click();
+
+        // 6. choose Roundup template
+        WebElement template = client.findElement(By.id("article_article_template_id"));
+        List<WebElement> template_options = template.findElements(By.tagName("option"));
+        for(WebElement option : template_options){
+            if(option.getText().equals("Roundup")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 7. choose any ad campaign
+        WebElement ad_campaign = client.findElement(By.id("article_article_template_id"));
+        List<WebElement> ad_campaign_options = ad_campaign.findElements(By.tagName("option"));
+        for(WebElement option : ad_campaign_options){
+            if(option.getText().equals("Groupon")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 8. choose any author
+        WebElement author = client.findElement(By.id("article_author_id"));
+        List<WebElement> author_options = author.findElements(By.tagName("option"));
+        for(WebElement option : author_options){
+            if(option.getText().equals("Russ Brandom")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 9.  Enter in From Display "test <test@test.com>"
+        client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
+
+        // 10. choose segment qa addresses
+        WebElement segment = client.findElement(By.id("details_segment"));
+        List<WebElement> segment_options = segment.findElements(By.tagName("option"));
+        for(WebElement option : segment_options){
+            if(option.getText().equals("QA Addresses")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 11. Enter an Article title
+        client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+emailFormat.format(now));
+
+        // 12. Enter Email subject line
+
+        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+emailFormat.format(now));
+
+        // 13. Enter Article Business Subject
+        client.findElement(By.id("article_business_name")).sendKeys("Test Round Up Business Name "+emailFormat.format(now));
+
+        // 14. DO NOT ENTER COPY
+        // 15. Enter Article Blurb
+
+        client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+emailFormat.format(now));
+
+        // 16. Enter IPHone Blurb
+
+        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+emailFormat.format(now));
+
+        // 17. Enter Twitter Blurb
+
+        client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+emailFormat.format(now));
+
+        // 18. Enter Note
+
+        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
+
+        // 19. Enter Legal Line
+
+        client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+emailFormat.format(now));
+
+        // 20. Enter Keywords
+
+        client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+emailFormat.format(now));
+
+        // 21. Choose business type
+
+        WebElement business_type = client.findElement(By.id("article_business_type_id"));
+        List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
+        for(WebElement option : business_type_options){
+            if(option.getText().equals("Clothing")) {
+                option.click();
+                break;
+            }
+        }
+
+        // 22. Enter Business Specialty
+        client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+emailFormat.format(now));
+        // 23. Click Save
+        client.findElement(By.name("save")).click();
+        this.pause1();
+
+        // Get Article ID
+
+        String articleLink = client.getCurrentUrl();
+
+        String[] separated = articleLink.split("/");
+        String articleID = separated[separated.length - 1];
+
+        // 24. Click add Image
+        // go to create image page
+        client.get(UD_Admin_domain+"/article_images/create");
+        this.pause1();
+
+
+        // 25. Upload Email_Banner size 552 x 135
+
+        // Local Mac
+        client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
+        // For PC
+        //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
+        String image1 = imagePath + "email banner 3.jpg";
+        System.out.println(image1);
+        client.findElement(By.id("article_image_name")).sendKeys(image1);
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
@@ -246,7 +397,9 @@ public abstract class iTestCaseUD extends ITestCase {
         // Local Mac
         //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/thumbnail 3.jpg");
         // For PC
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\thumbnail 3.jpg");
+        //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\thumbnail 3.jpg");
+
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "thumbnail 3.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -376,8 +529,8 @@ public abstract class iTestCaseUD extends ITestCase {
         //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("/users/sargenzi/Desktop/UDImages/round up image.jpg");
 
         //For PC
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\round up image.jpg");
-
+        //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\round up image.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(imagePath + "round up image.jpg");
         // 38. add Alt text to slots
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+emailFormat.format(now));
@@ -2646,21 +2799,21 @@ public abstract class iTestCaseUD extends ITestCase {
         // Uncheck all the editorial boxes
         WebElement editorial = client.findElement(By.className("myUDpopupEditorials"));
         List<WebElement> editions = editorial.findElements(By.tagName("div"));
-            for (int i = 0; i < editions.size(); i++) {
-                if (editions.get(i).findElement(By.tagName("input")).isSelected()) {
-                    WebElement box = editions.get(i).findElement(By.tagName("input"));
-                    box.click();
-                }
+        for (WebElement edition : editions) {
+            if (edition.findElement(By.tagName("input")).isSelected()) {
+                WebElement box = edition.findElement(By.tagName("input"));
+                box.click();
             }
+        }
 
         // Uncheck all the perks boxes
         WebElement perksList = client.findElement(By.className("htmlEditionsHolder"));
         List<WebElement> perks = perksList.findElements(By.tagName("div"));
-            for (int i = 0; i < perks.size(); i++) {
-                if (perks.get(i).findElement(By.tagName("input")).isSelected()) {
-                    WebElement box = perks.get(i).findElement(By.tagName("input"));
-                    box.click();
-                }
+        for (WebElement perk : perks) {
+            if (perk.findElement(By.tagName("input")).isSelected()) {
+                WebElement box = perk.findElement(By.tagName("input"));
+                box.click();
+            }
         }
 
         // Click update
@@ -2673,6 +2826,25 @@ public abstract class iTestCaseUD extends ITestCase {
         // Close the lightbox
         WebElement closeButton = client.findElement(By.className("ajaxClose"));
         closeButton.click();
+
+    }
+
+    /**
+     * Confirm the unsubscribe email contains the text
+     * "successfully unsubscribed"
+     */
+    public void unSubscribeMailConfirm(){
+        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+        checkEmailHelper_Client.searchEmail("successfully unsubscribed");
+    }
+
+    public void silverPopConfirm(){
+        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+        checkEmailHelper_Client.silverPopLogin("gmodin@urbandaddy.com", "commonUD77%");
+        checkEmailHelper_Client.navigateToSearch();
+        Assert.assertTrue(checkEmailHelper_Client.optOutSearch("udtesterjenkins+268_12_59_498@gmail.com"));
 
     }
 
@@ -3057,7 +3229,7 @@ public abstract class iTestCaseUD extends ITestCase {
             e.printStackTrace();
         }
 
-        //close the signup modal
+        //close the sign up modal
         //client.findElement(By.xpath("//div[@id='signInWrapper']/div")).click();
 
         ud_headerHelper_Client.clickMemberLogIn();
