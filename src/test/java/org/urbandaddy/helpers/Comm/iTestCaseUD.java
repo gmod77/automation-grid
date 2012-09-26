@@ -72,8 +72,9 @@ public abstract class iTestCaseUD extends ITestCase {
      *
      */
     public void loginUDAdmin(){
-        this.client.manage().deleteAllCookies();
-        this.client.navigate().to(UD_Admin_domain);
+        //this.client.manage().deleteAllCookies();
+        //this.client.navigate().to(UD_Admin_domain);
+        client.get(UD_Admin_domain);
         client.findElement(By.id("username")).sendKeys("jenkins");
         client.findElement(By.id("password")).sendKeys("jenkins900!!");
         client.findElement(By.name("commit")).click();
