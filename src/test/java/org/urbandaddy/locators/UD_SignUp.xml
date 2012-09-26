@@ -46,8 +46,8 @@
    	  <SelectEditionsJetset><![CDATA[member_editions_13]]></SelectEditionsJetset>
    	  <SelectEditionsLasVegas><![CDATA[member_editions_18]]></SelectEditionsLasVegas>
    	  <SelectEditionsSkiBoard><![CDATA[member_editions_25]]></SelectEditionsSkiBoard>
-   	  
-   	  <MoreLinkNewYork1><![CDATA[//html/body/div[7]/div/div/div/form/div[4]/label/a]]></MoreLinkNewYork1>
+
+   	  <MoreLinkNewYork1><![CDATA[//html/body/div[5]/div/div/div/form/div[4]/label/a]]></MoreLinkNewYork1>
 <!-- 				<MoreLinkNewYork1NonModal><![CDATA[//.//*[@id='signupMoreEditions']/label/a]]></MoreLinkNewYork1NonModal> -->
    	  
    	  <SelectEditorialEditionsAtlanta><![CDATA[member_editions_22]]></SelectEditorialEditionsAtlanta>
@@ -58,8 +58,8 @@
    	  <SelectEditorialEditionsLosAngeles><![CDATA[member_editions_11]]></SelectEditorialEditionsLosAngeles>
    	  <SelectEditorialEditionsMiami><![CDATA[member_editions_19]]></SelectEditorialEditionsMiami>
    	  <SelectEditorialEditionsSanFranciso><![CDATA[member_editions_14]]></SelectEditorialEditionsSanFranciso>
-   	  
-   	  <MoreLinkNewYork2><![CDATA[//html/body/div[7]/div/div/div/form/div[5]/label/a]]></MoreLinkNewYork2>
+
+   	  <MoreLinkNewYork2><![CDATA[//html/body/div[5]/div/div/div/form/div[5]/label/a]]></MoreLinkNewYork2>
 <!--    	 <MoreLinkNewYork2NonModal><![CDATA[//.//*[@id='signupPerksEditions']/label/a]]></MoreLinkNewYork2NonModal> -->
    	  
    	  <SelectPerksEditionsBostonPerks><![CDATA[member_editions_30]]></SelectPerksEditionsBostonPerks>
