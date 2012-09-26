@@ -49,9 +49,9 @@ public abstract class ITestCase {
         Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
     }
 
-    public WebDriver client;
+    //public WebDriver client;
 
-    protected RemoteWebDriver driver;
+    protected RemoteWebDriver client;
 
 //	private static ChromeDriverService service;
 
@@ -214,24 +214,27 @@ public abstract class ITestCase {
 
         }
         else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
+
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
             capabilities.setCapability("platform", "Windows 2003");
             capabilities.setCapability("name", "Win7 FireFox Regression test");
 
             try {
-                driver = new RemoteWebDriver(
+                this.client = new RemoteWebDriver(
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
                         capabilities);
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            driver.setFileDetector(new LocalFileDetector());
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            this.client.setFileDetector(new LocalFileDetector());
+            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         else {
             client = new FirefoxDriver();
+            //  cms = new FirefoxDriver();
+
         }
 
         this.beforeMethod();
