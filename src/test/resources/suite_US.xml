@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
-
-	<parameter name="driverType" value="Win7FF14Remote" />
+    <!-- Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce -->
+	<parameter name="driverType" value="Firefox" />
 	<parameter name="profilePath" value="" />
     <parameter name="domain" value="http://ud-branch.thedaddy.co" />
     <parameter name="perksDomain" value="http://perks-branch.thedaddy.co" />
@@ -12,11 +12,11 @@
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->
 
 
- 	<!--<test name="UD_Smoke">-->
- 		<!--<classes>-->
- 			<!--<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />-->
- 		<!--</classes>-->
- 	<!--</test>-->
+ 	<test name="UD_Smoke">
+ 		<classes>
+ 			<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />
+ 		</classes>
+ 	</test>
 	
 <!-- 		<test name="UD_Admin_Smoke_3column"> -->
 <!-- 		<classes> -->
@@ -42,12 +42,16 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <test name="Create_RoundUP">
-        <classes>
-            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />
-        </classes>
-    </test>
-
+    <!--<test name="Create_RoundUP">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Create_RoundUP">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP_Upload" />-->
+        <!--</classes>-->
+    <!--</test>-->
     <!--<test name="Weekender">-->
         <!--<classes>-->
             <!--<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />-->

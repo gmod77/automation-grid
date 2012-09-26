@@ -159,6 +159,7 @@
                                             </systemPropertyVariables> -->
                     <suiteXmlFiles>
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
+                        <!-- The variable below is needed or the tests can't run -->
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
 

@@ -48,8 +48,7 @@
    	  <SelectEditionsSkiBoard><![CDATA[member_editions_25]]></SelectEditionsSkiBoard>
 
    	  <MoreLinkNewYork1><![CDATA[//html/body/div[5]/div/div/div/form/div[4]/label/a]]></MoreLinkNewYork1>
-<!-- 				<MoreLinkNewYork1NonModal><![CDATA[//.//*[@id='signupMoreEditions']/label/a]]></MoreLinkNewYork1NonModal> -->
-   	  
+
    	  <SelectEditorialEditionsAtlanta><![CDATA[member_editions_22]]></SelectEditorialEditionsAtlanta>
    	  <SelectEditorialEditionsBoston><![CDATA[member_editions_16]]></SelectEditorialEditionsBoston>
    	  <SelectEditorialEditionsChicago><![CDATA[member_editions_15]]></SelectEditorialEditionsChicago>
@@ -60,7 +59,6 @@
    	  <SelectEditorialEditionsSanFranciso><![CDATA[member_editions_14]]></SelectEditorialEditionsSanFranciso>
 
    	  <MoreLinkNewYork2><![CDATA[//html/body/div[5]/div/div/div/form/div[5]/label/a]]></MoreLinkNewYork2>
-<!--    	 <MoreLinkNewYork2NonModal><![CDATA[//.//*[@id='signupPerksEditions']/label/a]]></MoreLinkNewYork2NonModal> -->
    	  
    	  <SelectPerksEditionsBostonPerks><![CDATA[member_editions_30]]></SelectPerksEditionsBostonPerks>
    	  <SelectPerksEditionsChicagoPerks><![CDATA[member_editions_29]]></SelectPerksEditionsChicagoPerks>
@@ -69,7 +67,7 @@
    	  <SelectPerksEditionsMiamiPerks><![CDATA[member_editions_31]]></SelectPerksEditionsMiamiPerks>
    	
    	  <Join><![CDATA[#submit]]></Join>
-   	  <ErrorMessage><![CDATA[//html/body/div[7]/div/div/div/div[2]/div/div]]></ErrorMessage>
+   	  <ErrorMessage><![CDATA[//html/body/div[5]/div/div/div/div[2]/div/div]]></ErrorMessage>
    	   	  
    </Step1>
    	  
@@ -77,13 +75,13 @@
    
    	  <EnterPassword><![CDATA[flowPassword]]></EnterPassword>
    	  <ConfirmPassword><![CDATA[flowPasswordRetype]]></ConfirmPassword>
-      <EnterFirstName><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[3]/input]]></EnterFirstName>
-   	  <EnterLastName><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[4]/input]]></EnterLastName>
-   	  <SelectGender><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[5]/select]]></SelectGender>
-   	  <SelectIncomeRange><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[6]/select]]></SelectIncomeRange>
-   	  <EnterZipCode><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[7]/input]]></EnterZipCode>
-   	  <EnterBirthday><![CDATA[//html/body/div[7]/div/div/div/form/fieldset/ul/li[8]/input]]></EnterBirthday>
-   	  <ClickSubmit><![CDATA[//html/body/div[7]/div/div/div/form/div[3]/div[1]/input]]></ClickSubmit> 
+      <EnterFirstName><![CDATA[flowFirstName]]></EnterFirstName>
+   	  <EnterLastName><![CDATA[flowLastName]]></EnterLastName>
+   	  <SelectGender><![CDATA[flowGender]]></SelectGender>
+   	  <SelectIncomeRange><![CDATA[flowIncome]]></SelectIncomeRange>
+   	  <EnterZipCode><![CDATA[flowZip]]></EnterZipCode>
+   	  <EnterBirthday><![CDATA[flowBirthday]]></EnterBirthday>
+   	  <ClickSubmit><![CDATA[#submit]]></ClickSubmit>
 <!--       <EnterFirstNameNonModal><![CDATA[flowFirstName]]></EnterFirstNameNonModal> -->
 <!--    	  <EnterLastNameNonModal><![CDATA[flowLastName]]></EnterLastNameNonModal> -->
 <!--    	  <SelectGenderNonModal><![CDATA[flowGender]]></SelectGenderNonModal> -->
@@ -102,16 +100,16 @@
    	  <InviteEmail4><![CDATA[misc_email_4]]></InviteEmail4>
    	  <InviteEmail5><![CDATA[misc_email_5]]></InviteEmail5>
    	  
-   	  <ClickInvite><![CDATA[//html/body/div[7]/div/div/div/form/div/div/input]]></ClickInvite>
+   	  <ClickInvite><![CDATA[//html/body/div[5]/div/div/div/form/div/div/input]]></ClickInvite>
 <!--    	  <ClickInvite><![CDATA[#submit]]></ClickInvite> -->
-   	  <ClickSkip><![CDATA[//html/body/div[7]/div/div/div/div[5]/a]]></ClickSkip>
+   	  <ClickSkip><![CDATA[//html/body/div[5]/div/div/div/div[5]/a]]></ClickSkip>
    	  
    	  <ErrorMessage><![CDATA[//.//*[@id='misc_email_1']]]></ErrorMessage>
    	  
    </Step3>
    
     <Step4>
-   	  <FinalConfirmationModal><![CDATA[//html/body/div[7]/div/div/div/a]]></FinalConfirmationModal>
+   	  <FinalConfirmationModal><![CDATA[//html/body/div[5]/div/div/div/a]]></FinalConfirmationModal>
    </Step4>
 
     <Update>

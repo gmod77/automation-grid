@@ -7,13 +7,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.openqa.selenium.*;
-//import org.openqa.selenium.WebElement;
+
 import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
 
-import javax.annotation.Nullable;
 import java.util.List;
-//import org.openqa.selenium.interactions.*;
+
 
 public class CheckEmailHelper_Client extends IHelper_Client {
 
@@ -43,7 +42,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 
 	public void clientLogInToGmail(){
 		//make sure you're logged out first 
-		this.client.navigate().to("https://mail.google.com/mail/u/0/?logout&hl=en");
+		client.get("https://mail.google.com/mail/u/0/?logout&hl=en");
 		
 		String Email = checkEmailReader.getLocator("Gmail.Email");		
 		this.WaitForElementPresent(Email, 20);		
@@ -63,11 +62,6 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		
 		// wait for email to arrive
 		this.pause2();
-		
-		// refresh
-		client.navigate().refresh();
-		//switch to HTML view
-		//this.client.navigate().to("https://mail.google.com/mail/?ui=html&zy=h");
 		
 	}	
 
@@ -106,7 +100,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
 	
@@ -142,7 +136,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
 	}
 	
@@ -176,7 +170,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
 
@@ -210,7 +204,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
 	
@@ -244,7 +238,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
 	
@@ -278,7 +272,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
 	
@@ -312,7 +306,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
 	
@@ -346,10 +340,15 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times");
+            System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
-	
+
+    public String getResetEmailLink () {
+        WebElement link = client.findElement(By.partialLinkText("here"));
+        return link.getAttribute("href");
+    }
+
 	public void clickResetEmailRequestLink (){
 		client.findElement(By.partialLinkText("here")).click(); 
 

@@ -351,7 +351,7 @@ public abstract class ITestCase {
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
         //go to gmail and confirm your email address
-        this.client.navigate().to("https://mail.google.com/");
+        //client.get("https://mail.google.com/");
         checkEmailHelper_Client.clientLogInToGmail();
 
         this.pause2();
@@ -389,12 +389,16 @@ public abstract class ITestCase {
         //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
         checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
-        checkEmailHelper_Client.clickResetEmailRequestLink();
-        //	resetEmailHelper_Client.enterNewPassword(newpassword);
-        //	resetEmailHelper_Client.confirmNewPassword(newpassword);
-        //	resetEmailHelper_Client.clickSubmit();
-        //	Assert.assertTrue(sealHelper_Client.isSignedIn());
+        String link = checkEmailHelper_Client.getResetEmailLink();
+        //client.get(link);
+        System.out.println(link);
+        //  checkEmailHelper_Client.clickResetEmailRequestLink();
+//        	resetEmailHelper_Client.enterNewPassword(newpassword);
+//        	resetEmailHelper_Client.confirmNewPassword(newpassword);
+//        	resetEmailHelper_Client.clickSubmit();
+//        	Assert.assertTrue(sealHelper_Client.isSignedIn());
     }
+
 
     /**
      * Check that the edit settings email is received

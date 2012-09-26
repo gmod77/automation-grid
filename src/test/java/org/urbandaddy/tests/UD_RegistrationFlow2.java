@@ -18,12 +18,11 @@ public class UD_RegistrationFlow2 extends iTestCaseUD {
 		
  		editSettingsUD();
 
- 		
 		doChecksCityHomePageLoggedIn();
-				
+
 		logoutUD();
 		resetPasswordUD();
-		
+
 		doChecksCityHomePageLoggedOut();
 		
 		loginToGmail();
@@ -32,24 +31,13 @@ public class UD_RegistrationFlow2 extends iTestCaseUD {
 		verifyResetPasswordUDRequestReceivedandPasswordReset();
 		verifyEditSettingsUDEmailReceived();
 
-
 //		
 //		logoutUD();
 //		doChecksCityHomePageLoggedOut();
-//		
- 		loginUD();
- 		logoutUD();
-//		doChecksCityHomePageLoggedIn();
-
-		
-//		loginClient();
-		
-		//check the header is in place
-//		checkHeaderClient();
-		
-		
-		// both sign out
-//		signOutClient();
+//
+        // Login Using New Password and then LogOut
+// 		loginUD();
+// 		logoutUD();
 
 	}
 	

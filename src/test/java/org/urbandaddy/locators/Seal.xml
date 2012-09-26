@@ -6,13 +6,13 @@
       <Password><![CDATA[password]]></Password>
       <Login><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[2]/form/input[3]]]></Login>
       <ResetPasswordLink><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/a]]></ResetPasswordLink>
-      <ResetPasswordLinkSub><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[3]/a]]></ResetPasswordLinkSub>
+      <ResetPasswordLinkSub><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/a]]></ResetPasswordLinkSub>
    </Signon>
    <ResetPassword>
    	  <ResetEmail><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[1]]]></ResetEmail>
-   	  <ResetEmailSub><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[3]/form/input[1]]]></ResetEmailSub>
+   	  <ResetEmailSub><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[1]]]></ResetEmailSub>
    	  <Send><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[2]]]></Send>
-   	  <SendSub><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[3]/form/input[2]]]></SendSub>
+   	  <SendSub><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[2]]]></SendSub>
    </ResetPassword>
    <Settings>
    	  <EditSettings><![CDATA[//.//html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div[3]/a[2]]]></EditSettings>
@@ -42,9 +42,9 @@
    	  <PerksMiami><![CDATA[member_editions_31]]></PerksMiami>
    	  <PerksNational><![CDATA[member_editions_28]]></PerksNational>
    	  <PerksNY><![CDATA[member_editions_26]]></PerksNY>
-   	  
-   	  <Update><![CDATA[//html/body/div[5]/div/div/div/div[2]/form/div[3]/div/input]]></Update>
-   	  <Close><![CDATA[//html/body/div[5]/div/div/div/div/div[2]/a]]></Close>
+
+      <Update><![CDATA[#submit]]></Update>
+   	  <Close><![CDATA[//html/body/div[3]/div/div/div/a]]></Close>
    </Settings>
    <LoggedIn>
       <Name><![CDATA[//.//*[@id='badgeHolder']/div/div[2]/div[1]/b]]></Name>
