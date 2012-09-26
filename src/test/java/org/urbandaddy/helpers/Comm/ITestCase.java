@@ -16,12 +16,15 @@ import java.util.concurrent.TimeUnit;
 
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.remote.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.LocalFileDetector;
+//import org.openqa.selenium.remote.RemoteWebDriver;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -47,6 +50,9 @@ public abstract class ITestCase {
     }
 
     public WebDriver client;
+
+    protected RemoteWebDriver driver;
+
 //	private static ChromeDriverService service;
 
     @BeforeMethod
@@ -214,22 +220,23 @@ public abstract class ITestCase {
             capabilities.setCapability("name", "Win7 FireFox Regression test");
 
             try {
-                this.client = new RemoteWebDriver(
+                driver = new RemoteWebDriver(
                         new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
                         capabilities);
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            driver.setFileDetector(new LocalFileDetector());
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         else {
             client = new FirefoxDriver();
-            //  cms = new FirefoxDriver();
-
         }
 
         this.beforeMethod();
     }
+
 
     //declare helpers
 
