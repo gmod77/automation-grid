@@ -159,7 +159,7 @@
                                             </systemPropertyVariables> -->
                     <suiteXmlFiles>
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
-                        <!--<file>${suite_filename}</file>-->
+                        <file>${suite_filename}</file>
                     </suiteXmlFiles>
 
                 </configuration>

@@ -198,7 +198,7 @@ public abstract class ITestCase {
 
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
-            capabilities.setCapability("platform", "Windows 7");
+            capabilities.setCapability("platform", "Windows 2003");
             capabilities.setCapability("name", "Win7 FireFox Regression test");
 
             try {
