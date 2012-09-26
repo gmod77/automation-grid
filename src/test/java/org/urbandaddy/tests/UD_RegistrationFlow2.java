@@ -21,6 +21,7 @@ public class UD_RegistrationFlow2 extends iTestCaseUD {
 		doChecksCityHomePageLoggedIn();
 
 		logoutUD();
+        goBackToUDHomepage();
 		resetPasswordUD();
 
 		doChecksCityHomePageLoggedOut();
