@@ -81,7 +81,7 @@
    	  <SelectIncomeRange><![CDATA[flowIncome]]></SelectIncomeRange>
    	  <EnterZipCode><![CDATA[flowZip]]></EnterZipCode>
    	  <EnterBirthday><![CDATA[flowBirthday]]></EnterBirthday>
-   	  <ClickSubmit><![CDATA[#submit]]></ClickSubmit>
+   	  <ClickSubmit><![CDATA[//html/body/div[5]/div/div/div/form/div[3]/div/input]]></ClickSubmit>
 <!--       <EnterFirstNameNonModal><![CDATA[flowFirstName]]></EnterFirstNameNonModal> -->
 <!--    	  <EnterLastNameNonModal><![CDATA[flowLastName]]></EnterLastNameNonModal> -->
 <!--    	  <SelectGenderNonModal><![CDATA[flowGender]]></SelectGenderNonModal> -->
