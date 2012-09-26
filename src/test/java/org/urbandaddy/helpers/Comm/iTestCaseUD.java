@@ -6,13 +6,18 @@ import java.util.*;
 import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 
 //Workflow specific imports
 
 import org.urbandaddy.helpers.*;
+
+import javax.annotation.Nullable;
 
 /**
  *  Urban Daddy Domain Test Methods
@@ -2999,6 +3004,11 @@ public abstract class iTestCaseUD extends ITestCase {
             e.printStackTrace();
         }
         ud_signupHelper_Client.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(client, 10);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingMessage")));
+
+
     }
 
     /**
