@@ -112,16 +112,7 @@ public abstract class ITestCase {
             DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
             capability.setCapability("seleniumProtocol", "WebDriver");
 
-            //capability.setCapability("browserName", "firefox10");
-            //capability.setBrowserName("firefox10");
-            //capability.setCapability("firefox_binary" , "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-            //capability.setCapability("maxInstances", 5);
             capability.setCapability("jenkins.nodeName", "WindowsSlave2");
-            //capability.setCapability("javascriptEnabled ", true);
-            //FirefoxProfile ffPrfile;
-            //ffprofile.setPreference("javascript.enabled", true);
-            //capability.setVersion("14");
-
 
             try {
                 client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
@@ -170,11 +161,7 @@ public abstract class ITestCase {
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        }
-
-        else if (DriverType.MacFF14Sauce.toString().equals(driverType))
-
-        {
+        } else if (DriverType.MacFF14Sauce.toString().equals(driverType)) {
 
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
             //  capabilities.setCapability("browser", "android");
@@ -191,14 +178,9 @@ public abstract class ITestCase {
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        }
-
-        else if (DriverType.MacSafariSauce.toString().equals(driverType))
-
-        {
+        } else if (DriverType.MacSafariSauce.toString().equals(driverType)) {
 
             DesiredCapabilities capabilities = DesiredCapabilities.safari();
-            //  capabilities.setCapability("browser", "android");
             capabilities.setCapability("version", "5");
             capabilities.setCapability("platform", "Mac 10.6");
             capabilities.setCapability("name", "Mac Safari Regression test");
@@ -212,12 +194,11 @@ public abstract class ITestCase {
             }
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        }
-        else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
+        } else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
 
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
-            capabilities.setCapability("platform", "Windows 2003");
+            capabilities.setCapability("platform", "Windows 7");
             capabilities.setCapability("name", "Win7 FireFox Regression test");
 
             try {
@@ -230,8 +211,8 @@ public abstract class ITestCase {
             }
             this.client.setFileDetector(new LocalFileDetector());
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        }
-        else {
+
+        } else {
             client = new FirefoxDriver();
             //  cms = new FirefoxDriver();
 
@@ -272,7 +253,6 @@ public abstract class ITestCase {
     protected String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
     protected String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
     protected String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend6 = "udtesterjenkins+"+"friend_6_"+emailFormat.format(now) + "@gmail.com";
 
     protected String emailClient2 = "udtesterjenkins2+"+emailFormat.format(now) + "@gmail.com";
     protected String membersource = "Member Source "+emailFormat.format(now);
@@ -291,6 +271,11 @@ public abstract class ITestCase {
 
     protected String curDir = System.getProperty("user.dir");
 
+    /**
+     * Based on the OS name get the directory where
+     * we use images
+     * @return path to image dir
+     */
     public String returnImgPath () {
         if (System.getProperty("os.name").contains("Windows")) {
             return curDir + "\\src\\test\\upload_data\\";

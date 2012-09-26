@@ -78,7 +78,7 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>${project.basedir}/src/main/resources/environment.properties</directory>
+                        <directory>${project.basedir}/src/test/resources/environment.properties</directory>
                     </resource>
                     <resource>
                         <directory>${project.basedir}/src/main/java</directory>
@@ -94,7 +94,7 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>${project.basedir}/src/main/resources/environment.dev.properties</directory>
+                        <directory>${project.basedir}/src/test/resources/environment.dev.properties</directory>
                     </resource>
                 </resources>
             </build>
@@ -104,7 +104,7 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>${project.basedir}/src/main/resources/environment.qa.properties</directory>
+                        <directory>${project.basedir}/src/test/resources/environment.qa.properties</directory>
                     </resource>
                 </resources>
             </build>
@@ -138,9 +138,9 @@
                 <executions>
                     <execution>
                         <phase>pre-integration-test</phase>
-                        <!-- <goals> -->
-                        <!-- <goal>start-server</goal> -->
-                        <!-- </goals> -->
+                         <goals>
+                         <goal>start-server</goal>
+                         </goals>
                         <configuration>
                             <background>true</background>
                         </configuration>
@@ -159,7 +159,7 @@
                                             </systemPropertyVariables> -->
                     <suiteXmlFiles>
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
-                        <file>${suite_filename}</file>
+                        <!--<file>${suite_filename}</file>-->
                     </suiteXmlFiles>
 
                 </configuration>

@@ -16,54 +16,54 @@ public class UD_Unsubscribe_EditionsPerks extends iTestCaseUD{
     // in both tests.
     String email = emailClient;
     String pass = password;
-//
-//    /**
-//     * Create a new account and sign up for perks
-//     *
-//     */
-//    @Test (groups = "Setup")
-//    public void flow1(){
-//        visitUDFirstTime();
-//
-//        accessNewYorkFromUDHomepage();
-//
-//        signUpUD_viaNewYork();
-//
-//        logoutUD();
-//        System.out.println("Used email> " + email);
-//
-//    }
-//
-//    /**
-//     * Log in to the newly created account
-//     * passing the email and password via loginUD2
-//     *
-//     */
-//    @Test (groups = "Unsubscribe", dependsOnGroups = {"Setup"})
-//    public void flow2() {
-//        visitUDFirstTime();
-//        accessNewYorkFromUDHomepage();
-//        loginUD(email, pass);
-//        unSubscribeFromEmails();
-//        System.out.println("Used email> " + email);
-//
-//    }
-//
-//    /**
-//     * Login to Gmail and check for the unsubscribe email
-//     */
-//    @Test (groups = "Confirm", dependsOnGroups = {"Setup", "Unsubscribe"})
-//    public void flow3(){
-//        loginToGmail();
-//        verifyEditSettingsUDEmailReceived(email);
-//        unSubscribeMailConfirm();
-//        logoutGmail();
-//    }
 
-    @Test
-    public void flow4(){
-        silverPopConfirm();
+    /**
+     * Create a new account and sign up for perks
+     *
+     */
+    @Test (groups = "Setup")
+    public void flow1(){
+        visitUDFirstTime();
+
+        accessNewYorkFromUDHomepage();
+
+        signUpUD_viaNewYork();
+
+        logoutUD();
+        System.out.println("Used email> " + email);
+
     }
+
+    /**
+     * Log in to the newly created account
+     * passing the email and password via loginUD2
+     *
+     */
+    @Test (groups = "Unsubscribe", dependsOnGroups = {"Setup"})
+    public void flow2() {
+        visitUDFirstTime();
+        accessNewYorkFromUDHomepage();
+        loginUD(email, pass);
+        unSubscribeFromEmails();
+        System.out.println("Used email> " + email);
+
+    }
+
+    /**
+     * Login to Gmail and check for the unsubscribe email
+     */
+    @Test (groups = "Confirm", dependsOnGroups = {"Setup", "Unsubscribe"})
+    public void flow3(){
+        loginToGmail();
+        verifyEditSettingsUDEmailReceived(email);
+        unSubscribeMailConfirm();
+        logoutGmail();
+    }
+
+//    @Test
+//    public void flow4(){
+//        silverPopConfirm();
+//    }
 
     @Override
     public void beforeMethod() {

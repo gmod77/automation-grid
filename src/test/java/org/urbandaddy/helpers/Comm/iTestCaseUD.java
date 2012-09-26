@@ -32,11 +32,11 @@ public abstract class iTestCaseUD extends ITestCase {
      */
     public void visitUDFirstTime(){
 
-        // enter UDdomain name, hit enter, arrive on homepage
-        this.client.navigate().to(UDdomain);
-        this.client.manage().deleteAllCookies();
-        this.client.navigate().to(UDdomain);
-        this.client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
+        // enter UD domain name, hit enter, arrive on homepage
+        client.get(UDdomain);
+        client.manage().deleteAllCookies();
+        client.get(UDdomain);
+        client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
 
         //do all homepage checks
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
@@ -72,8 +72,6 @@ public abstract class iTestCaseUD extends ITestCase {
      *
      */
     public void loginUDAdmin(){
-        //this.client.manage().deleteAllCookies();
-        //this.client.navigate().to(UD_Admin_domain);
         client.get(UD_Admin_domain);
         client.findElement(By.id("username")).sendKeys("jenkins");
         client.findElement(By.id("password")).sendKeys("jenkins900!!");
@@ -174,7 +172,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 18. Enter Note
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
 
         // 19. Enter Legal Line
 
@@ -342,7 +340,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 18. Enter Note
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
 
         // 19. Enter Legal Line
 
@@ -774,7 +772,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 //	20.   Copy is not needed
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Weekender Article Copy Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Weekender Article Copy Test'))");
 
 //	21.   Enter text in Article Blurb
 
@@ -791,7 +789,7 @@ public abstract class iTestCaseUD extends ITestCase {
 //	24.   Enter Text in Note
 
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Weekender Article Copy Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Weekender Article Copy Test'))");
 
 //	25.   Enter Text in Legal Line
 
@@ -1378,7 +1376,7 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.id("article[short]")).sendKeys("Three-Column Article/Feature Introduction Test "+emailFormat.format(now));
 
 //enter Copy  
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Three-Column Article Copy Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Three-Column Article Copy Test'))");
 
 //Article Blurb
         client.findElement(By.id("article[blurb]")).sendKeys("Three-Column Article Blurb Test "+emailFormat.format(now));
@@ -1390,7 +1388,7 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.id("article_blurb_twitter")).sendKeys("Three-Column Twitter Blurb Test "+emailFormat.format(now));
 
 //enter Note 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Three-Column Article Footer Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Three-Column Article Footer Test'))");
 
 //Legal Line
         client.findElement(By.id("article[footer_additional]")).sendKeys("Three-Column Legal Line Test "+emailFormat.format(now));
@@ -1730,7 +1728,7 @@ public abstract class iTestCaseUD extends ITestCase {
      * Create a PMT
      */
     public void createPMT(){
-        //1.    Go to Campaign Templates under Partnerships
+        //1. Go to Campaign Templates under Partnerships
         //2. Click on Create
 
         client.get(UD_Admin_domain+"/pmt_universal_settings/create");
@@ -1781,7 +1779,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //11. Enter footer text
         // figure out how to write to wysiwyg editor NOW!!!
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_universal_settings[footer_text]').SetHTML('Footer Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_universal_settings[footer_text]').SetHTML('Footer Text Test'))");
 
         //12. Link to a pdf for Rules and regs
 
@@ -1883,15 +1881,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //29. Add Header text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
 
         //30. Add Subhead text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header2_text]').SetHTML('Signup Subheader Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header2_text]').SetHTML('Signup Subheader Text Test'))");
 
         //31. Add Bottom text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[bottom_text]').SetHTML('Signup Bottom Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[bottom_text]').SetHTML('Signup Bottom Text Test'))");
 
         //32. Click next step
 
@@ -1934,17 +1932,17 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //35. Add Header text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
         this.pause4();
 
         //36. Add subheader text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
         this.pause4();
 
         //37. Add bottom text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
         this.pause4();
 
         //38. Click Next Step
@@ -1954,17 +1952,17 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //39. Add Invite Friends Head text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
         this.pause4();
 
         //40. Add Invite Friends Subhead text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
         this.pause4();
 
         //41. Add Invite Friends bottom text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
         this.pause4();
 
         //42. Click Next Step
@@ -1974,15 +1972,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //43. Add thank you head text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header1_text]').SetHTML('Thank You Header Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header1_text]').SetHTML('Thank You Header Text Test'))");
 
         //44. Add thank you sub text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header2_text]').SetHTML('Thank You Subheader Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header2_text]').SetHTML('Thank You Subheader Text Test'))");
 
         //45. Add thank you bot text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[bottom_text]').SetHTML('Thank You Bottom Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[bottom_text]').SetHTML('Thank You Bottom Text Test'))");
 
         //46. Add twitter copy
 
@@ -2033,15 +2031,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //Add Closed head text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header1_text]').SetHTML('Closed Page Header Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header1_text]').SetHTML('Closed Page Header Text Test'))");
 
         //Add thank you sub text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header2_text]').SetHTML('Closed Page Subheader Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header2_text]').SetHTML('Closed Page Subheader Text Test'))");
 
         //Add thank you bot text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[bottom_text]').SetHTML('Closed Page Bottom Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[bottom_text]').SetHTML('Closed Page Bottom Text Test'))");
 
 
         // Choose Module 1 Image
@@ -2085,7 +2083,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //Email Body Text
 
-        ((JavascriptExecutor)client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_email_settings[body_text]').SetHTML('Invite Email Text Test'))");
+        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_email_settings[body_text]').SetHTML('Invite Email Text Test'))");
 
         // Click Next Step
 
@@ -2247,7 +2245,7 @@ public abstract class iTestCaseUD extends ITestCase {
      *
      */
     public void goBackToUDHomepage(){
-        this.client.navigate().to(UDdomain);
+        client.get(UDdomain);
     }
 
     /**
@@ -2285,38 +2283,38 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_headerHelper_Client.clickLeisure();
         this.pause1();
 
-        lastURL = this.client.getCurrentUrl();
+        lastURL = client.getCurrentUrl();
 
         Assert.assertTrue(isLeisureAccessible());
         ud_headerHelper_Client.clickDriven();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
         this.pause1();
         Assert.assertTrue(isPerksAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickParties();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickKempt();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickMobile();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
 
     }
@@ -2346,32 +2344,32 @@ public abstract class iTestCaseUD extends ITestCase {
         Assert.assertTrue(isFoodAccessible());
         ud_headerHelper_Client.clickEntertainmentLV();
         this.pause1();
-        lastURL = this.client.getCurrentUrl();
+        lastURL = client.getCurrentUrl();
         Assert.assertTrue(isEntertainmentAccessible());
 
         ud_headerHelper_Client.clickPerksLV();
         this.pause1();
         Assert.assertTrue(isPerksAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickPartiesLV();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isPartiesLVAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickKemptLV();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isKemptLVAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickMobileLV();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isMobileLVAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
 
     }
@@ -2410,37 +2408,37 @@ public abstract class iTestCaseUD extends ITestCase {
         Assert.assertTrue(isEntertainmentAccessible());
         ud_headerHelper_Client.clickTravelNational();
         this.pause1();
-        lastURL = this.client.getCurrentUrl();
+        lastURL = client.getCurrentUrl();
 
         Assert.assertTrue(isTravelAccessible());
 
         Assert.assertTrue(ud_headerHelper_Client.isDrivenNationalAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
         this.pause1();
         Assert.assertTrue(isPerksAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickPartiesNational();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isPartiesNationalAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickKemptNational();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isKemptNationalAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickMobileNational();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isMobileNationalAccessible());
-        //this.client.navigate().back();
-        this.client.navigate().to(lastURL);
+        //client.navigate().back();
+        client.get(lastURL);
 
     }
 
@@ -2478,38 +2476,38 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_headerHelper_Client.clickLeisure();
         this.pause1();
 
-        lastURL = this.client.getCurrentUrl();
+        lastURL = client.getCurrentUrl();
 
         Assert.assertTrue(isLeisureAccessible());
         ud_headerHelper_Client.clickDriven();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
 
-        //this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.
-        this.client.navigate().to(lastURL);
+        //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
         //this.pause1();
-        //this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.
-        this.client.navigate().to(lastURL);
+        //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
         this.pause1();
         Assert.assertTrue(isPerksAccessible());
-        //this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.
-        this.client.navigate().to(lastURL);
+        //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickParties();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
-        //this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.
-        this.client.navigate().to(lastURL);
+        //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
+        client.get(lastURL);
 
         ud_headerHelper_Client.clickKempt();
         this.pause1();
         Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
-        //this.client.navigate().back(); can't be used with Safari, because its history navigation does not work.
-        this.client.navigate().to(lastURL);
+        //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
+        client.get(lastURL);
 
     }
 
@@ -3239,7 +3237,7 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        this.client.navigate().to(UDdomain);
+        client.get(UDdomain);
 
         try {
             Thread.sleep(3000);
@@ -3271,7 +3269,7 @@ public abstract class iTestCaseUD extends ITestCase {
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        this.client.navigate().to(UDdomain);
+        client.get(UDdomain);
 
         try {
             Thread.sleep(3000);

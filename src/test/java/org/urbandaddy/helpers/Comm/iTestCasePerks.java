@@ -18,13 +18,12 @@ public abstract class iTestCasePerks extends ITestCase {
     public void editSettingsPerks(){
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
 
-        lastURL = this.client.getCurrentUrl();
+        lastURL = client.getCurrentUrl();
 
         perks_headerHelper_Client.clickMyAccount();
         perks_headerHelper_Client.isMyAccountAccessible();
-        //this.client.navigate().back();
 
-        this.client.navigate().to(lastURL);
+        client.get(lastURL);
     }
 
     /**
@@ -33,10 +32,10 @@ public abstract class iTestCasePerks extends ITestCase {
      */
     public void visitPerksFirstTime(){
 
-        // enter UDdomain name, hit enter, arrive on homepage
-        this.client.navigate().to(Perksdomain);
-        this.client.manage().deleteAllCookies();
-        this.client.navigate().to(Perksdomain);
+        // enter UD domain name, hit enter, arrive on homepage
+        client.get(Perksdomain);
+        client.manage().deleteAllCookies();
+        client.get(Perksdomain);
     }
 
     /**
@@ -59,7 +58,7 @@ public abstract class iTestCasePerks extends ITestCase {
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
         perks_sealHelper_Client = new Perks_SealHelper_Client(client);
 
-        this.client.navigate().to(Perksdomain);
+        client.get(Perksdomain);
 
         try {
             Thread.sleep(3000);
