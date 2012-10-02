@@ -107,6 +107,7 @@ public abstract class ITestCase {
             catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            this.client.setFileDetector(new LocalFileDetector());
 
         } else if (DriverType.Win7IE9Remote.toString().equals(driverType)) {
             DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
@@ -124,6 +125,7 @@ public abstract class ITestCase {
             catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            this.client.setFileDetector(new LocalFileDetector());
 
         } else if (DriverType.IESauce.toString().equals(driverType)) {
 
@@ -141,6 +143,7 @@ public abstract class ITestCase {
             catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            this.client.setFileDetector(new LocalFileDetector());
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         } else if (DriverType.ChromeSauce.toString().equals(driverType)) {
@@ -159,6 +162,7 @@ public abstract class ITestCase {
             catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            this.client.setFileDetector(new LocalFileDetector());
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         } else if (DriverType.MacFF14Sauce.toString().equals(driverType)) {
@@ -176,6 +180,7 @@ public abstract class ITestCase {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            this.client.setFileDetector(new LocalFileDetector());
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         } else if (DriverType.MacSafariSauce.toString().equals(driverType)) {
@@ -192,6 +197,7 @@ public abstract class ITestCase {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            this.client.setFileDetector(new LocalFileDetector());
             client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         } else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
@@ -200,6 +206,8 @@ public abstract class ITestCase {
 
             capabilities.setCapability("platform", "Windows 2003");
             capabilities.setCapability("name", "Win7 FireFox Regression test");
+            capabilities.setCapability("tags", "");
+
 
             try {
                 this.client = new RemoteWebDriver(
@@ -277,11 +285,7 @@ public abstract class ITestCase {
      * @return path to image dir
      */
     public String returnImgPath () {
-        if (System.getProperty("os.name").contains("Windows")) {
-            return curDir + "\\src\\test\\upload_data\\";
-        } else {
-            return curDir + "/src/test/upload_data/";
-        }
+        return curDir + "/src/test/upload_data/";
     }
 
     protected String imagePath = returnImgPath();
@@ -431,6 +435,8 @@ public abstract class ITestCase {
 
     @AfterMethod
     public void afterMainMethod() {
+        // Sauce Stuff here
+
         this.afterMethod();
         client.quit();
     }

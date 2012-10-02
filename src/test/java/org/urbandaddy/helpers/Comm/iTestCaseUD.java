@@ -571,6 +571,7 @@ public abstract class iTestCaseUD extends ITestCase {
      * @param articleID This comes from the return of createRoundUP()
      */
     public void confirmRoundUP(String articleID) {
+        System.out.println("Article ID> " + articleID);
         client.get("http://ud-branch.thedaddy.co/newsletter/roundup/" + articleID + "?preview=true");
         ud_roundUP_client = new UD_RoundUP_Client(client);
         Assert.assertTrue(ud_roundUP_client.isArticleTitle1Present());
@@ -3301,13 +3302,7 @@ public abstract class iTestCaseUD extends ITestCase {
      */
     public void logoutUD(){
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
-
         ud_headerHelper_Client.clickLogout();
-
-        // do all footer checks	for logged out state
-        ud_footerHelper_Client = new UD_FooterHelper_Client(client);
-        this.checkUDHomepageCityFooterLoggedOut();
-
     }
 
     /**
