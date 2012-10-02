@@ -847,9 +847,11 @@ public abstract class iTestCaseUD extends ITestCase {
                 client.switchTo().window(popupHandle);
 
                 // select Footer template
-                this.pause3();
 
-                WebElement bottom_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
+                System.out.println("Trying to access the dropdown");
+
+                WebElement bottom_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
+
                 List<WebElement> bottom_ad_type_options = bottom_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : bottom_ad_type_options){
                     if(option.getText().equals("49ers SF 11-8-11 footer (Footer)")) {
@@ -858,8 +860,10 @@ public abstract class iTestCaseUD extends ITestCase {
                     }
                 }
 
-                //				d. 	Click Save
-                client.findElement(By.id("save_button")).click();
+                //d. 	Click Save
+
+                WebElement clickMe = checkForBy("id","save_button",5);
+                clickMe.click();
                 this.pause1();
 
                 //After finished your operation in pop-up just select the main window again
@@ -873,8 +877,8 @@ public abstract class iTestCaseUD extends ITestCase {
 //		a.	Select ad from component dropdown
 
 //        		a.	Select ad from component dropdown
-
-        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
+        WebElement add_right_components = checkForBy("id","_select_modules_right",5);
+        //WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
         List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
 
         for(WebElement option : add_right_components_options){
@@ -919,7 +923,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 // select Footer template
 
-                WebElement right_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
+                WebElement right_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
                 List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : right_ad_type_options){
                     if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
@@ -943,7 +947,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 //	29.   Choose business type
 
-        WebElement business_type = client.findElement(By.id("article_business_type_id"));
+        WebElement business_type = checkForBy("id","article_business_type_id",5);
         List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
         for(WebElement option : business_type_options){
             if(option.getText().equals("Clothing")) {

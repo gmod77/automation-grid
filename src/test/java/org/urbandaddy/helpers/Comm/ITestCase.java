@@ -25,6 +25,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 //import org.openqa.selenium.remote.RemoteWebDriver;
 
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -37,6 +39,8 @@ import org.testng.annotations.Parameters;
 //Workflow specific imports
 
 import org.urbandaddy.helpers.*;
+
+import javax.annotation.Nullable;
 //import org.urbandaddy.helpers.ResetEmailHelper_Client;
 //import org.testng.Assert;
 //import org.testng.annotations.Test;
@@ -432,6 +436,58 @@ public abstract class ITestCase {
         checkEmailHelper_Client.clientLogoutGmail();
     }
 
+    /**
+     * Use the checkForBy method to extend some functionality to searching for
+     * elements. Attempts to find the element 3 times before throwing an error.
+     *
+     * @param type  Search by name, xpath, tagname, classname, css, id
+     * @param check Enter the name of the element you're looking for
+     * @param timeout Enter the number of seconds for the timeout
+     * @return that web element or throw an error
+     */
+    public WebElement checkForBy(final String type, String check, int timeout){
+        int counter = 0;
+        boolean flag = false;
+        final String ele;
+        ele = check;
+        WebElement a = null;
+
+        do {
+            try {
+                System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
+                a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
+                    @Override
+                    public WebElement apply(@Nullable WebDriver d) {
+                        WebElement ret = null;
+                        if (type.equals("name")) {
+                            ret = d.findElement(By.name(ele));
+                        } else if (type.equals("xpath")) {
+                            ret = d.findElement(By.xpath(ele));
+                        } else if (type.equals("tagname")) {
+                            ret = d.findElement(By.tagName(ele));
+                        } else if (type.equals("classname")) {
+                            ret = d.findElement(By.className(ele));
+                        } else if (type.equals("css")) {
+                            ret = d.findElement(By.cssSelector(ele));
+                        } else if (type.equals("id")) {
+                            ret = d.findElement(By.id(ele));
+                        }
+                        return ret;
+                    }
+                });
+                flag = true;
+            } catch (TimeoutException e) {
+                counter++;
+                System.out.println("Attempt " + counter + ": Could not find> " + ele);
+                System.out.println("Trying again");
+            }
+        } while (counter <= 2 && !flag);
+        if (a == null) {
+            throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
+        } else {
+        return a;
+        }
+    }
 
     @AfterMethod
     public void afterMainMethod() {
