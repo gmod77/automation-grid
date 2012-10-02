@@ -1,13 +1,14 @@
 package org.urbandaddy.helpers;
 
 //import org.openqa.selenium.By;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 //import java.util.concurrent.TimeUnit;
 //import org.openqa.selenium.HasInputDevices;
 //import org.openqa.selenium.Mouse;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 //import org.openqa.selenium.interactions.internal.Coordinates;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
@@ -402,7 +403,7 @@ public void clickSkip(){
 	el.click();
 }
 
-public void clickCloseFinalModal(){
+public void clickCloseFinalModal() throws IOException {
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
 	this.WaitForElementPresent(str, 20);
 	WebElement el = client.findElement(ByLocator(str));
@@ -411,6 +412,9 @@ public void clickCloseFinalModal(){
 	try {
 	Thread.sleep(3000);
 	} catch (InterruptedException e) {
+        File srcFile = ((TakesScreenshot)client).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(srcFile, new File(System.getProperty("user.dir")+"/error_screenshot.png"));
+        System.out.println("Error Screenshot to> "+ System.getProperty("user.dir") + "/error_screenshot.png");
 	e.printStackTrace();
 		}
 
