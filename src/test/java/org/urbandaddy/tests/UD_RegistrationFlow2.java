@@ -1,47 +1,61 @@
 package org.urbandaddy.tests;
+import org.testng.Reporter;
 import org.urbandaddy.helpers.Comm.iTestCaseUD;
 import org.testng.annotations.Test;
-
-
 
 
 public class UD_RegistrationFlow2 extends iTestCaseUD {
 	
 	@Test (groups = "Smoke")
-	public void flow1(){
-		visitUDFirstTime();
-		//1. client signs up and logs in
+	public void registerAndCheck(){
 
+        Reporter.log("Visiting Home Page for the first time", true);
+		visitUDFirstTime();
+
+        Reporter.log("Access New York from the UD Homepage", true);
 		accessNewYorkFromUDHomepage();
 
+        Reporter.log("Sign up for a new account", true);
 		signUpUD_viaNewYork();
-		
+
+        Reporter.log("Edit settings", true);
  		editSettingsUD();
 
+        Reporter.log("Do homepage checks while logged in",true);
 		doChecksCityHomePageLoggedIn();
 
+        Reporter.log("Log out", true);
 		logoutUD();
+
+        Reporter.log("Return to homepage", true);
         goBackToUDHomepage();
+
+        Reporter.log("Complete a password reset", true);
 		resetPasswordUD();
 
+        Reporter.log("Redo checks while logged out", true);
 		doChecksCityHomePageLoggedOut();
-		
-		loginToGmail();
-		verifyWelcomeUDEmailReceived();
+    }
+
+    @Test (groups = "Smoke")
+    public void verifyEmailReceived(){
+
+        Reporter.log("Log in to Gmail", true);
+        loginToGmail();
+
+        Reporter.log("Verify Welcome to UD Email was received", true);
+        verifyWelcomeUDEmailReceived();
+
+        Reporter.log("Verify Invitation Email was received", true);
 		verifyInvitationsUDEmailsReceived();
+
+        Reporter.log("Verify Password Reset Email was received", true);
 		verifyResetPasswordUDRequestReceivedandPasswordReset();
+
+        Reporter.log("Verify Edit Settings Email was received", true);
 		verifyEditSettingsUDEmailReceived();
+    }
 
-//		
-//		logoutUD();
-//		doChecksCityHomePageLoggedOut();
-//
-        // Login Using New Password and then LogOut
-// 		loginUD();
-// 		logoutUD();
-
-	}
-	
 	@Override
 	public void beforeMethod() {
 
