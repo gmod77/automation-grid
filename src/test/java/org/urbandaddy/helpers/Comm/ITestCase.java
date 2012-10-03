@@ -473,6 +473,7 @@ public abstract class ITestCase {
                         } else if (type.equals("id")) {
                             ret = d.findElement(By.id(ele));
                         }
+                        System.out.println("Found> " + ele);
                         return ret;
                     }
                 });

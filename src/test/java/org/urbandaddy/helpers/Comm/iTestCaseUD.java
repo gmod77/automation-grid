@@ -1745,7 +1745,9 @@ public abstract class iTestCaseUD extends ITestCase {
         //2. Click on Create
 
         client.get(UD_Admin_domain+"/pmt_universal_settings/create");
-        this.pause3();
+        // Make sure the page loaded
+        checkForBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[2]/input",10);
+
 
         //3. Enter Name
         String campaignName ="PMT "+ emailFormat.format(now);
@@ -1759,7 +1761,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.id("pmt_universal_settings_campaign_disabled")).click();
 
-        //Select Meber source created earlier
+        //Select Member source created earlier
 
         WebElement status = client.findElement(By.id("pmt_universal_settings_member_source_id"));
         List<WebElement> status_options = status.findElements(By.tagName("option"));
@@ -1803,19 +1805,17 @@ public abstract class iTestCaseUD extends ITestCase {
         //???	 ↓ Only PDF files are allowed  ↓ for Rules and Regulations field???
 
         client.findElement(By.name("save")).click();
-        this.pause1();
 
-        //18. Click Next Step
+        // Make sure Success message displays
+        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause3();
-
 
         //19. Click Add Partner
         // Partner 1
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[2]/input")).click();
-        this.pause3();
+        WebElement addPartner = checkForBy("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
+        addPartner.click();
 
         //20. Enter partner name
 
@@ -1840,20 +1840,22 @@ public abstract class iTestCaseUD extends ITestCase {
         //25. Click Save
 
         client.findElement(By.name("save")).click();
-        this.pause3();
+        checkForBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+
 
         //26. Click List
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li/input")).click();
-        this.pause3();
+        client.findElement(By.xpath(".//*[@id='sf_admin_edit_form']/ul/li[1]/input")).click();
+
 
         //27. Repeat Steps 19-26 for 2nd partner slot
 
         //19. Click Add Partner
         // Partner 2
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[2]/input")).click();
-        this.pause3();
+        WebElement addPartner2 = checkForBy("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
+        addPartner2.click();
+
 
         //20. Enter partner name
 
@@ -1878,22 +1880,24 @@ public abstract class iTestCaseUD extends ITestCase {
         //25. Click Save
 
         client.findElement(By.name("save")).click();
-        this.pause3();
+        checkForBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
         //26. Click List
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li/input")).click();
-        this.pause3();
+        checkForBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[1]/input",10).click();
+        //client.findElement(By.xpath(".//*[@id='sf_admin_edit_form']/ul/li[1]/input")).click();
 
 
         //28. Click Next Step
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
-        this.pause3();
+        checkForBy("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
+//        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
+//        this.pause3();
 
 
         //29. Add Header text
-
+        // Make sure we're on the next page
+        checkForBy("xpath",".//*[@id='sf_admin_container']/h1",10);
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
 
         //30. Add Subhead text
@@ -1907,7 +1911,8 @@ public abstract class iTestCaseUD extends ITestCase {
         //32. Click next step
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
-        this.pause3();
+        // Wait for success message
+        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //33. Select all editions
 
@@ -1946,42 +1951,46 @@ public abstract class iTestCaseUD extends ITestCase {
         //35. Add Header text
 
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
-        this.pause4();
+        //this.pause4();
 
         //36. Add subheader text
 
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
-        this.pause4();
+        //this.pause4();
 
         //37. Add bottom text
 
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
-        this.pause4();
+        //this.pause4();
 
         //38. Click Next Step
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
-        this.pause3();
+        // Wait for success message
+        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+
 
         //39. Add Invite Friends Head text
 
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
-        this.pause4();
+        //this.pause4();
 
         //40. Add Invite Friends Subhead text
 
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
-        this.pause4();
+        //this.pause4();
 
         //41. Add Invite Friends bottom text
 
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
-        this.pause4();
+        //this.pause4();
 
         //42. Click Next Step
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
-        this.pause3();
+        // Wait for success message
+        checkForBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+
 
         //43. Add thank you head text
 
@@ -2038,7 +2047,8 @@ public abstract class iTestCaseUD extends ITestCase {
         //56. Click Next Step
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
-        this.pause3();
+        //Check for success message
+        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //57. Repeat Steps for the Closed page
 
@@ -2082,7 +2092,8 @@ public abstract class iTestCaseUD extends ITestCase {
         //56. Click Next Step
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
-        this.pause3();
+        // Check for success message
+        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //58. Invite Email Settings
 
@@ -2101,19 +2112,23 @@ public abstract class iTestCaseUD extends ITestCase {
         // Click Next Step
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
-        this.pause3();
+        //Check for success message
+        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //59. Go to newly created campaign
 
         //Back to PMT Universal Settings List
 
         client.get(UD_Admin_domain+"/pmt_universal_settings");
-        this.pause3();
+        // Make sure the page shows up
+        checkForBy("xpath",".//*[@id='sf_admin_container']/h1",10);
 
-        // Click on the campaign just created
+
+        // Get the campaign just created
         System.out.println(campaignName);
-        client.findElement(By.linkText(campaignName)).click();
-        this.pause3();
+        WebElement campaignLink = client.findElement(By.linkText(campaignName));
+        client.get(campaignLink.getAttribute("href"));
+
 
         //60. 		Check for elements
 
