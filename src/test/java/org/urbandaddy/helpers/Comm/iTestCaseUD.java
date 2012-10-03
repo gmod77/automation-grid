@@ -3030,14 +3030,6 @@ public abstract class iTestCaseUD extends ITestCase {
         }
         ud_signupHelper_Client.clickSubmit();
 
-        try {
-            WebDriverWait wait = new WebDriverWait(client, 15);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingMessage")));
-        } catch (TimeoutException e) {
-            System.out.println("Timed out waiting for next page to load");
-        }
-
-
     }
 
     /**
@@ -3054,6 +3046,8 @@ public abstract class iTestCaseUD extends ITestCase {
 //step3, 3rd signup modal: Invite Friends
 
 //		ud_signupHelper_Client.clickInvite();
+
+        checkForBy("xpath","//html/body/div[5]/div/div/div/form[1]/div/div[1]/input",10);
 
         ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
         ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
