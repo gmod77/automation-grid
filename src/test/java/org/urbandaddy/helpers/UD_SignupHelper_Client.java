@@ -403,19 +403,16 @@ public void clickSkip(){
 	el.click();
 }
 
-public void clickCloseFinalModal() throws IOException {
+public void clickCloseFinalModal() {
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
 	this.WaitForElementPresent(str, 20);
 	WebElement el = client.findElement(ByLocator(str));
 	el.click();
 
 	try {
-	Thread.sleep(3000);
+	    Thread.sleep(3000);
 	} catch (InterruptedException e) {
-        File srcFile = ((TakesScreenshot)client).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File(System.getProperty("user.dir")+"/error_screenshot.png"));
-        System.out.println("Error Screenshot to> "+ System.getProperty("user.dir") + "/error_screenshot.png");
-	e.printStackTrace();
+	    e.printStackTrace();
 		}
 
 	}

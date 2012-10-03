@@ -399,7 +399,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 26. choose position Email_banner
 
-        WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
+        WebElement article1_position = checkForBy("id","article_image_article_image_position_id",5);
         List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
         for(WebElement option : position_options1){
             if(option.getText().equals("Email_Banner")) {
@@ -472,7 +472,7 @@ public abstract class iTestCaseUD extends ITestCase {
             e.printStackTrace();
         }
 
-        //		c.	Choose any Tower add.
+        //	c.	Choose any Tower add.
         //set main window handle before pop-ups pop up
         String mwh2=client.getWindowHandle();
 
@@ -493,7 +493,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 // select Footer template
 
-                WebElement right_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
+                WebElement right_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
                 List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : right_ad_type_options){
                     if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
@@ -847,8 +847,6 @@ public abstract class iTestCaseUD extends ITestCase {
                 client.switchTo().window(popupHandle);
 
                 // select Footer template
-
-                System.out.println("Trying to access the dropdown");
 
                 WebElement bottom_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
 
@@ -1650,7 +1648,10 @@ public abstract class iTestCaseUD extends ITestCase {
 
         this.pause1();
         // Verify "Test email has been sent" success message
-        Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
+
+
+        Assert.assertTrue((checkForBy("xpath","//html/body/div[3]/div/div/h2",5)).getText().contains("Test email has been sent"));
+        //Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
 //Add an e-mail address to the Send To field, Click Send Test Mailing, 
         client.findElement(By.id("mailing_send_to")).sendKeys("udtesterjenkins@gmail.com");
@@ -3011,8 +3012,12 @@ public abstract class iTestCaseUD extends ITestCase {
         }
         ud_signupHelper_Client.clickSubmit();
 
-        WebDriverWait wait = new WebDriverWait(client, 10);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingMessage")));
+        try {
+            WebDriverWait wait = new WebDriverWait(client, 15);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingMessage")));
+        } catch (TimeoutException e) {
+            System.out.println("Timed out waiting for next page to load");
+        }
 
 
     }
