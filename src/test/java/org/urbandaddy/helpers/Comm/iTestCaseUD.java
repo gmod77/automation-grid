@@ -1782,7 +1782,9 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //8. Choose a background image, must be 1280 by 568
 
-        client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys(imagePath + "background image.jpg");
+        String PMTBackground = imagePath + "background image.jpg";
+        System.out.println(PMTBackground);
+        client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys(PMTBackground);
 
         //9. Choose a logo, must be 250 by 100
 
@@ -1799,7 +1801,9 @@ public abstract class iTestCaseUD extends ITestCase {
         //12. Link to a pdf for Rules and regs
 
         // not sure why this won't work
-        client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(imagePath + "rules_regulations.pdf");
+        String PMTPdf = imagePath + "rules_regulations.pdf";
+        System.out.println(PMTPdf);
+        client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(PMTPdf);
 
         //13. Click SAVE
         //???	 ↓ Only PDF files are allowed  ↓ for Rules and Regulations field???
