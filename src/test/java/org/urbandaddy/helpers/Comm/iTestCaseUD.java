@@ -1557,7 +1557,8 @@ public abstract class iTestCaseUD extends ITestCase {
                 client.switchTo().window(popupHandle);
                 // click save
                 this.pause3();
-                client.findElement(By.id("save_button")).click();
+                checkForBy("id","save_button",5).click();
+                //client.findElement(By.id("save_button")).click();
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh);
