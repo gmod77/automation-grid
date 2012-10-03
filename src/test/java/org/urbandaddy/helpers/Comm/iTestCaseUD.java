@@ -1799,7 +1799,7 @@ public abstract class iTestCaseUD extends ITestCase {
         //12. Link to a pdf for Rules and regs
 
         // not sure why this won't work
-        client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(imagePath + "rules & regulations.pdf");
+        client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(imagePath + "rules_regulations.pdf");
 
         //13. Click SAVE
         //???	 ↓ Only PDF files are allowed  ↓ for Rules and Regulations field???
