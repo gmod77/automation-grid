@@ -700,7 +700,7 @@ public abstract class iTestCaseUD extends ITestCase {
         this.pause1();
 
         //browse to 1st image
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image001_optionA.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image001_optionA.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -723,7 +723,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 
         //browse to 2nd image
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image002_EmailBanner.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image002_EmailBanner.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -745,7 +745,7 @@ public abstract class iTestCaseUD extends ITestCase {
         this.pause1();
 
         //browse to 3rd image
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image003_thumbnail.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image003_thumbnail.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1020,7 +1020,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\solon.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(imagePath + "solon.jpg");
 
 
 //		g.       Check image url
@@ -1093,7 +1093,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\plato.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input")).sendKeys(imagePath + "plato.jpg");
 
 
 //		g.       Check image url
@@ -1168,7 +1168,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\socrates.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input")).sendKeys(imagePath + "socrates.jpg");
 
 
 //		g.       Check image url
@@ -1309,7 +1309,7 @@ public abstract class iTestCaseUD extends ITestCase {
         client.get(UD_Admin_domain+"/article_images/create");
 
 //browse to 1st image
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image001_optionA.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image001_optionA.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1332,7 +1332,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 
 //browse to 2nd image
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image002_EmailBanner.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image002_EmailBanner.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1354,7 +1354,7 @@ public abstract class iTestCaseUD extends ITestCase {
         this.pause1();
 
 //browse to 3rd image
-        client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\image003_thumbnail.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image003_thumbnail.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1780,7 +1780,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //8. Choose a background image, must be 1280 by 568
 
-        client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\background image.jpg");
+        client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys(imagePath + "background image.jpg");
 
         //9. Choose a logo, must be 250 by 100
 
@@ -1797,7 +1797,7 @@ public abstract class iTestCaseUD extends ITestCase {
         //12. Link to a pdf for Rules and regs
 
         // not sure why this won't work
-        client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\rules & regulations.pdf");
+        client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(imagePath + "rules & regulations.pdf");
 
         //13. Click SAVE
         //???	 ↓ Only PDF files are allowed  ↓ for Rules and Regulations field???
@@ -1835,7 +1835,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //24. Choose logo, must be 170 by 97
 
-        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\partner logo-1.png");
+        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(imagePath + "partner logo-1.png");
 
         //25. Click Save
 
@@ -1873,7 +1873,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //24. Choose logo, must be 170 by 97
 
-        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\partner logo-2.png");
+        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(imagePath + "partner logo-2.png");
 
         //25. Click Save
 
@@ -2009,11 +2009,11 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //49. Choose FB image, must be 50 X 50
 
-        client.findElement(By.id("pmt_thank_you_settings_facebook_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\fb-image-test.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_facebook_image_path")).sendKeys(imagePath + "fb-image-test.jpg");
 
         //50. Choose Module 1 Image
 
-        client.findElement(By.id("pmt_thank_you_settings_module1_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-driven.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_module1_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-driven.jpg");
 
         //51. Add Module 1 URL
 
@@ -2021,7 +2021,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //52. Choose Module 2 image
 
-        client.findElement(By.id("pmt_thank_you_settings_module2_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-jetset.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_module2_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
 
         //53. Add module 2 url
 
@@ -2029,7 +2029,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //54. Choose Module 3 image
 
-        client.findElement(By.id("pmt_thank_you_settings_module3_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-perks.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_module3_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-perks.jpg");
 
         //55. Add module 3 url
 
@@ -2057,7 +2057,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // Choose Module 1 Image
 
-        client.findElement(By.id("pmt_closed_settings_module1_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-driven.jpg");
+        client.findElement(By.id("pmt_closed_settings_module1_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-driven.jpg");
 
         //51. Add Module 1 URL
 
@@ -2065,7 +2065,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //52. Choose Module 2 image
 
-        client.findElement(By.id("pmt_closed_settings_module2_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-jetset.jpg");
+        client.findElement(By.id("pmt_closed_settings_module2_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
 
         //53. Add module 2 url
 
@@ -2073,7 +2073,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //54. Choose Module 3 image
 
-        client.findElement(By.id("pmt_closed_settings_module3_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\Thank You-Campaign Closed Page Image Module-perks.jpg");
+        client.findElement(By.id("pmt_closed_settings_module3_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-perks.jpg");
 
         //55. Add module 3 url
 
@@ -2088,7 +2088,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //Choose Invite Email Header Image
 
-        client.findElement(By.id("pmt_invite_email_settings_header_image_path")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email-header Image.jpg");
+        client.findElement(By.id("pmt_invite_email_settings_header_image_path")).sendKeys(imagePath + "email-header Image.jpg");
 
         //Subject Text
 
