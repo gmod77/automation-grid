@@ -211,7 +211,8 @@ public abstract class ITestCase {
             capabilities.setCapability("platform", "Windows 2003");
             capabilities.setCapability("name", "Win7 FireFox Regression test");
             capabilities.setCapability("tags", "");
-
+            capabilities.setCapability("command-timeout", "60"); //one minute per step
+            capabilities.setCapability("max-duration", "1200");  //twenty minutes per test
 
             try {
                 this.client = new RemoteWebDriver(

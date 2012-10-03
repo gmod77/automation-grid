@@ -15,6 +15,7 @@ import org.testng.Assert;
 
 //Workflow specific imports
 
+import org.testng.Reporter;
 import org.urbandaddy.helpers.*;
 
 import javax.annotation.Nullable;
@@ -1651,7 +1652,7 @@ public abstract class iTestCaseUD extends ITestCase {
         // Verify "Test email has been sent" success message
 
 
-        Assert.assertTrue((checkForBy("xpath","//html/body/div[3]/div/div/h2",5)).getText().contains("Test email has been sent"));
+        Assert.assertTrue((checkForBy("xpath", "//html/body/div[3]/div/div/h2", 5)).getText().contains("Test email has been sent"));
         //Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
 //Add an e-mail address to the Send To field, Click Send Test Mailing, 
@@ -2464,6 +2465,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //do all homepage footer checks
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+
         Assert.assertTrue(ud_headerHelper_Client.isNightlifePresent());
         Assert.assertTrue(ud_headerHelper_Client.isFoodPresent());
         Assert.assertTrue(ud_headerHelper_Client.isStylePresent());
