@@ -2,12 +2,12 @@
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
 
-	<parameter name="driverType" value="Win7FF14Sauce"></parameter>
-	<parameter name="profilePath" value=""></parameter>
+	<parameter name="driverType" value="Win7FF14Sauce" />
+	<parameter name="profilePath" value="" />
 
     <test name="UD_Admin_Create_RoundUp">
         <classes>
-            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP_Upload" />
+            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />
         </classes>
     </test>
 	
