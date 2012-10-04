@@ -266,60 +266,66 @@ public abstract class iTestCaseUD extends ITestCase {
         this.pause1();
 
         // 4. change status to approved
-        WebElement status = client.findElement(By.id("article_article_status_id"));
-        List<WebElement> status_options = status.findElements(By.tagName("option"));
-        for(WebElement option : status_options){
-            if(option.getText().equals("Approved")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_article_status_id","option","Approved");
+//        WebElement status = client.findElement(By.id("article_article_status_id"));
+//        List<WebElement> status_options = status.findElements(By.tagName("option"));
+//        for(WebElement option : status_options){
+//            if(option.getText().equals("Approved")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 5. click dedicated
         client.findElement(By.id("article_is_dedicated")).click();
 
         // 6. choose Roundup template
-        WebElement template = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> template_options = template.findElements(By.tagName("option"));
-        for(WebElement option : template_options){
-            if(option.getText().equals("Roundup")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_article_template_id","option","Roundup");
+//
+//        WebElement template = client.findElement(By.id("article_article_template_id"));
+//        List<WebElement> template_options = template.findElements(By.tagName("option"));
+//        for(WebElement option : template_options){
+//            if(option.getText().equals("Roundup")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 7. choose any ad campaign
-        WebElement ad_campaign = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> ad_campaign_options = ad_campaign.findElements(By.tagName("option"));
-        for(WebElement option : ad_campaign_options){
-            if(option.getText().equals("Groupon")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_article_template_id","option","Groupon");
+//        WebElement ad_campaign = client.findElement(By.id("article_article_template_id"));
+//        List<WebElement> ad_campaign_options = ad_campaign.findElements(By.tagName("option"));
+//        for(WebElement option : ad_campaign_options){
+//            if(option.getText().equals("Groupon")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 8. choose any author
-        WebElement author = client.findElement(By.id("article_author_id"));
-        List<WebElement> author_options = author.findElements(By.tagName("option"));
-        for(WebElement option : author_options){
-            if(option.getText().equals("Russ Brandom")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_author_id","option","Russ Brandom");
+//        WebElement author = client.findElement(By.id("article_author_id"));
+//        List<WebElement> author_options = author.findElements(By.tagName("option"));
+//        for(WebElement option : author_options){
+//            if(option.getText().equals("Russ Brandom")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 9.  Enter in From Display "test <test@test.com>"
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
         // 10. choose segment qa addresses
-        WebElement segment = client.findElement(By.id("details_segment"));
-        List<WebElement> segment_options = segment.findElements(By.tagName("option"));
-        for(WebElement option : segment_options){
-            if(option.getText().equals("QA Addresses")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("details_segment","option","QA Addresses");
+//        WebElement segment = client.findElement(By.id("details_segment"));
+//        List<WebElement> segment_options = segment.findElements(By.tagName("option"));
+//        for(WebElement option : segment_options){
+//            if(option.getText().equals("QA Addresses")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 11. Enter an Article title
         client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+emailFormat.format(now));
@@ -358,14 +364,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 21. Choose business type
 
-        WebElement business_type = client.findElement(By.id("article_business_type_id"));
-        List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
-        for(WebElement option : business_type_options){
-            if(option.getText().equals("Clothing")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_business_type_id","option","Clothing");
+//        WebElement business_type = client.findElement(By.id("article_business_type_id"));
+//        List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
+//        for(WebElement option : business_type_options){
+//            if(option.getText().equals("Clothing")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 22. Enter Business Specialty
         client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+emailFormat.format(now));
@@ -388,26 +395,22 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 25. Upload Email_Banner size 552 x 135
 
-        // Local Mac
-        //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
-        // For PC
-        //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
         String image1 = imagePath + "email banner 3.jpg";
-        System.out.println(image1);
         client.findElement(By.id("article_image_name")).sendKeys(image1);
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         // 26. choose position Email_banner
 
-        WebElement article1_position = checkForBy("id","article_image_article_image_position_id",5);
-        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options1){
-            if(option.getText().equals("Email_Banner")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown(checkForBy("id","article_image_article_image_position_id",5),"option","Email_Banner");
+//        WebElement article1_position = checkForBy("id","article_image_article_image_position_id",5);
+//        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
+//        for(WebElement option : position_options1){
+//            if(option.getText().equals("Email_Banner")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 27. click  save
 
@@ -428,14 +431,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 30. choose position thumbnail
 
-        WebElement article2_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options2 = article2_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options2){
-            if(option.getText().equals("Thumbnail")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_image_article_image_position_id","option","Thumbnail");
+//        WebElement article2_position = client.findElement(By.id("article_image_article_image_position_id"));
+//        List<WebElement> position_options2 = article2_position.findElements(By.tagName("option"));
+//        for(WebElement option : position_options2){
+//            if(option.getText().equals("Thumbnail")) {
+//                option.click();
+//                break;
+//            }
+//        }
 
         // 31. click save
 
@@ -449,15 +453,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //        		a.	Select ad from component dropdown
 
-        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
-        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
-
-        for(WebElement option : add_right_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("_select_modules_right","option","Ad");
+//        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
+//        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
+//        for(WebElement option : add_right_components_options){
+//            if(option.getText().equals("Ad")) {
+//                option.click();
+//                break;
+//            }
+//        }
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -494,14 +498,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 // select Footer template
 
-                WebElement right_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
-                List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
-                for(WebElement option : right_ad_type_options){
-                    if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
-                        option.click();
-                        break;
-                    }
-                }
+                selectFromDropdown(checkForBy("name","newsletter_content_slot[name]",5),"option","49ers SF 11-8-11 tower (Tower)");
+//                WebElement right_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
+//                List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
+//                for(WebElement option : right_ad_type_options){
+//                    if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
+//                        option.click();
+//                        break;
+//                    }
+//                }
                 //        d.	Click Save
                 client.findElement(By.id("save_button")).click();
                 this.pause1();
@@ -546,23 +551,16 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+emailFormat.format(now));
 
         // 38. add image size 120 x 120
-
-        //For Local Mac
-        //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("/users/sargenzi/Desktop/UDImages/round up image.jpg");
-
-        //For PC
-        //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\round up image.jpg");
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(imagePath + "round up image.jpg");
-        // 38. add Alt text to slots
+
+        // 38a. add Alt text to slots
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+emailFormat.format(now));
 
         // 39. click Save
-
         client.findElement(By.name("save")).click();
 
         // 40. Click back to article to continue preview and mailing tests
-
         return articleID;
     }
 
@@ -1230,51 +1228,22 @@ public abstract class iTestCaseUD extends ITestCase {
         client.get(UD_Admin_domain+"/articles/create");
 
         //Set Status to Approved
-        WebElement status = client.findElement(By.id("article_article_status_id"));
-        List<WebElement> status_options = status.findElements(By.tagName("option"));
-        for(WebElement option : status_options){
-            if(option.getText().equals("Approved")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_article_status_id","option","Approved");
 
         //Check Dedicated
         client.findElement(By.id("article_is_dedicated")).click();
 
         //Select Three-Column Template
-        WebElement template = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> template_options = template.findElements(By.tagName("option"));
-        for(WebElement option : template_options){
-            if(option.getText().equals("Three-Column")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_article_template_id","option","Three-Column");
 
         //Select Author: Russ Brandom
-        WebElement author = client.findElement(By.id("article_author_id"));
-        List<WebElement> author_options = author.findElements(By.tagName("option"));
-        for(WebElement option : author_options){
-            if(option.getText().equals("Russ Brandom")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_author_id","option","Russ Brandom");
 
         //From display
-
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
         //Select Segment: QA
-        WebElement segment = client.findElement(By.id("details_segment"));
-        List<WebElement> segment_options = segment.findElements(By.tagName("option"));
-        for(WebElement option : segment_options){
-            if(option.getText().equals("QA Addresses")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("details_segment","option","QA Addresses");
 
         //Enter Article Title:
 
@@ -1301,7 +1270,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         String[] separated = articleLink.split("/");
         String articleID = separated[separated.length - 1];
-//	System.out.println(articleID);
+
 
 //Add images to Article
 
@@ -1316,14 +1285,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //enter Position for 1st image: Option A Left Column
 
-        WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options1){
-            if(option.getText().equals("Option_A_Left_Column")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_image_article_image_position_id","option","Option_A_Left_Column");
 
         //click "save and add" button
 
@@ -1339,14 +1301,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //enter Position for 1st image: Option A Left Column
 
-        WebElement article2_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options2 = article2_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options2){
-            if(option.getText().equals("Email_Banner")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_image_article_image_position_id","option","Email_Banner");
 
         //click "save and add" button
 
@@ -1360,15 +1315,7 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-
-        WebElement article3_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options3 = article3_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options3){
-            if(option.getText().equals("Thumbnail")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("article_image_article_image_position_id","option","Thumbnail");
 
 //click "save and add" button
 
@@ -1406,15 +1353,8 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.id("article_keywords")).sendKeys("Three-Column Keywords Test Keywords "+emailFormat.format(now));
 
 //Business type
+        selectFromDropdown("article_business_type_id","option","Clothing");
 
-        WebElement business_type = client.findElement(By.id("article_business_type_id"));
-        List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
-        for(WebElement option : business_type_options){
-            if(option.getText().equals("Clothing")) {
-                option.click();
-                break;
-            }
-        }
 //Business specialty
 
         client.findElement(By.id("article_business_specialty")).sendKeys("Three-Column Business Specialty Test "+emailFormat.format(now));
@@ -1424,15 +1364,7 @@ public abstract class iTestCaseUD extends ITestCase {
         this.pause1();
 
 // Add Vitals to the Left Module,
-
-        WebElement left_components = client.findElement(By.id("_select_modules_left"));
-        List<WebElement> left_components_options = left_components.findElements(By.tagName("option"));
-        for(WebElement option : left_components_options){
-            if(option.getText().equals("Vitals")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("_select_modules_left","option","Vitals");
 
         try {
             Thread.sleep(1000);
@@ -1442,15 +1374,8 @@ public abstract class iTestCaseUD extends ITestCase {
 
 //Add Sponsored Love to the Left Module,	    
 
-        WebElement left_components2 = client.findElement(By.id("_select_modules_left"));
-        List<WebElement> left_components_options2 = left_components2.findElements(By.tagName("option"));
+        selectFromDropdown("_select_modules_left","option","Sponsored Love");
 
-        for(WebElement option : left_components_options2){
-            if(option.getText().equals("Sponsored Love")) {
-                option.click();
-                break;
-            }
-        }
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -1500,15 +1425,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 //Add Tools to the left Module,
 
-        WebElement left_components3 = client.findElement(By.id("_select_modules_left"));
-        List<WebElement> left_components_options3 = left_components3.findElements(By.tagName("option"));
-
-        for(WebElement option : left_components_options3){
-            if(option.getText().equals("Tools")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("_select_modules_left","option","Tools");
 
         try {
             Thread.sleep(1000);
@@ -1517,15 +1434,7 @@ public abstract class iTestCaseUD extends ITestCase {
         }
 
 //Add an Ad to the Bottom Module, 
-
-        WebElement bottom_components = client.findElement(By.id("_select_modules_center"));
-        List<WebElement> bottom_components_options = bottom_components.findElements(By.tagName("option"));
-        for(WebElement option : bottom_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("_select_modules_center","option","Ad");
 
         try {
             Thread.sleep(2000);
@@ -1573,15 +1482,7 @@ public abstract class iTestCaseUD extends ITestCase {
         }
 
 //Add an Ad to the Right Module, 
-
-        WebElement right_components = client.findElement(By.id("_select_modules_right"));
-        List<WebElement> right_components_options = right_components.findElements(By.tagName("option"));
-        for(WebElement option : right_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
+        selectFromDropdown("_select_modules_right","option","Ad");
 
         try {
             Thread.sleep(3000);
@@ -1680,14 +1581,8 @@ public abstract class iTestCaseUD extends ITestCase {
         //Change Status to Ready to Send, Click Save,
 
         //Set Status to Approved
-        WebElement status2 = client.findElement(By.id("article_article_status_id"));
-        List<WebElement> status_options2 = status2.findElements(By.tagName("option"));
-        for(WebElement option : status_options2){
-            if(option.getText().equals("Ready to Send")) {
-                option.click();
-                break;
-            }
-        }
+
+        selectFromDropdown("article_article_status_id","option","Ready to Send");
 
         //Save
         client.findElement(By.name("save")).click();

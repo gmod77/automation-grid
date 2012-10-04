@@ -7,6 +7,7 @@ import java.lang.System;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -213,6 +214,7 @@ public abstract class ITestCase {
             capabilities.setCapability("tags", "");
             capabilities.setCapability("command-timeout", "60"); //one minute per step
             capabilities.setCapability("max-duration", "1200");  //twenty minutes per test
+            capabilities.setCapability("firefox-profile-url","https://repository-udqa-ci.forge.cloudbees.com/private/ffprofile/sauce.zip");
 
             try {
                 this.client = new RemoteWebDriver(
@@ -488,6 +490,27 @@ public abstract class ITestCase {
             throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
         } else {
         return a;
+        }
+    }
+
+    public void selectFromDropdown (String dropDownId, String dropDownTagName, String text) {
+        WebElement element = client.findElement(By.id(dropDownId));
+        List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
+        for(WebElement option : elements){
+            if(option.getText().equals(text)) {
+                option.click();
+                break;
+            }
+        }
+    }
+
+    public void selectFromDropdown (WebElement element, String dropDownTagName, String text) {
+        List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
+        for(WebElement option : elements){
+            if(option.getText().equals(text)) {
+                option.click();
+                break;
+            }
         }
     }
 
