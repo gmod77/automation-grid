@@ -417,7 +417,7 @@ public abstract class ITestCase {
     public void verifyEditSettingsUDEmailReceived(String email){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
-        checkEmailHelper_Client.findInvitationEmail1("to: "+email+" subject: You've Changed");
+        checkEmailHelper_Client.findInvitationEmail1("to: " + email + " subject: You've Changed");
     }
 
     /**
