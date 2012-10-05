@@ -2,8 +2,11 @@
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
 
-	<parameter name="driverType" value="Win7FF14Sauce" />
-	<parameter name="profilePath" value="" />
+    <parameter name="driverType" value="Win7FF14Sauce" />
+    <parameter name="profilePath" value="" />
+    <parameter name="sauceEnabled" value="true" />
+    <parameter name="sauceUser" value="jenkins-urbandaddy" />
+    <parameter name="sauceKey" value="bbe0f5db-94ea-473a-b467-3ef7cd856d60" />
 
     <test name="UD_Admin_Create_RoundUp">
         <classes>

@@ -5,9 +5,10 @@ import org.testng.annotations.Test;
 
 
 
-
+//Before Class
 public class UD_Admin_Create_PMT extends iTestCaseUD {
 
+//Before Method
 @Test (groups = "Smoke")
 public void flow1(){
 	loginUDAdmin();

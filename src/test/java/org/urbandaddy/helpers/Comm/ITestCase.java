@@ -3,11 +3,12 @@ package org.urbandaddy.helpers.Comm;
 import java.io.File;
 //import java.io.IOException;
 
+import java.io.IOException;
 import java.lang.System;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
+import java.security.PublicKey;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -16,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 //import org.sikuli.script.*;
 
 
+import com.saucelabs.saucerest.SauceREST;
+import com.thoughtworks.selenium.Selenium;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,13 +31,10 @@ import org.openqa.selenium.remote.LocalFileDetector;
 
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.IResultMap;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 //import org.openqa.selenium.Cookie;
 
 //Workflow specific imports
@@ -54,183 +54,171 @@ public abstract class ITestCase {
         Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
     }
 
-    //public WebDriver client;
-
     protected RemoteWebDriver client;
+
 
 //	private static ChromeDriverService service;
 
     @BeforeMethod
-    @Parameters({ "driverType", "profilePath" })
-    public void beforeMainMethod(String driverType, String profilePath) {
-        // TODO: some config xml file
-        if (DriverType.Firefox.toString().equals(driverType)) {
+    @Parameters({ "driverType", "profilePath", "sauceEnabled","sauceUser","sauceKey" })
+    // Declare sauce variables
+    //    private static final String sauceUser = "jenkins-urbandaddy";
+    //    private static final String sauceKey = "bbe0f5db-94ea-473a-b467-3ef7cd856d60";
+    //        final String sauceUser = "sargenziano";
+    //        final String sauceKey = "c4ccd226-57b5-47f8-bab4-62b1801ff59b";
 
-            if (profilePath == null || profilePath.isEmpty()) {
-                client = new FirefoxDriver();
-                //	cms = new FirefoxDriver();
-                client.manage().window().maximize();
+    public void beforeMainMethod(String driverType, String profilePath, Boolean sauceEnabled, String sauceUser, String sauceKey) {
+
+        if (sauceEnabled) {
+
+            final String sauceUrl = "http://" + sauceUser + ":" + sauceKey + "@ondemand.saucelabs.com:80/wd/hub";
+
+            if (DriverType.IESauce.toString().equals(driverType)) {
+
+                DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+                capabilities.setCapability("version", "8");
+                capabilities.setCapability("platform", "Windows 2003");
+                capabilities.setCapability("name", "Win7 IE8 Regression test");
+
+                try {
+                    this.client = new RemoteWebDriver(
+                            new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+                            capabilities);
+                }
+                catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
+                client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            } else if (DriverType.ChromeSauce.toString().equals(driverType)) {
+
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                capabilities.setCapability("platform", "Windows 2003");
+                capabilities.setCapability("name", "Win7 Chrome Regression test");
+
+                try {
+                    this.client = new RemoteWebDriver(
+                            new URL(sauceUrl),
+                            capabilities);
+                }
+                catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
+                client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            } else if (DriverType.MacFF14Sauce.toString().equals(driverType)) {
+
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+                capabilities.setCapability("version", "14");
+                capabilities.setCapability("platform", "Mac 10.6");
+                capabilities.setCapability("name", "Mac FF14 Regression test");
+
+                try {
+                    this.client = new RemoteWebDriver(
+                            new URL(sauceUrl),
+                            capabilities);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
+                client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            } else if (DriverType.MacSafariSauce.toString().equals(driverType)) {
+
+                DesiredCapabilities capabilities = DesiredCapabilities.safari();
+                capabilities.setCapability("version", "5");
+                capabilities.setCapability("platform", "Mac 10.6");
+                capabilities.setCapability("name", "Mac Safari Regression test");
+
+                try {
+                    this.client = new RemoteWebDriver(
+                            new URL(sauceUrl),
+                            capabilities);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
+                client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            } else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
+
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+
+                capabilities.setCapability("platform", "Windows 7");
+                capabilities.setCapability("name", "Win7 FireFox Regression test");
+                capabilities.setCapability("command-timeout", "60"); //one minute per step
+                capabilities.setCapability("max-duration", "1200");  //twenty minutes per test
+
+                try {
+                    this.client = new RemoteWebDriver(
+                            new URL(sauceUrl),
+                            capabilities);
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
+                client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            }
+        } else {
+
+            final String remoteUrl = "http://jenkins-master.thedaddy.co:4444/wd/hub";
+
+            if (DriverType.Firefox.toString().equals(driverType)) {
+
+                if (profilePath == null || profilePath.isEmpty()) {
+                    client = new FirefoxDriver();
+                    client.manage().window().maximize();
+
+                } else {
+                    File file = new File(profilePath);
+                    FirefoxProfile profile = new FirefoxProfile(file);
+                    client = new FirefoxDriver(profile);
+                    client.manage().window().maximize();
+                }
+
+            } else if (DriverType.IE.toString().equals(driverType)) {
+                client = new InternetExplorerDriver();
+
+            } else if (DriverType.Ghrome.toString().equals(driverType)) {
+                client = new ChromeDriver();
+
+            } else if (DriverType.Win7FF14Remote.toString().equals(driverType)) {
+                DesiredCapabilities capability = DesiredCapabilities.firefox();
+                capability.setCapability("seleniumProtocol", "WebDriver");
+                capability.setCapability("jenkins.nodeName", "WindowsSlave2");
+                capability.setCapability("javascriptEnabled ", true);
+                capability.setVersion("14");
+
+                try {
+                    client = new RemoteWebDriver(new URL(remoteUrl), capability);
+                    client.manage().window().maximize();
+                }
+                catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
+
+            } else if (DriverType.Win7IE9Remote.toString().equals(driverType)) {
+                DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
+                capability.setCapability("seleniumProtocol", "WebDriver");
+                capability.setCapability("jenkins.nodeName", "WindowsSlave2");
+
+                try {
+                    client = new RemoteWebDriver(new URL(remoteUrl), capability);
+                    client.manage().window().maximize();
+                }
+                catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                this.client.setFileDetector(new LocalFileDetector());
 
             } else {
-                File file = new File(profilePath);
-                FirefoxProfile profile = new FirefoxProfile(file);
-                client = new FirefoxDriver(profile);
-                //	cms = new FirefoxDriver(profile);
-                client.manage().window().maximize();
+                client = new FirefoxDriver();
             }
-
-        } else if (DriverType.IE.toString().equals(driverType)) {
-            client = new InternetExplorerDriver();
-            //	cms = new InternetExplorerDriver();
-
-        } else if (DriverType.Ghrome.toString().equals(driverType)) {
-            client = new ChromeDriver();
-            //	cms = new ChromeDriver();
-
-        } else if (DriverType.Win7FF14Remote.toString().equals(driverType)) {
-            DesiredCapabilities capability = DesiredCapabilities.firefox();
-            capability.setCapability("seleniumProtocol", "WebDriver");
-
-            //capability.setCapability("browserName", "firefox10");
-            //capability.setBrowserName("firefox10");
-            //capability.setCapability("firefox_binary" , "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-            //capability.setCapability("maxInstances", 5);
-            capability.setCapability("jenkins.nodeName", "WindowsSlave2");
-            capability.setCapability("javascriptEnabled ", true);
-            //FirefoxProfile ffPrfile;
-            //ffprofile.setPreference("javascript.enabled", true);
-            capability.setVersion("14");
-
-
-            try {
-                client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
-                client.manage().window().maximize();
-                //	client.manage().window().setSize(targetSize)
-                //	resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-                //	wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-
-        } else if (DriverType.Win7IE9Remote.toString().equals(driverType)) {
-            DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
-            capability.setCapability("seleniumProtocol", "WebDriver");
-
-            capability.setCapability("jenkins.nodeName", "WindowsSlave2");
-
-            try {
-                client = new RemoteWebDriver(new URL("http://jenkins-master.thedaddy.co:4444/wd/hub"), capability);
-                client.manage().window().maximize();
-                //		client.manage().window().setSize(targetSize)
-                //		resource = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-                //		wald = new RemoteWebDriver(new URL(Config.serverJenkins), capability);
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-
-        } else if (DriverType.IESauce.toString().equals(driverType)) {
-
-            DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-            //  capabilities.setCapability("browser", "android");
-            capabilities.setCapability("version", "8");
-            capabilities.setCapability("platform", "Windows 2003");
-            capabilities.setCapability("name", "Win7 IE8 Regression test");
-
-            try {
-                this.client = new RemoteWebDriver(
-                        new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabilities);
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        } else if (DriverType.ChromeSauce.toString().equals(driverType)) {
-
-            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            //  capabilities.setCapability("browser", "android");
-            //  capabilities.setCapability("version", "5");
-            capabilities.setCapability("platform", "Windows 2003");
-            capabilities.setCapability("name", "Win7 Chrome Regression test");
-
-            try {
-                this.client = new RemoteWebDriver(
-                        new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabilities);
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        } else if (DriverType.MacFF14Sauce.toString().equals(driverType)) {
-
-            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-            //  capabilities.setCapability("browser", "android");
-            capabilities.setCapability("version", "14");
-            capabilities.setCapability("platform", "Mac 10.6");
-            capabilities.setCapability("name", "Mac FF14 Regression test");
-
-            try {
-                this.client = new RemoteWebDriver(
-                        new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabilities);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        } else if (DriverType.MacSafariSauce.toString().equals(driverType)) {
-
-            DesiredCapabilities capabilities = DesiredCapabilities.safari();
-            capabilities.setCapability("version", "5");
-            capabilities.setCapability("platform", "Mac 10.6");
-            capabilities.setCapability("name", "Mac Safari Regression test");
-
-            try {
-                this.client = new RemoteWebDriver(
-                        new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabilities);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        } else if (DriverType.Win7FF14Sauce.toString().equals(driverType)) {
-
-            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-
-            capabilities.setCapability("platform", "Windows 2003");
-            capabilities.setCapability("name", "Win7 FireFox Regression test");
-            capabilities.setCapability("tags", "");
-            capabilities.setCapability("command-timeout", "60"); //one minute per step
-            capabilities.setCapability("max-duration", "1200");  //twenty minutes per test
-            capabilities.setCapability("firefox-profile-url","https://repository-udqa-ci.forge.cloudbees.com/private/ffprofile/sauce.zip");
-
-            try {
-                this.client = new RemoteWebDriver(
-                        new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
-                        capabilities);
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            this.client.setFileDetector(new LocalFileDetector());
-            client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        } else {
-            client = new FirefoxDriver();
-            //  cms = new FirefoxDriver();
-
         }
 
         this.beforeMethod();
@@ -285,6 +273,7 @@ public abstract class ITestCase {
     protected String lastURL = "";
 
     protected String curDir = System.getProperty("user.dir");
+
 
     /**
      * Based on the OS name get the directory where
@@ -493,6 +482,13 @@ public abstract class ITestCase {
         }
     }
 
+    /**
+     * Select an item from a dropdown.
+     *
+     * @param dropDownId Provide the ID of the dropdown element
+     * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
+     * @param text Name of the object to select from the dropdown
+     */
     public void selectFromDropdown (String dropDownId, String dropDownTagName, String text) {
         WebElement element = client.findElement(By.id(dropDownId));
         List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
@@ -504,6 +500,14 @@ public abstract class ITestCase {
         }
     }
 
+    /**
+     * Select an item from a dropdown. Uses WebElement to find
+     * the dropdown. Works great with the checkForBy() method.
+     *
+     * @param element Webelement returned from checkForBy()
+     * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
+     * @param text Name of the object to select from the dropdown
+     */
     public void selectFromDropdown (WebElement element, String dropDownTagName, String text) {
         List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
         for(WebElement option : elements){
@@ -514,11 +518,24 @@ public abstract class ITestCase {
         }
     }
 
-    @AfterMethod
-    public void afterMainMethod() {
-        // Sauce Stuff here
-
+    @AfterMethod (alwaysRun = true)
+    @Parameters ({"sauceEnabled", "sauceUser", "sauceKey"})
+    public void afterMainMethod(ITestResult result, Boolean sauceEnabled, String sauceUser, String sauceKey) throws IOException {
         this.afterMethod();
+        // Sauce Stuff here
+        if(sauceEnabled) {
+            String sauceJobID = client.getSessionId().toString();
+            SauceREST sauceClient = new SauceREST(sauceUser,sauceKey);
+            Map<String, Object> sauceJob = new HashMap<String, Object>();
+            sauceJob.put("name", "Test method: " + result.getMethod().getMethodName());
+            if(result.isSuccess()) {
+                sauceClient.jobPassed(sauceJobID);
+            } else {
+                sauceClient.jobFailed(sauceJobID);
+            }
+            sauceClient.updateJobInfo(sauceJobID, sauceJob);
+        }
+        client.manage().deleteAllCookies();
         client.quit();
     }
 
@@ -536,9 +553,7 @@ public abstract class ITestCase {
 //			e.printStackTrace();
 //		}
 //	    }
-//	
-
-
+//
     public void beforeMainClass() {
         this.beforeClass();
 
@@ -550,8 +565,6 @@ public abstract class ITestCase {
 //	  public static void createAndStopService() {
 //	    service.stop();
 //	  }
-
-
     public void afterMainClass() {
         this.afterClass();
     }
@@ -571,10 +584,20 @@ public abstract class ITestCase {
 //	  public void quitDriver() {
 //	    client.quit();
 //	  }
+//    public void getSomeTestData(IResultMap context) {
+//        Set<ITestResult> results = context.getAllResults();
+//        Iterator it = results.iterator();
+//        while (it.hasNext()) {
+//            System.out.println(it.next());
+//        }
+//        this.afterTest();
+//    }
+//    public void afterMainTest() {
+//        this.afterTest();
+//    }
 
-    public void afterMainTest() {
-        this.afterTest();
-    }
+    @AfterSuite
+
 
     public abstract void beforeMethod();
 

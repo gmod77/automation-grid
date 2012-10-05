@@ -6,6 +6,7 @@ import java.util.*;
 import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -1636,6 +1637,7 @@ public abstract class iTestCaseUD extends ITestCase {
      * Create a PMT
      */
     public void createPMT(){
+
         //1. Go to Campaign Templates under Partnerships
         //2. Click on Create
 

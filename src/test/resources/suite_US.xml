@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Before Suite-->
+
 <suite name="UD_Smoke" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
-    <!-- Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce -->
-	<parameter name="driverType" value="Win7FF14Remote" />
+    <!-- Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, Win7ChromeRemote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce -->
+	<parameter name="driverType" value="Firefox" />
 	<parameter name="profilePath" value="" />
+    <parameter name="sauceEnabled" value="false" />
+    <parameter name="sauceUser" value="sargenziano" />
+    <parameter name="sauceKey" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
+
+
 
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/fadehsi2.WebDriver"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
@@ -15,21 +22,22 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <test name="UD_Admin_PMT">
-        <classes>
-            <class name="org.urbandaddy.tests.UD_Admin_Create_PMT" />
-        </classes>
-    </test>
+<!--Before Test-->
+    <!--<test name="UD_Admin_PMT">-->
+    <!--<classes>-->
+        <!--<class name="org.urbandaddy.tests.UD_Admin_Create_PMT" />-->
+    <!--</classes>-->
+    <!--</test>-->
 
 
-	
-<!-- 		<test name="UD_Admin_Smoke_3column"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />	 -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+    <!--<test name="UD_Admin_Smoke_3column">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.UD_Admin_Article_Three_Column" />-->
+        <!--</classes>-->
+    <!--</test>-->
 
- 		<!--<test name="UD_Admin_Smoke_Weekender">-->
+
+    <!--<test name="UD_Admin_Smoke_Weekender">-->
  		<!--<classes>-->
  			<!--<class name="org.urbandaddy.tests.UD_Admin_Article_Weekender" />-->
  		<!--</classes>-->
@@ -47,11 +55,12 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <!--<test name="Create_RoundUP">-->
-        <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Create_RoundUP">
+        <classes>
+            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />
+        </classes>
+    </test>
+
     <!--<test name="Create_RoundUP">-->
         <!--<classes>-->
             <!--<class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP_Upload" />-->
