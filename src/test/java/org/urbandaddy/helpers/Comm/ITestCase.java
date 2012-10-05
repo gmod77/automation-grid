@@ -146,8 +146,9 @@ public abstract class ITestCase {
 
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
-                capabilities.setCapability("platform", "Windows 7");
-                capabilities.setCapability("name", "Win7 FireFox Regression test");
+                capabilities.setCapability("platform", "Windows 2003");
+                capabilities.setCapability("name", "Win 2003 FireFox Regression test");
+                capabilities.setCapability("version", "14");
                 capabilities.setCapability("command-timeout", "60"); //one minute per step
                 capabilities.setCapability("max-duration", "1200");  //twenty minutes per test
 
