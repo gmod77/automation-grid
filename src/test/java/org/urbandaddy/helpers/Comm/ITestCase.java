@@ -130,7 +130,7 @@ public abstract class ITestCase extends TestCase {
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             } else if (DriverType.SauceRunner.toString().equals(driverType)) {
-                DesiredCapabilities capabilities = null;
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
                 try {
                     this.client = new RemoteWebDriver(new URL(sauceUrl),capabilities);
 
