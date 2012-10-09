@@ -1,7 +1,5 @@
 package org.urbandaddy.helpers;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
-
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;

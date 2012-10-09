@@ -1,52 +1,33 @@
 package org.urbandaddy.helpers.Comm;
 
-import java.io.File;
-//import java.io.IOException;
-
-import java.io.IOException;
-import java.lang.System;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.PublicKey;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-
-
-
-//import org.openqa.selenium.JavascriptExecutor;
-//import org.sikuli.script.*;
-
-
 import com.saucelabs.saucerest.SauceREST;
-import com.thoughtworks.selenium.Selenium;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
-//import org.openqa.selenium.remote.RemoteWebDriver;
-
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.IResultMap;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-//import org.openqa.selenium.Cookie;
-
-//Workflow specific imports
-
+import org.testng.internal.Nullable;
 import org.urbandaddy.helpers.*;
 
-import javax.annotation.Nullable;
-//import org.urbandaddy.helpers.ResetEmailHelper_Client;
-//import org.testng.Assert;
-//import org.testng.annotations.Test;
-//import org.urbandaddy.helpers.SignupHelper;
-
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public abstract class ITestCase {
 
@@ -54,35 +35,27 @@ public abstract class ITestCase {
         Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
     }
 
+
     protected RemoteWebDriver client;
 
-
-//	private static ChromeDriverService service;
-
-    @BeforeMethod
     @Parameters({ "driverType", "profilePath", "sauceEnabled","sauceUser","sauceKey" })
-    // Declare sauce variables
-    //    private static final String sauceUser = "jenkins-urbandaddy";
-    //    private static final String sauceKey = "bbe0f5db-94ea-473a-b467-3ef7cd856d60";
-    //        final String sauceUser = "sargenziano";
-    //        final String sauceKey = "c4ccd226-57b5-47f8-bab4-62b1801ff59b";
+    @BeforeMethod
 
-    public void beforeMainMethod(String driverType, String profilePath, Boolean sauceEnabled, String sauceUser, String sauceKey) {
+    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) {
+
 
         if (sauceEnabled) {
 
-            final String sauceUrl = "http://" + sauceUser + ":" + sauceKey + "@ondemand.saucelabs.com:80/wd/hub";
+            String sauceUrl = "http://" + sauceUser + ":" + sauceKey + "@ondemand.saucelabs.com:80/wd/hub";
 
             if (DriverType.IESauce.toString().equals(driverType)) {
-
                 DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
                 capabilities.setCapability("version", "8");
                 capabilities.setCapability("platform", "Windows 2003");
-                capabilities.setCapability("name", "Win7 IE8 Regression test");
 
                 try {
                     this.client = new RemoteWebDriver(
-                            new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+                            new URL(sauceUrl),
                             capabilities);
                 }
                 catch (MalformedURLException e) {
@@ -95,7 +68,6 @@ public abstract class ITestCase {
 
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
                 capabilities.setCapability("platform", "Windows 2003");
-                capabilities.setCapability("name", "Win7 Chrome Regression test");
 
                 try {
                     this.client = new RemoteWebDriver(
@@ -111,9 +83,7 @@ public abstract class ITestCase {
             } else if (DriverType.MacFF14Sauce.toString().equals(driverType)) {
 
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-                capabilities.setCapability("version", "14");
                 capabilities.setCapability("platform", "Mac 10.6");
-                capabilities.setCapability("name", "Mac FF14 Regression test");
 
                 try {
                     this.client = new RemoteWebDriver(
@@ -128,9 +98,7 @@ public abstract class ITestCase {
             } else if (DriverType.MacSafariSauce.toString().equals(driverType)) {
 
                 DesiredCapabilities capabilities = DesiredCapabilities.safari();
-                capabilities.setCapability("version", "5");
                 capabilities.setCapability("platform", "Mac 10.6");
-                capabilities.setCapability("name", "Mac Safari Regression test");
 
                 try {
                     this.client = new RemoteWebDriver(
@@ -147,11 +115,9 @@ public abstract class ITestCase {
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
                 capabilities.setCapability("platform", "Windows 2003");
-                capabilities.setCapability("name", "Win 2003 FireFox Regression test");
-                capabilities.setCapability("version", "14");
-                capabilities.setCapability("command-timeout", "60"); //one minute per step
-                capabilities.setCapability("max-duration", "1200");  //twenty minutes per test
-
+                capabilities.setCapability("command-timeout", 60); //one minute per step
+                capabilities.setCapability("max-duration", 1200);  //twenty minutes per test
+                capabilities.setCapability("disable-popup-handler", false);
                 try {
                     this.client = new RemoteWebDriver(
                             new URL(sauceUrl),
@@ -166,7 +132,7 @@ public abstract class ITestCase {
             }
         } else {
 
-            final String remoteUrl = "http://jenkins-master.thedaddy.co:4444/wd/hub";
+            String remoteUrl = "http://jenkins-master.thedaddy.co:4444/wd/hub";
 
             if (DriverType.Firefox.toString().equals(driverType)) {
 
@@ -321,17 +287,6 @@ public abstract class ITestCase {
     }
 
     /**
-     * Pause for 1 seconds
-     */
-    public void pause4(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Set your own pause time
      * @param time Time in ms
      */
@@ -438,7 +393,7 @@ public abstract class ITestCase {
      * @param timeout Enter the number of seconds for the timeout
      * @return that web element or throw an error
      */
-    public WebElement checkForBy(final String type, String check, int timeout){
+    public WebElement findElement(final String type, String check, int timeout){
         int counter = 0;
         boolean flag = false;
         final String ele;

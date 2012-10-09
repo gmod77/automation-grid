@@ -1,8 +1,5 @@
 package org.urbandaddy.tests;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.urbandaddy.helpers.Comm.iTestCasePerks;
-import org.urbandaddy.helpers.Comm.iTestCaseUD;
 import org.testng.annotations.Test;
 
 

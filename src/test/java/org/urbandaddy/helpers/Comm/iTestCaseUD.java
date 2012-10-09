@@ -1,25 +1,18 @@
 package org.urbandaddy.helpers.Comm;
 
-import java.util.List;
-
-import java.util.*;
-import org.openqa.selenium.JavascriptExecutor;
-
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.SessionId;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-
-//Workflow specific imports
-
-import org.testng.Reporter;
 import org.urbandaddy.helpers.*;
 
-import javax.annotation.Nullable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+//Workflow specific imports
 
 /**
  *  Urban Daddy Domain Test Methods
@@ -403,8 +396,8 @@ public abstract class iTestCaseUD extends ITestCase {
 
         // 26. choose position Email_banner
 
-        selectFromDropdown(checkForBy("id","article_image_article_image_position_id",5),"option","Email_Banner");
-//        WebElement article1_position = checkForBy("id","article_image_article_image_position_id",5);
+        selectFromDropdown(findElement("id","article_image_article_image_position_id",5),"option","Email_Banner");
+//        WebElement article1_position = findElement("id","article_image_article_image_position_id",5);
 //        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
 //        for(WebElement option : position_options1){
 //            if(option.getText().equals("Email_Banner")) {
@@ -454,15 +447,15 @@ public abstract class iTestCaseUD extends ITestCase {
 
         //        		a.	Select ad from component dropdown
 
-        selectFromDropdown("_select_modules_right","option","Ad");
-//        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
-//        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
-//        for(WebElement option : add_right_components_options){
-//            if(option.getText().equals("Ad")) {
-//                option.click();
-//                break;
-//            }
-//        }
+        //selectFromDropdown("_select_modules_right","option","Ad");
+        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
+        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
+        for(WebElement option : add_right_components_options){
+            if(option.getText().equals("Ad")) {
+                option.click();
+                break;
+            }
+        }
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -470,7 +463,7 @@ public abstract class iTestCaseUD extends ITestCase {
         }
         //		b.	Click on newsletter_ad
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click();
+        findElement("xpath","//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a",5).click();
 
         try {
             Thread.sleep(3000);
@@ -499,8 +492,8 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 // select Footer template
 
-                selectFromDropdown(checkForBy("name","newsletter_content_slot[name]",5),"option","49ers SF 11-8-11 tower (Tower)");
-//                WebElement right_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
+               selectFromDropdown(findElement("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
+//                WebElement right_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
 //                List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
 //                for(WebElement option : right_ad_type_options){
 //                    if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
@@ -514,6 +507,8 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh2);
+            } else {
+                //throw new NullPointerException("Derp");
             }
         }
 
@@ -574,6 +569,8 @@ public abstract class iTestCaseUD extends ITestCase {
         System.out.println("Article ID> " + articleID);
         client.get("http://ud-branch.thedaddy.co/newsletter/roundup/" + articleID + "?preview=true");
         ud_roundUP_client = new UD_RoundUP_Client(client);
+
+        pause(5);
         Assert.assertTrue(ud_roundUP_client.isArticleTitle1Present());
         Assert.assertTrue(ud_roundUP_client.isBlurb1Present());
         Assert.assertTrue(ud_roundUP_client.isFourOneOne1Present());
@@ -848,7 +845,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 // select Footer template
 
-                WebElement bottom_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
+                WebElement bottom_ad_type = findElement("name","newsletter_content_slot[name]",5);
 
                 List<WebElement> bottom_ad_type_options = bottom_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : bottom_ad_type_options){
@@ -860,7 +857,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 //d. 	Click Save
 
-                WebElement clickMe = checkForBy("id","save_button",5);
+                WebElement clickMe = findElement("id","save_button",5);
                 clickMe.click();
                 this.pause1();
 
@@ -875,7 +872,7 @@ public abstract class iTestCaseUD extends ITestCase {
 //		a.	Select ad from component dropdown
 
 //        		a.	Select ad from component dropdown
-        WebElement add_right_components = checkForBy("id","_select_modules_right",5);
+        WebElement add_right_components = findElement("id","_select_modules_right",5);
         //WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
         List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
 
@@ -921,7 +918,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
                 // select Footer template
 
-                WebElement right_ad_type = checkForBy("name","newsletter_content_slot[name]",5);
+                WebElement right_ad_type = findElement("name","newsletter_content_slot[name]",5);
                 List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : right_ad_type_options){
                     if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
@@ -945,7 +942,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 //	29.   Choose business type
 
-        WebElement business_type = checkForBy("id","article_business_type_id",5);
+        WebElement business_type = findElement("id","article_business_type_id",5);
         List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
         for(WebElement option : business_type_options){
             if(option.getText().equals("Clothing")) {
@@ -1468,7 +1465,7 @@ public abstract class iTestCaseUD extends ITestCase {
                 client.switchTo().window(popupHandle);
                 // click save
                 this.pause3();
-                checkForBy("id","save_button",5).click();
+                findElement("id","save_button",5).click();
                 //client.findElement(By.id("save_button")).click();
 
                 //After finished your operation in pop-up just select the main window again
@@ -1554,7 +1551,7 @@ public abstract class iTestCaseUD extends ITestCase {
         // Verify "Test email has been sent" success message
 
 
-        Assert.assertTrue((checkForBy("xpath", "//html/body/div[3]/div/div/h2", 5)).getText().contains("Test email has been sent"));
+        Assert.assertTrue((findElement("xpath", "//html/body/div[3]/div/div/h2", 5)).getText().contains("Test email has been sent"));
         //Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
 //Add an e-mail address to the Send To field, Click Send Test Mailing, 
@@ -1643,7 +1640,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.get(UD_Admin_domain+"/pmt_universal_settings/create");
         // Make sure the page loaded
-        checkForBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[2]/input",10);
+        findElement("xpath",".//*[@id='sf_admin_edit_form']/ul/li[2]/input",10);
 
 
         //3. Enter Name
@@ -1708,14 +1705,14 @@ public abstract class iTestCaseUD extends ITestCase {
         client.findElement(By.name("save")).click();
 
         // Make sure Success message displays
-        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElement("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         client.findElement(By.name("save_and_add")).click();
 
         //19. Click Add Partner
         // Partner 1
 
-        WebElement addPartner = checkForBy("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
+        WebElement addPartner = findElement("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
         addPartner.click();
 
         //20. Enter partner name
@@ -1741,7 +1738,7 @@ public abstract class iTestCaseUD extends ITestCase {
         //25. Click Save
 
         client.findElement(By.name("save")).click();
-        checkForBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+        findElement("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
 
         //26. Click List
@@ -1754,7 +1751,7 @@ public abstract class iTestCaseUD extends ITestCase {
         //19. Click Add Partner
         // Partner 2
 
-        WebElement addPartner2 = checkForBy("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
+        WebElement addPartner2 = findElement("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
         addPartner2.click();
 
 
@@ -1781,24 +1778,24 @@ public abstract class iTestCaseUD extends ITestCase {
         //25. Click Save
 
         client.findElement(By.name("save")).click();
-        checkForBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+        findElement("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
         //26. Click List
 
-        checkForBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[1]/input",10).click();
+        findElement("xpath",".//*[@id='sf_admin_edit_form']/ul/li[1]/input",10).click();
         //client.findElement(By.xpath(".//*[@id='sf_admin_edit_form']/ul/li[1]/input")).click();
 
 
         //28. Click Next Step
 
-        checkForBy("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
+        findElement("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
 //        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
 //        this.pause3();
 
 
         //29. Add Header text
         // Make sure we're on the next page
-        checkForBy("xpath",".//*[@id='sf_admin_container']/h1",10);
+        findElement("xpath",".//*[@id='sf_admin_container']/h1",10);
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
 
         //30. Add Subhead text
@@ -1813,7 +1810,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
-        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElement("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //33. Select all editions
 
@@ -1868,7 +1865,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
-        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElement("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
 
         //39. Add Invite Friends Head text
@@ -1890,7 +1887,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
-        checkForBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+        findElement("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
 
         //43. Add thank you head text
@@ -1949,7 +1946,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         //Check for success message
-        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElement("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //57. Repeat Steps for the Closed page
 
@@ -1994,7 +1991,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Check for success message
-        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElement("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //58. Invite Email Settings
 
@@ -2014,7 +2011,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         //Check for success message
-        checkForBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElement("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //59. Go to newly created campaign
 
@@ -2022,7 +2019,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
         client.get(UD_Admin_domain+"/pmt_universal_settings");
         // Make sure the page shows up
-        checkForBy("xpath",".//*[@id='sf_admin_container']/h1",10);
+        findElement("xpath",".//*[@id='sf_admin_container']/h1",10);
 
 
         // Get the campaign just created
@@ -2948,7 +2945,7 @@ public abstract class iTestCaseUD extends ITestCase {
 
 //		ud_signupHelper_Client.clickInvite();
 
-        checkForBy("xpath","//html/body/div[5]/div/div/div/form[1]/div/div[1]/input",10);
+        findElement("xpath","//html/body/div[5]/div/div/div/form[1]/div/div[1]/input",10);
 
         ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
         ud_signupHelper_Client.enterEmailFriend2(emailFriend2);

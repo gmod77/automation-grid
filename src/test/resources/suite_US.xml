@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Before Suite-->
 
-<suite name="UD_Smoke" verbose="10">
+<suite name="UD_Smoke" parallel="tests" thread-count="3" verbose="10">
 <!-- <suite name="UD_Smoke" parallel="tests" thread-count="5" verbose="10"> -->
     <!-- Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, Win7ChromeRemote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce -->
-	<parameter name="driverType" value="Firefox" />
+	<parameter name="driverType" value="Win7FF14Sauce" />
 	<parameter name="profilePath" value="" />
-    <parameter name="sauceEnabled" value="false" />
+    <parameter name="sauceEnabled" value="true" />
     <parameter name="sauceUser" value="sargenziano" />
     <parameter name="sauceKey" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
 
@@ -16,11 +16,11 @@
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Firefox/Profiles/0ah4bjha.WebDriver36"></parameter>	 -->
 <!-- 		<parameter name="profilePath" value="/Users/gmodin/Library/Application Support/Google/Chrome/webdriver"></parameter>	 -->
 
-    <!--<test name="UD_Smoke">-->
-        <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.UD_RegistrationFlow2" />-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="UD_Smoke">
+        <classes>
+            <class name="org.urbandaddy.tests.UD_RegistrationFlow2" />
+        </classes>
+    </test>
 
 <!--Before Test-->
     <!--<test name="UD_Admin_PMT">-->
@@ -43,11 +43,11 @@
  		<!--</classes>-->
  	<!--</test>-->
 	
-	<!--<test name="Perks_Smoke">-->
-		<!--<classes>-->
-			<!--<class name="org.urbandaddy.tests.Perks_RegistrationFlow1" />-->
-		<!--</classes>-->
-	<!--</test>-->
+	<test name="Perks_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.Perks_RegistrationFlow1" />
+		</classes>
+	</test>
 
     <!--<test name="UnsubscribePerks">-->
         <!--<classes>-->

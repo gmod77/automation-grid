@@ -1,13 +1,10 @@
 package org.urbandaddy.helpers;
 
 //import org.openqa.selenium.By;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 //import java.util.concurrent.TimeUnit;
 //import org.openqa.selenium.HasInputDevices;
 //import org.openqa.selenium.Mouse;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 //import org.openqa.selenium.interactions.internal.Coordinates;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
