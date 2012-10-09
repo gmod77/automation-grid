@@ -40,7 +40,7 @@ public abstract class ITestCase extends TestCase {
     @Parameters({ "driverType", "profilePath", "sauceEnabled","sauceUser","sauceKey" })
     @BeforeMethod
 
-    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException {
+    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException, MalformedURLException {
 
 
         if (sauceEnabled) {
@@ -130,7 +130,13 @@ public abstract class ITestCase extends TestCase {
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             } else if (DriverType.SauceRunner.toString().equals(driverType)) {
+                DesiredCapabilities capabilities = null;
+                try {
+                    this.client = new RemoteWebDriver(new URL(sauceUrl),capabilities);
 
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
                 client.setFileDetector(new LocalFileDetector());
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
