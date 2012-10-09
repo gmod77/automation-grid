@@ -1,7 +1,6 @@
 package org.urbandaddy.helpers.Comm;
 
-import com.saucelabs.saucerest.SauceREST;
-import com.saucelabs.selenium.client.client.factory.SeleniumFactory;
+import junit.framework.TestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -26,15 +25,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public abstract class ITestCase {
+public abstract class ITestCase extends TestCase {
 
     enum DriverType {
-        SeleniumFac, Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
+        SauceRunner, Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
     }
 
 
@@ -65,11 +62,6 @@ public abstract class ITestCase {
                 }
                 this.client.setFileDetector(new LocalFileDetector());
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-            } else if (DriverType.SeleniumFac.toString().equals(driverType)) {
-
-                SeleniumFactory.create("sauce-ondemand:?max-duration=30&os=Windows&browser=firefox&browser-version=15", "http://http://ud-branch.thedaddy.co");
-                this.client.setFileDetector(new LocalFileDetector());
 
             } else if (DriverType.ChromeSauce.toString().equals(driverType)) {
 
@@ -135,6 +127,11 @@ public abstract class ITestCase {
                     e.printStackTrace();
                 }
                 this.client.setFileDetector(new LocalFileDetector());
+                client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            } else if (DriverType.SauceRunner.toString().equals(driverType)) {
+
+                client.setFileDetector(new LocalFileDetector());
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             }
@@ -497,6 +494,7 @@ public abstract class ITestCase {
         // Sauce Stuff here
         if(sauceEnabled) {
             String sauceJobID = client.getSessionId().toString();
+            /**
             SauceREST sauceClient = new SauceREST(sauceUser,sauceKey);
             Map<String, Object> sauceJob = new HashMap<String, Object>();
             sauceJob.put("name", "Test method: " + result.getMethod().getMethodName());
@@ -507,9 +505,9 @@ public abstract class ITestCase {
                 sauceClient.jobFailed(sauceJobID);
             }
             sauceClient.updateJobInfo(sauceJobID, sauceJob);
+            **/
 
             String sauceUrl = "http://saucelabs.com/rest/" + sauceUser + "/jobs/" + sauceJobID + "/results/";
-
 
             System.out.println(sauceUrl + "video.flv");
             System.out.println(sauceUrl + "selenium-server.log");
