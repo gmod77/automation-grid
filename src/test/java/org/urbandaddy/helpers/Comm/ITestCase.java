@@ -1,6 +1,7 @@
 package org.urbandaddy.helpers.Comm;
 
 import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.selenium.client.client.factory.SeleniumFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -18,10 +19,12 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class ITestCase {
 
     enum DriverType {
-        Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
+        SeleniumFac, Firefox, IE, Ghrome, Win7FF14Remote, Win7IE9Remote, IESauce, ChromeSauce, Win7FF14Sauce, MacFF14Sauce, MacSafariSauce
     }
 
 
@@ -40,7 +43,7 @@ public abstract class ITestCase {
     @Parameters({ "driverType", "profilePath", "sauceEnabled","sauceUser","sauceKey" })
     @BeforeMethod
 
-    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) {
+    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException {
 
 
         if (sauceEnabled) {
@@ -62,6 +65,11 @@ public abstract class ITestCase {
                 }
                 this.client.setFileDetector(new LocalFileDetector());
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            } else if (DriverType.SeleniumFac.toString().equals(driverType)) {
+
+                SeleniumFactory.create("sauce-ondemand:?max-duration=30&os=Windows&browser=firefox&browser-version=15", "http://http://ud-branch.thedaddy.co");
+                this.client.setFileDetector(new LocalFileDetector());
 
             } else if (DriverType.ChromeSauce.toString().equals(driverType)) {
 
@@ -114,6 +122,7 @@ public abstract class ITestCase {
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
                 capabilities.setCapability("platform", "Windows 2003");
+                capabilities.setCapability("name",getClass().getName());
                 capabilities.setCapability("command-timeout", 60); //one minute per step
                 capabilities.setCapability("max-duration", 1200);  //twenty minutes per test
                 capabilities.setCapability("disable-popup-handler", false);
@@ -399,12 +408,13 @@ public abstract class ITestCase {
         ele = check;
         WebElement a = null;
 
+
         do {
             try {
                 System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
-
-                    public WebElement apply(WebDriver d) {
+                    @Override
+                    public WebElement apply(@Nullable WebDriver d) {
                         WebElement ret = null;
                         if (type.equals("name")) {
                             ret = d.findElement(By.name(ele));
@@ -473,6 +483,13 @@ public abstract class ITestCase {
         }
     }
 
+    private URL getFileURL(String username, String session, String fileName) throws MalformedURLException {
+        // userinfo in URL doesn't result in the BASIC auth, so in this method we won't set the credential.
+        return new URL(MessageFormat.format("https://saucelabs.com/rest/{0}/jobs/{1}/results/{2}",
+                username, session, fileName));
+    }
+
+
     @AfterMethod (alwaysRun = true)
     @Parameters ({"sauceEnabled", "sauceUser", "sauceKey"})
     public void afterMainMethod(ITestResult result, Boolean sauceEnabled, String sauceUser, String sauceKey) throws IOException {
@@ -485,10 +502,18 @@ public abstract class ITestCase {
             sauceJob.put("name", "Test method: " + result.getMethod().getMethodName());
             if(result.isSuccess()) {
                 sauceClient.jobPassed(sauceJobID);
+
             } else {
                 sauceClient.jobFailed(sauceJobID);
             }
             sauceClient.updateJobInfo(sauceJobID, sauceJob);
+
+            String sauceUrl = "http://saucelabs.com/rest/" + sauceUser + "/jobs/" + sauceJobID + "/results/";
+
+
+            System.out.println(sauceUrl + "video.flv");
+            System.out.println(sauceUrl + "selenium-server.log");
+
         }
         client.manage().deleteAllCookies();
         client.quit();
