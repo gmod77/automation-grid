@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: com.saucelabs:sauce-rest-api:1.0">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/saucelabs/sauce-rest-api/1.0/sauce-rest-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SauceREST.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/saucelabs/sauce-rest-api/1.0/sauce-rest-api-1.0-javadoc.jar!/" />

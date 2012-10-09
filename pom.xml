@@ -53,7 +53,8 @@
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce-rest-api</artifactId>
             <version>1.0</version>
-            <scope>test</scope>
+            <systemPath>${project.basedir}/lib/SauceREST.jar</systemPath>
+            <scope>system</scope>
         </dependency>
         <dependency>
             <groupId>jaxen</groupId>
