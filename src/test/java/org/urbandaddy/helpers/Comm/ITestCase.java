@@ -1,5 +1,6 @@
 package org.urbandaddy.helpers.Comm;
 
+import com.saucelabs.rest.Credential;
 import junit.framework.TestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -40,8 +41,15 @@ public abstract class ITestCase extends TestCase {
     @Parameters({ "driverType", "profilePath", "sauceEnabled","sauceUser","sauceKey" })
     @BeforeMethod
 
-    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException, MalformedURLException {
+    public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException, MalformedURLException, Exception {
+        Credential c = new Credential();
+        String host = System.getenv("SAUCE_ONDEMAND_HOST");
+        String browser = System.getenv("BROWSER");
+        if (browser ==null) browser = "firefox:3.";
 
+        String[] tokens = browser.split(":");
+        System.out.println("Browser="+tokens[0]);
+        System.out.println("Version="+tokens[1]);
 
         if (sauceEnabled) {
 
@@ -130,13 +138,25 @@ public abstract class ITestCase extends TestCase {
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             } else if (DriverType.SauceRunner.toString().equals(driverType)) {
-                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+
+                capabilities.setCapability("platform", "Windows 2003");
+                capabilities.setCapability("browser", tokens[0]);
+                capabilities.setCapability("browser-version",tokens[1]);
+                capabilities.setCapability("name",getClass().getName());
+                capabilities.setCapability("command-timeout", 60); //one minute per step
+                capabilities.setCapability("max-duration", 1200);  //twenty minutes per test
+                capabilities.setCapability("disable-popup-handler", false);
                 try {
-                    this.client = new RemoteWebDriver(new URL(sauceUrl),capabilities);
+                    this.client = new RemoteWebDriver(
+                            new URL(sauceUrl),
+                            capabilities);
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
+
                 client.setFileDetector(new LocalFileDetector());
                 client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
