@@ -44,9 +44,10 @@ public abstract class ITestCase extends TestCase {
     public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException, MalformedURLException, Exception {
         Credential c = new Credential("sargenziano","c4ccd226-57b5-47f8-bab4-62b1801ff59b");
         String host = System.getenv("SAUCE_ONDEMAND_HOST");
-        String browser = System.getenv("BROWSER");
+        String browser = System.getenv("SELENIUM_DRIVER");
         if (browser ==null) browser = "firefox:3.";
         //SELENIUM_DRIVER=sauce-ondemand:?os=Linux&browser=firefoxproxy&browser-version=15
+        System.out.println(browser);
         String[] tokens = browser.split(":");
         System.out.println("Browser="+tokens[0]);
         System.out.println("Version="+tokens[1]);
