@@ -46,7 +46,7 @@ public abstract class ITestCase extends TestCase {
         String host = System.getenv("SAUCE_ONDEMAND_HOST");
         String browser = System.getenv("BROWSER");
         if (browser ==null) browser = "firefox:3.";
-
+        //SELENIUM_DRIVER=sauce-ondemand:?os=Linux&browser=firefoxproxy&browser-version=15
         String[] tokens = browser.split(":");
         System.out.println("Browser="+tokens[0]);
         System.out.println("Version="+tokens[1]);
