@@ -16,7 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import org.testng.internal.Nullable;
 import org.urbandaddy.helpers.*;
 
 import java.io.File;
@@ -404,8 +403,8 @@ public abstract class ITestCase {
             try {
                 System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
-                    @Override
-                    public WebElement apply(@Nullable WebDriver d) {
+
+                    public WebElement apply(WebDriver d) {
                         WebElement ret = null;
                         if (type.equals("name")) {
                             ret = d.findElement(By.name(ele));
