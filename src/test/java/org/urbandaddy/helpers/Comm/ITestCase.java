@@ -45,11 +45,18 @@ public abstract class ITestCase extends TestCase {
         Credential c = new Credential();
         String host = System.getenv("SAUCE_ONDEMAND_HOST");
         String browser = System.getenv("BROWSER");
+        System.setProperty("SAUCE_USER_NAME", sauceUser);
+        System.setProperty("SAUCE_API_KEY", sauceKey);
         if (browser ==null) browser = "firefox:3.";
         //SELENIUM_DRIVER=sauce-ondemand:?os=Linux&browser=firefoxproxy&browser-version=15
         String[] tokens = browser.split(":");
         System.out.println("Browser="+tokens[0]);
         System.out.println("Version="+tokens[1]);
+
+        System.out.println("SELENIUM_PLATFORM> "+System.getenv("SELENIUM_PLATFORM"));
+        System.out.println("SELENIUM_VERSION> "+System.getenv("SELENIUM_VERSION"));
+        System.out.println("SELENIUM_BROWSER> "+System.getenv("SELENIUM_BROWSER"));
+
 
         if (sauceEnabled) {
 
