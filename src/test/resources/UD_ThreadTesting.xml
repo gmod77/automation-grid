@@ -1,0 +1,15 @@
+<suite name="sauceTestNG by packages parallel per method" parallel="methods" thread-count="15">
+
+    <parameter name="driverType" value="Win7FF14Sauce" />
+    <parameter name="profilePath" value="" />
+    <parameter name="sauceEnabled" value="true" />
+    <parameter name="sauceUser" value="sargenziano" />
+    <parameter name="sauceKey" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
+
+
+    <test verbose="2" name="org.urbandaddy.sample">
+        <packages>
+            <package name="org.urbandaddy.sample"/>
+        </packages>
+    </test>
+</suite>
