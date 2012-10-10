@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SauceREST">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/SauceREST.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

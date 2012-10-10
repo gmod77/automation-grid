@@ -6,7 +6,7 @@
     <groupId>urbandaddy</groupId>
     <artifactId>urbandaddy-testsuite</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
 
     <name>urbandaddy-test-suite</name>
     <properties>
@@ -26,7 +26,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
-            <type>jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -62,6 +62,16 @@
             <artifactId>httpclient</artifactId>
             <version>4.1</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce-rest-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.seleniumhq.selenium.client-drivers</groupId>-->
@@ -160,53 +170,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
                 <configuration>
                     <!-- Skip the normal tests, we'll run them in the integration-test phase -->
                     <skip>true</skip>
 
-                    <!-- <systemPropertyVariables> <name>server</name> <value>{urbandaddy.qa.server_url}</value>
-                                            </systemPropertyVariables> -->
+                    <!-- <systemPropertyVariables>
+                    <name>server</name>
+                    <value>{urbandaddy.qa.server_url}</value>
+                    </systemPropertyVariables> -->
                     <suiteXmlFiles>
-                        <!-- <file>src/test/resources/suite_US.xml</file> -->
                         <!-- The variable below is needed or the tests can't run -->
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
 
                 </configuration>
-
-                <executions>
-                    <execution>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <skip>false</skip>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>selenium-maven-plugin</artifactId>
-                <version>2.2</version>
-                <executions>
-                    <execution>
-                        <phase>pre-integration-test</phase>
-                        <!--<goals>-->
-                        <!--<goal>start-server</goal>-->
-                        <!--</goals>-->
-                        <configuration>
-                            <background>true</background>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
         </plugins>
     </build>
-    <!-- <distributionManagement> <repository> <id>urbandaddy</id> <name>urbandaddy-snapshots</name>
-            <url>http://urbandaddy.artifactoryonline.com/urbandaddy/libs-snapshots-local</url>
-            </repository> </distributionManagement> -->
 </project>
