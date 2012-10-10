@@ -91,13 +91,13 @@
         <dependency>
             <groupId>com.saucelabs.selenium</groupId>
             <artifactId>sauce-ondemand-driver</artifactId>
-            <version>2.4</version>
+            <version>1.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.saucelabs.selenium</groupId>
             <artifactId>selenium-client-factory</artifactId>
-            <version>2.4</version>
+            <version>1.0</version>
             <scope>test</scope>
         </dependency>
         <!--<dependency>-->
@@ -169,6 +169,7 @@
             </build>
         </profile>
     </profiles>
+
     <build>
         <testResources>
             <testResource>
@@ -178,6 +179,7 @@
                 </excludes>
             </testResource>
         </testResources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -190,27 +192,6 @@
                     <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
-           <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>selenium-maven-plugin</artifactId>
-                <version>2.2</version>
-               <executions>
-                    <execution>
-                       <phase>pre-integration-test</phase>
-                       <!--<goals>-->
-                        <!--<goal>start-server</goal>-->
-                        <!--</goals>-->
-                        <configuration>
-                            <background>true</background>
-                       </configuration>
-                    </execution>
-                 </executions>
-            </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -230,6 +211,38 @@
                     </suiteXmlFiles>
 
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <skip>false</skip>
+                            </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>selenium-maven-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <phase>pre-integration-test</phase>
+                        <!--<goals>-->
+                        <!--<goal>start-server</goal>-->
+                        <!--</goals>-->
+                        <configuration>
+                            <background>true</background>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
