@@ -1,10 +1,10 @@
 <suite name="ParallelTests" verbose="5" parallel="tests" thread-count="10">
-    <parameter name="sauceUser" value="sargenziano" />
-    <parameter name="sauceKey" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
+    <!--<parameter name="sauceUser" value="sargenziano" />-->
+    <!--<parameter name="sauceKey" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />-->
     <test name="Sauce Remote Web Driver">
-        <parameter name="os" value="Windows 2003"/>
-        <parameter name="browser" value="firefox"/>
-        <parameter name="browserVersion" value="3.6."/>
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="browserVersion" value="3.6."/>-->
         <classes>
             <class name="org.urbandaddy.tests.UD_RegistrationSauceTest"/>
         </classes>

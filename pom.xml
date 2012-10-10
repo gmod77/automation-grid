@@ -74,6 +74,12 @@
             <version>2.1_3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.saucelabs.selenium</groupId>
+            <artifactId>selenium-client-factory</artifactId>
+            <version>1.2</version>
+            <scope>test</scope>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.seleniumhq.selenium.client-drivers</groupId>-->
             <!--<artifactId>selenium-java-client-driver</artifactId>-->
