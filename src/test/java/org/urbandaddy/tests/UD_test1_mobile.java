@@ -1,19 +1,14 @@
 package org.urbandaddy.tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
-
-import junit.framework.Assert;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class UD_test1_mobile {
 	

@@ -1,10 +1,9 @@
 package org.urbandaddy.helpers.Comm;
 
 import org.openqa.selenium.By;
+import org.urbandaddy.helpers.*;
 
 //Workflow specific imports
-
-import org.urbandaddy.helpers.*;
 
 /**
  * This class contains all Perks domain specific tests

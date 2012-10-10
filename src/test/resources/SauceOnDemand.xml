@@ -1,13 +1,10 @@
 <suite name="ParallelTests" verbose="5" parallel="tests" thread-count="10">
-    <test name="WebDriver">
-        <parameter name="os" value="Windows 2003"/>
-        <parameter name="browser" value="firefox"/>
-        <parameter name="browserVersion" value="3.6."/>
+    <test name="Sauce Remote Web Driver">
         <classes>
-            <class name="org.urbandaddy.helpers.Comm.iSauceTest"/>
+            <class name="org.urbandaddy.tests.UD_RegistrationSauceTest"/>
         </classes>
     </test>
     <listeners>
-        <listener class-name="saucelabs.testng.SauceOnDemandTestListener"/>
+        <listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>
     </listeners>
 </suite>

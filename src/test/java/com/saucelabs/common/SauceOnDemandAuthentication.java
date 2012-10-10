@@ -1,4 +1,4 @@
-package saucelabs.common;
+package com.saucelabs.common;
 
 
 import java.io.File;
@@ -18,7 +18,7 @@ import java.util.Properties;
 public class SauceOnDemandAuthentication {
 
     /**
-     * The username to use when connecting to Sauce OnDemand. Defaults to empty string.
+     * The username to use when connecting to Sauce OnDemand.  Defaults to empty string.
      */
     private String username = "";
 
@@ -32,7 +32,7 @@ public class SauceOnDemandAuthentication {
 
     /**
      * Constructs a new instance, first attempting to populate the username/access key
-     * from system properties/environment variables. If none are found, then attempt
+     * from system properties/environment variables.  If none are found, then attempt
      * to parse a ~/.sauce-ondemand file.
      */
     public SauceOnDemandAuthentication() {
@@ -111,7 +111,7 @@ public class SauceOnDemandAuthentication {
     /**
      * Persists this credential to the disk.
      *
-     * @throws IOException If the file I/O fails.
+     * @throws java.io.IOException If the file I/O fails.
      */
     public void saveTo(File propertyFile) throws IOException {
         Properties props = new Properties();

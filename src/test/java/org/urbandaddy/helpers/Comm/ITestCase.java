@@ -1,6 +1,6 @@
 package org.urbandaddy.helpers.Comm;
 
-import com.saucelabs.rest.Credential;
+import com.saucelabs.saucerest.SauceREST;
 import junit.framework.TestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -26,7 +26,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public abstract class ITestCase extends TestCase {
@@ -42,20 +44,6 @@ public abstract class ITestCase extends TestCase {
     @BeforeMethod
 
     public void beforeMainMethod(String driverType, String profilePath, @Optional("false") Boolean sauceEnabled, @Optional String sauceUser, @Optional String sauceKey) throws InterruptedException, MalformedURLException, Exception {
-        Credential c = new Credential("sargenziano","c4ccd226-57b5-47f8-bab4-62b1801ff59b");
-        String host = System.getenv("SAUCE_ONDEMAND_HOST");
-        String browser = System.getenv("SELENIUM_DRIVER");
-        if (browser ==null) browser = "firefox:3.";
-        //SELENIUM_DRIVER=sauce-ondemand:?os=Linux&browser=firefoxproxy&browser-version=15
-        System.out.println(browser);
-        String[] tokens = browser.split(":");
-        System.out.println("Browser="+tokens[0]);
-        System.out.println("Version="+tokens[1]);
-
-        System.out.println("SELENIUM_PLATFORM> "+System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_VERSION> "+System.getenv("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_BROWSER> "+System.getenv("SELENIUM_BROWSER"));
-
 
         if (sauceEnabled) {
 
@@ -148,8 +136,6 @@ public abstract class ITestCase extends TestCase {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
 
                 capabilities.setCapability("platform", "Windows 2003");
-                capabilities.setCapability("browser", tokens[0]);
-                capabilities.setCapability("browser-version",tokens[1]);
                 capabilities.setCapability("name",getClass().getName());
                 capabilities.setCapability("command-timeout", 60); //one minute per step
                 capabilities.setCapability("max-duration", 1200);  //twenty minutes per test
@@ -526,7 +512,7 @@ public abstract class ITestCase extends TestCase {
         // Sauce Stuff here
         if(sauceEnabled) {
             String sauceJobID = client.getSessionId().toString();
-            /**
+
             SauceREST sauceClient = new SauceREST(sauceUser,sauceKey);
             Map<String, Object> sauceJob = new HashMap<String, Object>();
             sauceJob.put("name", "Test method: " + result.getMethod().getMethodName());
@@ -537,7 +523,7 @@ public abstract class ITestCase extends TestCase {
                 sauceClient.jobFailed(sauceJobID);
             }
             sauceClient.updateJobInfo(sauceJobID, sauceJob);
-            **/
+
 
             String sauceUrl = "http://saucelabs.com/rest/" + sauceUser + "/jobs/" + sauceJobID + "/results/";
 

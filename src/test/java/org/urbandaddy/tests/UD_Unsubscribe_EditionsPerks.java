@@ -1,6 +1,7 @@
 package org.urbandaddy.tests;
-import org.urbandaddy.helpers.Comm.iTestCaseUD;
+
 import org.testng.annotations.Test;
+import org.urbandaddy.helpers.Comm.iTestCaseUD;
 
 /**
  * This test series creates an UD account, signs up for perks
