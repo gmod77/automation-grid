@@ -204,9 +204,9 @@
                        <!--<goals>-->
                         <!--<goal>start-server</goal>-->
                         <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<background>true</background>-->
-                       <!--</configuration>-->
+                        <configuration>
+                            <background>true</background>
+                       </configuration>
                     </execution>
                  </executions>
             </plugin>
