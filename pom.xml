@@ -2,30 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>urbandaddy</groupId>
     <artifactId>urbandaddy-testsuite</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
     <name>urbandaddy-test-suite</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>cloudbees-private-release-repository</id>
-            <url>dav:https://repository-saucelabs.forge.cloudbees.com/release</url>
-        </repository>
-    </distributionManagement>
-
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
+            <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+            <artifactId>selenium-java-client-driver</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.25.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -35,10 +31,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-server</artifactId>
-            <version>2.25.0</version>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
             <scope>test</scope>
+        </dependency>
+        <!-- <dependency> <groupId>jaxen</groupId> <artifactId>jaxen</artifactId>
+<version>1.1.3</version> <scope>test</scope> </dependency> -->
+        <dependency>
+            <groupId>ch.ethz</groupId>
+            <artifactId>ssh2</artifactId>
+            <version>2.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ganymed-ssh2-build251beta1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>jaxen</groupId>
@@ -62,50 +67,6 @@
             <version>4.1</version>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib-nodep</artifactId>
-            <version>2.1_3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.saucelabs.selenium</groupId>
-            <artifactId>selenium-client-factory</artifactId>
-            <version>1.2</version>
-            <scope>test</scope>
-        </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.seleniumhq.selenium.client-drivers</groupId>-->
-            <!--<artifactId>selenium-java-client-driver</artifactId>-->
-            <!--<version>1.0.2</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.google.code.gson</groupId>-->
-            <!--<artifactId>gson</artifactId>-->
-            <!--<version>1.4</version>-->
-            <!--<scope>compile</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>dom4j</groupId>-->
-            <!--<artifactId>dom4j</artifactId>-->
-            <!--<version>1.6.1</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!-- <dependency> <groupId>jaxen</groupId> <artifactId>jaxen</artifactId>
-                    <version>1.1.3</version> <scope>test</scope> </dependency> -->
-        <!--<dependency>-->
-            <!--<groupId>ch.ethz</groupId>-->
-            <!--<artifactId>ssh2</artifactId>-->
-            <!--<version>2.5.1</version>-->
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${project.basedir}/lib/ganymed-ssh2-build251beta1.jar</systemPath>-->
     </dependencies>
 
     <profiles>
@@ -117,7 +78,7 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>${project.basedir}/src/test/resources/environment.properties</directory>
+                        <directory>${project.basedir}/src/main/resources/environment.properties</directory>
                     </resource>
                     <resource>
                         <directory>${project.basedir}/src/main/java</directory>
@@ -133,7 +94,7 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>${project.basedir}/src/test/resources/environment.dev.properties</directory>
+                        <directory>${project.basedir}/src/main/resources/environment.dev.properties</directory>
                     </resource>
                 </resources>
             </build>
@@ -143,13 +104,12 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>${project.basedir}/src/test/resources/environment.qa.properties</directory>
+                        <directory>${project.basedir}/src/main/resources/environment.qa.properties</directory>
                     </resource>
                 </resources>
             </build>
         </profile>
     </profiles>
-
     <build>
         <testResources>
             <testResource>
@@ -159,12 +119,10 @@
                 </excludes>
             </testResource>
         </testResources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.1</version>
                 <configuration>
                     <verbose>true</verbose>
                     <source>1.6</source>
@@ -173,7 +131,6 @@
                 </configuration>
             </plugin>
 
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>selenium-maven-plugin</artifactId>
@@ -181,9 +138,9 @@
                 <executions>
                     <execution>
                         <phase>pre-integration-test</phase>
-                        <!--<goals>-->
-                        <!--<goal>start-server</goal>-->
-                        <!--</goals>-->
+                        <!-- <goals> -->
+                        <!-- <goal>start-server</goal> -->
+                        <!-- </goals> -->
                         <configuration>
                             <background>true</background>
                         </configuration>
@@ -194,36 +151,34 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
                 <configuration>
                     <!-- Skip the normal tests, we'll run them in the integration-test phase -->
                     <skip>true</skip>
 
-                    <!-- <systemPropertyVariables>
-                    <name>server</name>
-                    <value>{urbandaddy.qa.server_url}</value>
-                    </systemPropertyVariables> -->
+                    <!-- <systemPropertyVariables> <name>server</name> <value>{urbandaddy.qa.server_url}</value>
+</systemPropertyVariables> -->
                     <suiteXmlFiles>
-                        <!-- The variable below is needed or the tests can't run -->
+                        <!-- <file>src/test/resources/suite_US.xml</file> -->
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
 
                 </configuration>
+
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <skip>false</skip>
-                            </configuration>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-
-
         </plugins>
     </build>
+    <!-- <distributionManagement> <repository> <id>urbandaddy</id> <name>urbandaddy-snapshots</name>
+<url>http://urbandaddy.artifactoryonline.com/urbandaddy/libs-snapshots-local</url>
+</repository> </distributionManagement> -->
 </project>
