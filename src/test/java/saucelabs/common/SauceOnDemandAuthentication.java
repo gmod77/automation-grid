@@ -1,4 +1,4 @@
-package com.saucelabs.common;
+package saucelabs.common;
 
 
 import java.io.File;

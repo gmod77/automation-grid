@@ -1,8 +1,8 @@
-package com.saucelabs.testng;
+package saucelabs.testng;
 
-import com.saucelabs.common.SauceOnDemandAuthentication;
-import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import com.saucelabs.saucerest.SauceREST;
+import saucelabs.common.SauceOnDemandAuthentication;
+import saucelabs.common.SauceOnDemandSessionIdProvider;
+import saucelabs.saucerest.SauceREST;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
@@ -26,7 +26,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
     private static final String SELENIUM_VERSION = "SELENIUM_VERSION";
 
     /**
-     * The underlying {@link com.saucelabs.common.SauceOnDemandSessionIdProvider} instance which contains the Selenium session id.  This is typically
+     * The underlying {@link saucelabs.common.SauceOnDemandSessionIdProvider} instance which contains the Selenium session id.  This is typically
      * the unit test being executed.
      */
     private SauceOnDemandSessionIdProvider sessionIdProvider;

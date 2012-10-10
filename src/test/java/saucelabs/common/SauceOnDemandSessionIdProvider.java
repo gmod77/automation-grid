@@ -1,4 +1,4 @@
-package com.saucelabs.common;
+package saucelabs.common;
 
 /**
  * Interface that should be implemented by classes using the TestNG or JUnit helper classes.

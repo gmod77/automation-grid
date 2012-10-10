@@ -1,4 +1,4 @@
-package com.saucelabs.saucerest;
+package saucelabs.saucerest;
 
 import java.io.*;
 import java.net.*;

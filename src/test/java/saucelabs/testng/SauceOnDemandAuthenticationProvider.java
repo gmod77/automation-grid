@@ -1,10 +1,10 @@
-package com.saucelabs.testng;
+package saucelabs.testng;
 
-import com.saucelabs.common.SauceOnDemandAuthentication;
+import saucelabs.common.SauceOnDemandAuthentication;
 
 /**
  * Marker interface which should be implemented by Tests that instantiate {@link SauceOnDemandAuthentication}.  This
- * interface is referenced by {@link SauceOnDemandTestListener} in order to construct the {@link com.saucelabs.saucerest.SauceREST}
+ * interface is referenced by {@link SauceOnDemandTestListener} in order to construct the {@link saucelabs.saucerest.SauceREST}
  * instance using the authentication specified for the specific test.
  *
  * @author Ross Rowe

@@ -1,9 +1,9 @@
 package org.urbandaddy.helpers.Comm;
 
-import com.saucelabs.common.SauceOnDemandAuthentication;
-import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
-import com.saucelabs.testng.SauceOnDemandTestListener;
+import saucelabs.common.SauceOnDemandAuthentication;
+import saucelabs.common.SauceOnDemandSessionIdProvider;
+import saucelabs.testng.SauceOnDemandAuthenticationProvider;
+import saucelabs.testng.SauceOnDemandTestListener;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
