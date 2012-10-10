@@ -1,4 +1,5 @@
-<suite name="ParallelTests" verbose="5" parallel="tests" thread-count="10">
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ParallelTests" verbose="10">
     <!--<parameter name="sauceUser" value="sargenziano" />-->
     <!--<parameter name="sauceKey" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />-->
     <test name="Sauce Remote Web Driver">
