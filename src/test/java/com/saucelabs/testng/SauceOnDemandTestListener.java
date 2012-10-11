@@ -53,9 +53,9 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
         if (platform != null && !platform.equals(""))  {
             System.setProperty("os", platform);
         }
-        String version = System.getenv(SELENIUM_VERSION);
-        if (version != null && !version.equals(""))  {
-            System.setProperty("version", version);
+        String browserVersion = System.getenv(SELENIUM_VERSION);
+        if (browserVersion != null && !browserVersion.equals(""))  {
+            System.setProperty("browserVersion", browserVersion);
         }
     }
 
