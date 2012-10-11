@@ -67,17 +67,19 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
                 System.setProperty("browserVersion", browserVersion);
             }
         } else {
-            String driverString = System.getProperty("SELENIUM_DRIVER");
-            //sauce-ondemand:?os=Windows 2003&browser=firefox&browser-version=3.6.
-            StringTokenizer st = new StringTokenizer(driverString, "?");
-            st.nextToken(); //don't need the sauce-ondemand part
-            StringTokenizer st1 = new StringTokenizer(st.nextToken(),"&");
-            platform = st1.nextToken().substring(3);
-            System.setProperty("os", platform);
-            browser = st1.nextToken().substring(8);
-            System.setProperty("browser", browser);
-            browserVersion = st1.nextToken().substring(16);
-            System.setProperty("browserVersion", browserVersion);
+            if (System.getProperty("SELENIUM_DRIVER") != null) {
+                String driverString = System.getProperty("SELENIUM_DRIVER");
+                //sauce-ondemand:?os=Windows 2003&browser=firefox&browser-version=3.6.
+                StringTokenizer st = new StringTokenizer(driverString, "?");
+                st.nextToken(); //don't need the sauce-ondemand part
+                StringTokenizer st1 = new StringTokenizer(st.nextToken(),"&");
+                platform = st1.nextToken().substring(3);
+                System.setProperty("os", platform);
+                browser = st1.nextToken().substring(8);
+                System.setProperty("browser", browser);
+                browserVersion = st1.nextToken().substring(16);
+                System.setProperty("browserVersion", browserVersion);
+            }
         }
 
     }
