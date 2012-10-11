@@ -17,10 +17,13 @@ import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
 import javax.annotation.Nullable;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Key;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
@@ -151,39 +154,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected String imagePath = returnImgPath();
 
     /**
-     * Pause for 7 seconds
-     */
-    public void pause1(){
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Pause for 20 seconds
-     */
-    public void pause2(){
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Pause for 3 seconds
-     */
-    public void pause3(){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Set your own pause time
      * @param time Time in ms
      */
@@ -207,7 +177,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         //client.get("https://mail.google.com/");
         checkEmailHelper_Client.clientLogInToGmail();
 
-        this.pause2();
+        this.pause(20000);
     }
 
     /**
@@ -386,6 +356,8 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
                 getAuthentication(), getSessionId(), fileName));
     }
 
+
+
     /**
      * {@inheritDoc}
      *
@@ -399,6 +371,11 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     @AfterMethod
     public void tearDown(ITestResult result) throws Exception {
+        String key = authentication.getUsername() + ":" + authentication.getAccessKey();
+        String message = getSessionId();
+        System.out.println(getHmacMD5(key,message, "MD5"));
+        String token = getHmacMD5(key,message, "MD5");
+        System.out.println("https://saucelabs.com/jobs/" + getSessionId() +"?auth=" + token);
         System.out.println(getVideo());
         System.out.println(getSeleniumServerLogFile());
         client.quit();
@@ -411,5 +388,27 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     @Override
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
+    }
+
+
+
+    public String getHmacMD5(String privateKey, String input, String algorithm) throws Exception{
+        byte[] keyBytes = privateKey.getBytes();
+        Key key = new SecretKeySpec(keyBytes, 0, keyBytes.length, algorithm);
+        Mac mac = Mac.getInstance(algorithm);
+        mac.init(key);
+        return byteArrayToHex(mac.doFinal(input.getBytes()));
+    }
+    protected String byteArrayToHex(byte [] a) {
+        int hn, ln, cx;
+        String hexDigitChars = "0123456789abcdef";
+        StringBuffer buf = new StringBuffer(a.length * 2);
+        for(cx = 0; cx < a.length; cx++) {
+            hn = ((int)(a[cx]) & 0x00ff) / 16;
+            ln = ((int)(a[cx]) & 0x000f);
+            buf.append(hexDigitChars.charAt(hn));
+            buf.append(hexDigitChars.charAt(ln));
+        }
+        return buf.toString();
     }
 }

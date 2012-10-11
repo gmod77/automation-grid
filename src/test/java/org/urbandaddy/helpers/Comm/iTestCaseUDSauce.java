@@ -89,7 +89,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         // After login go to create the article
         client.get(UD_Admin_domain+"/articles/create");
-        this.pause1();
+        this.pause(7000);
 
         // 4. change status to approved
         WebElement status = client.findElement(By.id("article_article_status_id"));
@@ -197,7 +197,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+emailFormat.format(now));
         // 23. Click Save
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
         // Get Article ID
 
@@ -209,7 +209,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         // 24. Click add Image
         // go to create image page
         client.get(UD_Admin_domain+"/article_images/create");
-        this.pause1();
+        this.pause(7000);
 
 
         // 25. Upload Email_Banner size 552 x 135
@@ -238,7 +238,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         // 27. click  save
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
 
     }
 
@@ -257,7 +257,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         // After login go to create the article
         client.get(UD_Admin_domain+"/articles/create");
-        this.pause1();
+        this.pause(7000);
 
         // 4. change status to approved
         selectFromDropdown("article_article_status_id","option","Approved");
@@ -372,7 +372,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+emailFormat.format(now));
         // 23. Click Save
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
         // Get Article ID
 
@@ -384,7 +384,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         // 24. Click add Image
         // go to create image page
         client.get(UD_Admin_domain+"/article_images/create");
-        this.pause1();
+        this.pause(7000);
 
 
         // 25. Upload Email_Banner size 552 x 135
@@ -409,7 +409,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         // 27. click  save
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
 
         // 28. Add 2nd Image
         // 29. upload thumbnail size 139 x 95
@@ -438,9 +438,9 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         // 31. click save
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
         client.get(UD_Admin_domain+"/articles/edit/id/" + articleID);
-        this.pause1();
+        this.pause(7000);
 
         // 32. Add Ad module to Right module section, make it a tower
         //		a.	Select ad from component dropdown
@@ -488,7 +488,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
             {
                 client.switchTo().window(popupHandle2);
 
-                this.pause3();
+                this.pause(3000);
 
                 // select Footer template
 
@@ -503,7 +503,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //                }
                 //        d.	Click Save
                 client.findElement(By.id("save_button")).click();
-                this.pause1();
+                this.pause(7000);
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh2);
@@ -515,7 +515,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         // 33. Click "here" to add the individual articles
         client.get(UD_Admin_domain+"/multiarticle/edit/id/"+articleID);
-        this.pause1();
+        this.pause(7000);
 
         // 34. Add Copy to the slots you are going to use (1 paragraph 3 sentences maxish)
 
@@ -592,7 +592,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //	3. Click on create	
 
         client.get(UD_Admin_domain+"/articles/create");
-        this.pause1();
+        this.pause(7000);
 
 //	4. Change status to Approved
 
@@ -680,7 +680,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //	16.   Click Save
 
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
         // Get Article ID
 
@@ -693,7 +693,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         // go to create image page
         client.get(UD_Admin_domain+"/article_images/create");
-        this.pause1();
+        this.pause(7000);
 
         //browse to 1st image
         client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image001_optionA.jpg");
@@ -715,7 +715,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //click "save and add" button
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
 
 
         //browse to 2nd image
@@ -738,7 +738,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //click "save and add" button
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
 
         //browse to 3rd image
         client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image003_thumbnail.jpg");
@@ -760,7 +760,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //click "save and add" button
 
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
         //go back to the article
         client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
@@ -859,7 +859,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
                 WebElement clickMe = findElement("id","save_button",5);
                 clickMe.click();
-                this.pause1();
+                this.pause(7000);
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh);
@@ -914,7 +914,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
             {
                 client.switchTo().window(popupHandle2);
 
-                this.pause3();
+                this.pause(3000);
 
                 // select Footer template
 
@@ -928,7 +928,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
                 }
 //        d.	Click Save
                 client.findElement(By.id("save_button")).click();
-                this.pause1();
+                this.pause(7000);
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh2);
@@ -958,7 +958,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //	31.   Click save
 
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
 
 //	32.   Click “here” next to Template this takes you to individual weekenders
@@ -967,7 +967,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //		or:
 
         client.get(UD_Admin_domain+"/multiarticle/edit/id/"+articleID);
-        this.pause1();
+        this.pause(7000);
 
 //	33.   For each template, 3 is a good number:
 
@@ -1196,17 +1196,17 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
 
-        this.pause1();
+        this.pause(7000);
 
 //		slot 5:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[10]/td/div[11]/input
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
-        this.pause1();
+        this.pause(7000);
 
 //		slot 6:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[12]/td/div[11]/input
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
-        this.pause1();
+        this.pause(7000);
 
 
 
@@ -1260,7 +1260,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         //Save
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
 // Get Article ID
 
@@ -1288,7 +1288,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //click "save and add" button
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
 
 
 //browse to 2nd image
@@ -1304,7 +1304,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //click "save and add" button
 
         client.findElement(By.name("save_and_add")).click();
-        this.pause1();
+        this.pause(7000);
 
 //browse to 3rd image
         client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image003_thumbnail.jpg");
@@ -1318,7 +1318,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //click "save and add" button
 
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
 //go back to the article
         client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
@@ -1359,7 +1359,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
 //Save
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
 // Add Vitals to the Left Module,
         selectFromDropdown("_select_modules_left","option","Vitals");
@@ -1406,7 +1406,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
             if(!popupHandle.contains(mwh))
             {
                 client.switchTo().window(popupHandle);
-                this.pause3();
+                this.pause(3000);
                 // click save
                 client.findElement(By.id("save_button")).click();
 
@@ -1464,7 +1464,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
             {
                 client.switchTo().window(popupHandle);
                 // click save
-                this.pause3();
+                this.pause(3000);
                 findElement("id","save_button",5).click();
                 //client.findElement(By.id("save_button")).click();
 
@@ -1512,7 +1512,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
             {
                 client.switchTo().window(popupHandle);
                 // click save
-                this.pause3();
+                this.pause(3000);
                 client.findElement(By.id("save_button")).click();
 
                 //After finished your operation in pop-up just select the main window again
@@ -1528,7 +1528,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //Click Save, 
 
         client.findElement(By.name("save")).click();
-        this.pause1();
+        this.pause(7000);
 
 //Click HTML Newsletter, 
 //Click Send Email, 
@@ -1544,10 +1544,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         // Get the text of the alert or prompt
         alert.getText();
         // And acknowledge the alert (equivalent to clicking "OK")
-        this.pause3();
+        this.pause(3000);
         alert.accept();
 
-        this.pause1();
+        this.pause(7000);
         // Verify "Test email has been sent" success message
 
 
@@ -1566,7 +1566,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         alert2.getText();
         // And acknowledge the alert (equivalent to clicking "OK")
         alert2.accept();
-        this.pause1();
+        this.pause(7000);
 
         // Verify "Test email has been sent" success message
         Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
@@ -1574,7 +1574,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 //Click Back to Article, Change Status to Ready to Send, Click Save, Click Send E-mail, Click Send Mailing at bottom of page
         //go back to the article
         client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
-        this.pause3();
+        this.pause(3000);
 
         //Change Status to Ready to Send, Click Save,
 
@@ -1622,7 +1622,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //4. Click save
 
         client.get(UD_Admin_domain+"/member_sources/edit");
-        this.pause3();
+        this.pause(3000);
         //enter Unique Name
         client.findElement(By.id("member_source_name")).sendKeys(membersource);
 
@@ -1790,7 +1790,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         findElement("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
 //        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
-//        this.pause3();
+//        this.pause(3000);
 
 
         //29. Add Header text
@@ -2070,7 +2070,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //63. 		Click Enter Button
 
 //				client.findElement(By.name("commit")).click();
-//				this.pause3();
+//				this.pause(3000);
         //64.  On the Editions Page
         //do checks
 
@@ -2090,7 +2090,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         //65. Click Enter Button
 
 //				client.findElement(By.name("commit")).click();
-//				this.pause3();
+//				this.pause(3000);
 
         //66. On Invite Friends Page
         // do checks
@@ -2147,7 +2147,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         //67. Click Invite
 //				client.findElement(By.name("commit")).click();
-//				this.pause3();
+//				this.pause(3000);
         //68. On Thank you page
         //do checks
 
@@ -2196,49 +2196,49 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         Assert.assertTrue(ud_headerHelper_Client.isMobilePresent());
 
         ud_headerHelper_Client.clickNightlife();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isNightlifeAccessible());
         ud_headerHelper_Client.clickFood();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isFoodAccessible());
         ud_headerHelper_Client.clickStyle();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isStyleAccessible());
         ud_headerHelper_Client.clickGear();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isGearAccessible());
         ud_headerHelper_Client.clickLeisure();
-        this.pause1();
+        this.pause(7000);
 
         lastURL = client.getCurrentUrl();
 
         Assert.assertTrue(isLeisureAccessible());
         ud_headerHelper_Client.clickDriven();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isPerksAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickParties();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickKempt();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickMobile();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible());
         //client.navigate().back();
         client.get(lastURL);
@@ -2264,36 +2264,36 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         Assert.assertTrue(ud_headerHelper_Client.isMobileLVPresent());
 
         ud_headerHelper_Client.clickNightlifeLV();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isNightlifeAccessible());
         ud_headerHelper_Client.clickFoodLV();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isFoodAccessible());
         ud_headerHelper_Client.clickEntertainmentLV();
-        this.pause1();
+        this.pause(7000);
         lastURL = client.getCurrentUrl();
         Assert.assertTrue(isEntertainmentAccessible());
 
         ud_headerHelper_Client.clickPerksLV();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isPerksAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPartiesLV();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isPartiesLVAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickKemptLV();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isKemptLVAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickMobileLV();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isMobileLVAccessible());
         //client.navigate().back();
         client.get(lastURL);
@@ -2322,19 +2322,19 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         Assert.assertTrue(ud_headerHelper_Client.isMobileNationalPresent());
 
         ud_headerHelper_Client.clickFoodDrinkNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isFoodDrinkNationalAccessible());
         ud_headerHelper_Client.clickStyleNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isStyleAccessible());
         ud_headerHelper_Client.clickGearNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isGearAccessible());
         ud_headerHelper_Client.clickEntertainmentNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isEntertainmentAccessible());
         ud_headerHelper_Client.clickTravelNational();
-        this.pause1();
+        this.pause(7000);
         lastURL = client.getCurrentUrl();
 
         Assert.assertTrue(isTravelAccessible());
@@ -2344,25 +2344,25 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isPerksAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPartiesNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isPartiesNationalAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickKemptNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isKemptNationalAccessible());
         //client.navigate().back();
         client.get(lastURL);
 
         ud_headerHelper_Client.clickMobileNational();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isMobileNationalAccessible());
         //client.navigate().back();
         client.get(lastURL);
@@ -2390,49 +2390,49 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         Assert.assertTrue(ud_headerHelper_Client.isKemptPresent());
 
         ud_headerHelper_Client.clickNightlife();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isNightlifeAccessible());
         ud_headerHelper_Client.clickFood();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isFoodAccessible());
         ud_headerHelper_Client.clickStyle();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isStyleAccessible());
         ud_headerHelper_Client.clickGear();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isGearAccessible());
         ud_headerHelper_Client.clickLeisure();
-        this.pause1();
+        this.pause(7000);
 
         lastURL = client.getCurrentUrl();
 
         Assert.assertTrue(isLeisureAccessible());
         ud_headerHelper_Client.clickDriven();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
 
         //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
-        //this.pause1();
+        //this.pause(7000);
         //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(isPerksAccessible());
         //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
         client.get(lastURL);
 
         ud_headerHelper_Client.clickParties();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
         //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
         client.get(lastURL);
 
         ud_headerHelper_Client.clickKempt();
-        this.pause1();
+        this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
         //client.navigate().back(); can't be used with Safari, because its history navigation does not work.
         client.get(lastURL);
@@ -2738,7 +2738,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         ud_sealHelper_Client.clickEditSettings();
 
         // Pause for a couple secs until ajax window shows up
-        pause3();
+        pause(3000);
 
         // Uncheck all the editorial boxes
         WebElement editorial = client.findElement(By.className("myUDpopupEditorials"));
@@ -2762,10 +2762,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
 
         // Click update
         ud_unSubscribeHelper_client.clickUpdate();
-        pause3();
+        pause(3000);
         // Confirm unsubscription
         ud_unSubscribeHelper_client.confirmUpdate();
-        pause3();
+        pause(3000);
 
         // Close the lightbox
         WebElement closeButton = client.findElement(By.className("ajaxClose"));
@@ -3256,7 +3256,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest {
         ud_sealHelper_Client.checkDCPerks();
 
         ud_sealHelper_Client.clickUpdate();
-        this.pause3();
+        this.pause(3000);
         ud_sealHelper_Client.clickClose();
 
     }
