@@ -82,7 +82,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
             System.out.println("This is where you want to be> " + selDriver);
             capabillities = DesiredCapabilities.firefox();
         }
-        capabillities.setCapability("Test Method: ", method.getName());
+        capabillities.setCapability("name", "Test Method: " + method.getName());
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabillities);
