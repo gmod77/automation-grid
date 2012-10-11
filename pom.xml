@@ -166,6 +166,12 @@
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>selDriver</name>
+                            <value>${SELENIUM_DRIVER}}</value>
+                        </property>
+                    </properties>
 
                 </configuration>
 
