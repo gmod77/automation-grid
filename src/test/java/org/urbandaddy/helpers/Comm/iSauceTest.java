@@ -56,6 +56,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("HERE> " + browser);
         System.out.println("HERE> " + browserVersion);
         System.out.println("HERE> " + Platform.extractFromSysProperty(os));
+        System.out.println("HERE> " + selDriver);
 
         System.out.println("HERE2> " + System.getenv("SELENIUM_BROWSER"));
         System.out.println("HERE2> " + System.getenv("SELENIUM_VERSION"));
