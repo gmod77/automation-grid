@@ -21,7 +21,7 @@ public class LocatorReader {
 		SAXReader reader = new SAXReader();
 		try {
 			URL url = getClass().getResource(xmlName);
-			File file = new File(url.getFile());
+			File file = new File(url.getFile().replaceAll("%20"," "));
 			doc = reader.read(file);
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
