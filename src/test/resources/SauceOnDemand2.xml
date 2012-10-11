@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ParallelTests" verbose="10">
+    <parameter name="username" value="sargenziano" />
+    <parameter name="key" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
+    <test name="Sauce Remote Web Driver">
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="browserVersion" value="3.6."/>-->
+        <classes>
+            <class name="org.urbandaddy.helpers.Comm.iSauceTest2"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>
+    </listeners>
+</suite>
