@@ -3,6 +3,7 @@ package org.urbandaddy.helpers.Comm;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import com.saucelabs.saucerest.SauceREST;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +13,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
@@ -21,7 +23,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Listeners({SauceOnDemandTestListener.class})
 public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
@@ -382,15 +386,26 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
      */
     @Override
     public String getSessionId() {
-        SessionId sessionId = ((RemoteWebDriver) client).getSessionId();
+        SessionId sessionId = (client).getSessionId();
         return (sessionId == null) ? null : sessionId.toString();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
-        client.quit();
-    }
+    public void tearDown(ITestResult result) throws Exception {
+        String sauceJobID = getSessionId();
+        SauceREST sauceREST = new SauceREST(authentication.getUsername(), authentication.getAccessKey());
+        Map<String, Object> sauceJob = new HashMap<String, Object>();
+        sauceJob.put("name", "Test method: " + result.getMethod().getMethodName());
+        if(result.isSuccess()) {
+            sauceREST.jobPassed(sauceJobID);
 
+        } else {
+            sauceREST.jobFailed(sauceJobID);
+        }
+        sauceREST.updateJobInfo(sauceJobID, sauceJob);
+        sauceREST.getJobInfo(sauceJobID);
+
+    }
     /**
      * {@inheritDoc}
      *
