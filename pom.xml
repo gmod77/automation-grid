@@ -7,9 +7,14 @@
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>urbandaddy-test-suite</name>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <property>
+            <name>selDriver</name>
+            <value>${SELENIUM_DRIVER}}</value>
+        </property>
     </properties>
     <dependencies>
         <dependency>
@@ -166,12 +171,7 @@
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
-                    <properties>
-                        <property>
-                            <name>selDriver</name>
-                            <value>${SELENIUM_DRIVER}}</value>
-                        </property>
-                    </properties>
+
 
                 </configuration>
 
