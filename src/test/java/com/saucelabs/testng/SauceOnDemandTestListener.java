@@ -24,6 +24,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
     private static final String SELENIUM_BROWSER = "SELENIUM_BROWSER";
     private static final String SELENIUM_PLATFORM = "SELENIUM_PLATFORM";
     private static final String SELENIUM_VERSION = "SELENIUM_VERSION";
+    private static final String SELENIUM_DRIVER = "SELENIUM_DRIVER";
 
     /**
      * The underlying {@link com.saucelabs.common.SauceOnDemandSessionIdProvider} instance which contains the Selenium session id.  This is typically
@@ -56,6 +57,10 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
         String browserVersion = System.getenv(SELENIUM_VERSION);
         if (browserVersion != null && !browserVersion.equals(""))  {
             System.setProperty("browserVersion", browserVersion);
+        }
+        String selDriver = System.getenv(SELENIUM_DRIVER);
+        if (selDriver != null && !selDriver.equals("")) {
+            System.setProperty("seleniumDriver", selDriver);
         }
     }
 

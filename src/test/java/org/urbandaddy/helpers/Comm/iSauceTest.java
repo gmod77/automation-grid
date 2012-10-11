@@ -43,13 +43,14 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @param method
      * @throws Exception
      */
-    @Parameters({"username", "key", "os", "browser", "browserVersion"})
+    @Parameters({"username", "key", "os", "browser", "browserVersion","seleniumDriver"})
     @BeforeMethod
     public void setUp(@Optional("") String username,
                       @Optional("") String key,
                       @Optional("") String os,
                       @Optional("") String browser,
                       @Optional("") String browserVersion,
+                      @Optional("") String seleniumDriver,
                       Method method) throws Exception {
 
         System.out.println("HERE> " + browser);
@@ -74,6 +75,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabillities.setCapability("platform", Platform.extractFromSysProperty(os));
 
         } else {
+            System.out.println("This is where you want to be> " + seleniumDriver);
             capabillities = DesiredCapabilities.firefox();
         }
         capabillities.setCapability("name", method.getName());
