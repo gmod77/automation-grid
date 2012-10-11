@@ -60,7 +60,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
         }
         String selDriver = System.getenv(SELENIUM_DRIVER);
         if (selDriver != null && !selDriver.equals("")) {
-            System.setProperty("seleniumDriver", selDriver);
+            System.setProperty("selDriver", selDriver);
         }
     }
 
