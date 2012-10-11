@@ -392,7 +392,8 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     public void tearDown(ITestResult result) throws Exception {
         String sauceJobID = getSessionId();
         SauceREST sauceREST = new SauceREST(authentication.getUsername(), authentication.getAccessKey());
-        sauceREST.getJobInfo(sauceJobID);
+        System.out.println(sauceREST.getJobInfo(sauceJobID));
+        sauceREST.downloadVideo(sauceJobID,"./");
         client.quit();
     }
     /**
