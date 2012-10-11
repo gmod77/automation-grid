@@ -56,9 +56,9 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("HERE> " + browserVersion);
         System.out.println("HERE> " + Platform.extractFromSysProperty(os));
 
-        System.out.println("HERE2> " + "SELENIUM_BROWSER");
-        System.out.println("HERE2> " + "SELENIUM_VERSION");
-        System.out.println("HERE2> " + "SELENIUM_PLATFORM");
+        System.out.println("HERE2> " + System.getenv("SELENIUM_BROWSER"));
+        System.out.println("HERE2> " + System.getenv("SELENIUM_VERSION"));
+        System.out.println("HERE2> " + System.getenv("SELENIUM_PLATFORM"));
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
             authentication = new SauceOnDemandAuthentication(username, key);
