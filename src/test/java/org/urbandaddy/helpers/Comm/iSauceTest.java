@@ -3,7 +3,6 @@ package org.urbandaddy.helpers.Comm;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import com.saucelabs.saucerest.SauceREST;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
 import org.apache.commons.lang.StringUtils;
@@ -64,6 +63,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("HERE2> " + System.getenv("SELENIUM_VERSION"));
         System.out.println("HERE2> " + System.getenv("SELENIUM_PLATFORM"));
         System.out.println("HERE2> " + System.getenv("SELENIUM_DRIVER"));
+        System.out.println("HERE2> " + System.getProperty("SELENIUM_DRIVER"));
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
             authentication = new SauceOnDemandAuthentication(username, key);
@@ -81,7 +81,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
             System.out.println("This is where you want to be> " + selDriver);
             capabillities = DesiredCapabilities.firefox();
         }
-        capabillities.setCapability("name", method.getName());
+        capabillities.setCapability("Test Method: ", method.getName());
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabillities);
@@ -390,10 +390,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     @AfterMethod
     public void tearDown(ITestResult result) throws Exception {
-        String sauceJobID = getSessionId();
-        SauceREST sauceREST = new SauceREST(authentication.getUsername(), authentication.getAccessKey());
-        System.out.println(sauceREST.getJobInfo(sauceJobID));
-        sauceREST.downloadVideo(sauceJobID,"./");
         client.quit();
     }
     /**
