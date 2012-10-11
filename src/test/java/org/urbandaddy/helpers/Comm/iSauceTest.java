@@ -23,9 +23,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Listeners({SauceOnDemandTestListener.class})
 public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
@@ -394,17 +392,8 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     public void tearDown(ITestResult result) throws Exception {
         String sauceJobID = getSessionId();
         SauceREST sauceREST = new SauceREST(authentication.getUsername(), authentication.getAccessKey());
-        Map<String, Object> sauceJob = new HashMap<String, Object>();
-        sauceJob.put("name", "Test method: " + result.getMethod().getMethodName());
-        if(result.isSuccess()) {
-            sauceREST.jobPassed(sauceJobID);
-
-        } else {
-            sauceREST.jobFailed(sauceJobID);
-        }
-        sauceREST.updateJobInfo(sauceJobID, sauceJob);
         sauceREST.getJobInfo(sauceJobID);
-
+        client.quit();
     }
     /**
      * {@inheritDoc}
