@@ -17,6 +17,7 @@ import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -79,7 +80,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabillities.setCapability("platform", Platform.extractFromSysProperty(os));
 
         } else {
-            System.out.println("This is where you want to be> " + selDriver);
             capabillities = DesiredCapabilities.firefox();
         }
         capabillities.setCapability("name", "Test Method: " + method.getName());
@@ -372,10 +372,18 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
     }
 
-    private URL getFileURL(String username, String session, String fileName) throws MalformedURLException {
+    public URL getSeleniumServerLogFile() throws IOException {
+        return getFileURL("selenium-server.log");
+    }
+
+    public URL getVideo() throws IOException {
+        return getFileURL("video.flv");
+    }
+
+    private URL getFileURL(String fileName) throws MalformedURLException {
         // userinfo in URL doesn't result in the BASIC auth, so in this method we won't set the credential.
         return new URL(MessageFormat.format("https://saucelabs.com/rest/{0}/jobs/{1}/results/{2}",
-                username, session, fileName));
+                getAuthentication(), getSessionId(), fileName));
     }
 
     /**
@@ -391,6 +399,8 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     @AfterMethod
     public void tearDown(ITestResult result) throws Exception {
+        System.out.println(getVideo());
+        System.out.println(getSeleniumServerLogFile());
         client.quit();
     }
     /**
