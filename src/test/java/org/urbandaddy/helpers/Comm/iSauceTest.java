@@ -52,6 +52,10 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
                       @Optional("") String browserVersion,
                       Method method) throws Exception {
 
+        System.out.println(browser);
+        System.out.println(browserVersion);
+        System.out.println(Platform.extractFromSysProperty(os));
+
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
             authentication = new SauceOnDemandAuthentication(username, key);
         } else {
