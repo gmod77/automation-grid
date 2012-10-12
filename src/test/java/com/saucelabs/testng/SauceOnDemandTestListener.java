@@ -53,19 +53,29 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
 
         String selDriver = System.getenv(SELENIUM_DRIVER); // if this is populated use getenv
         if (selDriver != null && !selDriver.equals("")) {
-
-            browser = System.getenv(SELENIUM_BROWSER);
-            if (browser != null && !browser.equals(""))  {
-                System.setProperty("browser", browser);
-            }
-            platform = System.getenv(SELENIUM_PLATFORM);
-            if (platform != null && !platform.equals(""))  {
-                System.setProperty("os", platform);
-            }
-            browserVersion = System.getenv(SELENIUM_VERSION);
-            if (browserVersion != null && !browserVersion.equals(""))  {
-                System.setProperty("browserVersion", browserVersion);
-            }
+            selDriver = System.getenv("SELENIUM_DRIVER");
+            //sauce-ondemand:?os=Windows 2003&browser=firefox&browser-version=3.6.
+            StringTokenizer st = new StringTokenizer(selDriver, "?");
+            st.nextToken(); //don't need the sauce-ondemand part
+            StringTokenizer st1 = new StringTokenizer(st.nextToken(),"&");
+            platform = st1.nextToken().substring(3);
+            System.setProperty("os", platform);
+            browser = st1.nextToken().substring(8);
+            System.setProperty("browser", browser);
+            browserVersion = st1.nextToken().substring(16);
+            System.setProperty("browserVersion", browserVersion);
+//            browser = System.getenv(SELENIUM_BROWSER);
+//            if (browser != null && !browser.equals(""))  {
+//                System.setProperty("browser", browser);
+//            }
+//            platform = System.getenv(SELENIUM_PLATFORM);
+//            if (platform != null && !platform.equals(""))  {
+//                System.setProperty("os", platform);
+//            }
+//            browserVersion = System.getenv(SELENIUM_VERSION);
+//            if (browserVersion != null && !browserVersion.equals(""))  {
+//                System.setProperty("browserVersion", browserVersion);
+//            }
         } else {
             if (System.getProperty("SELENIUM_DRIVER") != null) {
                 String driverString = System.getProperty("SELENIUM_DRIVER");
