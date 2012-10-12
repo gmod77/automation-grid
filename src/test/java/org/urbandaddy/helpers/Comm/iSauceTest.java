@@ -16,11 +16,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -86,7 +83,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabillities);
-
+        System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
     }
 
     //declare helpers
@@ -272,9 +269,9 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     /**
      * Select an item from a dropdown. Uses WebElement to find
-     * the dropdown. Works great with the checkForBy() method.
+     * the dropdown. Works great with the findElementAndCheckBy() method.
      *
-     * @param element Webelement returned from checkForBy()
+     * @param element Webelement returned from findElementAndCheckBy()
      * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
      * @param text Name of the object to select from the dropdown
      */
@@ -288,26 +285,10 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
     }
 
-    public URL getSeleniumServerLogFile() throws IOException {
-        return getFileURL("selenium-server.log");
-    }
-
-    public URL getVideo() throws IOException {
-        return getFileURL("video.flv");
-    }
-
-    private URL getFileURL(String fileName) throws MalformedURLException {
-        // userinfo in URL doesn't result in the BASIC auth, so in this method we won't set the credential.
-        return new URL(MessageFormat.format("https://saucelabs.com/rest/{0}/jobs/{1}/results/{2}",
-                getAuthentication(), getSessionId(), fileName));
-    }
-
-
-
     /**
-     * {@inheritDoc}
+     * Grab the sessionid
      *
-     * @return
+     * @return sessionId to string
      */
     @Override
     public String getSessionId() {
@@ -317,19 +298,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     @AfterMethod (alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
-//        SauceREST sauceREST = new SauceREST(authentication.getUsername(),authentication.getAccessKey());
-//        if(result.isSuccess()) {
-//            sauceREST.jobPassed(getSessionId());
-//        } else {
-//            sauceREST.jobFailed(getSessionId());
-//        }
-//        String message = authentication.getUsername() + ":" + authentication.getAccessKey();
-//        System.out.println("Message> " + message);
-//        String jobId = getSessionId();
-//        System.out.println("jobId> " + getSessionId());
-//        String token = tokenGenerate(message, jobId);
-//        System.out.println("Token> " + token);
-//        System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
+        System.out.println("METHOD END\n");
         client.quit();
     }
     /**

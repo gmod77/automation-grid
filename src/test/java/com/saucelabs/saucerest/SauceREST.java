@@ -36,13 +36,17 @@ public class SauceREST {
         this.accessKey = accessKey;
     }
 
-    private String generateToken(String jobId) throws Exception{
+    private String generateToken(String jobId) throws IOException {
         String message = username + ":" + accessKey;
-        return tokenGenerate(message, jobId);
+        try {
+            return tokenGenerate(message, jobId);
+        } catch (Exception e) {
+            throw new IOException("Token Generation Failed");
+        }
         //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
     }
 
-    public String getResultsUrl(String jobId) throws Exception {
+    public String getResultsUrl(String jobId) throws IOException {
         String token = generateToken(jobId);
         return String.format(JOB_ID_FORMAT, jobId, token);
     }

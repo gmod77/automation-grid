@@ -21,7 +21,6 @@ public class HMacHelper {
         mac.init(secretKey);
         byte[] result = mac.doFinal(jobId.getBytes());
 
-        System.out.println("I generated Token: " + toHexString(result));
         return toHexString(result);
     }
 

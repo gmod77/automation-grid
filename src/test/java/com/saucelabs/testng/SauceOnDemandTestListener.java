@@ -7,6 +7,7 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
+import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
@@ -123,7 +124,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
         try {
             if (this.sauceREST != null && sessionIdProvider != null) {
                 String sessionId = sessionIdProvider.getSessionId();
-                System.out.println(sauceREST.getResultsUrl(sessionId));
+                System.out.println("RESULTS URL: " + sauceREST.getResultsUrl(sessionId));
                 if (sessionId != null) {
                     sauceREST.jobFailed(sessionId);
                 }
@@ -149,12 +150,12 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
         try {
             if (this.sauceREST != null && sessionIdProvider != null) {
                 String sessionId = sessionIdProvider.getSessionId();
-                System.out.println(sauceREST.getResultsUrl(sessionId));
+                System.out.println("RESULTS URL: " + sauceREST.getResultsUrl(sessionId));
                 if (sessionId != null) {
                     sauceREST.jobPassed(sessionIdProvider.getSessionId());
                 }
             }
-        } catch (Exception ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             throw new RuntimeException(ioe);
         }

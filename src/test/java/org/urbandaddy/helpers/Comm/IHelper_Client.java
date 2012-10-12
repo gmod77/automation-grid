@@ -159,7 +159,7 @@ public abstract class IHelper_Client {
      * @param timeout Enter the number of seconds for the timeout
      * @return that web element or throw an error
      */
-    public WebElement findElementAndCheckBy(final String type, String locator, int timeout){
+    public WebElement findElementAndCheckBy(final String type, String locator, int timeout) throws ElementNotVisibleException {
         int counter = 0;
         boolean flag = false;
         final String ele = locator;
@@ -198,13 +198,13 @@ public abstract class IHelper_Client {
             }
         } while (counter <= 2 && !flag);
         if (a == null) {
-            throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
+            throw new ElementNotVisibleException("3rd Attempt reached. Could not find> " + ele);
         } else {
             return a;
         }
     }
 
-    public WebElement findElementAndCheckBy(String locator, int timeout){
+    public WebElement findElementAndCheckBy(String locator, int timeout) throws ElementNotVisibleException{
         int counter = 0;
         boolean flag = false;
         final String ele = locator;
@@ -225,12 +225,12 @@ public abstract class IHelper_Client {
             }
         } while (counter <= 2 && !flag);
         if (a == null) {
-          throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
+          throw new ElementNotVisibleException("3rd Attempt reached. Could not find> " + ele);
         } else {
             return a;
         }
     }
-    public WebElement findElementAndCheckBy(String locator){
+    public WebElement findElementAndCheckBy(String locator) throws ElementNotVisibleException{
         int counter = 0;
         int timeout = 3;
         boolean flag = false;
@@ -252,7 +252,7 @@ public abstract class IHelper_Client {
             }
         } while (counter <= 2 && !flag);
         if (a == null) {
-          throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
+          throw new ElementNotVisibleException("3rd Attempt reached. Could not find> " + ele);
         } else {
             return a;
         }
