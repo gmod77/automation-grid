@@ -127,7 +127,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected String membersource = "Member Source "+emailFormat.format(now);
 
 
-    protected String UDdomain = "http://ud-branch.tfdfdfhedaddy.co";
+    protected String UDdomain = "http://ud-branch.thedaddy.co";
     protected String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
     protected String Perksdomain = "http://perks-branch.thedaddy.co";
     //	private String UDdomain = "http://www.urbandaddy.com";
