@@ -29,7 +29,7 @@ public class SauceREST {
     private static final String DATE_FORMAT = "yyyyMMdd_HHmmSS";
 
     public static final String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
-    private static final String JOB_ID_FORMAT = PUBLICURL + "/?auth=%2$s";
+    private static final String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";
 
     public SauceREST(String username, String accessKey) {
         this.username = username;
