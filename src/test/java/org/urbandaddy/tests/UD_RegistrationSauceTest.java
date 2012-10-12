@@ -12,14 +12,14 @@ public class UD_RegistrationSauceTest extends iTestCaseUDSauce {
         Reporter.log("Visiting Home Page for the first time", true);
         visitUDFirstTime();
 
-        Reporter.log("Access New York from the UD Homepage", true);
-        accessNewYorkFromUDHomepage();
-
-        Reporter.log("Sign up for a new account", true);
-        signUpUD_viaNewYork();
-
-        Reporter.log("Log out", true);
-        logoutUD();
+//        Reporter.log("Access New York from the UD Homepage", true);
+//        accessNewYorkFromUDHomepage();
+//
+//        Reporter.log("Sign up for a new account", true);
+//        signUpUD_viaNewYork();
+//
+//        Reporter.log("Log out", true);
+//        logoutUD();
     }
 
 }

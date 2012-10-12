@@ -12,18 +12,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
 import javax.annotation.Nullable;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.Key;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
@@ -370,14 +366,15 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     }
 
     @AfterMethod
-    public void tearDown(ITestResult result) throws Exception {
-        String key = authentication.getUsername() + ":" + authentication.getAccessKey();
-        String message = getSessionId();
-        System.out.println(getHmacMD5(key,message, "MD5"));
-        String token = getHmacMD5(key,message, "MD5");
-        System.out.println("https://saucelabs.com/jobs/" + getSessionId() +"?auth=" + token);
-        System.out.println(getVideo());
-        System.out.println(getSeleniumServerLogFile());
+    public void tearDown() {
+
+//        String message = authentication.getUsername() + ":" + authentication.getAccessKey();
+//        System.out.println("Message> " + message);
+//        String jobId = getSessionId();
+//        System.out.println("jobId> " + getSessionId());
+//        String token = tokenGenerate(message, jobId);
+//        System.out.println("Token> " + token);
+//        System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
         client.quit();
     }
     /**
@@ -390,25 +387,4 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         return authentication;
     }
 
-
-
-    public String getHmacMD5(String privateKey, String input, String algorithm) throws Exception{
-        byte[] keyBytes = privateKey.getBytes();
-        Key key = new SecretKeySpec(keyBytes, 0, keyBytes.length, algorithm);
-        Mac mac = Mac.getInstance(algorithm);
-        mac.init(key);
-        return byteArrayToHex(mac.doFinal(input.getBytes()));
-    }
-    protected String byteArrayToHex(byte [] a) {
-        int hn, ln, cx;
-        String hexDigitChars = "0123456789abcdef";
-        StringBuffer buf = new StringBuffer(a.length * 2);
-        for(cx = 0; cx < a.length; cx++) {
-            hn = ((int)(a[cx]) & 0x00ff) / 16;
-            ln = ((int)(a[cx]) & 0x000f);
-            buf.append(hexDigitChars.charAt(hn));
-            buf.append(hexDigitChars.charAt(ln));
-        }
-        return buf.toString();
-    }
 }

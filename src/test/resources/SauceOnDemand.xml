@@ -10,7 +10,8 @@
             <class name="org.urbandaddy.tests.UD_RegistrationSauceTest"/>
         </classes>
     </test>
-    <listeners>
-        <listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>
-    </listeners>
+    <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->
+    <!--<listeners>-->
+        <!--<listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>-->
+    <!--</listeners>-->
 </suite>

@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.urbandaddy.helpers.HMacHelper.tokenGenerate;
+
 /**
  * Simple Java API that invokes the Sauce REST API.
  */
@@ -19,15 +21,30 @@ public class SauceREST {
     protected String accessKey;
 
     public static final String RESTURL = "http://saucelabs.com/rest/v1/%1$s";
+
     private static final String USER_RESULT_FORMAT = RESTURL + "/%2$s";
     private static final String JOB_RESULT_FORMAT = RESTURL + "/jobs/%2$s";
     private static final String DOWNLOAD_VIDEO_FORMAT = JOB_RESULT_FORMAT + "/results/video.flv";
     private static final String DOWNLOAD_LOG_FORMAT = JOB_RESULT_FORMAT + "/results/video.flv";
     private static final String DATE_FORMAT = "yyyyMMdd_HHmmSS";
 
+    public static final String PUBLICURL = "http://saucelabs.com/jobs/%1$s";
+    private static final String JOB_ID_FORMAT = PUBLICURL + "/?auth=%2$s";
+
     public SauceREST(String username, String accessKey) {
         this.username = username;
         this.accessKey = accessKey;
+    }
+
+    private String generateToken(String jobId) throws Exception{
+        String message = username + ":" + accessKey;
+        return tokenGenerate(message, jobId);
+        //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
+    }
+
+    public String getResultsUrl(String jobId) throws Exception {
+        String token = generateToken(jobId);
+        return String.format(JOB_ID_FORMAT, jobId, token);
     }
 
     /**
