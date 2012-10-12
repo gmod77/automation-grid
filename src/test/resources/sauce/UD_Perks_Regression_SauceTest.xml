@@ -13,6 +13,8 @@
 			<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1" />
 		</classes>
 	</test>
-
+    <listeners>
+        <listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>
+    </listeners>
 </suite>
 
