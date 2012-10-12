@@ -6,8 +6,8 @@ import org.urbandaddy.helpers.Comm.iTestCasePerksSauce;
 
 public class Perks_RegistrationFlow1 extends iTestCasePerksSauce {
 	
-	@Test (groups = "Smoke")
-	public void flow1(){
+	@Test (groups = "perkSmoke")
+	public void perksSignUp(){
 		visitPerksFirstTime();
 		//1. client signs up and logs in
 
@@ -20,6 +20,9 @@ public class Perks_RegistrationFlow1 extends iTestCasePerksSauce {
 		
 		//doChecksCityHomePageLoggedOut();
 
+    }
+    @Test (dependsOnGroups = {"perkSmoke"})
+    public void perksConfirm() {
 		loginToGmail();
 		
 		verifyWelcomeUDEmailReceived();

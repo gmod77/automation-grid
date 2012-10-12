@@ -16,7 +16,7 @@ public class UD_Admin_Create_RoundUP extends iTestCaseUDSauce {
     }
 
     @Test (dependsOnGroups = {"RoundUpCreate"})
-    public void check() {
+    public void checkRoundUp() {
         confirmRoundUP(articleID);
     }
 }
