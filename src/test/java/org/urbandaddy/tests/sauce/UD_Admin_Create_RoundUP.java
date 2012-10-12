@@ -10,7 +10,7 @@ public class UD_Admin_Create_RoundUP extends iTestCaseUDSauce {
     String articleID;
 
     @Test (groups = {"RoundUpCreate"})
-    public void loginAdmin(){
+    public void RoundUPloginAdmin(){
         loginUDAdmin();
         articleID = createRoundUP(); //return the articleid that was created
     }

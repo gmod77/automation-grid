@@ -8,7 +8,7 @@ import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
 	
 	@Test (groups = {"regression", "register"})
-    public void registerAndCheck(){
+    public void UDregisterAndCheck(){
 
         Reporter.log("Visiting Home Page for the first time", true);
         visitUDFirstTime();
@@ -31,7 +31,7 @@ public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
 
 
     @Test (groups = {"check"})
-    public void verifyEmailReceived(){
+    public void verifyUDEmailsReceived(){
 
         Reporter.log("Log in to Gmail", true);
         loginToGmail();
