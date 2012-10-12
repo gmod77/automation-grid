@@ -18,7 +18,6 @@ public class UD_UnSubscribeHelper_Client extends IHelper_Client {
 
 	public UD_UnSubscribeHelper_Client(WebDriver client) {
 		super(client);
-		// TODO Auto-generated constructor stub	
 		signupReader = new LocatorReader("UD_SignUp.xml");
 	}
 
@@ -28,10 +27,8 @@ public class UD_UnSubscribeHelper_Client extends IHelper_Client {
      * @param email Email address
      */
 	public void enterEmail(String email){
-		
-		String str = signupReader.getLocator("Step1.Email");		
-		this.WaitForElementVisible(str, 100);		
-		WebElement el = client.findElement(ByLocator(str));
+		String str = signupReader.getLocator("Step1.Email");
+		WebElement el = findElementAndCheckBy(str,100);
 		el.clear();
 		el.sendKeys(email);
 	}

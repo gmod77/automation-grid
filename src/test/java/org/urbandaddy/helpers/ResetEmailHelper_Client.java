@@ -36,25 +36,22 @@ public class ResetEmailHelper_Client extends IHelper_Client {
 	
 	public void enterNewPassword(String emailAdress){
 		
-		String str = resetEmailReader.getLocator("Reset.NewPassword");		
-		this.WaitForElementPresent(str, 20);		
-		WebElement el = client.findElement(ByLocator(str));
+		String str = resetEmailReader.getLocator("Reset.NewPassword");
+		WebElement el = findElementAndCheckBy(str,20);
 		el.clear();
 		el.sendKeys(emailAdress);
 	}
 	
 	public void confirmNewPassword(String password){
 		String str = resetEmailReader.getLocator("Reset.ConfirmNewPassword");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		WebElement el = findElementAndCheckBy(str,20);
 		el.clear();
 		el.sendKeys(password);
 	}
 	
 	public void clickSubmit(){
 		String str = resetEmailReader.getLocator("Reset.Submit");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 

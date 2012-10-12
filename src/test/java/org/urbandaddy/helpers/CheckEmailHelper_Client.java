@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
@@ -29,20 +27,17 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		//make sure you're logged out first 
 		client.get("https://mail.google.com/mail/u/0/?logout&hl=en");
 		
-		String Email = checkEmailReader.getLocator("Gmail.Email");		
-		this.WaitForElementPresent(Email, 20);		
-		WebElement em = client.findElement(ByLocator(Email));
+		String Email = checkEmailReader.getLocator("Gmail.Email");
+		WebElement em = findElementAndCheckBy(Email,20);
 		em.sendKeys(JENKINSEMAIL);
 		this.pause(2000);
 		
 		String Passwd = checkEmailReader.getLocator("Gmail.Password");
-		this.WaitForElementPresent(Passwd, 20);
-		WebElement ps = client.findElement(ByLocator(Passwd));
+		WebElement ps = findElementAndCheckBy(Passwd, 20);
 		ps.sendKeys(JENKINSEMAILPW);
 		
 		String Signin = checkEmailReader.getLocator("Gmail.SignIn");
-		this.WaitForElementPresent(Signin, 20);
-		WebElement si = client.findElement(ByLocator(Signin));
+		WebElement si = findElementAndCheckBy(Signin,20);
 		si.click();
 		
 		// wait for email to arrive
@@ -64,16 +59,14 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -100,16 +93,14 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -126,22 +117,23 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 	}
 	
 	public void findInvitationEmail1 (String searchString){
+
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
+
         //assuming the single correct result came back, click that email
 
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                //this.WaitForElementPresent(sb, 20);
                 WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
+
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                //this.WaitForElementPresent(smb, 20);
                 WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
@@ -159,24 +151,24 @@ public class CheckEmailHelper_Client extends IHelper_Client {
     }
 
 	public void findInvitationEmail2 (String searchString){
+
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
+
         //assuming the single correct result came back, click that email
 
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -193,25 +185,24 @@ public class CheckEmailHelper_Client extends IHelper_Client {
     }
 	
 	public void findInvitationEmail3 (String searchString){
+
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
+
         //assuming the single correct result came back, click that email
 
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -228,24 +219,24 @@ public class CheckEmailHelper_Client extends IHelper_Client {
     }
 	
 	public void findInvitationEmail4 (String searchString){
+
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
+
         //assuming the single correct result came back, click that email
 
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -260,26 +251,26 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
-	
+
 	public void findInvitationEmail5 (String searchString){
+
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
+
         //assuming the single correct result came back, click that email
 
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -296,24 +287,24 @@ public class CheckEmailHelper_Client extends IHelper_Client {
     }
 	
 	public void findResetEmailRequest (String searchString){
+
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
+
         //assuming the single correct result came back, click that email
 
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -365,41 +356,23 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 
     public void navigateToSearch() {
 
-        WebElement dbSection = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
-            @Override
-            public WebElement apply(WebDriver d) {
-                return d.findElement(By.className("borderRight"));
-            }
-        });
+        WebElement dbSection = findElementAndCheckBy("classname","borderRight",10);
 
         dbSection.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/table/tbody/tr/td/div/div/div[3]/div/table[2]/tbody/tr[2]/td/ul/li[5]/a")).click();
 
-        WebElement dbs = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
-            @Override
-            public WebElement apply(WebDriver d) {
-                return d.findElement(By.xpath("//*[@id=\"UD Dev\"]"));
-            }
-        });
+        WebElement dbs = findElementAndCheckBy("xpath","//*[@id=\"UD Dev\"]",10);
+
         dbs.click();
 
-        WebElement searchTab = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
-            @Override
-            public WebElement apply(WebDriver d) {
-                return d.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div/div[4]/div/div[3]/div/div/div/span"));
-            }
-        });
+        WebElement searchTab = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div/div[4]/div/div[3]/div/div/div/span",10);
+
         searchTab.click();
     }
 
     public boolean optOutSearch(String email) {
         boolean flag;
         flag = false;
-        WebElement searchOptOutBox = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
-            @Override
-            public WebElement apply(WebDriver d) {
-                return d.findElement(By.id("searchOptOutsCheckBox"));
-            }
-        });
+        WebElement searchOptOutBox = findElementAndCheckBy("id","searchOptOutsCheckBox",10);
         searchOptOutBox.click();
 
         Select select = new Select(client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[3]/select")));
@@ -413,13 +386,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         WebElement searchButton = client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[5]/button"));
         searchButton.click();
 
-        WebElement result = (new WebDriverWait(client, 10)).until(new ExpectedCondition<WebElement>() {
-            @Override
-            public WebElement apply( WebDriver d) {
-                return d.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[5]/table/tbody/tr"));
-            }
-        });
-
+        WebElement result = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[5]/table/tbody/tr",10);
         List<WebElement> columns = result.findElements(By.tagName("td"));
 
         for (WebElement column : columns) {

@@ -225,7 +225,7 @@ public abstract class IHelper_Client {
             }
         } while (counter <= 2 && !flag);
         if (a == null) {
-            throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
+          throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
         } else {
             return a;
         }
@@ -252,7 +252,7 @@ public abstract class IHelper_Client {
             }
         } while (counter <= 2 && !flag);
         if (a == null) {
-            throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
+          throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
         } else {
             return a;
         }

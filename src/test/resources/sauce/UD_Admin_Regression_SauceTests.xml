@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<suite name="UD_Smoke_Sauce" verbose="10">-->
+<suite name="Admin Smoke Test" parallel="tests" thread-count="4" verbose="10"> -->
+
+	<test name="UD_Admin_Smoke_3column">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_Column" />
+		</classes>
+	</test>
+
+	<test name="UD_Admin_Smoke_Weekender">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Weekender" />
+		</classes>
+	</test>
+	
+	<test name="UD_Admin_PMT">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_PMT" />
+		</classes>
+	</test>
+
+    <test name="UD_Admin_Create_RoundUp">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUP" />
+        </classes>
+    </test>
+
+</suite>
+

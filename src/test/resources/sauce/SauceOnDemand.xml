@@ -7,7 +7,7 @@
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="browserVersion" value="3.6."/>-->
         <classes>
-            <class name="org.urbandaddy.tests.UD_RegistrationSauceTest"/>
+            <class name="org.urbandaddy.tests.sauce.UD_RegistrationSauceTest"/>
         </classes>
 
     </test>

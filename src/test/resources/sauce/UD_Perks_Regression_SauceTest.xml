@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<suite name="UD_Smoke_Sauce" verbose="10">-->
+<suite name="Frontend Smoke Test" parallel="tests" thread-count="2" verbose="10"> -->
+
+	<test name="UD_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.UD_RegistrationFlow2" />
+		</classes>
+	</test>
+
+	<test name="Perks_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1" />
+		</classes>
+	</test>
+
+</suite>
+

@@ -22,281 +22,281 @@ public class Perks_FooterHelper_Client extends IHelper_Client {
 //HomePage
 	public Boolean isAboutUsHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.AboutUs");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isSignUpHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.SignUp");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isMyUDHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.MyUD");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isContactHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Contact");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isJobsHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Jobs");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isAdvertiseHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Advertise");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isTipsHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Tips");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isEmailIssuesHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.EmailIssues");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isPrivacyPolicyHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.PrivacyPolicy");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isUserAgreementHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.UserAgreement");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isUnsubscribeHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Unsubscribe");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isEditorialPolicyHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.EditorialPolicy");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	//cities
 	
 	public Boolean isAtlantaHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Atlanta");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isBostonHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Boston");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isChicagoHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Chicago");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isDallasHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Dallas");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isDCHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.DC");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isDrivenHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Driven");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isJetsetHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Jetset");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isLasVegasHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.LasVegas");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isLosAngelesHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.LosAngeles");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isMiamiHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.Miami");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isNationalHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.National");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isNewYorkHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.NewYork");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isSanFranciscoHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.SanFrancisco");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public Boolean isSkiBoardHomePresent(){
 		
-		Boolean result = false;
+		
 		
 		String str = headerReader.getLocator("HomePage.SkiBoard");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+				
+		return this.isElementPresent(str);		
+		
 	}
 	
 	//CityHomePage
 		public Boolean isAboutUsCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.AboutUs");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public boolean isAboutUsCityAccessible(){
 			
 			String str = headerReader.getLocator("CityHomePage.AboutUs");
-			this.WaitForElementPresent(str,20);		
+					
 			WebElement el = client.findElement(ByLocator(str));
 			el.click();
 
@@ -308,275 +308,275 @@ public class Perks_FooterHelper_Client extends IHelper_Client {
 		
 		public Boolean isSignUpCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.SignUp");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isMyUDCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.MyUD");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isPerksCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Perks");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 
 		
 		public Boolean isContactCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Contact");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isJobsCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Jobs");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isAdvertiseCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Advertise");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isTipsCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Tips");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isUnsubscribeCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Unsubscribe");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isMobileSiteCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.MobileSite");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isEmailIssuesCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.EmailIssues");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isPrivacyPolicyCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.PrivacyPolicy");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isUserAgreementCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.UserAgreement");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		
 		public Boolean isEditorialPolicyCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.EditorialPolicy");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		//cities
 		
 		public Boolean isAtlantaCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Atlanta");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isBostonCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Boston");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isChicagoCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Chicago");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isDallasCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Dallas");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isDCCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.DC");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isDrivenCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Driven");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isJetsetCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Jetset");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isLasVegasCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.LasVegas");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isLosAngelesCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.LosAngeles");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isMiamiCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.Miami");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isNationalCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.National");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isNewYorkCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.NewYork");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isSanFranciscoCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.SanFrancisco");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}
 		
 		public Boolean isSkiBoardCityPresent(){
 			
-			Boolean result = false;
+			
 			
 			String str = headerReader.getLocator("CityHomePage.SkiBoard");
-			this.WaitForElementPresent(str,20);		
-			result = this.isElementPresent(str);		
-			return result;
+					
+			return this.isElementPresent(str);		
+			
 		}	
 }

@@ -9,37 +9,27 @@ import org.urbandaddy.locators.LocatorReader;
 public class Perks_HeaderHelper_Client extends IHelper_Client {
 
 	private LocatorReader headerReader;
-	private String UDdomain = "http://ud-branch.thedaddy.co";
-//	private String UDdomain = "http://www.urbandaddy.com";
-
 
 	public Perks_HeaderHelper_Client(WebDriver client) {
 		super(client);
-		// TODO Auto-generated constructor stub
 		headerReader = new LocatorReader("Perks_Header.xml");
 	}
 
 	public Boolean isLogoutPresent(){
 		
-		Boolean result = false;
-		
 		String str = headerReader.getLocator("LoggedInHeader.SignOut");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+		return this.isElementPresent(str);
 	}
 	
 	public void clickLogout(){
 		String str = headerReader.getLocator("LoggedInHeader.Logout");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
 	public void clickMyAccount(){
 		String str = headerReader.getLocator("LoggedInHeader.MyAccount");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
@@ -52,29 +42,26 @@ public class Perks_HeaderHelper_Client extends IHelper_Client {
 	
 	public void clickSignUp(){
 		String str = headerReader.getLocator("LoggedOutHeader.SignUp");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
 	public void clickChangeCity(){
 		String str = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
-public void clickChangeCityNewYork(){
-		
-		String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(menu_locator, 20);
+    public void clickChangeCityNewYork(){
+			
 		String item = headerReader.getLocator("LoggedInHeader.NewYork");
-		this.WaitForElementPresent(menu_locator, 20);
+		findElementAndCheckBy(item, 20);
 		
 		// find DropdownToggle menu
-		WebElement menu = client.findElement(ByLocator(menu_locator));
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+		WebElement menu = findElementAndCheckBy(menu_locator, 20);
 		// find SignOut element
-		WebElement signout = client.findElement(ByLocator(item));
+		WebElement signout = findElementAndCheckBy(item);
 		
 		//build and perform the mouseOver with Advanced User Interactions API
 		Actions builder = new Actions(client);    
@@ -84,17 +71,16 @@ public void clickChangeCityNewYork(){
 		signout.click();
 	}	
 	
-public void clickChangeCityNational(){
-		
-		String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(menu_locator, 20);
-		String item = headerReader.getLocator("LoggedInHeader.National");
-		this.WaitForElementPresent(menu_locator, 20);
+    public void clickChangeCityNational(){
+
+        String item = headerReader.getLocator("LoggedInHeader.NewYork");
+        findElementAndCheckBy(item, 20);
 		
 		// find DropdownToggle menu
-		WebElement menu = client.findElement(ByLocator(menu_locator));
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+        WebElement menu = findElementAndCheckBy(menu_locator, 20);
 		// find SignOut element
-		WebElement signout = client.findElement(ByLocator(item));
+		WebElement signout = findElementAndCheckBy(item);
 		
 		//build and perform the mouseOver with Advanced User Interactions API
 		Actions builder = new Actions(client);    
@@ -104,17 +90,16 @@ public void clickChangeCityNational(){
 		signout.click();
 	}	
 	
-public void clickChangeCityChicago(){
-		
-		String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(menu_locator, 20);
+    public void clickChangeCityChicago(){
+
 		String item = headerReader.getLocator("LoggedInHeader.Chicago");
-		this.WaitForElementPresent(menu_locator, 20);
+		findElementAndCheckBy(item, 20);
 		
 		// find DropdownToggle menu
-		WebElement menu = client.findElement(ByLocator(menu_locator));
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+        WebElement menu = findElementAndCheckBy(menu_locator, 20);
 		// find SignOut element
-		WebElement signout = client.findElement(ByLocator(item));
+		WebElement signout = findElementAndCheckBy(item);
 		
 		//build and perform the mouseOver with Advanced User Interactions API
 		Actions builder = new Actions(client);    
@@ -124,37 +109,35 @@ public void clickChangeCityChicago(){
 		signout.click();
 	}	
 
-public void clickChangeCityMiami(){
-	
-	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
-	String item = headerReader.getLocator("LoggedInHeader.Miami");
-	this.WaitForElementPresent(menu_locator, 20);
-	
-	// find DropdownToggle menu
-	WebElement menu = client.findElement(ByLocator(menu_locator));
-	// find SignOut element
-	WebElement signout = client.findElement(ByLocator(item));
-	
-	//build and perform the mouseOver with Advanced User Interactions API
-	Actions builder = new Actions(client);    
-	builder.moveToElement(menu).build().perform();
+    public void clickChangeCityMiami(){
 
-	//then click when menu option is visible
-	signout.click();
-}
+        String item = headerReader.getLocator("LoggedInHeader.Miami");
+        findElementAndCheckBy(item, 20);
+
+        // find DropdownToggle menu
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+        WebElement menu = findElementAndCheckBy(menu_locator, 20);
+        // find SignOut element
+        WebElement signout = findElementAndCheckBy(item);
+
+        //build and perform the mouseOver with Advanced User Interactions API
+        Actions builder = new Actions(client);
+        builder.moveToElement(menu).build().perform();
+
+        //then click when menu option is visible
+        signout.click();
+    }
 	
-public void clickChangeCityBoston(){
-		
-		String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(menu_locator, 20);
+    public void clickChangeCityBoston(){
+
 		String item = headerReader.getLocator("LoggedInHeader.Boston");
-		this.WaitForElementPresent(menu_locator, 20);
+		findElementAndCheckBy(item, 20);
 		
 		// find DropdownToggle menu
-		WebElement menu = client.findElement(ByLocator(menu_locator));
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+		WebElement menu = findElementAndCheckBy(menu_locator, 20);
 		// find SignOut element
-		WebElement signout = client.findElement(ByLocator(item));
+		WebElement signout = findElementAndCheckBy(item);
 		
 		//build and perform the mouseOver with Advanced User Interactions API
 		Actions builder = new Actions(client);    
@@ -164,70 +147,44 @@ public void clickChangeCityBoston(){
 		signout.click();
 	}
 
-public void clickChangeCityDC(){
-	
-	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
-	String item = headerReader.getLocator("LoggedInHeader.DC");
-	this.WaitForElementPresent(menu_locator, 20);
-	
-	// find DropdownToggle menu
-	WebElement menu = client.findElement(ByLocator(menu_locator));
-	// find SignOut element
-	WebElement signout = client.findElement(ByLocator(item));
-	
-	//build and perform the mouseOver with Advanced User Interactions API
-	Actions builder = new Actions(client);    
-	builder.moveToElement(menu).build().perform();
+    public void clickChangeCityDC(){
 
-	//then click when menu option is visible
-	signout.click();
-}
+        String item = headerReader.getLocator("LoggedInHeader.DC");
+        findElementAndCheckBy(item, 20);
 
-public void clickChangeCityLosAngeles(){
-	
-	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
-	String item = headerReader.getLocator("LoggedInHeader.LosAngeles");
-	this.WaitForElementPresent(menu_locator, 20);
-	
-	// find DropdownToggle menu
-	WebElement menu = client.findElement(ByLocator(menu_locator));
-	// find SignOut element
-	WebElement signout = client.findElement(ByLocator(item));
-	
-	//build and perform the mouseOver with Advanced User Interactions API
-	Actions builder = new Actions(client);    
-	builder.moveToElement(menu).build().perform();
+        // find DropdownToggle menu
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+        WebElement menu = findElementAndCheckBy(menu_locator, 20);
+        // find SignOut element
+        WebElement signout = findElementAndCheckBy(item);
 
-	//then click when menu option is visible
-	signout.click();
-}
+        //build and perform the mouseOver with Advanced User Interactions API
+        Actions builder = new Actions(client);
+        builder.moveToElement(menu).build().perform();
 
+        //then click when menu option is visible
+        signout.click();
+    }
 
+    public void clickChangeCityLosAngeles(){
+
+        String item = headerReader.getLocator("LoggedInHeader.LosAngeles");
+        findElementAndCheckBy(item, 20);
+
+        // find DropdownToggle menu
+        String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
+        WebElement menu = findElementAndCheckBy(menu_locator, 20);
+        // find SignOut element
+        WebElement signout = findElementAndCheckBy(item);
+
+        //build and perform the mouseOver with Advanced User Interactions API
+        Actions builder = new Actions(client);
+        builder.moveToElement(menu).build().perform();
+
+        //then click when menu option is visible
+        signout.click();
+    }
 
 //// Top Nav methods
-
-
-
-public Boolean isBlahPresent(){
-		
-		Boolean result = false;
-		
-		String el = headerReader.getLocator("LoggedInHeader.Perks");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
-}
-
-public void clickBlah(){
-	
-	String str = headerReader.getLocator("LoggedInHeader.Perks");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
-	el.click();
-}
-
-
 	
 }

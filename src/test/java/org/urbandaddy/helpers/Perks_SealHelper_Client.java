@@ -1,6 +1,5 @@
 package org.urbandaddy.helpers;
 
-//import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
@@ -12,12 +11,11 @@ public class Perks_SealHelper_Client extends IHelper_Client {
 	
 	public Perks_SealHelper_Client(WebDriver client) {
 		super(client);
-		// TODO Auto-generated constructor stub
-		
+
 		sealReader = new LocatorReader("Seal.xml");
 	}
 	
-//	public void clickMembrerLogIn(){
+//	public void clickMemberLogIn(){
 //		String str = sealReader.getLocator("Signon.HeaderLoginLink");
 //		this.WaitForElementPresent(str, 20);
 //		WebElement el = client.findElement(ByLocator(str));
@@ -32,55 +30,48 @@ public class Perks_SealHelper_Client extends IHelper_Client {
 	
 	public void enterEmailAddress(String emailAdress){
 		
-		String str = sealReader.getLocator("Signon.EmailAddress");		
-		this.WaitForElementPresent(str, 20);		
-		WebElement el = client.findElement(ByLocator(str));
-		el.clear();
+		String str = sealReader.getLocator("Signon.EmailAddress");
+        WebElement el = findElementAndCheckBy(str,20);
+        el.clear();
 		el.sendKeys(emailAdress);
 	}
 	
 	public void enterPassword(String password){
 		String str = sealReader.getLocator("Signon.Password");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+        WebElement el = findElementAndCheckBy(str,20);
 		el.clear();
 		el.sendKeys(password);
 	}
 	
 	public void clickLogin(){
 		String str = sealReader.getLocator("Signon.Login");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+        WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
 	public void clickResetPassword(){
 		String str = sealReader.getLocator("Signon.ResetPasswordLinkSub");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+        WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
 	public void enterEmailToReset(String emailAdress){
 		
 		String str = sealReader.getLocator("ResetPassword.ResetEmailSub");		
-		this.WaitForElementPresent(str, 20);		
-		WebElement el = client.findElement(ByLocator(str));
+        WebElement el = findElementAndCheckBy(str,20);
 		el.clear();
 		el.sendKeys(emailAdress);
 	}
 	
 	public void clickSend(){
 		String str = sealReader.getLocator("ResetPassword.SendSub");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+        WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
 	public boolean isSignedIn(){
 		String str = sealReader.getLocator("ResetPassword.Send");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+        WebElement el = findElementAndCheckBy(str,20);
 
 		if (el.isDisplayed())
 			return true;

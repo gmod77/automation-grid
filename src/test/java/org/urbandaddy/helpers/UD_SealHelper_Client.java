@@ -101,7 +101,7 @@ public class UD_SealHelper_Client extends IHelper_Client {
 		
 		String str = sealReader.getLocator("Settings.PasswordMyUD");		
 		//this.WaitForElementPresent(str, 20);		
-		WebElement el = findElementAndCheckBy(str);
+		WebElement el = findElementAndCheckBy(str,20);
 		el.sendKeys(password);
 	}
 	
@@ -109,7 +109,7 @@ public class UD_SealHelper_Client extends IHelper_Client {
 		
 		String str = sealReader.getLocator("Settings.PasswordConfirmMyUD");		
 		//this.WaitForElementPresent(str, 20);		
-		WebElement el = findElementAndCheckBy(str);
+		WebElement el = findElementAndCheckBy(str,20);
 		el.sendKeys(password);
 	}
 
