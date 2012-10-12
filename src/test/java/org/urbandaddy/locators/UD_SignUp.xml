@@ -100,8 +100,7 @@
    	  <InviteEmail4><![CDATA[misc_email_4]]></InviteEmail4>
    	  <InviteEmail5><![CDATA[misc_email_5]]></InviteEmail5>
    	  
-   	  <ClickInvite><![CDATA[//html/body/div[5]/div/div/div/form/div/div/input]]></ClickInvite>
-<!--    	  <ClickInvite><![CDATA[#submit]]></ClickInvite> -->
+   	  <ClickInvite><![CDATA[//html/body/div[5]/div/div/div/form[1]/div/div[1]/input]]></ClickInvite>
    	  <ClickSkip><![CDATA[//html/body/div[5]/div/div/div/div[5]/a]]></ClickSkip>
    	  
    	  <ErrorMessage><![CDATA[//.//*[@id='misc_email_1']]]></ErrorMessage>
