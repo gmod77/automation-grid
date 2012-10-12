@@ -53,7 +53,6 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
 
         String selDriver = System.getenv(SELENIUM_DRIVER); // if this is populated use getenv
         if (selDriver != null && !selDriver.equals("")) {
-            selDriver = System.getenv("SELENIUM_DRIVER");
             //sauce-ondemand:?os=Windows 2003&browser=firefox&browser-version=3.6.
             StringTokenizer st = new StringTokenizer(selDriver, "?");
             st.nextToken(); //don't need the sauce-ondemand part
