@@ -44,15 +44,15 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 		Boolean result = false;
 		
 		String str = signupReader.getLocator("HomePageFirstTimeVisitor.UDLogo");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
+		//this.WaitForElementPresent(str,20);		
+		result = this.isElementPresent(str);
 		return result;
 	}
 	
 	public void clickSignUpSeal(){
 		String str = signupReader.getLocator("HomePageFirstTimeVisitor.SignUpSeal");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	
@@ -60,15 +60,15 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	
 //	public void clickSignUpHeaderLink(){
 //		String str = signupReader.getLocator("Header.SignUpHeaderLink");
-//		this.WaitForElementPresent(str, 20);
-//		WebElement el = client.findElement(ByLocator(str));
+//		//this.WaitForElementPresent(str, 20);
+//		WebElement el = findElementAndCheckBy(str);
 //		el.click();
 //	}
 	
 	public void clickMemberLogInHeaderLink(){
 		String str = signupReader.getLocator("Header.MemberLogInHeaderLink");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	
@@ -77,8 +77,8 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	public void enterEmail(String email){
 		
 		String str = signupReader.getLocator("Step1.Email");		
-		this.WaitForElementVisible(str, 100);		
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);		
+		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(email);
 	}
@@ -86,151 +86,151 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 // Select Editions
 	public void checkNational(){
 		String str = signupReader.getLocator("Step1.SelectEditionsNational");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}	
 	public void checkNationalPerks(){
 		String str = signupReader.getLocator("Step1.SelectEditionsNationalPerks");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkNewYork(){
 		String str = signupReader.getLocator("Step1.SelectEditionsNewYork");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkNewYorkPerks(){
 		String str = signupReader.getLocator("Step1.SelectEditionsNewYorkPerks");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkDriven(){
 		String str = signupReader.getLocator("Step1.SelectEditionsDriven");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkJetset(){
 		String str = signupReader.getLocator("Step1.SelectEditionsJetset");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkLasVegas(){
 		String str = signupReader.getLocator("Step1.SelectEditionsLasVegas");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}	
 	public void checkSkiBoard(){
 		String str = signupReader.getLocator("Step1.SelectEditionsSkiBoard");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void clickMoreLinkNewYork1(){
 
 		String str = signupReader.getLocator("Step1.MoreLinkNewYork1");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkAtlanta(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsAtlanta");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkBoston(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsBoston");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkChicago(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsChicago");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkDallas(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsDallas");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkDC(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsDC");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkLosAngeles(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsLosAngeles");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkMiami(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsMiami");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkSanFrancisco(){
 		String str = signupReader.getLocator("Step1.SelectEditorialEditionsSanFranciso");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	
 	public void clickMoreLinkNewYork2(){
 
 		String str = signupReader.getLocator("Step1.MoreLinkNewYork2");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	
 	public void checkBostonPerks(){
 		String str = signupReader.getLocator("Step1.SelectPerksEditionsBostonPerks");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkChicagoPerks(){
 		String str = signupReader.getLocator("Step1.SelectPerksEditionsChicagoPerks");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkDCPerks(){
 		String str = signupReader.getLocator("Step1.SelectPerksEditionsDCPerks");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkLosAngelesPerks(){
 		String str = signupReader.getLocator("Step1.SelectPerksEditionsLosAngelesPerks");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	public void checkMiamiPerks(){
 		String str = signupReader.getLocator("Step1.SelectPerksEditionsMiamiPerks");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
 	
 	public void clickJoin(){
 		String str = signupReader.getLocator("Step1.Join");
-		this.WaitForElementVisible(str, 100);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 //		seleniumClient.click(str);
 
@@ -246,8 +246,8 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	public void enterPassword(String targetValue){
 		
 		String str = signupReader.getLocator("Step2.EnterPassword");		
-		this.WaitForElementVisible(str, 100);		
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementVisible(str, 100);		
+		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
@@ -255,8 +255,8 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	public void confirmPassword(String targetValue){
 		
 		String str = signupReader.getLocator("Step2.ConfirmPassword");		
-		this.WaitForElementPresent(str, 20);		
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);		
+		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
@@ -264,8 +264,8 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	public void enterFirstName(String targetValue){
 	
 	String str = signupReader.getLocator("Step2.EnterFirstName");		
-	this.WaitForElementPresent(str, 20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str, 20);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(targetValue);
 }
@@ -273,15 +273,15 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 public void enterLastName(String lastName){
 	
 	String str = signupReader.getLocator("Step2.EnterLastName");		
-	this.WaitForElementPresent(str, 20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str, 20);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(lastName);
 }
 
 public void selectGender(String targetValue){
 	String str=signupReader.getLocator("Step2.SelectGender");
-	List <WebElement> options = client.findElement(ByLocator(str)).findElements(By.tagName("option"));
+	List <WebElement> options = client.findElements(By.tagName("option"));
 	for (WebElement option : options){
 		    if (targetValue.equalsIgnoreCase(option.getText())){
 		     option.click();
@@ -292,7 +292,7 @@ public void selectGender(String targetValue){
 	
 public void selectIncomeRange(String targetValue){
 	String str=signupReader.getLocator("Step2.SelectIncomeRange");
-	List <WebElement> options = client.findElement(ByLocator(str)).findElements(By.tagName("option"));
+	List <WebElement> options = client.findElements(By.tagName("option"));
 	for (WebElement option : options){
 		    if (targetValue.equalsIgnoreCase(option.getText())){
 		     option.click();
@@ -303,8 +303,8 @@ public void selectIncomeRange(String targetValue){
 public void enterZipCode(String targetValue){
 		
 		String str = signupReader.getLocator("Step2.EnterZipCode");		
-		this.WaitForElementPresent(str, 20);		
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);		
+		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
@@ -312,16 +312,16 @@ public void enterZipCode(String targetValue){
 public void enterBirthday(String targetValue){
 		
 		String str = signupReader.getLocator("Step2.EnterBirthday");		
-		this.WaitForElementPresent(str, 20);		
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);		
+		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
 	
 public void clickSubmit(){
 		String str = signupReader.getLocator("Step2.ClickSubmit");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str);
 		el.click();
 
 //	try {
@@ -336,8 +336,8 @@ public void clickSubmit(){
 public void enterEmailFriend1(String email){
 	
 	String str = signupReader.getLocator("Step3.InviteEmail1");		
-	this.WaitForElementVisible(str, 100);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementVisible(str, 100);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(email);
 	
@@ -346,8 +346,8 @@ public void enterEmailFriend1(String email){
 public void enterEmailFriend2(String email){
 	
 	String str = signupReader.getLocator("Step3.InviteEmail2");		
-	this.WaitForElementVisible(str, 100);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementVisible(str, 100);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(email);
 	
@@ -356,8 +356,8 @@ public void enterEmailFriend2(String email){
 public void enterEmailFriend3(String email){
 	
 	String str = signupReader.getLocator("Step3.InviteEmail3");		
-	this.WaitForElementVisible(str, 100);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementVisible(str, 100);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(email);
 	
@@ -366,8 +366,8 @@ public void enterEmailFriend3(String email){
 public void enterEmailFriend4(String email){
 	
 	String str = signupReader.getLocator("Step3.InviteEmail4");		
-	this.WaitForElementVisible(str, 100);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementVisible(str, 100);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(email);
 	
@@ -376,18 +376,24 @@ public void enterEmailFriend4(String email){
 public void enterEmailFriend5(String email){
 	
 	String str = signupReader.getLocator("Step3.InviteEmail5");		
-	this.WaitForElementVisible(str, 100);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementVisible(str, 100);		
+	WebElement el = findElementAndCheckBy(str);
 	el.clear();
 	el.sendKeys(email);
 	
 }
 
+public Boolean isInvitePresent() {
+    Boolean result = false;
+    String str = signupReader.getLocator("Step3.ClickInvite");
+    result = this.isElementPresent(str);
+    return result;
+}
 public void clickInvite(){
 	
 	String str = signupReader.getLocator("Step3.ClickInvite");
-	this.WaitForElementPresent(str, 20);
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str, 20);
+	WebElement el = findElementAndCheckBy(str);
 	el.click();
 
 //	try {
@@ -400,15 +406,15 @@ public void clickInvite(){
 public void clickSkip(){
 	
 	String str = signupReader.getLocator("Step3.ClickSkip");
-	this.WaitForElementPresent(str, 20);
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str, 20);
+	WebElement el = findElementAndCheckBy(str);
 	el.click();
 }
 
 public void clickCloseFinalModal() {
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
-	this.WaitForElementPresent(str, 20);
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str, 20);
+	WebElement el = findElementAndCheckBy(str);
 	el.click();
 
 	try {
@@ -424,21 +430,21 @@ public void clickCloseFinalModal() {
 //		// find search box and enter the searchString parameter
 //		String targetString = "Invitation from Hello "+ searchString;
 //		String sb = signupReader.getLocator("Gmail.SearchBox");		
-//		this.WaitForElementPresent(sb, 20);		
-//		WebElement el1 = client.findElement(ByLocator(sb));
+//		//this.WaitForElementPresent(sb, 20);		
+//		WebElement el1 = findElementAndCheckBy(sb));
 //		el1.sendKeys(targetString);
 //		
 //		//find search mail button and click it
 //		String smb = signupReader.getLocator("Gmail.SearchMailButton");		
-//		this.WaitForElementPresent(smb, 20);		
-//		WebElement el2 = client.findElement(ByLocator(smb));
+//		//this.WaitForElementPresent(smb, 20);		
+//		WebElement el2 = findElementAndCheckBy(smb));
 //		el2.click();
 //		
 //		//assuming the single correct result came back, click that email
-//		client.findElement(By.cssSelector("span.ts")).click();  
+//		findElementAndCheckBy(By.cssSelector("span.ts")).click();  
 //		
 //		//click "Join the network" button
-//		String invitationEmail = client.findElement(By.partialLinkText("Join the")).getAttribute("href");  
+//		String invitationEmail = findElementAndCheckBy(By.partialLinkText("Join the")).getAttribute("href");  
 //		
 //	    String[] separated = invitationEmail.split("/");
 //	    String invitationCode = separated[separated.length - 1];
@@ -457,7 +463,7 @@ public void clickCloseFinalModal() {
 		Boolean result = false;
 					
 		String el = signupReader.getLocator("Step1.ErrorMessage");
-		this.WaitForElementPresent(el,20);		
+		//this.WaitForElementPresent(el,20);		
 		result = this.isElementPresent(el);		
 		return result;
 	}
@@ -467,7 +473,7 @@ public void clickCloseFinalModal() {
 		Boolean result = false;
 					
 		String el = signupReader.getLocator("Step3.ErrorMessage");
-		this.WaitForElementVisible(el,20);		
+		//this.WaitForElementVisible(el,20);		
 		result = this.isElementPresent(el);		
 		return result;
 	}

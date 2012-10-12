@@ -71,8 +71,8 @@
    	  <InviteEmail4><![CDATA[misc_email_4]]></InviteEmail4>
    	  <InviteEmail5><![CDATA[misc_email_5]]></InviteEmail5>
    	  
-   	  <ClickInvite><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div/div/a/span]]></ClickInvite>
-   	  
+   	  <ClickInvite><![CDATA[//html/body/div[5]/div/div/div/form[1]/div/div[1]/input]]></ClickInvite>
+
    	  <ClickSkip><![CDATA[//html/body/div[5]/div[2]/div/div[2]/div[2]/div/form/div/div/a]]></ClickSkip>
    	  
    	  <ErrorMessage><![CDATA[//]]]></ErrorMessage>

@@ -50,6 +50,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
         String platform;
         String browserVersion;
 
+
         String selDriver = System.getenv(SELENIUM_DRIVER); // if this is populated use getenv
         if (selDriver != null && !selDriver.equals("")) {
 
@@ -141,6 +142,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
     public void onTestSuccess(ITestResult tr) {
         super.onTestSuccess(tr);
         markJobAsPassed();
+
     }
 
     private void markJobAsPassed() {

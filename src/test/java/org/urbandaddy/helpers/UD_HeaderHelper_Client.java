@@ -9,37 +9,36 @@ import org.urbandaddy.locators.LocatorReader;
 public class UD_HeaderHelper_Client extends IHelper_Client {
 
 	private LocatorReader headerReader;
-	private String UDdomain = "http://ud-branch.thedaddy.co";
+	private String UDdomain;
 //	private String UDdomain = "http://www.urbandaddy.com";
 
 
 	public UD_HeaderHelper_Client(WebDriver client) {
 		super(client);
-		// TODO Auto-generated constructor stub
 		headerReader = new LocatorReader("UD_Header.xml");
-	}
+        UDdomain = "http://ud-branch.thedaddy.co";
+    }
 
 	public Boolean isLogoutPresent(){
 		
-		Boolean result = false;
-		
+				
 		String str = headerReader.getLocator("LoggedInHeader.SignOut");
-		this.WaitForElementPresent(str,20);		
-		result = this.isElementPresent(str);		
-		return result;
+		//this.WaitForElementPresent(str,20);		
+		return this.isElementPresent(str);		
+		
 	}
 	
 	public void clickLogout(){
 		String str = headerReader.getLocator("LoggedInHeader.Logout");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str,20);
+		WebElement el = findElementAndCheckBy(str, 20);
 		el.click();
 	}
 	
 	public void clickMemberLogIn(){
 		String str = headerReader.getLocator("LoggedOutHeader.MemberLogIn");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str, 20);
 		el.click();
 		
 		try {
@@ -48,11 +47,16 @@ public class UD_HeaderHelper_Client extends IHelper_Client {
 			e.printStackTrace();
 				}
 	}
-	
+
+    public boolean isSignUpPresent() {
+        String str = headerReader.getLocator("LoggedOutHeader.SignUp");
+        return this.isElementPresent(str);
+    }
+
 	public void clickSignUp(){
 		String str = headerReader.getLocator("LoggedOutHeader.SignUp");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str, 20);
 		el.click();
 	}
 	
@@ -62,8 +66,8 @@ public class UD_HeaderHelper_Client extends IHelper_Client {
 	
 	public void clickChangeCity(){
 		String str = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(str, 20);
-		WebElement el = client.findElement(ByLocator(str));
+		//this.WaitForElementPresent(str, 20);
+		WebElement el = findElementAndCheckBy(str,20);
 		el.click();
 	}
 	
@@ -71,9 +75,9 @@ public class UD_HeaderHelper_Client extends IHelper_Client {
 	public void clickChangeCityAtlanta(){
 		
 		String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(menu_locator, 20);
+		//this.WaitForElementPresent(menu_locator, 20);
 		String item = headerReader.getLocator("LoggedInHeader.Atlanta");
-		this.WaitForElementPresent(menu_locator, 20);
+		//this.WaitForElementPresent(menu_locator, 20);
 		
 		// find DropdownToggle menu
 		WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -91,9 +95,9 @@ public class UD_HeaderHelper_Client extends IHelper_Client {
 public void clickChangeCityBoston(){
 		
 		String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-		this.WaitForElementPresent(menu_locator, 20);
+		//this.WaitForElementPresent(menu_locator, 20);
 		String item = headerReader.getLocator("LoggedInHeader.Boston");
-		this.WaitForElementPresent(menu_locator, 20);
+		//this.WaitForElementPresent(menu_locator, 20);
 		
 		// find DropdownToggle menu
 		WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -111,9 +115,9 @@ public void clickChangeCityBoston(){
 public void clickChangeCityChicago(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.Chicago");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -131,9 +135,9 @@ public void clickChangeCityChicago(){
 public void clickChangeCityDallas(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.Dallas");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -151,9 +155,9 @@ public void clickChangeCityDallas(){
 public void clickChangeCityDC(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.DC");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -171,9 +175,9 @@ public void clickChangeCityDC(){
 public void clickChangeCityJetset(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.Jetset");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -191,9 +195,9 @@ public void clickChangeCityJetset(){
 public void clickChangeCityLasVegas(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.LasVegas");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -211,9 +215,9 @@ public void clickChangeCityLasVegas(){
 public void clickChangeCityLosAngeles(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.LosAngeles");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -231,9 +235,9 @@ public void clickChangeCityLosAngeles(){
 public void clickChangeCityMiami(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.Miami");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -251,9 +255,9 @@ public void clickChangeCityMiami(){
 public void clickChangeCityNational(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.National");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -271,9 +275,9 @@ public void clickChangeCityNational(){
 public void clickChangeCityNewYork(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.NewYork");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -291,9 +295,9 @@ public void clickChangeCityNewYork(){
 public void clickChangeCitySanFrancisco(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.SanFrancisco");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -311,9 +315,9 @@ public void clickChangeCitySanFrancisco(){
 public void clickChangeCitySkiBoard(){
 	
 	String menu_locator = headerReader.getLocator("LoggedInHeader.ChangeCity");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	String item = headerReader.getLocator("LoggedInHeader.SkiBoard");
-	this.WaitForElementPresent(menu_locator, 20);
+	//this.WaitForElementPresent(menu_locator, 20);
 	
 	// find DropdownToggle menu
 	WebElement menu = client.findElement(ByLocator(menu_locator));
@@ -333,7 +337,7 @@ public void clickChangeCitySkiBoard(){
 	
 //	public void mouseOverAssignmentsDropdown(){
 //		String menu_locator = headerReader.getLocator("LoggedInHeader.AssignmentsDropdown");
-//		this.WaitForElementPresent(menu_locator, 20);		
+//		//this.WaitForElementPresent(menu_locator, 20);		
 //		// find Assignments menu
 //		WebElement el = client.findElement(ByLocator(menu_locator));
 //		
@@ -344,279 +348,262 @@ public void clickChangeCitySkiBoard(){
 //	}
 //	
 
-//// Top Nav methods
+// Top Nav methods
 
 public Boolean isSearchBoxPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeader.SearchBox");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public Boolean isSearchBoxGoButtonPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeader.SearchBoxGoButton");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public Boolean isNightlifePresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Nightlife");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickNightlife(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Nightlife");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 	
 }
 
 public Boolean isNightlifeLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Nightlife");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickNightlifeLV(){
 
 String str = headerReader.getLocator("LoggedInHeaderLasVegas.Nightlife");
-this.WaitForElementPresent(str,20);		
-WebElement el = client.findElement(ByLocator(str));
+//this.WaitForElementPresent(str,20);		
+WebElement el = findElementAndCheckBy(str, 20);
 el.click();
 }
 
 	
 public Boolean isFoodPresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Food");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickFood(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Food");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isFoodLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Food");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickFoodLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Food");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isFoodDrinkNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.FoodDrink");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickFoodDrinkNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.FoodDrink");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isEntertainmentLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Entertainment");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickEntertainmentLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Entertainment");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isEntertainmentNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Entertainment");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickEntertainmentNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Entertainment");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isTravelNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Travel");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickTravelNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Travel");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isStylePresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Style");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickStyle(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Style");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isStyleNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Style");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickStyleNational(){
 
 String str = headerReader.getLocator("LoggedInHeaderNational.Style");
-this.WaitForElementPresent(str,20);		
-WebElement el = client.findElement(ByLocator(str));
+//this.WaitForElementPresent(str,20);		
+WebElement el = findElementAndCheckBy(str, 20);
 el.click();
 }
 
 public Boolean isGearPresent(){
-		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Gear");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickGear(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Gear");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isGearNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Gear");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickGearNational(){
 
 String str = headerReader.getLocator("LoggedInHeaderNational.Gear");
-this.WaitForElementPresent(str,20);		
-WebElement el = client.findElement(ByLocator(str));
+//this.WaitForElementPresent(str,20);		
+WebElement el = findElementAndCheckBy(str, 20);
 el.click();
 }
 
 public Boolean isLeisurePresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Leisure");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickLeisure(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Leisure");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 	
 public Boolean isDrivenPresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Driven");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickDriven(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Driven");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -629,20 +616,19 @@ public boolean isDrivenAccessible(){
 
 public Boolean isDrivenNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Driven");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 
 public boolean isDrivenNationalAccessible(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Driven");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 
 	if (client.getCurrentUrl().equals("http://driven.urbandaddy.com/"))
@@ -652,55 +638,52 @@ public boolean isDrivenNationalAccessible(){
 
 public Boolean isPerksPresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Perks");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickPerks(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Perks");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isPerksLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Perks");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickPerksLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Perks");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
 public Boolean isPerksNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Perks");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickPerksNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Perks");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 	
 	try {
@@ -712,19 +695,18 @@ public void clickPerksNational(){
 
 public Boolean isPartiesPresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Parties");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickParties(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Parties");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -737,19 +719,18 @@ public boolean isPartiesAccessible(){
 
 public Boolean isPartiesLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Parties");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickPartiesLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Parties");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -762,19 +743,18 @@ public boolean isPartiesLVAccessible(){
 
 public Boolean isPartiesNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Parties");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickPartiesNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Parties");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -787,19 +767,18 @@ public boolean isPartiesNationalAccessible(){
 	
 public Boolean isKemptPresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Kempt");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 }
 
 public void clickKempt(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Kempt");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -812,19 +791,18 @@ public boolean isKemptAccessible(){
 
 public Boolean isKemptLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Kempt");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickKemptLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Kempt");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -837,19 +815,18 @@ public boolean isKemptLVAccessible(){
 
 public Boolean isKemptNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Kempt");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickKemptNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Kempt");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -862,19 +839,18 @@ public boolean isKemptNationalAccessible(){
 
 public Boolean isMobilePresent(){
 		
-		Boolean result = false;
-		
+				
 		String el = headerReader.getLocator("LoggedInHeader.Mobile");
-		this.WaitForElementPresent(el,20);		
-		result = this.isElementPresent(el);		
-		return result;
+		//this.WaitForElementPresent(el,20);		
+		return this.isElementPresent(el);		
+		
 	}
 
 public void clickMobile(){
 	
 	String str = headerReader.getLocator("LoggedInHeader.Mobile");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -887,19 +863,18 @@ public boolean isMobileAccessible(){
 
 public Boolean isMobileLVPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderLasVegas.Mobile");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickMobileLV(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderLasVegas.Mobile");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 
@@ -912,19 +887,18 @@ public boolean isMobileLVAccessible(){
 
 public Boolean isMobileNationalPresent(){
 	
-	Boolean result = false;
-	
+		
 	String el = headerReader.getLocator("LoggedInHeaderNational.Mobile");
-	this.WaitForElementPresent(el,20);		
-	result = this.isElementPresent(el);		
-	return result;
+	//this.WaitForElementPresent(el,20);		
+	return this.isElementPresent(el);		
+	
 }
 
 public void clickMobileNational(){
 	
 	String str = headerReader.getLocator("LoggedInHeaderNational.Mobile");
-	this.WaitForElementPresent(str,20);		
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str,20);		
+	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 }
 

@@ -17,23 +17,8 @@ import java.util.List;
 public class CheckEmailHelper_Client extends IHelper_Client {
 
 	private LocatorReader checkEmailReader;
-
-	public void pause1(){
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void pause2(){
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
+    private static final String JENKINSEMAIL = "udtesterjenkins@gmail.com";
+    private static final String JENKINSEMAILPW = "commonud";
 	public CheckEmailHelper_Client(WebDriver client) {
 		super(client);
 		// TODO Auto-generated constructor stub
@@ -47,13 +32,13 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		String Email = checkEmailReader.getLocator("Gmail.Email");		
 		this.WaitForElementPresent(Email, 20);		
 		WebElement em = client.findElement(ByLocator(Email));
-		em.sendKeys("udtesterjenkins@gmail.com");
-		this.pause1();
+		em.sendKeys(JENKINSEMAIL);
+		this.pause(2000);
 		
 		String Passwd = checkEmailReader.getLocator("Gmail.Password");
 		this.WaitForElementPresent(Passwd, 20);
 		WebElement ps = client.findElement(ByLocator(Passwd));
-		ps.sendKeys("commonud");
+		ps.sendKeys(JENKINSEMAILPW);
 		
 		String Signin = checkEmailReader.getLocator("Gmail.SignIn");
 		this.WaitForElementPresent(Signin, 20);
@@ -61,7 +46,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
 		si.click();
 		
 		// wait for email to arrive
-		this.pause2();
+		this.pause(5000);
 		
 	}	
 
@@ -95,7 +80,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -131,7 +116,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -149,23 +134,22 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                this.WaitForElementPresent(sb, 20);
-                WebElement el1 = client.findElement(ByLocator(sb));
+                //this.WaitForElementPresent(sb, 20);
+                WebElement el1 = findElementAndCheckBy(sb,20);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
-
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                this.WaitForElementPresent(smb, 20);
-                WebElement el2 = client.findElement(ByLocator(smb));
+                //this.WaitForElementPresent(smb, 20);
+                WebElement el2 = findElementAndCheckBy(smb,20);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -199,7 +183,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -217,6 +201,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
+
                 this.WaitForElementPresent(sb, 20);
                 WebElement el1 = client.findElement(ByLocator(sb));
                 //el1.sendKeys(searchString);
@@ -233,7 +218,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -267,7 +252,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -301,7 +286,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 
@@ -335,7 +320,7 @@ public class CheckEmailHelper_Client extends IHelper_Client {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause2();
+                pause(5000);
             }
         } while (!flag && counter<3);
 

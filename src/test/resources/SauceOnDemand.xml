@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="ParallelTests" verbose="10">
-    <parameter name="username" value="sargenziano" />
-    <parameter name="key" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
-    <test name="Sauce Remote Web Driver">
+<suite name="ParallelTests" verbose="10" parallel="tests" thread-count="100">
+    <!--<parameter name="username" value="sargenziano" />-->
+    <!--<parameter name="key" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />-->
+    <test name="Registration Test">
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="browserVersion" value="3.6."/>-->
         <classes>
             <class name="org.urbandaddy.tests.UD_RegistrationSauceTest"/>
+        </classes>
+
+    </test>
+    <test name="Regression Test">
+        <classes>
+            <class name="org.urbandaddy.tests.UD_SimpleChecksSauceTest"/>
         </classes>
     </test>
     <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->

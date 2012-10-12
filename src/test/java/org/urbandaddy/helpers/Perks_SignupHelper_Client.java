@@ -452,8 +452,8 @@ public void clickSkip(){
 
 public void clickCloseFinalModal(){
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
-	this.WaitForElementPresent(str, 20);
-	WebElement el = client.findElement(ByLocator(str));
+	//this.WaitForElementPresent(str, 20);
+	WebElement el = findElementAndCheckBy(str);
 	el.click();
 
 	try {

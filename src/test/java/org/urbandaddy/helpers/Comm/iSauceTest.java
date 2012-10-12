@@ -6,16 +6,16 @@ import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
 import org.apache.commons.lang.StringUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.urbandaddy.helpers.*;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -30,6 +30,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     public SauceOnDemandAuthentication authentication;
 
     protected RemoteWebDriver client;
+
 
     /**
      * If the tests can rely on the username/key to be supplied by environment variables or the existence
@@ -97,6 +98,8 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected UD_SignupHelper_Client ud_signupHelper_Client;
     protected UD_RoundUP_Client ud_roundUP_client;
     protected UD_UnSubscribeHelper_Client ud_unSubscribeHelper_client;
+    protected IHelper_Client iHelper_client;
+
 
     protected Perks_HomepageHelper_Client perks_homepageHelper_Client;
     protected Perks_HeaderHelper_Client perks_headerHelper_Client;
@@ -124,7 +127,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected String membersource = "Member Source "+emailFormat.format(now);
 
 
-    protected String UDdomain = "http://ud-branch.thedaddy.co";
+    protected String UDdomain = "http://ud-branch.tfdfdfhedaddy.co";
     protected String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
     protected String Perksdomain = "http://perks-branch.thedaddy.co";
     //	private String UDdomain = "http://www.urbandaddy.com";
@@ -247,60 +250,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         checkEmailHelper_Client.clientLogoutGmail();
     }
 
-    /**
-     * Use the checkForBy method to extend some functionality to searching for
-     * elements. Attempts to find the element 3 times before throwing an error.
-     *
-     * @param type  Search by name, xpath, tagname, classname, css, id
-     * @param check Enter the name of the element you're looking for
-     * @param timeout Enter the number of seconds for the timeout
-     * @return that web element or throw an error
-     */
-    public WebElement findElement(final String type, String check, int timeout){
-        int counter = 0;
-        boolean flag = false;
-        final String ele;
-        ele = check;
-        WebElement a = null;
 
-
-        do {
-            try {
-                System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
-                a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
-                    @Override
-                    public WebElement apply(@Nullable WebDriver d) {
-                        WebElement ret = null;
-                        if (type.equals("name")) {
-                            ret = d.findElement(By.name(ele));
-                        } else if (type.equals("xpath")) {
-                            ret = d.findElement(By.xpath(ele));
-                        } else if (type.equals("tagname")) {
-                            ret = d.findElement(By.tagName(ele));
-                        } else if (type.equals("classname")) {
-                            ret = d.findElement(By.className(ele));
-                        } else if (type.equals("css")) {
-                            ret = d.findElement(By.cssSelector(ele));
-                        } else if (type.equals("id")) {
-                            ret = d.findElement(By.id(ele));
-                        }
-                        System.out.println("Found> " + ele);
-                        return ret;
-                    }
-                });
-                flag = true;
-            } catch (TimeoutException e) {
-                counter++;
-                System.out.println("Attempt " + counter + ": Could not find> " + ele);
-                System.out.println("Trying again");
-            }
-        } while (counter <= 2 && !flag);
-        if (a == null) {
-            throw new NullPointerException("3rd Attempt reached. Could not find> " + ele);
-        } else {
-            return a;
-        }
-    }
 
     /**
      * Select an item from a dropdown.
@@ -365,9 +315,14 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         return (sessionId == null) ? null : sessionId.toString();
     }
 
-    @AfterMethod
-    public void tearDown() {
-
+    @AfterMethod (alwaysRun = true)
+    public void tearDown(ITestResult result) throws Exception {
+//        SauceREST sauceREST = new SauceREST(authentication.getUsername(),authentication.getAccessKey());
+//        if(result.isSuccess()) {
+//            sauceREST.jobPassed(getSessionId());
+//        } else {
+//            sauceREST.jobFailed(getSessionId());
+//        }
 //        String message = authentication.getUsername() + ":" + authentication.getAccessKey();
 //        System.out.println("Message> " + message);
 //        String jobId = getSessionId();
