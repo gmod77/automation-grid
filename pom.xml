@@ -183,9 +183,8 @@
                     <properties>
                         <property>
                             <name>reporter</name>
-                            <value>org.testng.reporters.XMLReporter</value>
+                            <value>org.testng.reporters.XMLReporter,org.testng.reporters.JUnitReportReporter</value>
                         </property>
-
                     </properties>
 
                 </configuration>
