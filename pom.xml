@@ -187,6 +187,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>LATEST</version>
+                <configuration>
+
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>LATEST</version>
+            </plugin>
+        </plugins>
+
+
+    </reporting>
     <!-- <distributionManagement> <repository> <id>urbandaddy</id> <name>urbandaddy-snapshots</name>
 <url>http://urbandaddy.artifactoryonline.com/urbandaddy/libs-snapshots-local</url>
 </repository> </distributionManagement> -->
