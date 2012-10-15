@@ -5,6 +5,7 @@ import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.saucerest.SauceREST;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
 
 import java.io.IOException;
@@ -97,6 +98,7 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
             //log the session id to the system out
             if (sessionIdProvider.getSessionId() != null) {
                 System.out.println(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionIdProvider.getSessionId(), result.getMethod().getMethodName()));
+                Reporter.log(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionIdProvider.getSessionId(), result.getMethod().getMethodName()));
             }
         }
         SauceOnDemandAuthentication sauceOnDemandAuthentication;
