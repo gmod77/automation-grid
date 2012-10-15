@@ -61,10 +61,6 @@
                     <groupId>maven-plugins</groupId>
                     <artifactId>maven-findbugs-plugin</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>maven-plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -130,7 +126,16 @@
                 </excludes>
             </testResource>
         </testResources>
+
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <skipIfEmpty>true</skipIfEmpty>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -174,12 +179,13 @@
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
-
+                    <parallel>both</parallel>
                     <properties>
                         <property>
                             <name>reporter</name>
                             <value>org.testng.reporters.XMLReporter</value>
                         </property>
+
                     </properties>
 
                 </configuration>
@@ -199,25 +205,25 @@
         </plugins>
     </build>
 
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>LATEST</version>
-                <configuration>
+    <!--<reporting>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-report-plugin</artifactId>-->
+                <!--<version>LATEST</version>-->
+                <!--<configuration>-->
 
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>LATEST</version>
-            </plugin>
-        </plugins>
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jxr-plugin</artifactId>-->
+                <!--<version>LATEST</version>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
 
 
-    </reporting>
+    <!--</reporting>-->
     <!-- <distributionManagement> <repository> <id>urbandaddy</id> <name>urbandaddy-snapshots</name>
 <url>http://urbandaddy.artifactoryonline.com/urbandaddy/libs-snapshots-local</url>
 </repository> </distributionManagement> -->
