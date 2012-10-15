@@ -98,7 +98,9 @@ public class SauceOnDemandTestListener extends TestListenerAdapter {
             //log the session id to the system out
             if (sessionIdProvider.getSessionId() != null) {
                 System.out.println(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionIdProvider.getSessionId(), result.getMethod().getMethodName()));
-                Reporter.log(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionIdProvider.getSessionId(), result.getMethod().getMethodName()));
+                Reporter.log(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionIdProvider.getSessionId(), result.getMethod().getMethodName()),true);
+
+
             }
         }
         SauceOnDemandAuthentication sauceOnDemandAuthentication;
