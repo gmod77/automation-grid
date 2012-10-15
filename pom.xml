@@ -227,7 +227,7 @@
         </plugins>
 
 
-    <!--</reporting>-->
+    </reporting>
     <!-- <distributionManagement> <repository> <id>urbandaddy</id> <name>urbandaddy-snapshots</name>
 <url>http://urbandaddy.artifactoryonline.com/urbandaddy/libs-snapshots-local</url>
 </repository> </distributionManagement> -->
