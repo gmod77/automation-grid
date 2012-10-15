@@ -180,7 +180,6 @@
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
                     <parallel>both</parallel>
-                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     <properties>
                         <property>
                             <name>reporter</name>
