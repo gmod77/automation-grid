@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="ParallelTests" verbose="10" parallel="tests" thread-count="100">
-    <parameter name="username" value="sargenziano" />
-    <parameter name="key" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
-    <test name="Registration Test">
-        <!--<parameter name="os" value="Windows 2003"/>-->
-        <!--<parameter name="browser" value="firefox"/>-->
-        <!--<parameter name="browserVersion" value="3.6."/>-->
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
-        </classes>
-
-    </test>
-    <!--<test name="Regression Test">-->
+    <!--<parameter name="username" value="sargenziano" />-->
+    <!--<parameter name="key" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />-->
+    <!--<test name="Registration Test">-->
+        <!--&lt;!&ndash;<parameter name="os" value="Windows 2003"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<parameter name="browser" value="firefox"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<parameter name="browserVersion" value="3.6."/>&ndash;&gt;-->
         <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.UD_SimpleChecksSauceTest"/>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>-->
         <!--</classes>-->
+
     <!--</test>-->
+    <test name="Perks_Smoke">
+        <classes>
+            <class name="org.urbandaddy.tests.saucetesting.UD_RegistrationShortSauceTest" />
+
+        </classes>
+    </test>
+    <test name="Regression Test">
+        <classes>
+            <class name="org.urbandaddy.tests.saucetesting.UD_SimpleChecksSauceTest"/>
+        </classes>
+    </test>
     <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->
-    <listeners>
-        <listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>
-    </listeners>
+    <!--<listeners>-->
+        <!--<listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>-->
+    <!--</listeners>-->
 </suite>

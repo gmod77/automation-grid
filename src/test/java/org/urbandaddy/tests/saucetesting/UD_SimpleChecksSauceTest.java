@@ -1,4 +1,4 @@
-package org.urbandaddy.tests;
+package org.urbandaddy.tests.saucetesting;
 
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -8,7 +8,7 @@ import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
 
 
-    @Test (groups = {"reg"})
+    @Test (groups = {"regression"})
     public void CheckWhileLoggedOut(){
 
         Reporter.log("Visiting Home Page for the first time", true);
