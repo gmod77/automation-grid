@@ -170,6 +170,12 @@
                         <file>${suite_filename}</file>
                     </suiteXmlFiles>
 
+                    <properties>
+                        <property>
+                            <name>reporter</name>
+                            <value>org.testng.reporters.XMLReporter</value>
+                        </property>
+                    </properties>
 
                 </configuration>
 
@@ -202,6 +208,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>LATEST</version>
+            </plugin>
+            <plugin>
+                <groupId>org.testng</groupId>
+                <artifactId></artifactId>
             </plugin>
         </plugins>
 
