@@ -130,7 +130,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>LATEST</version>
+                <version>2.5.1</version>
                 <configuration>
                     <verbose>true</verbose>
                     <source>1.6</source>
