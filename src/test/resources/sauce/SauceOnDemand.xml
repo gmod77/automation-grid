@@ -19,9 +19,9 @@
     <!--</test>-->
 
     <test name="Regression Test">
-        <parameter name="os" value="Windows 2003"/>
-        <parameter name="browser" value="firefox"/>
-        <parameter name="browserVersion" value="3.6."/>
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="browserVersion" value="3.6."/>-->
         <classes>
             <class name="org.urbandaddy.tests.saucetesting.UD_SimpleChecksSauceTest"/>
         </classes>
