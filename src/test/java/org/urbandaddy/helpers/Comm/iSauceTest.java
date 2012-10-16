@@ -52,17 +52,17 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
                       @Optional("") String selDriver,
                       Method method) throws Exception {
 
-        System.out.println("HERE> " + browser);
-        System.out.println("HERE> " + browserVersion);
-        System.out.println("HERE> " + Platform.extractFromSysProperty(os));
-        System.out.println("HERE> " + selDriver);
+        System.out.println("browser HERE> " + browser);
+        System.out.println("browserVersion HERE> " + browserVersion);
+        System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
+        System.out.println("selDriver HERE> " + selDriver);
 
-        System.out.println("HERE2> " + System.getenv("SELENIUM_BROWSER"));
-        System.out.println("HERE2> " + System.getenv("SELENIUM_VERSION"));
-        System.out.println("HERE2> " + System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("HERE2> " + System.getenv("SELENIUM_DRIVER"));
-        System.out.println("HERE2> " + System.getProperty("SELENIUM_DRIVER"));
-        System.out.println("HERE2> " + System.getenv("SELENIUM_STARTING_URL"));
+        System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
+        System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
+        System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
+        System.out.println("getenv SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
+        System.out.println("getProperty SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+        System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
             authentication = new SauceOnDemandAuthentication(username, key);
@@ -70,19 +70,19 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
             authentication = new SauceOnDemandAuthentication();
         }
 
-        DesiredCapabilities capabillities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(browserVersion) && StringUtils.isNotBlank(os)) {
-            capabillities.setBrowserName(browser);
-            capabillities.setCapability("version", browserVersion);
-            capabillities.setCapability("platform", Platform.extractFromSysProperty(os));
+            capabilities.setBrowserName(browser);
+            capabilities.setCapability("version", browserVersion);
+            capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
 
         } else {
-            capabillities = DesiredCapabilities.firefox();
+            capabilities = DesiredCapabilities.firefox();
         }
-        capabillities.setCapability("name", "Test Method: " + method.getName());
+        capabilities.setCapability("name", "Test Method: " + method.getName());
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
-                capabillities);
+                capabilities);
         System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
     }
 
