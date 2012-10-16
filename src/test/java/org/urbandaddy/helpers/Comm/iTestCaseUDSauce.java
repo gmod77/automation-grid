@@ -19,7 +19,11 @@ import java.util.Set;
  *
  *
  */
-public abstract class iTestCaseUDSauce extends iSauceTest {
+public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
+
+    String lastURL;
+    String UDcity;
+    String UDcityPerks;
 
 ///// Sign-up methods
 

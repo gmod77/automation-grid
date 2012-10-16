@@ -8,6 +8,7 @@
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>urbandaddy-test-suite</name>
+    <url>http://localhost/</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -215,7 +216,6 @@
                             <!--<value>org.testng.reporters.XMLReporter,org.testng.reporters.JUnitReportReporter</value>-->
                         <!--</property>-->
                     <!--</properties>-->
-
                 </configuration>
 
                 <!--<executions>-->
@@ -254,22 +254,6 @@
             <!--</plugin>-->
         <!--</plugins>-->
     <!--</reporting>-->
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.testng.xslt</groupId>
-                <artifactId>testng-xslt-plugin</artifactId>
-                <version>1.1.2</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>testng-xslt-plugin</id>
-            <url>http://uhftopic.com/maven/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <repositories>
         <repository>

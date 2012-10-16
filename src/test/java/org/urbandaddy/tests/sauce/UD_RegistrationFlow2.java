@@ -6,7 +6,7 @@ import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 
 
 public class UD_RegistrationFlow2 extends iTestCaseUDSauce {
-	
+
 	@Test (groups = "Smoke")
 	public void UDregisterAndCheck(){
 

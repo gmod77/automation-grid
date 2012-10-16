@@ -18,11 +18,10 @@ import org.urbandaddy.helpers.*;
 
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 
 @Listeners({SauceOnDemandTestListener.class})
-public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
+public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider, UDBase {
 
     public SauceOnDemandAuthentication authentication;
 
@@ -105,38 +104,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected Perks_SignupHelper_Client perks_signupHelper_Client;
 
     protected CheckEmailHelper_Client checkEmailHelper_Client;
-
-
-    //declare variables
-
-    //set unique role names using time stamp
-    protected Date now = new java.util.Date();
-    protected java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
-
-    protected String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
-
-    protected String emailClient2 = "udtesterjenkins2+"+emailFormat.format(now) + "@gmail.com";
-    protected String membersource = "Member Source "+emailFormat.format(now);
-
-
-    protected String UDdomain = "http://ud-branch.thedaddy.co";
-    protected String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
-    protected String Perksdomain = "http://perks-branch.thedaddy.co";
-    //	private String UDdomain = "http://www.urbandaddy.com";
-    //	private String Perksdomain = "http://perks.urbandaddy.com";
-    protected String UDcity = "";
-    protected String UDcityPerks = "";
-    protected String password="12345";
-    //	private String newpassword="1234";
-    protected String lastURL = "";
-
-    protected String curDir = System.getProperty("user.dir");
-
 
     /**
      * Based on the OS name get the directory where
