@@ -196,7 +196,8 @@
                 <version>2.12.4</version>
                 <configuration>
                     <!-- Skip the normal tests, we'll run them in the integration-test phase -->
-                    <skip>true</skip>
+                    <!--Skip not needed, run in test phase-->
+                    <!--<skip>true</skip>-->
 
                          <!-- <systemPropertyVariables>
                          <name>server</name>
