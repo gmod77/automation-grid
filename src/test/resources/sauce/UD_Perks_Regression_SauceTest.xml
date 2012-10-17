@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<suite name="UD_Smoke_Sauce" verbose="10">-->
 <suite name="Frontend Smoke Test" parallel="tests" thread-count="2" verbose="10"> -->
-
+    <parameter name="username" value="sargenziano" />
+    <parameter name="key" value="c4ccd226-57b5-47f8-bab4-62b1801ff59b" />
 	<test name="UD_Smoke">
 		<classes>
 			<class name="org.urbandaddy.tests.sauce.UD_RegistrationFlow2" />

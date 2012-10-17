@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 
 
-public class UD_RegistrationFlow2 extends iTestCaseUDSauce {
+public class UD_RegistrationFlow2 extends iTestCaseUDSauce{
 
-	@Test (groups = "Smoke")
+	@Test (groups = {"Regression", "Register" })
 	public void UDregisterAndCheck(){
 
         Reporter.log("Visiting Home Page for the first time", true);
@@ -38,7 +38,7 @@ public class UD_RegistrationFlow2 extends iTestCaseUDSauce {
 		doChecksCityHomePageLoggedOut();
     }
 
-    @Test (groups = "Smoke")
+    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"})
     public void verifyUDEmailsReceived(){
 
         Reporter.log("Log in to Gmail", true);

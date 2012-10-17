@@ -1,6 +1,5 @@
 package org.urbandaddy.helpers.Comm;
 
-import com.thoughtworks.selenium.Selenium;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,11 +9,11 @@ import javax.annotation.Nullable;
 public abstract class IHelper_Client {
 
 	public WebDriver client;
-	public Selenium seleniumClient;
+	//public Selenium seleniumClient;
 
 	public IHelper_Client(WebDriver webdriver) {
 		client = webdriver;
-		seleniumClient = new WebDriverBackedSelenium(client, "http://ud-branch.thedaddy.co");
+		//seleniumClient = new WebDriverBackedSelenium(client, "http://ud-branch.thedaddy.co");
 	}
 	
 	public void Log(String logMsg){

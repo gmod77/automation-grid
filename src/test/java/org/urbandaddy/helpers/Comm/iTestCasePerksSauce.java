@@ -8,7 +8,10 @@ import org.urbandaddy.helpers.*;
 /**
  * This class contains all Perks domain specific tests
  */
-public abstract class iTestCasePerksSauce extends iSauceTest {
+public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
+
+    String lastURL;
+
     // Perks
 
     /**
@@ -32,9 +35,9 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
     public void visitPerksFirstTime(){
 
         // enter UD domain name, hit enter, arrive on homepage
-        client.get(Perksdomain);
+        client.get(PERKS_DOMAIN);
         client.manage().deleteAllCookies();
-        client.get(Perksdomain);
+        client.get(PERKS_DOMAIN);
     }
 
     /**
@@ -57,7 +60,7 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
         perks_sealHelper_Client = new Perks_SealHelper_Client(client);
 
-        client.get(Perksdomain);
+        client.get(PERKS_DOMAIN);
 
         try {
             Thread.sleep(3000);
@@ -69,8 +72,9 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
         perks_headerHelper_Client.clickSignUp();
 
         //b. Enter email address
-        perks_signupHelper_Client.enterSigninEmail(emailClient);
-        perks_signupHelper_Client.enterSigninPassword(password);
+        perks_signupHelper_Client.enterSigninEmail(EMAIL_CLIENT);
+        System.out.println("PERKS EMAIL CLIENT> " + EMAIL_CLIENT);
+        perks_signupHelper_Client.enterSigninPassword(PASSWORD);
 
         perks_signupHelper_Client.clickSignIn();
 
@@ -112,7 +116,7 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
 
 		// perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
-        System.out.println(emailClient);
+        System.out.println(EMAIL_CLIENT);
 
         //step1, 1st signup modal:
         //a. Click SignUp Seal
@@ -120,7 +124,7 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
 
         perks_signupHelper_Client.clickForgotYourPassword();
 
-        perks_signupHelper_Client.enterForgotPasswordEmail(emailClient);
+        perks_signupHelper_Client.enterForgotPasswordEmail(EMAIL_CLIENT);
 
         perks_signupHelper_Client.clickSend();
         this.pause(3000);
@@ -138,14 +142,14 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
 
         perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
-        System.out.println(emailClient);
+        System.out.println(EMAIL_CLIENT);
 
         //step1, 1st signup modal:
         //a. Click SignUp Seal
         perks_headerHelper_Client.clickSignUp();
 
         //b. Enter email address
-        perks_signupHelper_Client.enterJoinEmail(emailClient);
+        perks_signupHelper_Client.enterJoinEmail(EMAIL_CLIENT);
 
         perks_signupHelper_Client.clickAccept();
 
@@ -190,13 +194,13 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
 
         //step2, 2nd signup modal:
         //enter password
-        perks_signupHelper_Client.enterPassword(password);
+        perks_signupHelper_Client.enterPassword(PASSWORD);
         //confirm password
-        perks_signupHelper_Client.confirmPassword(password);
+        perks_signupHelper_Client.confirmPassword(PASSWORD);
         //First Name
-        perks_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+        perks_signupHelper_Client.enterFirstName("FN_"+EMAIL_FORMAT.format(NOW));
         //Last Name
-        perks_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+        perks_signupHelper_Client.enterLastName("LN_"+EMAIL_FORMAT.format(NOW));
         //Gender
         perks_signupHelper_Client.selectGender("Male");
         //perks_signupHelper_Client.selectGender("Female");
@@ -244,17 +248,17 @@ public abstract class iTestCasePerksSauce extends iSauceTest {
 
 //		ud_signupHelper_Client.clickInvite();
 
-        perks_signupHelper_Client.enterEmailFriend1(emailFriend1);
-        perks_signupHelper_Client.enterEmailFriend2(emailFriend2);
-        perks_signupHelper_Client.enterEmailFriend3(emailFriend3);
-        perks_signupHelper_Client.enterEmailFriend4(emailFriend4);
-        perks_signupHelper_Client.enterEmailFriend5(emailFriend5);
+        perks_signupHelper_Client.enterEmailFriend1(EMAIL_FRIEND1);
+        perks_signupHelper_Client.enterEmailFriend2(EMAIL_FRIEND2);
+        perks_signupHelper_Client.enterEmailFriend3(EMAIL_FRIEND3);
+        perks_signupHelper_Client.enterEmailFriend4(EMAIL_FRIEND4);
+        perks_signupHelper_Client.enterEmailFriend5(EMAIL_FRIEND5);
 
-        System.out.println(emailFriend1);
-        System.out.println(emailFriend2);
-        System.out.println(emailFriend3);
-        System.out.println(emailFriend4);
-        System.out.println(emailFriend5);
+        System.out.println(EMAIL_FRIEND1);
+        System.out.println(EMAIL_FRIEND2);
+        System.out.println(EMAIL_FRIEND3);
+        System.out.println(EMAIL_FRIEND4);
+        System.out.println(EMAIL_FRIEND5);
 
         try {
             Thread.sleep(1000);

@@ -23,7 +23,7 @@
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="browserVersion" value="3.6."/>-->
         <classes>
-            <class name="org.urbandaddy.tests.saucetesting.UD_SimpleChecksSauceTest"/>
+            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
         </classes>
     </test>
     <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->

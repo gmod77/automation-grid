@@ -63,22 +63,22 @@
         <!-- <dependency> <groupId>jaxen</groupId> <artifactId>jaxen</artifactId>
 <version>1.1.3</version> <scope>test</scope> </dependency> -->
 
-        <!--<dependency>-->
-            <!--<groupId>jaxen</groupId>-->
-            <!--<artifactId>jaxen</artifactId>-->
-            <!--<version>1.1.3</version>-->
-            <!--&lt;!&ndash; http://jira.codehaus.org/browse/JAXEN-217 &ndash;&gt;-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>maven-plugins</groupId>-->
-                    <!--<artifactId>maven-cobertura-plugin</artifactId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<groupId>maven-plugins</groupId>-->
-                    <!--<artifactId>maven-findbugs-plugin</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.3</version>
+            <!-- http://jira.codehaus.org/browse/JAXEN-217 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>maven-plugins</groupId>
+                    <artifactId>maven-cobertura-plugin</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>maven-plugins</groupId>
+                    <artifactId>maven-findbugs-plugin</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.apache.httpcomponents</groupId>-->
             <!--<artifactId>httpclient</artifactId>-->

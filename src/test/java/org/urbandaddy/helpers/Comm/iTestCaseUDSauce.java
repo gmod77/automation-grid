@@ -1,13 +1,14 @@
 package org.urbandaddy.helpers.Comm;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.urbandaddy.helpers.*;
 
+
+import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -37,9 +38,9 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
     public void visitUDFirstTime(){
 
         // enter UD domain name, hit enter, arrive on homepage
-        client.get(UDdomain);
+        client.get(UD_DOMAIN);
         client.manage().deleteAllCookies();
-        client.get(UDdomain);
+        client.get(UD_DOMAIN);
         client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
     }
 
@@ -78,23 +79,23 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      *
      */
     public void loginUDAdmin(){
-        client.get(UD_Admin_domain);
+        client.get(UD_ADMIN_DOMAIN);
         client.findElement(By.id("username")).sendKeys("jenkins");
         client.findElement(By.id("password")).sendKeys("jenkins900!!");
         client.findElement(By.name("commit")).click();
-        //client.get(UD_Admin_domain+"/admin.php/articles");
+        //client.get(UD_ADMIN_DOMAIN+"/admin.php/articles");
     }
 
     public void createRoundUPUpload() {
 
-        System.out.println(imagePath);
+        System.out.println(IMAGE_PATH);
         System.out.println(System.getProperty("os.name"));
         // 1. log into the UD admin
         // 2. Click on articles
         // 3. click on create
 
         // After login go to create the article
-        client.get(UD_Admin_domain+"/articles/create");
+        client.get(UD_ADMIN_DOMAIN+"/articles/create");
         this.pause(7000);
 
         // 4. change status to approved
@@ -154,27 +155,27 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         }
 
         // 11. Enter an Article title
-        client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+emailFormat.format(now));
+        client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+EMAIL_FORMAT.format(NOW));
 
         // 12. Enter Email subject line
 
-        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+emailFormat.format(now));
+        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+EMAIL_FORMAT.format(NOW));
 
         // 13. Enter Article Business Subject
-        client.findElement(By.id("article_business_name")).sendKeys("Test Round Up Business Name "+emailFormat.format(now));
+        client.findElement(By.id("article_business_name")).sendKeys("Test Round Up Business Name "+EMAIL_FORMAT.format(NOW));
 
         // 14. DO NOT ENTER COPY
         // 15. Enter Article Blurb
 
-        client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+EMAIL_FORMAT.format(NOW));
 
         // 16. Enter IPHone Blurb
 
-        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+EMAIL_FORMAT.format(NOW));
 
         // 17. Enter Twitter Blurb
 
-        client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+EMAIL_FORMAT.format(NOW));
 
         // 18. Enter Note
 
@@ -182,11 +183,11 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         // 19. Enter Legal Line
 
-        client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+emailFormat.format(now));
+        client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+EMAIL_FORMAT.format(NOW));
 
         // 20. Enter Keywords
 
-        client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+emailFormat.format(now));
+        client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+EMAIL_FORMAT.format(NOW));
 
         // 21. Choose business type
 
@@ -200,7 +201,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         }
 
         // 22. Enter Business Specialty
-        client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+emailFormat.format(now));
+        client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+EMAIL_FORMAT.format(NOW));
         // 23. Click Save
         client.findElement(By.name("save")).click();
         this.pause(7000);
@@ -214,7 +215,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         // 24. Click add Image
         // go to create image page
-        client.get(UD_Admin_domain+"/article_images/create");
+        client.get(UD_ADMIN_DOMAIN+"/article_images/create");
         this.pause(7000);
 
 
@@ -224,7 +225,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
         // For PC
         //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
-        String image1 = imagePath + "email banner 3.jpg";
+        String image1 = IMAGE_PATH + "email banner 3.jpg";
         System.out.println(image1);
         client.findElement(By.id("article_image_name")).sendKeys(image1);
         //enter Article ID
@@ -255,14 +256,12 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         */
     public String createRoundUP() {
 
-        System.out.println(imagePath);
-        System.out.println(System.getProperty("os.name"));
         // 1. log into the UD admin
         // 2. Click on articles
         // 3. click on create
 
         // After login go to create the article
-        client.get(UD_Admin_domain+"/articles/create");
+        client.get(UD_ADMIN_DOMAIN+"/articles/create");
         this.pause(7000);
 
         // 4. change status to approved
@@ -328,27 +327,27 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //        }
 
         // 11. Enter an Article title
-        client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+emailFormat.format(now));
+        client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+EMAIL_FORMAT.format(NOW));
 
         // 12. Enter Email subject line
 
-        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+emailFormat.format(now));
+        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+EMAIL_FORMAT.format(NOW));
 
         // 13. Enter Article Business Subject
-        client.findElement(By.id("article_business_name")).sendKeys("Test Round Up Business Name "+emailFormat.format(now));
+        client.findElement(By.id("article_business_name")).sendKeys("Test Round Up Business Name "+EMAIL_FORMAT.format(NOW));
 
         // 14. DO NOT ENTER COPY
         // 15. Enter Article Blurb
 
-        client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+EMAIL_FORMAT.format(NOW));
 
         // 16. Enter IPHone Blurb
 
-        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+EMAIL_FORMAT.format(NOW));
 
         // 17. Enter Twitter Blurb
 
-        client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+EMAIL_FORMAT.format(NOW));
 
         // 18. Enter Note
 
@@ -356,11 +355,11 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         // 19. Enter Legal Line
 
-        client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+emailFormat.format(now));
+        client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+EMAIL_FORMAT.format(NOW));
 
         // 20. Enter Keywords
 
-        client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+emailFormat.format(now));
+        client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+EMAIL_FORMAT.format(NOW));
 
         // 21. Choose business type
 
@@ -375,7 +374,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //        }
 
         // 22. Enter Business Specialty
-        client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+emailFormat.format(now));
+        client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+EMAIL_FORMAT.format(NOW));
         // 23. Click Save
         client.findElement(By.name("save")).click();
         this.pause(7000);
@@ -389,21 +388,21 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         // 24. Click add Image
         // go to create image page
-        client.get(UD_Admin_domain+"/article_images/create");
+        client.get(UD_ADMIN_DOMAIN+"/article_images/create");
         this.pause(7000);
 
 
         // 25. Upload Email_Banner size 552 x 135
 
-        String image1 = imagePath + "email banner 3.jpg";
+        String image1 = IMAGE_PATH + "email banner 3.jpg";
         client.findElement(By.id("article_image_name")).sendKeys(image1);
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         // 26. choose position Email_banner
 
-        selectFromDropdown(iHelper_client.findElementAndCheckBy("id","article_image_article_image_position_id",5),"option","Email_Banner");
-//        WebElement article1_position = iHelper_client.findElementAndCheckBy("id","article_image_article_image_position_id",5);
+        selectFromDropdown(findElementAndCheckBy("id","article_image_article_image_position_id",5),"option","Email_Banner");
+//        WebElement article1_position = findElementAndCheckBy("id","article_image_article_image_position_id",5);
 //        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
 //        for(WebElement option : position_options1){
 //            if(option.getText().equals("Email_Banner")) {
@@ -424,7 +423,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         // For PC
         //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\thumbnail 3.jpg");
 
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "thumbnail 3.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "thumbnail 3.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -445,7 +444,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.name("save_and_add")).click();
         this.pause(7000);
-        client.get(UD_Admin_domain+"/articles/edit/id/" + articleID);
+        client.get(UD_ADMIN_DOMAIN+"/articles/edit/id/" + articleID);
         this.pause(7000);
 
         // 32. Add Ad module to Right module section, make it a tower
@@ -469,7 +468,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         }
         //		b.	Click on newsletter_ad
 
-        iHelper_client.findElementAndCheckBy("xpath","//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a",5).click();
+        findElementAndCheckBy("xpath","//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a",5).click();
 
         try {
             Thread.sleep(3000);
@@ -498,7 +497,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
                 // select Footer template
 
-               selectFromDropdown(iHelper_client.findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
+               selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
 //                WebElement right_ad_type = client.findElement(By.name("newsletter_content_slot[name]"));
 //                List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
 //                for(WebElement option : right_ad_type_options){
@@ -520,7 +519,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 
         // 33. Click "here" to add the individual articles
-        client.get(UD_Admin_domain+"/multiarticle/edit/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/multiarticle/edit/id/"+articleID);
         this.pause(7000);
 
         // 34. Add Copy to the slots you are going to use (1 paragraph 3 sentences maxish)
@@ -531,7 +530,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         client.switchTo().frame(frameAid);
 
         client.findElement(By.xpath(".//*[@id='xToolbar']/table[6]/tbody/tr/td[6]/div/table/tbody/tr/td[2]")).click();
-        client.findElement(By.xpath(".//*[@id='xEditingArea']/textarea")).sendKeys("Lorem Ipsum. Lorem Ipsum. Lorem Ipsum." + emailFormat.format(now));
+        client.findElement(By.xpath(".//*[@id='xEditingArea']/textarea")).sendKeys("Lorem Ipsum. Lorem Ipsum. Lorem Ipsum." + EMAIL_FORMAT.format(NOW));
         client.switchTo().defaultContent();
 
         // 35. add in 411 and turn one word into a hyper link
@@ -541,23 +540,23 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.switchTo().frame(frameBid);
         client.findElement(By.xpath(".//*[@id='xToolbar']/table/tbody/tr/td[18]/div/table/tbody/tr/td[2]")).click();
-        client.findElement(By.xpath(".//*[@id='xEditingArea']/textarea")).sendKeys("Lorem Ipsum <a href=\"http://www.google.com\">" + emailFormat.format(now) + "</a>");
+        client.findElement(By.xpath(".//*[@id='xEditingArea']/textarea")).sendKeys("Lorem Ipsum <a href=\"http://www.google.com\">" + EMAIL_FORMAT.format(NOW) + "</a>");
         client.switchTo().defaultContent();
 
         // 36. Add Header to each slot
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input")).sendKeys("Weekender Header1 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input")).sendKeys("Weekender Header1 Test "+EMAIL_FORMAT.format(NOW));
 
         // 37. Add Sub head to each slot
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+EMAIL_FORMAT.format(NOW));
 
         // 38. add image size 120 x 120
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(imagePath + "round up image.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(IMAGE_PATH + "round up image.jpg");
 
         // 38a. add Alt text to slots
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+EMAIL_FORMAT.format(NOW));
 
         // 39. click Save
         client.findElement(By.name("save")).click();
@@ -597,7 +596,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //	2. Click on articles
 //	3. Click on create	
 
-        client.get(UD_Admin_domain+"/articles/create");
+        client.get(UD_ADMIN_DOMAIN+"/articles/create");
         this.pause(7000);
 
 //	4. Change status to Approved
@@ -665,19 +664,19 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 //	11.   Enter an Article title
 
-        client.findElement(By.id("article_name")).sendKeys("Test Weekender Article Title "+emailFormat.format(now));
+        client.findElement(By.id("article_name")).sendKeys("Test Weekender Article Title "+EMAIL_FORMAT.format(NOW));
 
 //	12.   Enter a Business Name/Subject
 
-        client.findElement(By.id("article_business_name")).sendKeys("Test Weekender Business Name "+emailFormat.format(now));
+        client.findElement(By.id("article_business_name")).sendKeys("Test Weekender Business Name "+EMAIL_FORMAT.format(NOW));
 
 //	13.   Enter an Article Subheader
 
-        client.findElement(By.id("article_teaser")).sendKeys("Test Weekender Article Subheader "+emailFormat.format(now));
+        client.findElement(By.id("article_teaser")).sendKeys("Test Weekender Article Subheader "+EMAIL_FORMAT.format(NOW));
 
 //	14.   Enter a Email Subject Line
 
-        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Weekender Email Subject "+emailFormat.format(now));
+        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Weekender Email Subject "+EMAIL_FORMAT.format(NOW));
 
 //	15.   Choose any weekender category
 
@@ -698,11 +697,11 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //	17.   Add Images: Email Banner, Option_A_Left_Column, and Thumbnail
 
         // go to create image page
-        client.get(UD_Admin_domain+"/article_images/create");
+        client.get(UD_ADMIN_DOMAIN+"/article_images/create");
         this.pause(7000);
 
         //browse to 1st image
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image001_optionA.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image001_optionA.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -725,7 +724,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 
         //browse to 2nd image
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image002_EmailBanner.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image002_EmailBanner.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -747,7 +746,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         this.pause(7000);
 
         //browse to 3rd image
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image003_thumbnail.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image003_thumbnail.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -769,15 +768,15 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         this.pause(7000);
 
         //go back to the article
-        client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/articles/edit/id/"+articleID);
 
 //	18.   Enter text in photo credit
 
-        client.findElement(By.id("article[photo_credit]")).sendKeys("Weekender Photo Credits Test "+emailFormat.format(now));
+        client.findElement(By.id("article[photo_credit]")).sendKeys("Weekender Photo Credits Test "+EMAIL_FORMAT.format(NOW));
 
 //	19.   Enter text in Article Feature
 
-        client.findElement(By.id("article[short]")).sendKeys("Weekender Article/Feature Introduction Test "+emailFormat.format(now));
+        client.findElement(By.id("article[short]")).sendKeys("Weekender Article/Feature Introduction Test "+EMAIL_FORMAT.format(NOW));
 
 //	20.   Copy is not needed
 
@@ -785,15 +784,15 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 //	21.   Enter text in Article Blurb
 
-        client.findElement(By.id("article[blurb]")).sendKeys("Weekender Article Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb]")).sendKeys("Weekender Article Blurb Test "+EMAIL_FORMAT.format(NOW));
 
 //	22.   Enter Text in iPhone Blurb
 
-        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Weekender iPhone Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Weekender iPhone Blurb Test "+EMAIL_FORMAT.format(NOW));
 
 //	23.   Enter Text in Twitter Blurb
 
-        client.findElement(By.id("article_blurb_twitter")).sendKeys("Weekender Twitter Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article_blurb_twitter")).sendKeys("Weekender Twitter Blurb Test "+EMAIL_FORMAT.format(NOW));
 
 //	24.   Enter Text in Note
 
@@ -802,7 +801,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 //	25.   Enter Text in Legal Line
 
-        client.findElement(By.id("article[footer_additional]")).sendKeys("Weekender Legal Line Test "+emailFormat.format(now));
+        client.findElement(By.id("article[footer_additional]")).sendKeys("Weekender Legal Line Test "+EMAIL_FORMAT.format(NOW));
 
 //	26.   Add Ad to Bottom module
 //		a.	Select ad from component dropdown
@@ -851,7 +850,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
                 // select Footer template
 
-                WebElement bottom_ad_type = iHelper_client.findElementAndCheckBy("name","newsletter_content_slot[name]",5);
+                WebElement bottom_ad_type = findElementAndCheckBy("name","newsletter_content_slot[name]",5);
 
                 List<WebElement> bottom_ad_type_options = bottom_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : bottom_ad_type_options){
@@ -863,7 +862,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
                 //d. 	Click Save
 
-                WebElement clickMe = iHelper_client.findElementAndCheckBy("id","save_button",5);
+                WebElement clickMe = findElementAndCheckBy("id", "save_button", 5);
                 clickMe.click();
                 this.pause(7000);
 
@@ -878,7 +877,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //		a.	Select ad from component dropdown
 
 //        		a.	Select ad from component dropdown
-        WebElement add_right_components = iHelper_client.findElementAndCheckBy("id","_select_modules_right",5);
+        WebElement add_right_components = findElementAndCheckBy("id","_select_modules_right",5);
         //WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
         List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
 
@@ -924,7 +923,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
                 // select Footer template
 
-                WebElement right_ad_type = iHelper_client.findElementAndCheckBy("name","newsletter_content_slot[name]",5);
+                WebElement right_ad_type = findElementAndCheckBy("name","newsletter_content_slot[name]",5);
                 List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
                 for(WebElement option : right_ad_type_options){
                     if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
@@ -944,11 +943,11 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 //	28.   Enter text in keywords
 
-        client.findElement(By.id("article_keywords")).sendKeys("Weekender Keywords Test Keywords "+emailFormat.format(now));
+        client.findElement(By.id("article_keywords")).sendKeys("Weekender Keywords Test Keywords "+EMAIL_FORMAT.format(NOW));
 
 //	29.   Choose business type
 
-        WebElement business_type = iHelper_client.findElementAndCheckBy("id","article_business_type_id",5);
+        WebElement business_type = findElementAndCheckBy("id","article_business_type_id",5);
         List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
         for(WebElement option : business_type_options){
             if(option.getText().equals("Clothing")) {
@@ -959,7 +958,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 //	30.   Enter text in business specialty
 
-        client.findElement(By.id("article_business_specialty")).sendKeys("Weekender Business Specialty Test "+emailFormat.format(now));
+        client.findElement(By.id("article_business_specialty")).sendKeys("Weekender Business Specialty Test "+EMAIL_FORMAT.format(NOW));
 
 //	31.   Click save
 
@@ -972,7 +971,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 //		or:
 
-        client.get(UD_Admin_domain+"/multiarticle/edit/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/multiarticle/edit/id/"+articleID);
         this.pause(7000);
 
 //	33.   For each template, 3 is a good number:
@@ -1001,14 +1000,14 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input")).sendKeys("Weekender Header1 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input")).sendKeys("Weekender Header1 Test "+EMAIL_FORMAT.format(NOW));
 
 
 //		d.      Enter text in Subheader
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+EMAIL_FORMAT.format(NOW));
 
 
 //		e.      Put in some url for subheader URl
@@ -1022,7 +1021,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(imagePath + "solon.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(IMAGE_PATH + "solon.jpg");
 
 
 //		g.       Check image url
@@ -1043,7 +1042,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+EMAIL_FORMAT.format(NOW));
 
 
 //		j.        Enter text in Copy
@@ -1075,13 +1074,13 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input")).sendKeys("Weekender Header2 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input")).sendKeys("Weekender Header2 Test "+EMAIL_FORMAT.format(NOW));
 
 //		d.      Enter text in Subheader
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[6]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[6]/input")).sendKeys("Weekender SubHeader2 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[6]/input")).sendKeys("Weekender SubHeader2 Test "+EMAIL_FORMAT.format(NOW));
 
 
 //		e.      Put in some url for subheader URl
@@ -1095,7 +1094,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input")).sendKeys(imagePath + "plato.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input")).sendKeys(IMAGE_PATH + "plato.jpg");
 
 
 //		g.       Check image url
@@ -1116,7 +1115,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[10]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[10]/input")).sendKeys("Weekender Alt2 Test"+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[10]/input")).sendKeys("Weekender Alt2 Test"+EMAIL_FORMAT.format(NOW));
 
 
 //		j.        Enter text in Copy
@@ -1149,14 +1148,14 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[5]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[5]/input")).sendKeys("Weekender Header3 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[5]/input")).sendKeys("Weekender Header3 Test "+EMAIL_FORMAT.format(NOW));
 
 
 //		d.      Enter text in Subheader
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[6]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[6]/input")).sendKeys("Weekender SubHeader3 Test "+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[6]/input")).sendKeys("Weekender SubHeader3 Test "+EMAIL_FORMAT.format(NOW));
 
 
 //		e.      Put in some url for subheader URl
@@ -1170,7 +1169,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input")).sendKeys(imagePath + "socrates.jpg");
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input")).sendKeys(IMAGE_PATH + "socrates.jpg");
 
 
 //		g.       Check image url
@@ -1190,7 +1189,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[10]/input
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[10]/input")).sendKeys("Weekender Alt3 Test"+emailFormat.format(now));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[10]/input")).sendKeys("Weekender Alt3 Test"+EMAIL_FORMAT.format(NOW));
 
 
 //		j.        Enter text in Copy
@@ -1229,7 +1228,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public void createArticleThreeColumn() {
 
-        client.get(UD_Admin_domain+"/articles/create");
+        client.get(UD_ADMIN_DOMAIN+"/articles/create");
 
         //Set Status to Approved
         selectFromDropdown("article_article_status_id","option","Approved");
@@ -1252,17 +1251,17 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //Enter Article Title:
 
         //client.findElement(By.id("article_name")).clear();
-        client.findElement(By.id("article_name")).sendKeys("Test Three-Column Article Title "+emailFormat.format(now));
+        client.findElement(By.id("article_name")).sendKeys("Test Three-Column Article Title "+EMAIL_FORMAT.format(NOW));
 
         //Enter Business Name/Subject
         //client.findElement(By.id("article_business_name")).clear();
-        client.findElement(By.id("article_business_name")).sendKeys("Test Three-Column Business Name "+emailFormat.format(now));
+        client.findElement(By.id("article_business_name")).sendKeys("Test Three-Column Business Name "+EMAIL_FORMAT.format(NOW));
 
         //Enter Article Subheader
-        client.findElement(By.id("article_teaser")).sendKeys("Test Three-Column Article Subheader "+emailFormat.format(now));
+        client.findElement(By.id("article_teaser")).sendKeys("Test Three-Column Article Subheader "+EMAIL_FORMAT.format(NOW));
 
         //Enter Email Subject Line
-        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Three-Column Email Subject "+emailFormat.format(now));
+        client.findElement(By.id("article_email_subject_line")).sendKeys("Test Three-Column Email Subject "+EMAIL_FORMAT.format(NOW));
 
         //Save
         client.findElement(By.name("save")).click();
@@ -1279,10 +1278,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //Add images to Article
 
         // go to create image page
-        client.get(UD_Admin_domain+"/article_images/create");
+        client.get(UD_ADMIN_DOMAIN+"/article_images/create");
 
 //browse to 1st image
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image001_optionA.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image001_optionA.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1298,7 +1297,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 
 //browse to 2nd image
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image002_EmailBanner.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image002_EmailBanner.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1313,7 +1312,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         this.pause(7000);
 
 //browse to 3rd image
-        client.findElement(By.id("article_image_name")).sendKeys(imagePath + "image003_thumbnail.jpg");
+        client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image003_thumbnail.jpg");
 
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
@@ -1327,41 +1326,41 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         this.pause(7000);
 
 //go back to the article
-        client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/articles/edit/id/"+articleID);
 
 //enter photo credits
-        client.findElement(By.id("article[photo_credit]")).sendKeys("Three-Column Photo Credits Test "+emailFormat.format(now));
+        client.findElement(By.id("article[photo_credit]")).sendKeys("Three-Column Photo Credits Test "+EMAIL_FORMAT.format(NOW));
 
 //enter Article/Feature introduction
-        client.findElement(By.id("article[short]")).sendKeys("Three-Column Article/Feature Introduction Test "+emailFormat.format(now));
+        client.findElement(By.id("article[short]")).sendKeys("Three-Column Article/Feature Introduction Test "+EMAIL_FORMAT.format(NOW));
 
 //enter Copy  
         client.executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Three-Column Article Copy Test'))");
 
 //Article Blurb
-        client.findElement(By.id("article[blurb]")).sendKeys("Three-Column Article Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb]")).sendKeys("Three-Column Article Blurb Test "+EMAIL_FORMAT.format(NOW));
 
 //iPhone Blurb
-        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Three-Column iPhone Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article[blurb_iphone]")).sendKeys("Three-Column iPhone Blurb Test "+EMAIL_FORMAT.format(NOW));
 
 //Twitter Blurb
-        client.findElement(By.id("article_blurb_twitter")).sendKeys("Three-Column Twitter Blurb Test "+emailFormat.format(now));
+        client.findElement(By.id("article_blurb_twitter")).sendKeys("Three-Column Twitter Blurb Test "+EMAIL_FORMAT.format(NOW));
 
 //enter Note 
         client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Three-Column Article Footer Test'))");
 
 //Legal Line
-        client.findElement(By.id("article[footer_additional]")).sendKeys("Three-Column Legal Line Test "+emailFormat.format(now));
+        client.findElement(By.id("article[footer_additional]")).sendKeys("Three-Column Legal Line Test "+EMAIL_FORMAT.format(NOW));
 
 //Keywords
-        client.findElement(By.id("article_keywords")).sendKeys("Three-Column Keywords Test Keywords "+emailFormat.format(now));
+        client.findElement(By.id("article_keywords")).sendKeys("Three-Column Keywords Test Keywords "+EMAIL_FORMAT.format(NOW));
 
 //Business type
         selectFromDropdown("article_business_type_id","option","Clothing");
 
 //Business specialty
 
-        client.findElement(By.id("article_business_specialty")).sendKeys("Three-Column Business Specialty Test "+emailFormat.format(now));
+        client.findElement(By.id("article_business_specialty")).sendKeys("Three-Column Business Specialty Test "+EMAIL_FORMAT.format(NOW));
 
 //Save
         client.findElement(By.name("save")).click();
@@ -1471,7 +1470,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
                 client.switchTo().window(popupHandle);
                 // click save
                 this.pause(3000);
-                iHelper_client.findElementAndCheckBy("id","save_button",5).click();
+                findElementAndCheckBy("id","save_button",5).click();
                 //client.findElement(By.id("save_button")).click();
 
                 //After finished your operation in pop-up just select the main window again
@@ -1540,7 +1539,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //Click Send Email, 
         //client.findElement(By.xpath("//html/body/div[3]/div/div/table/tbody/tr/td[2]/a[2]"));
         //or
-        client.get(UD_Admin_domain+"/articles/sendMailing/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/articles/sendMailing/id/"+articleID);
 
 //Click send Test Mailing, 
         client.findElement(By.name("is_test")).click();
@@ -1549,7 +1548,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         Alert alert = client.switchTo().alert();
         // Get the text of the alert or prompt
         alert.getText();
-        // And acknowledge the alert (equivalent to clicking "OK")
+        // And ackNOWledge the alert (equivalent to clicking "OK")
         this.pause(3000);
         alert.accept();
 
@@ -1557,7 +1556,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         // Verify "Test email has been sent" success message
 
 
-        Assert.assertTrue((iHelper_client.findElementAndCheckBy("xpath", "//html/body/div[3]/div/div/h2", 5)).getText().contains("Test email has been sent"));
+        Assert.assertTrue(findElementAndCheckBy("xpath","//html/body/div[3]/div/div/h2",5).getText().contains("Test email has been sent"));
         //Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
 
 //Add an e-mail address to the Send To field, Click Send Test Mailing, 
@@ -1570,16 +1569,16 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         Alert alert2 = client.switchTo().alert();
         // Get the text of the alert or prompt
         alert2.getText();
-        // And acknowledge the alert (equivalent to clicking "OK")
+        // And ackNOWledge the alert (equivalent to clicking "OK")
         alert2.accept();
         this.pause(7000);
 
         // Verify "Test email has been sent" success message
-        Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Test email has been sent"));
+        Assert.assertTrue(findElementAndCheckBy("xpath","//html/body/div[3]/div/div/h2",5).getText().contains("Test email has been sent."));
 
 //Click Back to Article, Change Status to Ready to Send, Click Save, Click Send E-mail, Click Send Mailing at bottom of page
         //go back to the article
-        client.get(UD_Admin_domain+"/articles/edit/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/articles/edit/id/"+articleID);
         this.pause(3000);
 
         //Change Status to Ready to Send, Click Save,
@@ -1592,7 +1591,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         client.findElement(By.name("save")).click();
 
         //Click Send E-mail or go to sendMailing page
-        client.get(UD_Admin_domain+"/articles/sendMailing/id/"+articleID);
+        client.get(UD_ADMIN_DOMAIN+"/articles/sendMailing/id/"+articleID);
 
         //click "Send Mailing" button
         client.findElement(By.xpath("//html/body/div[3]/div/form/div/input")).click();
@@ -1602,7 +1601,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         Alert alert3 = client.switchTo().alert();
         // Get the text of the alert or prompt
         alert3.getText();
-        // And acknowledge the alert (equivalent to clicking "OK")
+        // And ackNOWledge the alert (equivalent to clicking "OK")
         alert3.accept();
 
         try {
@@ -1627,10 +1626,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //3. Choose subscribe type (can use default  one if you want)
         //4. Click save
 
-        client.get(UD_Admin_domain+"/member_sources/edit");
+        client.get(UD_ADMIN_DOMAIN+"/member_sources/edit");
         this.pause(3000);
         //enter Unique Name
-        client.findElement(By.id("member_source_name")).sendKeys(membersource);
+        client.findElement(By.id("member_source_name")).sendKeys(MEMBER_SOURCE);
 
         //hit save
         client.findElement(By.name("save_and_list")).click();
@@ -1644,13 +1643,12 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //1. Go to Campaign Templates under Partnerships
         //2. Click on Create
 
-        client.get(UD_Admin_domain+"/pmt_universal_settings/create");
+        client.get(UD_ADMIN_DOMAIN+"/pmt_universal_settings/create");
         // Make sure the page loaded
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[2]/input",10);
-
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[2]/input",10);
 
         //3. Enter Name
-        String campaignName ="PMT "+ emailFormat.format(now);
+        String campaignName ="PMT "+ EMAIL_FORMAT.format(NOW);
         client.findElement(By.id("pmt_universal_settings_name")).sendKeys(campaignName);
 
         //4. Choose Campaign end date some day in the future
@@ -1666,7 +1664,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         WebElement status = client.findElement(By.id("pmt_universal_settings_member_source_id"));
         List<WebElement> status_options = status.findElements(By.tagName("option"));
         for(WebElement option : status_options){
-            if(option.getText().equals(membersource)) {
+            if(option.getText().equals(MEMBER_SOURCE)) {
                 option.click();
                 break;
             }
@@ -1682,7 +1680,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //8. Choose a background image, must be 1280 by 568
 
-        String PMTBackground = imagePath + "background image.jpg";
+        String PMTBackground = IMAGE_PATH + "background image.jpg";
         System.out.println(PMTBackground);
         client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys(PMTBackground);
 
@@ -1701,7 +1699,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //12. Link to a pdf for Rules and regs
 
         // not sure why this won't work
-        String PMTPdf = imagePath + "rules_regulations.pdf";
+        String PMTPdf = IMAGE_PATH + "rules_regulations.pdf";
         System.out.println(PMTPdf);
         client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(PMTPdf);
 
@@ -1711,23 +1709,23 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         client.findElement(By.name("save")).click();
 
         // Make sure Success message displays
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         client.findElement(By.name("save_and_add")).click();
 
         //19. Click Add Partner
         // Partner 1
 
-        WebElement addPartner = iHelper_client.findElementAndCheckBy("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
+        WebElement addPartner = findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[2]/input",10);
         addPartner.click();
 
         //20. Enter partner name
 
-        client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner1 "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner1 "+ EMAIL_FORMAT.format(NOW));
 
         //21. Enter opt in text
 
-        client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text1 "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text1 "+ EMAIL_FORMAT.format(NOW));
 
         //22. Enter privacy policy url
 
@@ -1735,16 +1733,16 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //23. Enter text in privacy policy label
 
-        client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label1 "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label1 "+ EMAIL_FORMAT.format(NOW));
 
         //24. Choose logo, must be 170 by 97
 
-        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(imagePath + "partner logo-1.png");
+        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(IMAGE_PATH + "partner logo-1.png");
 
         //25. Click Save
 
         client.findElement(By.name("save")).click();
-        iHelper_client.findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+        findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
 
         //26. Click List
@@ -1757,17 +1755,17 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //19. Click Add Partner
         // Partner 2
 
-        WebElement addPartner2 = iHelper_client.findElementAndCheckBy("xpath","/html/body/div[3]/div/div[3]/ul/li[2]/input",10);
+        WebElement addPartner2 = findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[2]/input",10);
         addPartner2.click();
 
 
         //20. Enter partner name
 
-        client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner2 "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner2 "+ EMAIL_FORMAT.format(NOW));
 
         //21. Enter opt in text
 
-        client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text2 "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text2 "+ EMAIL_FORMAT.format(NOW));
 
         //22. Enter privacy policy url
 
@@ -1775,33 +1773,33 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //23. Enter text in privacy policy label
 
-        client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label2 "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label2 "+ EMAIL_FORMAT.format(NOW));
 
         //24. Choose logo, must be 170 by 97
 
-        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(imagePath + "partner logo-2.png");
+        client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(IMAGE_PATH + "partner logo-2.png");
 
         //25. Click Save
 
         client.findElement(By.name("save")).click();
-        iHelper_client.findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+        findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
         //26. Click List
 
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[1]/input",10).click();
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[1]/input",10).click();
         //client.findElement(By.xpath(".//*[@id='sf_admin_edit_form']/ul/li[1]/input")).click();
 
 
         //28. Click Next Step
 
-        iHelper_client.findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
+        findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
 //        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
 //        this.pause(3000);
 
 
         //29. Add Header text
         // Make sure we're on the next page
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_container']/h1",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_container']/h1",10);
         client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
 
         //30. Add Subhead text
@@ -1816,7 +1814,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //33. Select all editions
 
@@ -1871,7 +1869,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
 
         //39. Add Invite Friends Head text
@@ -1893,7 +1891,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
-        iHelper_client.findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
+        findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
 
         //43. Add thank you head text
@@ -1910,23 +1908,23 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //46. Add twitter copy
 
-        client.findElement(By.id("pmt_thank_you_settings_twitter_copy")).sendKeys("Twitter copy "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_thank_you_settings_twitter_copy")).sendKeys("Twitter copy "+ EMAIL_FORMAT.format(NOW));
 
         //47. Add FB title
 
-        client.findElement(By.id("pmt_thank_you_settings_facebook_title")).sendKeys("FB Title copy "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_thank_you_settings_facebook_title")).sendKeys("FB Title copy "+ EMAIL_FORMAT.format(NOW));
 
         //48. Add FB Copy
 
-        client.findElement(By.id("pmt_thank_you_settings_facebook_copy")).sendKeys("FB copy "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_thank_you_settings_facebook_copy")).sendKeys("FB copy "+ EMAIL_FORMAT.format(NOW));
 
         //49. Choose FB image, must be 50 X 50
 
-        client.findElement(By.id("pmt_thank_you_settings_facebook_image_path")).sendKeys(imagePath + "fb-image-test.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_facebook_image_path")).sendKeys(IMAGE_PATH + "fb-image-test.jpg");
 
         //50. Choose Module 1 Image
 
-        client.findElement(By.id("pmt_thank_you_settings_module1_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-driven.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_module1_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-driven.jpg");
 
         //51. Add Module 1 URL
 
@@ -1934,7 +1932,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //52. Choose Module 2 image
 
-        client.findElement(By.id("pmt_thank_you_settings_module2_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_module2_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
 
         //53. Add module 2 url
 
@@ -1942,7 +1940,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //54. Choose Module 3 image
 
-        client.findElement(By.id("pmt_thank_you_settings_module3_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-perks.jpg");
+        client.findElement(By.id("pmt_thank_you_settings_module3_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-perks.jpg");
 
         //55. Add module 3 url
 
@@ -1952,7 +1950,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         //Check for success message
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //57. Repeat Steps for the Closed page
 
@@ -1971,7 +1969,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         // Choose Module 1 Image
 
-        client.findElement(By.id("pmt_closed_settings_module1_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-driven.jpg");
+        client.findElement(By.id("pmt_closed_settings_module1_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-driven.jpg");
 
         //51. Add Module 1 URL
 
@@ -1979,7 +1977,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //52. Choose Module 2 image
 
-        client.findElement(By.id("pmt_closed_settings_module2_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
+        client.findElement(By.id("pmt_closed_settings_module2_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
 
         //53. Add module 2 url
 
@@ -1987,7 +1985,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         //54. Choose Module 3 image
 
-        client.findElement(By.id("pmt_closed_settings_module3_image_path")).sendKeys(imagePath + "Thank You-Campaign Closed Page Image Module-perks.jpg");
+        client.findElement(By.id("pmt_closed_settings_module3_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-perks.jpg");
 
         //55. Add module 3 url
 
@@ -1997,17 +1995,17 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Check for success message
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //58. Invite Email Settings
 
         //Choose Invite Email Header Image
 
-        client.findElement(By.id("pmt_invite_email_settings_header_image_path")).sendKeys(imagePath + "email-header Image.jpg");
+        client.findElement(By.id("pmt_invite_email_settings_header_image_path")).sendKeys(IMAGE_PATH + "email-header Image.jpg");
 
         //Subject Text
 
-        client.findElement(By.id("pmt_invite_email_settings_subject_text")).sendKeys("Email subject text "+ emailFormat.format(now));
+        client.findElement(By.id("pmt_invite_email_settings_subject_text")).sendKeys("Email subject text "+ EMAIL_FORMAT.format(NOW));
 
         //Email Body Text
 
@@ -2017,15 +2015,15 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         //Check for success message
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //59. Go to newly created campaign
 
         //Back to PMT Universal Settings List
 
-        client.get(UD_Admin_domain+"/pmt_universal_settings");
+        client.get(UD_ADMIN_DOMAIN+"/pmt_universal_settings");
         // Make sure the page shows up
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='sf_admin_container']/h1",10);
+        findElementAndCheckBy("xpath",".//*[@id='sf_admin_container']/h1",10);
 
 
         // Get the campaign just created
@@ -2049,23 +2047,23 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section/p")).getText().contains("Signup Bottom Text Test"));
 
         //e. Optin Text1
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/ul/li[2]/label")).getText().contains("Opt in text1 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/ul/li[2]/label")).getText().contains("Opt in text1 " + EMAIL_FORMAT.format(NOW)));
 
         //f. Optin Text2
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/ul/li[3]/label")).getText().contains("Opt in text2 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/section/form/section[2]/ul/li[3]/label")).getText().contains("Opt in text2 " + EMAIL_FORMAT.format(NOW)));
 
         //g. Footer Text Test
 //				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
 
         //h. Privacy Policy label1
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + EMAIL_FORMAT.format(NOW)));
 
         //h. Privacy Policy label2
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + EMAIL_FORMAT.format(NOW)));
 
         //61. 		Enter Email
 
-//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/input")).sendKeys(emailClient);
+//				client.findElement(By.xpath("//html/body/section/form/section/fieldset/input")).sendKeys(EMAIL_CLIENT);
 
         //62. 		Enter Zip
 
@@ -2088,10 +2086,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
 
         //h. Privacy Policy label1
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + EMAIL_FORMAT.format(NOW)));
 
         //h. Privacy Policy label2
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + EMAIL_FORMAT.format(NOW)));
 
         //65. Click Enter Button
 
@@ -2109,10 +2107,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
 
         //h. Privacy Policy label1
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + EMAIL_FORMAT.format(NOW)));
 
         //h. Privacy Policy label2
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + EMAIL_FORMAT.format(NOW)));
 
         //67. click "More" link thrice
 //				client.findElement(By.xpath("//html/body/section/form/section/fieldset/div[2]/ul/li[4]/a")).click();
@@ -2128,27 +2126,27 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         // Friend 1
 
-//				client.findElement(By.id("friends")).sendKeys(emailFriend1);
+//				client.findElement(By.id("friends")).sendKeys(EMAIL_FRIEND1);
 
         // Friend 2
 
-//				client.findElement(By.xpath("(//input[@id='friends'])[2]")).sendKeys(emailFriend3);
+//				client.findElement(By.xpath("(//input[@id='friends'])[2]")).sendKeys(EMAIL_FRIEND3);
 
         // Friend 3
 
-//				client.findElement(By.xpath("(//input[@id='friends'])[3]")).sendKeys(emailFriend3);
+//				client.findElement(By.xpath("(//input[@id='friends'])[3]")).sendKeys(EMAIL_FRIEND3);
 
         // Friend 4
 
-//				client.findElement(By.xpath("(//input[@id='friends'])[4]")).sendKeys(emailFriend4);
+//				client.findElement(By.xpath("(//input[@id='friends'])[4]")).sendKeys(EMAIL_FRIEND4);
 
         // Friend 5
 
-//				client.findElement(By.xpath("(//input[@id='friends'])[5]")).sendKeys(emailFriend5);
+//				client.findElement(By.xpath("(//input[@id='friends'])[5]")).sendKeys(EMAIL_FRIEND5);
 
         // Friend 6
 
-//				client.findElement(By.xpath("(//input[@id='friends'])[6]")).sendKeys(emailFriend6);
+//				client.findElement(By.xpath("(//input[@id='friends'])[6]")).sendKeys(EMAIL_FRIEND6);
 
 
         //67. Click Invite
@@ -2165,10 +2163,10 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 //				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/p")).getText().contains("Footer Text Test"));
 
         //h. Privacy Policy label1
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[3]/a")).getText().contains("Privacy policy label1 " + EMAIL_FORMAT.format(NOW)));
 
         //h. Privacy Policy label2
-//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + emailFormat.format(now)));
+//				Assert.assertTrue(client.findElement(By.xpath("//html/body/footer/nav/ul/li[4]/a")).getText().contains("Privacy policy label2 " + EMAIL_FORMAT.format(NOW)));
 
     }
 
@@ -2178,7 +2176,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public void goBackToUDHomepage(){
 
-        client.get(UDdomain);
+        client.get(UD_DOMAIN);
 
     }
 
@@ -2575,7 +2573,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isNightlifeAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/nightlife"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/nightlife"))
             return true;
         return false;
 
@@ -2588,7 +2586,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isFoodAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/food"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/food"))
             return true;
         return false;
 
@@ -2601,7 +2599,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isFoodDrinkNationalAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/fooddrink"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/fooddrink"))
             return true;
         return false;
 
@@ -2614,7 +2612,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isEntertainmentAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/entertainment"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/entertainment"))
             return true;
         return false;
 
@@ -2627,7 +2625,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isTravelAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/travel"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/travel"))
             return true;
         return false;
 
@@ -2640,7 +2638,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isStyleAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/style"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/style"))
             return true;
         return false;
 
@@ -2653,7 +2651,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isGearAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/gear"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/gear"))
             return true;
         return false;
 
@@ -2666,7 +2664,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isLeisureAccessible(){
 
-        if (client.getCurrentUrl().equals(UDdomain + "/archives/" + UDcity + "/leisure"))
+        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/leisure"))
             return true;
         return false;
 
@@ -2679,7 +2677,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
      */
     public boolean isPerksAccessible(){
 
-        if (client.getCurrentUrl().equals(Perksdomain + UDcityPerks))
+        if (client.getCurrentUrl().equals(PERKS_DOMAIN + UDcityPerks))
             return true;
         return false;
 
@@ -2809,7 +2807,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
-        System.out.println(emailClient);
+        System.out.println(EMAIL_CLIENT);
 
         //go to /home/nyc
 //		ud_homepageHelper_Client.clickNewYork();
@@ -2819,7 +2817,8 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         ud_headerHelper_Client.clickSignUp();
 
         //b. Enter email address
-        ud_signupHelper_Client.enterEmail(emailClient);
+        ud_signupHelper_Client.enterEmail(EMAIL_CLIENT);
+        System.out.println("UD EMAIL CLIENT> " + EMAIL_CLIENT);
         //c. Select Editions
         //New York, New York Perks are selected by default
         //check Driven
@@ -2888,14 +2887,14 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
 
         //step2, 2nd signup modal:
-        //enter password
-        ud_signupHelper_Client.enterPassword(password);
-        //confirm password
-        ud_signupHelper_Client.confirmPassword(password);
+        //enter PASSWORD
+        ud_signupHelper_Client.enterPassword(PASSWORD);
+        //confirm PASSWORD
+        ud_signupHelper_Client.confirmPassword(PASSWORD);
         //First Name
-        ud_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+        ud_signupHelper_Client.enterFirstName("FN_"+EMAIL_FORMAT.format(NOW));
         //Last Name
-        ud_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+        ud_signupHelper_Client.enterLastName("LN_"+EMAIL_FORMAT.format(NOW));
         //Gender
         ud_signupHelper_Client.selectGender("Male");
         //ud_signupHelper_Client.selectGender("Female");
@@ -2943,17 +2942,17 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         ud_signupHelper_Client.isInvitePresent();
 
-        ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
-        ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
-        ud_signupHelper_Client.enterEmailFriend3(emailFriend3);
-        ud_signupHelper_Client.enterEmailFriend4(emailFriend4);
-        ud_signupHelper_Client.enterEmailFriend5(emailFriend5);
+        ud_signupHelper_Client.enterEmailFriend1(EMAIL_FRIEND1);
+        ud_signupHelper_Client.enterEmailFriend2(EMAIL_FRIEND2);
+        ud_signupHelper_Client.enterEmailFriend3(EMAIL_FRIEND3);
+        ud_signupHelper_Client.enterEmailFriend4(EMAIL_FRIEND4);
+        ud_signupHelper_Client.enterEmailFriend5(EMAIL_FRIEND5);
 
-        System.out.println(emailFriend1);
-        System.out.println(emailFriend2);
-        System.out.println(emailFriend3);
-        System.out.println(emailFriend4);
-        System.out.println(emailFriend5);
+        System.out.println(EMAIL_FRIEND1);
+        System.out.println(EMAIL_FRIEND2);
+        System.out.println(EMAIL_FRIEND3);
+        System.out.println(EMAIL_FRIEND4);
+        System.out.println(EMAIL_FRIEND5);
 
         try {
             Thread.sleep(1000);
@@ -3164,7 +3163,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        client.get(UDdomain);
+        client.get(UD_DOMAIN);
 
         try {
             Thread.sleep(3000);
@@ -3176,7 +3175,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         //client.findElement(By.xpath("//div[@id='signInWrapper']/div")).click();
 
         ud_headerHelper_Client.clickMemberLogIn();
-        ud_sealHelper_Client.enterEmailAddress(emailClient);
+        ud_sealHelper_Client.enterEmailAddress(EMAIL_CLIENT);
         ud_sealHelper_Client.enterPassword("1234");
         ud_sealHelper_Client.clickLogin();
 
@@ -3186,17 +3185,17 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
     }
 
     /**
-     * Overloaded login class, use to pass email and password in via
+     * Overloaded login class, use to pass email and PASSWORD in via
      * other tests.
      * ex. currently used in UD_Unsubscribe_EditionsPerks
      * @param email Email address
-     * @param pw Password
+     * @param pw PASSWORD
      */
     public void loginUD(String email, String pw){
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        client.get(UDdomain);
+        client.get(UD_DOMAIN);
 
         try {
             Thread.sleep(3000);
@@ -3221,7 +3220,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
     }
 
     /**
-     * Perform a password reset.
+     * Perform a PASSWORD reset.
      */
     public void resetPasswordUD(){
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
@@ -3229,7 +3228,7 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
 
         ud_headerHelper_Client.clickMemberLogIn();
         ud_sealHelper_Client.clickResetPassword();
-        ud_sealHelper_Client.enterEmailToReset(emailClient);
+        ud_sealHelper_Client.enterEmailToReset(EMAIL_CLIENT);
         ud_sealHelper_Client.clickSend();
 
     }
@@ -3243,8 +3242,8 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
         ud_sealHelper_Client.clickEditSettings();
-        ud_sealHelper_Client.enterPasswordMyUD(password);
-        ud_sealHelper_Client.confirmPasswordMyUD(password);
+        ud_sealHelper_Client.enterPasswordMyUD(PASSWORD);
+        ud_sealHelper_Client.confirmPasswordMyUD(PASSWORD);
 
         ud_sealHelper_Client.checkDC();
         ud_sealHelper_Client.checkPhilly();
@@ -3255,5 +3254,59 @@ public abstract class iTestCaseUDSauce extends iSauceTest implements UDBase {
         this.pause(3000);
         ud_sealHelper_Client.clickClose();
 
+    }
+
+    /**
+     * Use the findElement method to extend some functionality to searching for
+     * elements. Attempts to find the element 3 times before throwing an error.
+     *
+     * @param type  Search by name, xpath, tagname, classname, css, id
+     * @param locator Enter the name of the element you're looking for
+     * @param timeout Enter the number of seconds for the timeout
+     * @return that web element or throw an error
+     */
+    public WebElement findElementAndCheckBy(final String type, String locator, int timeout) throws ElementNotVisibleException {
+        int counter = 0;
+        boolean flag = false;
+        final String ele = locator;
+        WebElement a = null;
+
+
+        do {
+            try {
+                System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
+                a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
+                    @Override
+                    public WebElement apply(@Nullable WebDriver d) {
+                        WebElement ret = null;
+                        if (type.equals("name")) {
+                            ret = d.findElement(By.name(ele));
+                        } else if (type.equals("xpath")) {
+                            ret = d.findElement(By.xpath(ele));
+                        } else if (type.equals("tagname")) {
+                            ret = d.findElement(By.tagName(ele));
+                        } else if (type.equals("classname")) {
+                            ret = d.findElement(By.className(ele));
+                        } else if (type.equals("css")) {
+                            ret = d.findElement(By.cssSelector(ele));
+                        } else if (type.equals("id")) {
+                            ret = d.findElement(By.id(ele));
+                        }
+                        System.out.println("Found> " + ele);
+                        return ret;
+                    }
+                });
+                flag = true;
+            } catch (TimeoutException e) {
+                counter++;
+                System.out.println("Attempt " + counter + ": Could not find> " + ele);
+                System.out.println("Trying again");
+            }
+        } while (counter <= 2 && !flag);
+        if (a == null) {
+            throw new ElementNotVisibleException("3rd Attempt reached. Could not find> " + ele);
+        } else {
+            return a;
+        }
     }
 }

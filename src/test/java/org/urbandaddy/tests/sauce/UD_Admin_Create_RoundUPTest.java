@@ -4,13 +4,13 @@ import org.testng.annotations.Test;
 import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 
 
-public class UD_Admin_Create_RoundUP extends iTestCaseUDSauce {
+public class UD_Admin_Create_RoundUPTest extends iTestCaseUDSauce {
 
     //Declare articleID to pass to the checker
     String articleID;
 
     @Test (groups = {"RoundUpCreate"})
-    public void RoundUPloginAdmin(){
+    public void RoundUPAdminCreate(){
         loginUDAdmin();
         articleID = createRoundUP(); //return the articleid that was created
     }

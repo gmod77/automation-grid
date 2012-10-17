@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<suite name="UD_Smoke_Sauce" verbose="10">-->
-<suite name="Admin Smoke Test" parallel="tests" thread-count="4" verbose="10"> -->
-
+<suite name="Admin Smoke Test" parallel="tests" thread-count="4" verbose="10">
 	<test name="UD_Admin_Smoke_3column">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_Column" />
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />
 		</classes>
 	</test>
 
 	<test name="UD_Admin_Smoke_Weekender">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Weekender" />
-		</classes>
-	</test>
-	
-	<test name="UD_Admin_PMT">
-		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_PMT" />
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_WeekenderTest" />
 		</classes>
 	</test>
 
+    <!--This test can't be run until the chrome driver gets findElements fixed
+    or we fix the pdf upload check on our side-->
+	<!--<test name="UD_Admin_PMT">-->
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="chrome"/>-->
+        <!--<parameter name="browserVersion" value="21.0.1180.89"/>-->
+		<!--<classes>-->
+			<!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_PMTTest" />-->
+		<!--</classes>-->
+	<!--</test>-->
+
     <test name="UD_Admin_Create_RoundUp">
         <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUP" />
+            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />
         </classes>
     </test>
 

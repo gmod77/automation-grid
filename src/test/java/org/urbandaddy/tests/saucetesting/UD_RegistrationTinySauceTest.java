@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 
 
-public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
+public class UD_RegistrationTinySauceTest extends iTestCaseUDSauce {
 	
 	@Test (groups = {"regression", "register"})
     public void UDregisterAndCheck(){

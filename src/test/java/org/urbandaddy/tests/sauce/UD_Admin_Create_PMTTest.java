@@ -3,14 +3,13 @@ package org.urbandaddy.tests.sauce;
 import org.testng.annotations.Test;
 import org.urbandaddy.helpers.Comm.iTestCaseUDSauce;
 
-
-public class UD_Admin_Article_Weekender extends iTestCaseUDSauce {
+public class UD_Admin_Create_PMTTest extends iTestCaseUDSauce {
 
     @Test (groups = "Smoke")
-    public void createWeekenderArticle(){
+    public void createPMTArticle(){
         loginUDAdmin();
-        createArticleWeekender();
+        createMemberSource();
+        createPMT();
     }
-
 
 }

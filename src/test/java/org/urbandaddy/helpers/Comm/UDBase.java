@@ -10,29 +10,30 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public interface UDBase {
-    Date now = new java.util.Date();
-    java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
+    Date NOW = new java.util.Date();
+    java.text.DateFormat EMAIL_FORMAT = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
+    String generateEmailClient(String e);
+    String EMAIL_CLIENT = "udtesterjenkins+"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+    String EMAIL_FRIEND1 = "udtesterjenkins+"+"friend_1_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+    String EMAIL_FRIEND2 = "udtesterjenkins+"+"friend_2_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+    String EMAIL_FRIEND3 = "udtesterjenkins+"+"friend_3_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+    String EMAIL_FRIEND4 = "udtesterjenkins+"+"friend_4_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+    String EMAIL_FRIEND5 = "udtesterjenkins+"+"friend_5_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
 
-    String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+    String MEMBER_SOURCE = "Member Source "+EMAIL_FORMAT.format(NOW);
 
-    String membersource = "Member Source "+emailFormat.format(now);
-
-    String UDdomain = "http://ud-branch.thedaddy.co";
-    String UD_Admin_domain = "http://ud-branch.thedaddy.co/admin.php";
-    String Perksdomain = "http://perks-branch.thedaddy.co";
+    String UD_DOMAIN = "http://ud-branch.thedaddy.co";
+    String UD_ADMIN_DOMAIN = "http://ud-branch.thedaddy.co/admin.php";
+    String PERKS_DOMAIN = "http://perks-branch.thedaddy.co";
 
     //String UDcity = "";
     //String UDcityPerks = "";
-    String password="12345";
-    String newpassword="1234";
+    String PASSWORD="12345";
+    String NEW_PASSWORD="1234";
     //String lastURL = "";
 
-    String curDir = System.getProperty("user.dir");
+    String CUR_DIR = System.getProperty("user.dir");
 
-    String returnImgPath();
+    String IMAGE_PATH = CUR_DIR + "/src/test/upload_data/";
+
 }

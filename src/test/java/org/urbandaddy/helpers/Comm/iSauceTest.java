@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestResult;
@@ -82,10 +83,15 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
+        this.client.setFileDetector(new LocalFileDetector());
         System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
     }
 
     //declare helpers
+
+    public String generateEmailClient (String e) {
+        return "udtesterjenkins+"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+    }
 
     protected UD_HomepageHelper_Client ud_homepageHelper_Client;
     protected UD_HeaderHelper_Client ud_headerHelper_Client;
@@ -97,6 +103,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected IHelper_Client iHelper_client;
 
 
+
     protected Perks_HomepageHelper_Client perks_homepageHelper_Client;
     protected Perks_HeaderHelper_Client perks_headerHelper_Client;
     protected Perks_FooterHelper_Client perks_footerHelper_Client;
@@ -105,16 +112,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     protected CheckEmailHelper_Client checkEmailHelper_Client;
 
-    /**
-     * Based on the OS name get the directory where
-     * we use images
-     * @return path to image dir
-     */
-    public String returnImgPath () {
-        return curDir + "/src/test/upload_data/";
-    }
-
-    protected String imagePath = returnImgPath();
 
     /**
      * Set your own pause time
@@ -150,7 +147,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
-        checkEmailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
+        checkEmailHelper_Client.findSignupEmail("to: "+EMAIL_CLIENT+" subject: Welcome to the Club");
     }
 
     /**
@@ -159,11 +156,11 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     public void verifyInvitationsUDEmailsReceived(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
-        checkEmailHelper_Client.findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
+        checkEmailHelper_Client.findInvitationEmail1("to: "+EMAIL_FRIEND1+" subject: You're Invited");
+        checkEmailHelper_Client.findInvitationEmail2("to: "+EMAIL_FRIEND2+" subject: You're Invited");
+        checkEmailHelper_Client.findInvitationEmail3("to: "+EMAIL_FRIEND3+" subject: You're Invited");
+        checkEmailHelper_Client.findInvitationEmail4("to: "+EMAIL_FRIEND4+" subject: You're Invited");
+        checkEmailHelper_Client.findInvitationEmail5("to: "+EMAIL_FRIEND5+" subject: You're Invited");
     }
 
     /**
@@ -174,7 +171,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
         //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
+        checkEmailHelper_Client.findResetEmailRequest("to: "+EMAIL_CLIENT+" subject: UD | Password Reset Request");
         String link = checkEmailHelper_Client.getResetEmailLink();
         //client.get(link);
         System.out.println(link);
@@ -192,7 +189,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     public void verifyEditSettingsUDEmailReceived(){
         checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
-        checkEmailHelper_Client.findInvitationEmail1("to: "+emailClient+" subject: You've Changed");
+        checkEmailHelper_Client.findInvitationEmail1("to: "+EMAIL_CLIENT+" subject: You've Changed");
     }
 
     /**
@@ -214,8 +211,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
         checkEmailHelper_Client.clientLogoutGmail();
     }
 
-
-
     /**
      * Select an item from a dropdown.
      *
@@ -223,7 +218,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
      * @param text Name of the object to select from the dropdown
      */
-    public void selectFromDropdown (String dropDownId, String dropDownTagName, String text) {
+    public void selectFromDropdown(String dropDownId, String dropDownTagName, String text) {
         WebElement element = client.findElement(By.id(dropDownId));
         List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
         for(WebElement option : elements){

@@ -30,7 +30,7 @@ public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
     }
 
 
-    @Test (groups = {"check"})
+    @Test (groups = {"check"}, dependsOnGroups = {"register"})
     public void verifyUDEmailsReceived(){
 
         Reporter.log("Log in to Gmail", true);
