@@ -1,10 +1,12 @@
-com.saucelabs.common
-com.saucelabs.saucerest
-com.saucelabs.testng
+org.urbandaddy.com
+org.urbandaddy.com.common
+org.urbandaddy.com.grid
+org.urbandaddy.com.helpers
+org.urbandaddy.com.sauce
 org.urbandaddy.helpers
 org.urbandaddy.helpers.Comm
 org.urbandaddy.locators
-org.urbandaddy.sample
 org.urbandaddy.tests
+org.urbandaddy.tests.grid
 org.urbandaddy.tests.sauce
-org.urbandaddy.tests.saucetesting
+org.urbandaddy.tests.sauce.saucetesting
