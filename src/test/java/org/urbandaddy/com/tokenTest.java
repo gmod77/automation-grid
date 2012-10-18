@@ -2,7 +2,7 @@ package org.urbandaddy.com;
 
 
 
-import static org.urbandaddy.helpers.HMacHelper.tokenGenerate;
+import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
 /**
  * Created with IntelliJ IDEA.

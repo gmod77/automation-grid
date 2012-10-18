@@ -12,14 +12,18 @@ import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Date;
+
+import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
 @Listeners({SauceOnDemandTestListener.class})
 public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider, UDBase {
@@ -103,6 +107,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     @AfterMethod (alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
         System.out.println("METHOD END\n");
+        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
         client.quit();
     }
 
@@ -163,5 +168,23 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             e.printStackTrace();
         }
     }
+
+    private String generateToken(String jobId) throws IOException {
+        String message = authentication.getUsername() + ":" + authentication.getAccessKey();
+        try {
+            return tokenGenerate(message, jobId);
+        } catch (Exception e) {
+            throw new IOException("Token Generation Failed");
+        }
+        //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
+    }
+
+    private String getResultsUrl(String jobId) throws IOException {
+        String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
+        String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";
+        String token = generateToken(jobId);
+        return String.format(JOB_ID_FORMAT, jobId, token);
+    }
+
 
 }

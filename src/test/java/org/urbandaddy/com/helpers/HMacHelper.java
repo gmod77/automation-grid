@@ -1,4 +1,4 @@
-package org.urbandaddy.helpers;
+package org.urbandaddy.com.helpers;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
