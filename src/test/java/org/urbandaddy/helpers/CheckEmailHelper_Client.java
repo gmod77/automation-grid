@@ -7,25 +7,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.urbandaddy.helpers.Comm.IHelper_Client;
+import org.urbandaddy.helpers.Comm.UDBase;
 import org.urbandaddy.locators.LocatorReader;
 
 import java.util.List;
 
 
-public class CheckEmailHelper_Client extends IHelper_Client {
+public class CheckEmailHelper_Client extends IHelper_Client implements UDBase {
 
 	private LocatorReader checkEmailReader;
-    private static final String JENKINSEMAIL = "udtesterjenkins@gmail.com";
-    private static final String JENKINSEMAILPW = "commonud";
+
 	public CheckEmailHelper_Client(WebDriver client) {
 		super(client);
-		// TODO Auto-generated constructor stub
 		checkEmailReader = new LocatorReader("CheckEmail.xml");
 	}
 
 	public void clientLogInToGmail(){
 		//make sure you're logged out first 
-		client.get("https://mail.google.com/mail/u/0/?logout&hl=en");
+		client.get(GOOGLE_EMAIL_LINK);
 		
 		String Email = checkEmailReader.getLocator("Gmail.Email");
 		WebElement em = findElementAndCheckBy(Email,20);
@@ -397,4 +396,99 @@ public class CheckEmailHelper_Client extends IHelper_Client {
         }
         return flag;
     }
+
+
+    // Global Email Check Methods
+
+    /**
+     * Log into Gmail and wait
+     */
+    public void loginToGmail(){
+        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+        //go to gmail and confirm your email address
+        //client.get("https://mail.google.com/");
+        //checkEmailHelper_Client.clientLogInToGmail();
+        clientLogInToGmail();
+
+        this.pause(20000);
+    }
+
+    /**
+     * Check for Welcome to UD email is received
+     */
+    public void verifyWelcomeUDEmailReceived(String emailClient){
+
+        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+        //checkEmailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
+        findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
+        
+    }
+
+    /**
+     * Check that invitation emails were received
+     */
+    public void verifyInvitationsUDEmailsReceived(String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5){
+        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+//        checkEmailHelper_Client.findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
+//        checkEmailHelper_Client.findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
+//        checkEmailHelper_Client.findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
+//        checkEmailHelper_Client.findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
+//        checkEmailHelper_Client.findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
+
+        findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
+        findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
+        findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
+        findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
+        findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
+    }
+
+    /**
+     * Check that the password reset email was received
+     */
+    public void verifyResetPasswordUDRequestReceivedandPasswordReset(String emailClient){
+        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+        //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
+        //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
+
+        //checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
+        //String link = checkEmailHelper_Client.getResetEmailLink();
+        findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
+        String link = getResetEmailLink();
+
+        //client.get(link);
+        System.out.println(link);
+        //  checkEmailHelper_Client.clickResetEmailRequestLink();
+//        	resetEmailHelper_Client.enterNewPassword(newpassword);
+//        	resetEmailHelper_Client.confirmNewPassword(newpassword);
+//        	resetEmailHelper_Client.clickSubmit();
+//        	Assert.assertTrue(sealHelper_Client.isSignedIn());
+    }
+
+    /**
+     * Check that the edit settings email is received
+     *
+     * @param emailClient Enter email to search with
+     */
+    public void verifyEditSettingsUDEmailReceived(String emailClient){
+        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+
+        //checkEmailHelper_Client.findInvitationEmail1("to: " + email + " subject: You've Changed");
+        findInvitationEmail1("to: " + emailClient + " subject: You've Changed");
+    }
+
+    /**
+     * Log out of Gmail
+     */
+    public void logoutGmail() {
+        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
+        //checkEmailHelper_Client.clientLogoutGmail();
+        clientLogoutGmail();
+    }
+
+
+
+
 }

@@ -19,6 +19,7 @@ import org.urbandaddy.helpers.*;
 
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 
 @Listeners({SauceOnDemandTestListener.class})
@@ -28,6 +29,17 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     protected RemoteWebDriver client;
 
+    Date now = new java.util.Date();
+    java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
+
+    protected String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
+    protected String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+
+    protected String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
 
     /**
      * If the tests can rely on the username/key to be supplied by environment variables or the existence
@@ -90,7 +102,7 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     //declare helpers
 
     public String generateEmailClient (String e) {
-        return "udtesterjenkins+"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
+        return "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
     }
 
     protected UD_HomepageHelper_Client ud_homepageHelper_Client;
@@ -102,8 +114,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected UD_UnSubscribeHelper_Client ud_unSubscribeHelper_client;
     protected IHelper_Client iHelper_client;
 
-
-
     protected Perks_HomepageHelper_Client perks_homepageHelper_Client;
     protected Perks_HeaderHelper_Client perks_headerHelper_Client;
     protected Perks_FooterHelper_Client perks_footerHelper_Client;
@@ -111,7 +121,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected Perks_SignupHelper_Client perks_signupHelper_Client;
 
     protected CheckEmailHelper_Client checkEmailHelper_Client;
-
 
     /**
      * Set your own pause time
@@ -122,128 +131,6 @@ public class iSauceTest implements SauceOnDemandSessionIdProvider, SauceOnDemand
             Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-    // Global Email Check Methods
-
-    /**
-     * Log into Gmail and wait
-     */
-    public void loginToGmail(){
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        //go to gmail and confirm your email address
-        //client.get("https://mail.google.com/");
-        checkEmailHelper_Client.clientLogInToGmail();
-
-        this.pause(20000);
-    }
-
-    /**
-     * Check for Welcome to UD email is received
-     */
-    public void verifyWelcomeUDEmailReceived(){
-
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        checkEmailHelper_Client.findSignupEmail("to: "+EMAIL_CLIENT+" subject: Welcome to the Club");
-    }
-
-    /**
-     * Check that invitation emails were received
-     */
-    public void verifyInvitationsUDEmailsReceived(){
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        checkEmailHelper_Client.findInvitationEmail1("to: "+EMAIL_FRIEND1+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail2("to: "+EMAIL_FRIEND2+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail3("to: "+EMAIL_FRIEND3+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail4("to: "+EMAIL_FRIEND4+" subject: You're Invited");
-        checkEmailHelper_Client.findInvitationEmail5("to: "+EMAIL_FRIEND5+" subject: You're Invited");
-    }
-
-    /**
-     * Check that the password reset email was received
-     */
-    public void verifyResetPasswordUDRequestReceivedandPasswordReset(){
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-        //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
-        //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
-
-        checkEmailHelper_Client.findResetEmailRequest("to: "+EMAIL_CLIENT+" subject: UD | Password Reset Request");
-        String link = checkEmailHelper_Client.getResetEmailLink();
-        //client.get(link);
-        System.out.println(link);
-        //  checkEmailHelper_Client.clickResetEmailRequestLink();
-//        	resetEmailHelper_Client.enterNewPassword(newpassword);
-//        	resetEmailHelper_Client.confirmNewPassword(newpassword);
-//        	resetEmailHelper_Client.clickSubmit();
-//        	Assert.assertTrue(sealHelper_Client.isSignedIn());
-    }
-
-
-    /**
-     * Check that the edit settings email is received
-     */
-    public void verifyEditSettingsUDEmailReceived(){
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        checkEmailHelper_Client.findInvitationEmail1("to: "+EMAIL_CLIENT+" subject: You've Changed");
-    }
-
-    /**
-     * Check that the edit settings email is received
-     *
-     * @param email Enter email to search with
-     */
-    public void verifyEditSettingsUDEmailReceived(String email){
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        checkEmailHelper_Client.findInvitationEmail1("to: " + email + " subject: You've Changed");
-    }
-
-    /**
-     * Log out of Gmail
-     */
-    public void logoutGmail() {
-        checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-        checkEmailHelper_Client.clientLogoutGmail();
-    }
-
-    /**
-     * Select an item from a dropdown.
-     *
-     * @param dropDownId Provide the ID of the dropdown element
-     * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
-     * @param text Name of the object to select from the dropdown
-     */
-    public void selectFromDropdown(String dropDownId, String dropDownTagName, String text) {
-        WebElement element = client.findElement(By.id(dropDownId));
-        List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
-        for(WebElement option : elements){
-            if(option.getText().equals(text)) {
-                option.click();
-                break;
-            }
-        }
-    }
-
-    /**
-     * Select an item from a dropdown. Uses WebElement to find
-     * the dropdown. Works great with the findElementAndCheckBy() method.
-     *
-     * @param element Webelement returned from findElementAndCheckBy()
-     * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
-     * @param text Name of the object to select from the dropdown
-     */
-    public void selectFromDropdown (WebElement element, String dropDownTagName, String text) {
-        List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
-        for(WebElement option : elements){
-            if(option.getText().equals(text)) {
-                option.click();
-                break;
-            }
         }
     }
 

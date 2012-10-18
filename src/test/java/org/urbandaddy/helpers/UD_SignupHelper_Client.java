@@ -33,7 +33,6 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	
 	public UD_SignupHelper_Client(WebDriver client) {
 		super(client);
-		// TODO Auto-generated constructor stub	
 		signupReader = new LocatorReader("UD_SignUp.xml");
 	}
 	

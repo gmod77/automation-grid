@@ -11,21 +11,25 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <!--<test name="Perks_Smoke">-->
+    <!--<test name="UD Regression">-->
         <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.saucetesting.UD_RegistrationShortSauceTest" />-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest" />-->
 
         <!--</classes>-->
     <!--</test>-->
-
-    <test name="Regression Test">
+    <test name="UD_Admin_Create_RoundUp">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />
+        </classes>
+    </test>
+    <!--<test name="Perks Regression">-->
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="browserVersion" value="3.6."/>-->
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
-        </classes>
-    </test>
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1"/>-->
+        <!--</classes>-->
+    <!--</test>-->
     <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->
     <!--<listeners>-->
         <!--<listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>-->

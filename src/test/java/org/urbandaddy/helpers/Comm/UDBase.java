@@ -10,21 +10,14 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public interface UDBase {
-    Date NOW = new java.util.Date();
-    java.text.DateFormat EMAIL_FORMAT = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
-    String generateEmailClient(String e);
-    String EMAIL_CLIENT = "udtesterjenkins+"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
-    String EMAIL_FRIEND1 = "udtesterjenkins+"+"friend_1_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
-    String EMAIL_FRIEND2 = "udtesterjenkins+"+"friend_2_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
-    String EMAIL_FRIEND3 = "udtesterjenkins+"+"friend_3_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
-    String EMAIL_FRIEND4 = "udtesterjenkins+"+"friend_4_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
-    String EMAIL_FRIEND5 = "udtesterjenkins+"+"friend_5_"+EMAIL_FORMAT.format(NOW) + "@gmail.com";
-
-    String MEMBER_SOURCE = "Member Source "+EMAIL_FORMAT.format(NOW);
 
     String UD_DOMAIN = "http://ud-branch.thedaddy.co";
     String UD_ADMIN_DOMAIN = "http://ud-branch.thedaddy.co/admin.php";
     String PERKS_DOMAIN = "http://perks-branch.thedaddy.co";
+
+    String GOOGLE_EMAIL_LINK = "https://mail.google.com/mail/u/0/?logout&hl=en";
+    String JENKINSEMAIL = "udtesterjenkins@gmail.com";
+    String JENKINSEMAILPW = "commonud";
 
     //String UDcity = "";
     //String UDcityPerks = "";

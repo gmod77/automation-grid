@@ -72,8 +72,8 @@ public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
         perks_headerHelper_Client.clickSignUp();
 
         //b. Enter email address
-        perks_signupHelper_Client.enterSigninEmail(EMAIL_CLIENT);
-        System.out.println("PERKS EMAIL CLIENT> " + EMAIL_CLIENT);
+        perks_signupHelper_Client.enterSigninEmail(emailClient);
+
         perks_signupHelper_Client.enterSigninPassword(PASSWORD);
 
         perks_signupHelper_Client.clickSignIn();
@@ -116,7 +116,7 @@ public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
 
 		// perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
-        System.out.println(EMAIL_CLIENT);
+        System.out.println(emailClient);
 
         //step1, 1st signup modal:
         //a. Click SignUp Seal
@@ -124,7 +124,7 @@ public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
 
         perks_signupHelper_Client.clickForgotYourPassword();
 
-        perks_signupHelper_Client.enterForgotPasswordEmail(EMAIL_CLIENT);
+        perks_signupHelper_Client.enterForgotPasswordEmail(emailClient);
 
         perks_signupHelper_Client.clickSend();
         this.pause(3000);
@@ -142,14 +142,14 @@ public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
 
         perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
-        System.out.println(EMAIL_CLIENT);
+        System.out.println(emailClient);
 
         //step1, 1st signup modal:
         //a. Click SignUp Seal
         perks_headerHelper_Client.clickSignUp();
 
         //b. Enter email address
-        perks_signupHelper_Client.enterJoinEmail(EMAIL_CLIENT);
+        perks_signupHelper_Client.enterJoinEmail(emailClient);
 
         perks_signupHelper_Client.clickAccept();
 
@@ -198,9 +198,9 @@ public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
         //confirm password
         perks_signupHelper_Client.confirmPassword(PASSWORD);
         //First Name
-        perks_signupHelper_Client.enterFirstName("FN_"+EMAIL_FORMAT.format(NOW));
+        perks_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
         //Last Name
-        perks_signupHelper_Client.enterLastName("LN_"+EMAIL_FORMAT.format(NOW));
+        perks_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
         //Gender
         perks_signupHelper_Client.selectGender("Male");
         //perks_signupHelper_Client.selectGender("Female");
@@ -248,26 +248,27 @@ public abstract class iTestCasePerksSauce extends iSauceTest implements UDBase {
 
 //		ud_signupHelper_Client.clickInvite();
 
-        perks_signupHelper_Client.enterEmailFriend1(EMAIL_FRIEND1);
-        perks_signupHelper_Client.enterEmailFriend2(EMAIL_FRIEND2);
-        perks_signupHelper_Client.enterEmailFriend3(EMAIL_FRIEND3);
-        perks_signupHelper_Client.enterEmailFriend4(EMAIL_FRIEND4);
-        perks_signupHelper_Client.enterEmailFriend5(EMAIL_FRIEND5);
+        perks_signupHelper_Client.enterEmailFriend1(emailFriend1);
+        perks_signupHelper_Client.enterEmailFriend2(emailFriend2);
+        perks_signupHelper_Client.enterEmailFriend3(emailFriend3);
+        perks_signupHelper_Client.enterEmailFriend4(emailFriend4);
+        perks_signupHelper_Client.enterEmailFriend5(emailFriend5);
 
-        System.out.println(EMAIL_FRIEND1);
-        System.out.println(EMAIL_FRIEND2);
-        System.out.println(EMAIL_FRIEND3);
-        System.out.println(EMAIL_FRIEND4);
-        System.out.println(EMAIL_FRIEND5);
+        System.out.println(emailFriend1);
+        System.out.println(emailFriend2);
+        System.out.println(emailFriend3);
+        System.out.println(emailFriend4);
+        System.out.println(emailFriend5);
+
+
+
+        perks_signupHelper_Client.clickInvite();
 
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        perks_signupHelper_Client.clickInvite();
-
 //		perks_signupHelper_Client.clickSkip();
     }
 

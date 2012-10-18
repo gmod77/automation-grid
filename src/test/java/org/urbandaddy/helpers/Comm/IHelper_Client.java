@@ -5,8 +5,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
-public abstract class IHelper_Client {
+public class IHelper_Client {
 
 	public WebDriver client;
 	//public Selenium seleniumClient;
@@ -69,11 +70,11 @@ public abstract class IHelper_Client {
 				break;
 			}
 
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -254,6 +255,43 @@ public abstract class IHelper_Client {
           throw new ElementNotVisibleException("3rd Attempt reached. Could not find> " + ele);
         } else {
             return a;
+        }
+    }
+
+
+    /**
+     * Select an item from a dropdown.
+     *
+     * @param dropDownId Provide the ID of the dropdown element
+     * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
+     * @param text Name of the object to select from the dropdown
+     */
+    public void selectFromDropdown(String dropDownId, String dropDownTagName, String text) {
+        WebElement element = client.findElement(By.id(dropDownId));
+        List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
+        for(WebElement option : elements){
+            if(option.getText().equals(text)) {
+                option.click();
+                break;
+            }
+        }
+    }
+
+    /**
+     * Select an item from a dropdown. Uses WebElement to find
+     * the dropdown. Works great with the findElementAndCheckBy() method.
+     *
+     * @param element Webelement returned from findElementAndCheckBy()
+     * @param dropDownTagName Provide name of the tag associated to the dropdown (ex. 'option')
+     * @param text Name of the object to select from the dropdown
+     */
+    public void selectFromDropdown (WebElement element, String dropDownTagName, String text) {
+        List<WebElement> elements = element.findElements(By.tagName(dropDownTagName));
+        for(WebElement option : elements){
+            if(option.getText().equals(text)) {
+                option.click();
+                break;
+            }
         }
     }
 }
