@@ -47,7 +47,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
     public void doHomePageChecks() {
         //do all homepage checks
-//        ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+        ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
 
         //Verify All items are present on HomePage
         Assert.assertTrue(ud_homepageHelper_Client.isUDLogoPresent());

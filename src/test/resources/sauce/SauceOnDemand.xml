@@ -9,17 +9,17 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <test name="UD Regression">
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest" />
-
-        </classes>
-    </test>
-    <!--<test name="UD_Admin_Create_RoundUp">-->
+    <!--<test name="UD Regression">-->
         <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest" />-->
+
         <!--</classes>-->
     <!--</test>-->
+    <test name="UD_Admin_Create_RoundUp">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />
+        </classes>
+    </test>
     <!--<test name="Perks Regression">-->
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
