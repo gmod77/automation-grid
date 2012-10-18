@@ -207,7 +207,7 @@
 
                     <suiteXmlFiles>
                         <!-- <file>src/test/resources/suite_US.xml</file> -->
-                        <file>${suite_filename}</file>
+                        <file>${project.basedir}/src/test/resources/${suite_filename}</file>
                     </suiteXmlFiles>
                     <parallel>both</parallel>
                     <!--<properties>-->

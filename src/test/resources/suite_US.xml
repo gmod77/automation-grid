@@ -57,7 +57,7 @@
 
     <test name="Create_RoundUP">
         <classes>
-            <class name="org.urbandaddy.tests.UD_Admin_Create_RoundUP" />
+            <class name="org.urbandaddy.tests.grid.UD_Admin_Create_RoundUP" />
         </classes>
     </test>
 

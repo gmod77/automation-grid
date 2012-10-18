@@ -4,37 +4,37 @@
 
 	<test name="UD_Smoke">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_RegistrationFlow2" />
+			<class name="org.urbandaddy.tests.sauce.UD_RegistrationFlow2Test" />
 		</classes>
 	</test>
 	
 	<test name="UD_Admin_Smoke_3column">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_Column" />
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />
 		</classes>
 	</test>
 
 	<test name="UD_Admin_Smoke_Weekender">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Weekender" />
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_WeekenderTest" />
 		</classes>
 	</test>
 	
 	<test name="UD_Admin_PMT">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_PMT" />
+			<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_PMTTest" />
 		</classes>
 	</test>
 	
 	<test name="Perks_Smoke">
 		<classes>
-			<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1" />
+			<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1Test" />
 		</classes>
 	</test>
 
     <test name="UD_Admin_Create_RoundUp">
         <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUP" />
+            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />
         </classes>
     </test>
 
