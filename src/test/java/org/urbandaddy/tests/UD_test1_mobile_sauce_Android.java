@@ -25,7 +25,7 @@ public class UD_test1_mobile_sauce_Android {
         capabillities.setCapability("deviceOrientation", "portrait");
 
         this.client = new RemoteWebDriver(
-           new URL("http://gmod77:6e93701d-fb46-4de2-b52d-f504e203647c@ondemand.saucelabs.com:80/wd/hub"),
+           new URL("http://jenkins-urbandaddy:bbe0f5db-94ea-473a-b467-3ef7cd856d60@ondemand.saucelabs.com:80/wd/hub"),
            capabillities);
         client.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
