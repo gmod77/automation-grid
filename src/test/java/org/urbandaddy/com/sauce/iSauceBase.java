@@ -72,6 +72,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
         System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
+
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
             authentication = new SauceOnDemandAuthentication(username, key);
         } else {
@@ -83,12 +84,22 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabilities.setBrowserName(browser);
             capabilities.setCapability("version", version);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
+            capabilities.setCapability("tags","Single Test");
 
         } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
+
+        // The below if for axis tests. The listener works find for single one shot tests.
+        } else if (StringUtils.isBlank(browser) && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
+            capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
+            capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
+            capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
+            capabilities.setCapability("tags", "Axis Test");
+
         } else {
             capabilities = DesiredCapabilities.firefox();
         }
+
         capabilities.setCapability("name", "Test Method: " + method.getName());
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
