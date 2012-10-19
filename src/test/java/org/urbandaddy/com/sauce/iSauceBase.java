@@ -70,7 +70,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
         System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
         System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+        System.out.println("SELENIUM_DRIVER> " + Platform.extractFromSysProperty(System.getProperty("SELENIUM_DRIVER")));
 
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
@@ -90,7 +90,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
 
         // The below if for axis tests. The listener works find for single one shot tests.
-        } else if (StringUtils.isBlank(browser) && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
+        } else if (System.getProperty("SELENIUM_BROWSER") != null ){
             capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
             capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
             capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
