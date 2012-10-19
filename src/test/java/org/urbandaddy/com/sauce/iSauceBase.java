@@ -89,7 +89,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
 
-        // The below if for axis tests. The listener works find for single one shot tests.
+        // The below is for axis tests. The listener works find for single one shot tests.
         } else if (System.getProperty("SELENIUM_BROWSER") != null ){
             capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
             capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));

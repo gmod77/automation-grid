@@ -87,6 +87,69 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //client.get(UD_ADMIN_DOMAIN+"/admin.php/articles");
     }
 
+    /**
+     * Share an article via email
+     * PreRequisite: visitUDFirstTime()
+     *
+     */
+    public void shareArticle(){
+        iHelper_client = new IHelper_Client(client);
+
+        // Grab the first article under "The Five You Need To Read"
+        client.findElement(By.xpath(".//*[@id='content']/div/div[1]/div[2]/div/div[2]/div[1]/p/a")).click();
+
+        // Grab article title
+        String articleTitle = iHelper_client.findElementAndCheckBy("xpath","//html/body/div/div[3]/div/div/h1/span",5).getText();
+        System.out.println("Article Title> " + articleTitle);
+        // Click on the Forward button
+        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='weekenderContentHolder']/div[1]/div[8]/a[1]",5).click();
+
+        // Handle popup window
+        String handler = popUpHandler("Forward to a Friend",client);
+
+        // Confirm Name of Article Appears
+        String confirmTitle = client.findElement(By.xpath("/html/body/div[1]/div/div/div/p")).getText();
+        System.out.println("Confirm Title> " + confirmTitle);
+        Assert.assertTrue(confirmTitle.contains(articleTitle), "Article title was not found on popup.");
+
+        // Fill in email addresses
+        client.findElement(By.id("invite_email_0")).sendKeys(emailFriend1);
+        client.findElement(By.id("invite_email_1")).sendKeys(emailFriend2);
+        client.findElement(By.id("invite_email_2")).sendKeys(emailFriend3);
+        client.findElement(By.id("invite_email_3")).sendKeys(emailFriend4);
+        client.findElement(By.id("invite_email_4")).sendKeys(emailFriend5);
+
+        // If visible fill in Name
+        if (client.findElement(By.id("name")).isDisplayed()) {
+            WebElement name = client.findElement(By.id("name"));
+            name.sendKeys("QA TESTER");
+        }
+
+        // If visible fill in Email
+        if (client.findElement(By.id("email")).isDisplayed()) {
+            WebElement email = client.findElement(By.id("email"));
+            email.sendKeys(emailClient);
+        }
+
+
+        //Fill in personal message
+        client.findElement(By.id("msg")).sendKeys("QA Tester, personal message.\nLorem ipsum lorem ipsum.");
+
+        //Click Submit
+        client.findElement(By.id("myaccount_invite_users_form")).submit();
+
+        //Confirmation screen check
+        String str = iHelper_client.findElementAndCheckBy("xpath","//html/body/div/div/div/div[1]/p",5).getText();
+        Assert.assertTrue(str.contains("Thank you. The article has been forwarded to your friend(s)."), "Popup failed to submit");
+
+        //Close Popup
+        client.findElement(By.tagName("input")).click();
+
+        //Return to Parent Window
+        returnToParentWindow(handler,client);
+
+    }
+
     public void createRoundUPUpload() {
 
         System.out.println(IMAGE_PATH);
@@ -2803,8 +2866,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
 //step3, 3rd signup modal: Invite Friends
 
-     	ud_signupHelper_Client.clickInvite();
-
         Assert.assertTrue(ud_signupHelper_Client.isInvitePresent());
 
         ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
@@ -2819,7 +2880,8 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         System.out.println(emailFriend4);
         System.out.println(emailFriend5);
 
-        ud_signupHelper_Client.clickInvite();
+        // Try submitting the form instead of clicking the invite button
+        client.findElement(By.xpath("/html/body/div[5]/div/div/div/form[1]")).submit();
 
         try {
             Thread.sleep(1000);
@@ -3164,5 +3226,39 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         } else {
             return a;
         }
+    }
+
+    /**
+     * Use this to handle popups
+     * @param winTitle
+     * @param client
+     * @return
+     */
+    public String popUpHandler(String winTitle, WebDriver client) {
+        String parentWindowHandle=client.getWindowHandle();
+        WebDriver popup = null;
+        //handle pop-up window
+        Set<?> s_add2=client.getWindowHandles();
+        //this method will you handle of all opened windows
+
+        Iterator<?> windowIterator=s_add2.iterator();
+
+        while(windowIterator.hasNext()) {
+            String windowHandle = windowIterator.next().toString();
+            popup = client.switchTo().window(windowHandle);
+            if (popup.getTitle().contains(winTitle)) {
+                break;
+            }
+        }
+        return parentWindowHandle;
+    }
+
+    /**
+     * Use this to return to parent window
+     * @param parent
+     * @param client
+     */
+    public void returnToParentWindow(String parent, WebDriver client) {
+        client.switchTo().window(parent);
     }
 }

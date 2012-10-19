@@ -39,8 +39,9 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 		WebElement si = findElementAndCheckBy(Signin,20);
 		si.click();
 		
-		// wait for email to arrive
-		this.pause(5000);
+		// wait for the search box to appear
+        String sb = checkEmailReader.getLocator("Gmail.SearchBox");
+        findElementAndCheckBy(sb,20);
 		
 	}	
 
@@ -58,14 +59,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -80,7 +81,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
             System.out.println("Attempted email search 3 times> " + searchString);
         }
     }
-	
+
 	public void findSignupEmail (String searchString){
 
         Boolean flag = false;
@@ -92,14 +93,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -126,14 +127,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -160,14 +161,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -194,14 +195,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -228,14 +229,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -262,14 +263,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -296,14 +297,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,20);
+                WebElement el1 = findElementAndCheckBy(sb,5);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,20);
+                WebElement el2 = findElementAndCheckBy(smb,5);
                 el2.click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
@@ -404,14 +405,9 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      * Log into Gmail and wait
      */
     public void loginToGmail(){
-        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
 
-        //go to gmail and confirm your email address
-        //client.get("https://mail.google.com/");
-        //checkEmailHelper_Client.clientLogInToGmail();
         clientLogInToGmail();
 
-        this.pause(20000);
     }
 
     /**
@@ -419,24 +415,30 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
 
-        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        //checkEmailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
         findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
         
+    }
+
+    public void verifySharedArticleLoggedOutReceived(String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5) {
+        doEmailSearch("from: QA TESTER to: " + emailFriend1);
+        doEmailSearch("from: QA TESTER to: " + emailFriend2);
+        doEmailSearch("from: QA TESTER to: " + emailFriend3);
+        doEmailSearch("from: QA TESTER to: " + emailFriend4);
+        doEmailSearch("from: QA TESTER to: " + emailFriend5);
+    }
+
+    public void verifySharedArticleLoggedInReceived(String emailClient, String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5) {
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend1));
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend2));
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend3));
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend4));
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend5));
     }
 
     /**
      * Check that invitation emails were received
      */
     public void verifyInvitationsUDEmailsReceived(String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5){
-        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-//        checkEmailHelper_Client.findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
-//        checkEmailHelper_Client.findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
-//        checkEmailHelper_Client.findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
-//        checkEmailHelper_Client.findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
-//        checkEmailHelper_Client.findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
 
         findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
         findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
@@ -449,12 +451,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      * Check that the password reset email was received
      */
     public void verifyResetPasswordUDRequestReceivedandPasswordReset(String emailClient){
-        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-        //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
-        //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        //checkEmailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
-        //String link = checkEmailHelper_Client.getResetEmailLink();
         findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
         String link = getResetEmailLink();
 

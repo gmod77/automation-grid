@@ -13,4 +13,10 @@
 		</classes>
 	</test>
 
+    <test name="Article_Share">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_ShareArticle"/>
+        </classes>
+    </test>
+
 </suite>
