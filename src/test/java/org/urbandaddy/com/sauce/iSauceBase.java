@@ -53,7 +53,6 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                       @Optional("") String os,
                       @Optional("") String browser,
                       @Optional("") String version,
-                      @Optional("") String selDriver,
                       Method method) throws Exception {
 
         System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
