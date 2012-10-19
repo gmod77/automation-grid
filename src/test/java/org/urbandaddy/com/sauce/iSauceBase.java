@@ -171,6 +171,10 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     protected String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
 
+    // Declare an array of friend emails to pass
+    String[] friendEmails = {emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5};
+
+
     /**
      * Set your own pause time
      * @param time Time in ms
