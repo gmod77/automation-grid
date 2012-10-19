@@ -70,7 +70,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
         System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
         System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + Platform.extractFromSysProperty(System.getProperty("SELENIUM_DRIVER")));
+        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
@@ -84,7 +84,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabilities.setBrowserName(browser);
             capabilities.setCapability("version", version);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
-            capabilities.setCapability("tags","Single Test");
+            capabilities.setCapability("tags","Single_Test");
 
         } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
@@ -94,7 +94,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
             capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
             capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
-            capabilities.setCapability("tags", "Axis Test");
+            capabilities.setCapability("tags", "Axis_Test");
 
         } else {
             capabilities = DesiredCapabilities.firefox();
