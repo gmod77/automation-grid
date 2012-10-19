@@ -46,7 +46,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @param method
      * @throws Exception
      */
-    @Parameters({"username", "key", "os", "browser", "version","selDriver"})
+    @Parameters({"username", "key", "os", "browser", "version"})
     @BeforeMethod
     public void setUp(@Optional("") String username,
                       @Optional("") String key,
@@ -60,14 +60,18 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("browser HERE> " + browser);
         System.out.println("version HERE> " + version);
         System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
-        System.out.println("selDriver HERE> " + selDriver);
+
 
         System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
         System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
         System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("getenv SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
-        System.out.println("getProperty SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+        System.out.println("SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
         System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
+
+        System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
+        System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
+        System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
+        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
             authentication = new SauceOnDemandAuthentication(username, key);

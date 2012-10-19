@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="ParallelTests" verbose="10" parallel="tests" thread-count="100">
+<suite name="ParallelTests" verbose="10" parallel="tests" thread-count="10">
     <!--<test name="Registration Test">-->
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
@@ -9,17 +9,16 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <!--<test name="UD Regression">-->
-        <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest" />-->
-
-        <!--</classes>-->
-    <!--</test>-->
-    <test name="UD_Admin_Create_RoundUp">
+    <test name="UD Regression">
         <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />
+            <class name="org.urbandaddy.tests.sauce.saucetesting.UD_SimpleChecksSauceTest" />
         </classes>
     </test>
+    <!--<test name="UD_Admin_Create_RoundUp">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
     <!--<test name="Perks Regression">-->
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
