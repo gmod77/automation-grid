@@ -42,7 +42,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @param key
      * @param os
      * @param browser
-     * @param browserVersion
+     * @param version
      * @param method
      * @throws Exception
      */
@@ -52,13 +52,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                       @Optional("") String key,
                       @Optional("") String os,
                       @Optional("") String browser,
-                      @Optional("") String browserVersion,
+                      @Optional("") String version,
                       @Optional("") String selDriver,
                       Method method) throws Exception {
 
         System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
         System.out.println("browser HERE> " + browser);
-        System.out.println("browserVersion HERE> " + browserVersion);
+        System.out.println("version HERE> " + version);
         System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
         System.out.println("selDriver HERE> " + selDriver);
 
@@ -76,12 +76,12 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(browserVersion) && StringUtils.isNotBlank(os)) {
+        if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
             capabilities.setBrowserName(browser);
-            capabilities.setCapability("version", browserVersion);
+            capabilities.setCapability("version", version);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
 
-        } else if (browser.equals("chrome") && StringUtils.isBlank(browserVersion) && StringUtils.isNotBlank(os)){
+        } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
         } else {
             capabilities = DesiredCapabilities.firefox();
