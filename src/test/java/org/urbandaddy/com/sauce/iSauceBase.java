@@ -46,7 +46,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @param method
      * @throws Exception
      */
-    @Parameters({"username", "key", "os", "browser", "browserVersion","selDriver"})
+    @Parameters({"username", "key", "os", "browser", "version","selDriver"})
     @BeforeMethod
     public void setUp(@Optional("") String username,
                       @Optional("") String key,
