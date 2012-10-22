@@ -150,6 +150,36 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
     }
 
+    public void saveArticleToAccount () {
+        iHelper_client = new IHelper_Client(client);
+
+        // Grab the first article under "The Five You Need To Read"
+        client.findElement(By.xpath(".//*[@id='content']/div/div[1]/div[2]/div/div[2]/div[1]/p/a")).click();
+
+        // Save the URL
+        String url = client.getCurrentUrl();
+
+        // Click the save button
+        client.findElement(By.xpath("//*[@id=\"buttonSave\"]")).click();
+
+        // Confirm save button disappeared
+        Assert.assertFalse(client.findElement(By.xpath("//*[@id=\"buttonSave\"]")).isDisplayed());
+
+        // Navigate to MyUD
+        client.get("http://ud-branch.thedaddy.co/myud");
+
+        // Check MyUD box "Favorites" has incremented
+        String favCount = client.findElement(By.xpath("/html/body/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div[2]/dl/dd/b/a")).getText();
+        Assert.assertEquals(favCount,"1","The article didn't save or count didn't increment to 1");
+
+        // Check that the article appears under Favorite
+        WebElement articleLink = client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div[2]/div/div[2]/div/ul/li/a"));
+        String favUrlMyUD = articleLink.getAttribute("href");
+        // They add /favorites to the end
+        Assert.assertEquals(url + "/favorites" ,favUrlMyUD,"Original article doesn't match saved article.");
+
+    }
+
     public void createRoundUPUpload() {
 
         System.out.println(IMAGE_PATH);

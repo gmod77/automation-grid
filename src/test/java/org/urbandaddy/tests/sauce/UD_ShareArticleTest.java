@@ -6,7 +6,7 @@ import org.urbandaddy.com.helpers.EmailHelper_Client;
 import org.urbandaddy.com.sauce.iTestCaseUDSauce;
 
 
-public class UD_ShareArticle extends iTestCaseUDSauce {
+public class UD_ShareArticleTest extends iTestCaseUDSauce {
 
     @Test (groups = {"shareArticle", "shareloggedOut"})
     public void UDshareArticleLoggedOut(){
