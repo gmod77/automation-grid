@@ -38,7 +38,7 @@ public class UD_RegistrationFlow2 extends iTestCaseUD {
 		doChecksCityHomePageLoggedOut();
     }
 
-    @Test (groups = "Smoke")
+    @Test (groups = "Smoke", dependsOnMethods = { "registerAndCheck" })
     public void verifyEmailReceived(){
 
         Reporter.log("Log in to Gmail", true);
