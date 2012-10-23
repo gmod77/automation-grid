@@ -11,7 +11,7 @@
 
     <test name="UD Regression">
         <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_SaveArticle" />
+            <class name="org.urbandaddy.tests.sauce.UD_UnSubscribeEmailTest" />
         </classes>
     </test>
     <!--<test name="UD_Admin_Create_RoundUp">-->

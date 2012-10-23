@@ -48,19 +48,11 @@ public class IHelper_Client {
 	}
 
 	public Boolean isElementPresent(String locator) {
-		Boolean result = false;
         if (findElementAndCheckBy(locator,5) != null) {
-            result = true;
+            return true;
+        } else {
+            return false;
         }
-        return result;
-//		try {
-//			//client.findElement(ByLocator(locator));
-//            findElementAndCheckBy(locator,5);
-//			result = true;
-//		} catch (Exception ex) {
-//            ex.printStackTrace();
-//		}
-
 	}
 
 	public void WaitForElementPresent(String locator, int timeout) {

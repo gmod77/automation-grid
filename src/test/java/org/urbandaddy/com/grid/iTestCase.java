@@ -343,7 +343,7 @@ public abstract class iTestCase extends TestCase {
 
         emailHelper_Client = new EmailHelper_Client(client);
 
-        emailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
+        emailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club",10000);
     }
 
     /**

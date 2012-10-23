@@ -21,6 +21,8 @@ import org.urbandaddy.com.helpers.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
@@ -159,8 +161,9 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected EmailHelper_Client emailHelper_Client;
 
 
-    Date now = new java.util.Date();
-    java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
+    protected Date now = new java.util.Date();
+    protected DateFormat emailFormat = new SimpleDateFormat("DDD_HH_mm_SSS");
+    protected DateFormat gMailSearchDate = new java.text.SimpleDateFormat("yy/MM/dd");
 
     protected String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
     protected String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";

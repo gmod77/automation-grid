@@ -18,7 +18,14 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
 		accessNewYorkFromUDHomepage();
 
         Reporter.log("Sign up for a new account", true);
-		signUpUD_viaNewYork();
+        Reporter.log("Sign up Step 1",true);
+        signUpUD_viaNewYorkStep1();
+        Reporter.log("Sign up Step 2",true);
+        signUpUD_viaNewYorkStep2();
+        Reporter.log("Sign up Step 3",true);
+        signUpUD_viaNewYorkStep3();
+        Reporter.log("Sign up Step 4",true);
+        signUpUD_viaNewYorkStep4();
 
         Reporter.log("Edit settings", true);
  		editSettingsUD();

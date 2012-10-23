@@ -50,7 +50,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         signOut.click();
     }
 
-	public void doEmailSearch (String searchString) {
+	public boolean doEmailSearch (String searchString, int timeout) {
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
@@ -66,27 +66,30 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
+                findElementAndCheckBy(smb).click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause(5000);
+                pause(timeout);
             }
         } while (!flag && counter<3);
 
         if (counter >=3) {
             System.out.println("Attempted email search 3 times> " + searchString);
+            return false;
+        } else {
+            return true;
         }
     }
 
-	public void findSignupEmail (String searchString){
+	public void findSignupEmail (String searchString, int timeout){
 
         Boolean flag = false;
         Integer counter = 0;
-		// find search box and enter the searchString parameter
+
+        // find search box and enter the searchString parameter
 
 		//assuming the single correct result came back, click that email
 
@@ -107,7 +110,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause(5000);
+                pause(timeout);
             }
         } while (!flag && counter<3);
 
@@ -337,11 +340,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     }
 
     public void searchEmail(String searchString) {
-        try {
-           Assert.assertTrue(searchEmailBody(searchString));
-        } catch (AssertionError e) {
-            System.out.println("This is probably not the unsubscribe email.");
-        }
+           Assert.assertTrue(searchEmailBody(searchString),"Text or email not found.");
     }
 
     public void silverPopLogin(String email, String pass) {
@@ -415,24 +414,24 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
 
-        findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
+        findSignupEmail("to: "+emailClient+" subject: Welcome to the Club",10000);
         
     }
 
     public void verifySharedArticleLoggedOutReceived(String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5) {
-        doEmailSearch("from: QA TESTER to: " + emailFriend1);
-        doEmailSearch("from: QA TESTER to: " + emailFriend2);
-        doEmailSearch("from: QA TESTER to: " + emailFriend3);
-        doEmailSearch("from: QA TESTER to: " + emailFriend4);
-        doEmailSearch("from: QA TESTER to: " + emailFriend5);
+        doEmailSearch("from: QA TESTER to: " + emailFriend1,10000);
+        doEmailSearch("from: QA TESTER to: " + emailFriend2,10000);
+        doEmailSearch("from: QA TESTER to: " + emailFriend3,10000);
+        doEmailSearch("from: QA TESTER to: " + emailFriend4,10000);
+        doEmailSearch("from: QA TESTER to: " + emailFriend5,10000);
     }
 
     public void verifySharedArticleLoggedInReceived(String emailClient, String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5) {
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend1));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend2));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend3));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend4));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend5));
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend1),10000);
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend2),10000);
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend3),10000);
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend4),10000);
+        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend5),10000);
     }
 
     /**

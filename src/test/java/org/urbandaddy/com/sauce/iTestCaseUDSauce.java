@@ -2792,7 +2792,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //go to /home/nyc
 		//ud_homepageHelper_Client.clickNewYork();
-
+        findElementAndCheckBy("xpath","/html/body/div[5]",10);
         //step1, 1st signup modal:
         //a. Click SignUp Seal
         ud_headerHelper_Client.clickSignUp();
@@ -2911,13 +2911,8 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         System.out.println(emailFriend5);
 
         // Try submitting the form instead of clicking the invite button
-        client.findElement(By.xpath("/html/body/div[5]/div/div/div/form[1]")).submit();
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        ud_signupHelper_Client.clickInvite();
+        //client.findElement(By.xpath("/html/body/div[5]/div/div/div/form[1]")).submit();
   		// ud_signupHelper_Client.clickSkip();
     }
 
@@ -2928,7 +2923,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //step4, 4th signup modal confirmation, close final confirm signup box
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
-        Assert.assertTrue(ud_signupHelper_Client.isCloseModalPresent());
         ud_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }
