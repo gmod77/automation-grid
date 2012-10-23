@@ -123,7 +123,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     @AfterMethod (alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
         System.out.println("METHOD END\n");
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+        Reporter.log(result.getMethod().getMethodName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
         client.quit();
     }
 
