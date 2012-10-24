@@ -17,7 +17,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache-log4j</groupId>
+            <groupId>apache-log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.15</version>
         </dependency>
