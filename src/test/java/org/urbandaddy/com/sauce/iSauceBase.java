@@ -168,17 +168,17 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     public DateFormat emailFormat = new SimpleDateFormat("DDD_HH_mm_SSS");
     public DateFormat gMailSearchDate = new java.text.SimpleDateFormat("yy/MM/dd");
 
-    public String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+//    public String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
+//    public String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
+//    public String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
+//    public String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
+//    public String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
+//    public String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
 
     public String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
 
     // Declare an array of friend emails to pass
-    String[] friendEmails = {emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5};
+//    String[] friendEmails = {emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5};
 
 
     /**
