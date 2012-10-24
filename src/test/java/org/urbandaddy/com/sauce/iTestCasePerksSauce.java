@@ -45,13 +45,13 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Execute all steps to sign up for perks
      * via the New York edition of UD
      */
-    public void signUpPerks_viaNewYork(){
-
-        this.signUpPerks_viaNewYorkStep1();
-        this.signUpPerks_viaNewYorkStep2();
-        this.signUpPerks_viaNewYorkStep3();
-        this.signUpPerks_viaNewYorkStep4();
-    }
+//    public void signUpPerks_viaNewYork(){
+//
+//        this.signUpPerks_viaNewYorkStep1();
+//        this.signUpPerks_viaNewYorkStep2();
+//        this.signUpPerks_viaNewYorkStep3();
+//        this.signUpPerks_viaNewYorkStep4();
+//    }
 
     /**
      * Sign into the perks site
@@ -135,7 +135,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Navigate to the perks home page and sign up
      * for perks by clicking editions and editorials.
      */
-    public void signUpPerks_viaNewYorkStep1(){
+    public void signUpPerks_viaNewYorkStep1(String email){
 
 
         perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
@@ -150,7 +150,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         perks_headerHelper_Client.clickSignUp();
 
         //b. Enter email address
-        perks_signupHelper_Client.enterJoinEmail(emailClient);
+        perks_signupHelper_Client.enterJoinEmail(email);
 
         perks_signupHelper_Client.clickAccept();
 
@@ -191,7 +191,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Fill out the perks registration form providing
      * Name, Gender, Income Range, etc.
      */
-    public void signUpPerks_viaNewYorkStep2(){
+    public void signUpPerks_viaNewYorkStep2(String date){
 
         //step2, 2nd signup modal:
         //enter password
@@ -199,9 +199,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         //confirm password
         perks_signupHelper_Client.confirmPassword(PASSWORD);
         //First Name
-        perks_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+        perks_signupHelper_Client.enterFirstName("FN_"+date);
         //Last Name
-        perks_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+        perks_signupHelper_Client.enterLastName("LN_"+date);
         //Gender
         perks_signupHelper_Client.selectGender("Male");
         //perks_signupHelper_Client.selectGender("Female");
@@ -237,7 +237,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Enter friend referrals and print the emails
      * used to the log
      */
-    public void signUpPerks_viaNewYorkStep3(){
+    public void signUpPerks_viaNewYorkStep3(String[] friends){
 
 
         //	perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
@@ -249,17 +249,24 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
 //		ud_signupHelper_Client.clickInvite();
 
-        perks_signupHelper_Client.enterEmailFriend1(emailFriend1);
-        perks_signupHelper_Client.enterEmailFriend2(emailFriend2);
-        perks_signupHelper_Client.enterEmailFriend3(emailFriend3);
-        perks_signupHelper_Client.enterEmailFriend4(emailFriend4);
-        perks_signupHelper_Client.enterEmailFriend5(emailFriend5);
+        for (int i = 0; i < friends.length; i++) {
+            perks_signupHelper_Client.enterEmailFriend(friends[i],(i+1));
+            System.out.println(friends[i]);
+        }
 
-        System.out.println(emailFriend1);
-        System.out.println(emailFriend2);
-        System.out.println(emailFriend3);
-        System.out.println(emailFriend4);
-        System.out.println(emailFriend5);
+
+
+//        perks_signupHelper_Client.enterEmailFriend1(emailFriend1);
+//        perks_signupHelper_Client.enterEmailFriend2(emailFriend2);
+//        perks_signupHelper_Client.enterEmailFriend3(emailFriend3);
+//        perks_signupHelper_Client.enterEmailFriend4(emailFriend4);
+//        perks_signupHelper_Client.enterEmailFriend5(emailFriend5);
+//
+//        System.out.println(emailFriend1);
+//        System.out.println(emailFriend2);
+//        System.out.println(emailFriend3);
+//        System.out.println(emailFriend4);
+//        System.out.println(emailFriend5);
 
 
 

@@ -92,7 +92,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      * PreRequisite: visitUDFirstTime()
      *
      */
-    public void shareArticle(){
+    public void shareArticle(String mailClient, String[] friends){
         iHelper_client = new IHelper_Client(client);
 
         // Grab the first article under "The Five You Need To Read"
@@ -113,11 +113,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         Assert.assertTrue(confirmTitle.contains(articleTitle), "Article title was not found on popup.");
 
         // Fill in email addresses
-        client.findElement(By.id("invite_email_0")).sendKeys(emailFriend1);
-        client.findElement(By.id("invite_email_1")).sendKeys(emailFriend2);
-        client.findElement(By.id("invite_email_2")).sendKeys(emailFriend3);
-        client.findElement(By.id("invite_email_3")).sendKeys(emailFriend4);
-        client.findElement(By.id("invite_email_4")).sendKeys(emailFriend5);
+        for (int i = 0; i < friends.length; i++) {
+            client.findElement(By.id("invite_email_" + i)).sendKeys(friends[i]);
+        }
 
         // If visible fill in Name
         if (client.findElement(By.id("name")).isDisplayed()) {
@@ -128,7 +126,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         // If visible fill in Email
         if (client.findElement(By.id("email")).isDisplayed()) {
             WebElement email = client.findElement(By.id("email"));
-            email.sendKeys(emailClient);
+            email.sendKeys(mailClient);
         }
 
 
@@ -154,13 +152,15 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         iHelper_client = new IHelper_Client(client);
 
         // Grab the first article under "The Five You Need To Read"
-        client.findElement(By.xpath(".//*[@id='content']/div/div[1]/div[2]/div/div[2]/div[1]/p/a")).click();
+        //client.findElement(By.xpath(".//*[@id='content']/div/div[1]/div[2]/div/div[2]/div[1]/p/a")).click();
+        WebElement bigFiveBox = client.findElementByClassName("wideContentBoxTxt");
+        bigFiveBox.findElement(By.className("boxOne")).findElement(By.tagName("a")).click();
+
+        // Click the save button
+        findElementAndCheckBy("xpath","//*[@id=\"buttonSave\"]",10).click();
 
         // Save the URL
         String url = client.getCurrentUrl();
-
-        // Click the save button
-        client.findElement(By.xpath("//*[@id=\"buttonSave\"]")).click();
 
         // Confirm save button disappeared
         Assert.assertFalse(client.findElement(By.xpath("//*[@id=\"buttonSave\"]")).isDisplayed());
@@ -174,6 +174,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // Check that the article appears under Favorite
         WebElement articleLink = client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div[2]/div/div[2]/div/ul/li/a"));
+
         String favUrlMyUD = articleLink.getAttribute("href");
         // They add /favorites to the end
         Assert.assertEquals(url + "/favorites" ,favUrlMyUD,"Original article doesn't match saved article.");
@@ -2784,22 +2785,21 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      * via New York UD edition
      *
      */
-    public void signUpUD_viaNewYorkStep1(){
+    public void signUpUD_viaNewYorkStep1(String email){
 
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
-        System.out.println(emailClient);
 
         //go to /home/nyc
 		//ud_homepageHelper_Client.clickNewYork();
-        findElementAndCheckBy("xpath","/html/body/div[5]",10);
+
         //step1, 1st signup modal:
         //a. Click SignUp Seal
         ud_headerHelper_Client.clickSignUp();
-
+        findElementAndCheckBy("xpath","/html/body/div[5]",10);
         //b. Enter email address
-        ud_signupHelper_Client.enterEmail(emailClient);
-        System.out.println("UD EMAIL CLIENT> " + emailClient);
+        ud_signupHelper_Client.enterEmail(email);
+        System.out.println("UD EMAIL CLIENT> " + email);
         //c. Select Editions
         //New York, New York Perks are selected by default
         //check Driven
@@ -2842,7 +2842,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      * Complete registration form by filling out
      * name, gender, income range, zip code, etc.
      */
-    public void signUpUD_viaNewYorkStep2(){
+    public void signUpUD_viaNewYorkStep2(String var){
 
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
@@ -2852,9 +2852,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //confirm PASSWORD
         ud_signupHelper_Client.confirmPassword(PASSWORD);
         //First Name
-        ud_signupHelper_Client.enterFirstName("FN_"+emailFormat.format(now));
+        ud_signupHelper_Client.enterFirstName("FN_"+var);
         //Last Name
-        ud_signupHelper_Client.enterLastName("LN_"+emailFormat.format(now));
+        ud_signupHelper_Client.enterLastName("LN_"+var);
         //Gender
         ud_signupHelper_Client.selectGender("Male");
         //ud_signupHelper_Client.selectGender("Female");
@@ -2890,7 +2890,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
     /**
      * Fills out the refer a friend form.
      */
-    public void signUpUD_viaNewYorkStep3(){
+    public void signUpUD_viaNewYorkStep3(String[] friend){
 
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
@@ -2898,17 +2898,22 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         Assert.assertTrue(ud_signupHelper_Client.isInvitePresent());
 
-        ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
-        ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
-        ud_signupHelper_Client.enterEmailFriend3(emailFriend3);
-        ud_signupHelper_Client.enterEmailFriend4(emailFriend4);
-        ud_signupHelper_Client.enterEmailFriend5(emailFriend5);
-
-        System.out.println(emailFriend1);
-        System.out.println(emailFriend2);
-        System.out.println(emailFriend3);
-        System.out.println(emailFriend4);
-        System.out.println(emailFriend5);
+        for (int i = 0; i < friend.length; i++) {
+            ud_signupHelper_Client.enterEmailFriend(friend[i],(i+1));
+            System.out.println(friend[i]);
+        }
+//
+//        ud_signupHelper_Client.enterEmailFriend1(emailFriend1);
+//        ud_signupHelper_Client.enterEmailFriend2(emailFriend2);
+//        ud_signupHelper_Client.enterEmailFriend3(emailFriend3);
+//        ud_signupHelper_Client.enterEmailFriend4(emailFriend4);
+//        ud_signupHelper_Client.enterEmailFriend5(emailFriend5);
+//
+//        System.out.println(emailFriend1);
+//        System.out.println(emailFriend2);
+//        System.out.println(emailFriend3);
+//        System.out.println(emailFriend4);
+//        System.out.println(emailFriend5);
 
         // Try submitting the form instead of clicking the invite button
         ud_signupHelper_Client.clickInvite();
@@ -2931,13 +2936,13 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      * Runs all the New York sign up methods
      *
      */
-    public void signUpUD_viaNewYork(){
-
-        this.signUpUD_viaNewYorkStep1();
-        this.signUpUD_viaNewYorkStep2();
-        this.signUpUD_viaNewYorkStep3();
-        this.signUpUD_viaNewYorkStep4();
-    }
+//    public void signUpUD_viaNewYork(){
+//
+//        this.signUpUD_viaNewYorkStep1();
+//        this.signUpUD_viaNewYorkStep2();
+//        this.signUpUD_viaNewYorkStep3();
+//        this.signUpUD_viaNewYorkStep4();
+//    }
 
     /**
      * Click the change city link from the homepage

@@ -6,11 +6,11 @@
 		</classes>
 	</test>
 
-	<test name="UD_Admin_Smoke_Weekender">
-		<classes>
-			<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_WeekenderTest" />
-		</classes>
-	</test>
+	<!--<test name="UD_Admin_Smoke_Weekender">-->
+		<!--<classes>-->
+			<!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_WeekenderTest" />-->
+		<!--</classes>-->
+	<!--</test>-->
 
     <!--This test can't be run until the chrome driver gets findElements fixed
     or we fix the pdf upload check on our side-->
@@ -23,11 +23,11 @@
 		<!--</classes>-->
 	<!--</test>-->
 
-    <test name="UD_Admin_Create_RoundUp">
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />
-        </classes>
-    </test>
+    <!--<test name="UD_Admin_Create_RoundUp">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
 
 </suite>
 

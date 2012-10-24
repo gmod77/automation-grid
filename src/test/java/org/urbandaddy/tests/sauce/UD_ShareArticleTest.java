@@ -2,14 +2,43 @@ package org.urbandaddy.tests.sauce;
 
 import org.testng.Reporter;
 import org.testng.annotations.Test;
+import org.testng.log4testng.Logger;
+import org.urbandaddy.com.common.Analyzer;
 import org.urbandaddy.com.helpers.EmailHelper_Client;
 import org.urbandaddy.com.sauce.iTestCaseUDSauce;
 
 
 public class UD_ShareArticleTest extends iTestCaseUDSauce {
 
-    @Test (groups = {"shareArticle", "shareloggedOut"})
+    private static Logger testbaseLog;
+
+    static {
+        testbaseLog = Logger.getLogger(Analyzer.class);
+    }
+
+
+    String dateA;
+    String emailClientA;
+    String[] emailFriendsA;
+
+    String dateB;
+    String emailClientB;
+    String[] emailFriendsB;
+
+
+    public UD_ShareArticleTest() {
+        emailFriendsA = new String[5];
+        emailFriendsB = new String[5];
+    }
+
+    @Test (groups = {"shareArticle", "shareloggedOut"}, retryAnalyzer = Analyzer.class)
     public void UDshareArticleLoggedOut(){
+        emailHelper_Client = new EmailHelper_Client(client);
+
+        dateA = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
+        emailClientA = emailHelper_Client.generateEmailClient(dateB);
+        emailFriendsA = emailHelper_Client.generateFriendClient(5,dateA);
+
         Reporter.log("Visit UD for the first time",true);
         visitUDFirstTime();
 
@@ -17,7 +46,7 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         accessNewYorkFromUDHomepage();
 
         Reporter.log("Sharing an article",true);
-        shareArticle();
+        shareArticle(emailClientA, emailFriendsA);
     }
 
     @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedOut"})
@@ -28,15 +57,21 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         emailHelper_Client.loginToGmail();
 
         Reporter.log("Verifying articles were received",true);
-        emailHelper_Client.verifySharedArticleLoggedOutReceived(emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5);
+        emailHelper_Client.verifySharedArticleLoggedOutReceived(emailFriendsA);
 
         Reporter.log("Logging out of Gmail",true);
         emailHelper_Client.logoutGmail();
 
     }
 
-    @Test (groups = {"shareArticle", "shareloggedIn"})
+    @Test (groups = {"shareArticle", "shareloggedIn"}, retryAnalyzer = Analyzer.class)
     public void UDshareArticleLoggedIn(){
+        emailHelper_Client = new EmailHelper_Client(client);
+
+        dateB = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
+        emailClientB = emailHelper_Client.generateEmailClient(dateB);
+        emailFriendsB = emailHelper_Client.generateFriendClient(5,dateB);
+
         Reporter.log("Visit UD for the first time",true);
         visitUDFirstTime();
 
@@ -44,13 +79,17 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         accessNewYorkFromUDHomepage();
 
         Reporter.log("Create an account",true);
-        signUpUD_viaNewYork();
+        //signUpUD_viaNewYork();
+        signUpUD_viaNewYorkStep1(emailClientB);
+        signUpUD_viaNewYorkStep2(dateB);
+        signUpUD_viaNewYorkStep3(emailFriendsB);
+        signUpUD_viaNewYorkStep4();
 
         Reporter.log("Returning to the homepage",true);
         goBackToUDHomepage();
 
         Reporter.log("Sharing article",true);
-        shareArticle();
+        shareArticle(emailClientB, emailFriendsB);
     }
 
     @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedIn"})
@@ -61,7 +100,7 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         emailHelper_Client.loginToGmail();
 
         Reporter.log("Verifying articles were shared",true);
-        emailHelper_Client.verifySharedArticleLoggedInReceived(emailClient,emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5);
+        emailHelper_Client.verifySharedArticleLoggedInReceived(emailClientB, emailFriendsB);
 
         Reporter.log("Logging out of Gmail",true);
         emailHelper_Client.logoutGmail();

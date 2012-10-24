@@ -15,6 +15,7 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import org.urbandaddy.com.common.IHelper_Client;
+import org.urbandaddy.com.common.RetryTestListener;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
@@ -27,7 +28,7 @@ import java.util.Date;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
-@Listeners({SauceOnDemandTestListener.class})
+@Listeners({SauceOnDemandTestListener.class, RetryTestListener.class})
 public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider, UDBase {
 
     public SauceOnDemandAuthentication authentication;
@@ -62,17 +63,16 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("version HERE> " + version);
         System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
 
-
-        System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
-        System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
-        System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
-
-        System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
-        System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+//        System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
+//        System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
+//        System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
+//        System.out.println("SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
+//        System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
+//
+//        System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
+//        System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
+//        System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
+//        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
@@ -109,6 +109,8 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         this.client.setFileDetector(new LocalFileDetector());
     }
 
+
+
     /**
      * Grab the sessionid
      *
@@ -137,6 +139,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         return authentication;
     }
 
+
     //declare helpers and other common variables
 
     public String generateEmailClient (String e) {
@@ -161,18 +164,18 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     protected EmailHelper_Client emailHelper_Client;
 
 
-    protected Date now = new java.util.Date();
-    protected DateFormat emailFormat = new SimpleDateFormat("DDD_HH_mm_SSS");
-    protected DateFormat gMailSearchDate = new java.text.SimpleDateFormat("yy/MM/dd");
+    public Date now = new java.util.Date();
+    public DateFormat emailFormat = new SimpleDateFormat("DDD_HH_mm_SSS");
+    public DateFormat gMailSearchDate = new java.text.SimpleDateFormat("yy/MM/dd");
 
-    protected String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
+    public String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
+    public String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
+    public String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
+    public String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
+    public String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
+    public String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
 
-    protected String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
+    public String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
 
     // Declare an array of friend emails to pass
     String[] friendEmails = {emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5};
