@@ -14,18 +14,18 @@ import org.testng.TestListenerAdapter;
 public class RetryTestListener extends TestListenerAdapter{
 
     int count = 0;
+    int maxCount = 3;
 
     @Override
     public void onTestFailure(ITestResult result) {
 
         Reporter.setCurrentTestResult(result);
 
-        if(result.getMethod().getRetryAnalyzer().retry(result)) {
+        if(result.getMethod().getRetryAnalyzer().retry(result) && count < maxCount) {
             count++;
             result.setStatus(ITestResult.SKIP);
             System.out.println("Setting test run attempt status to Skipped");
         } else {
-            count = 0;
             System.out.println("Retry limit exceeded for " + result.getName());
         }
         Reporter.setCurrentTestResult(null);
