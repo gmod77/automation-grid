@@ -22,9 +22,6 @@ import org.urbandaddy.com.helpers.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
@@ -35,18 +32,17 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     protected RemoteWebDriver client;
 
-
     /**
      * If the tests can rely on the username/key to be supplied by environment variables or the existence
      * of a ~/.sauce-ondemand file, then we don't need to specify them as parameters, just create a new instance
      * of {@link SauceOnDemandAuthentication} using the no-arg constructor.
      *
-     * @param username
-     * @param key
-     * @param os
-     * @param browser
-     * @param version
-     * @param method
+     * @param username Sauce Labs User Name
+     * @param key Sauce Labs User Key
+     * @param os Requested Operating System
+     * @param browser Requested Browser Type
+     * @param version Requested Browser Version
+     * @param method Test Method
      * @throws Exception
      */
     @Parameters({"username", "key", "os", "browser", "version"})
@@ -110,7 +106,6 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     }
 
 
-
     /**
      * Grab the sessionid
      *
@@ -139,13 +134,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         return authentication;
     }
 
-
-    //declare helpers and other common variables
-
-    public String generateEmailClient (String e) {
-        return "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    }
-
+    //Declare helpers
     protected UD_HomepageHelper_Client ud_homepageHelper_Client;
     protected UD_HeaderHelper_Client ud_headerHelper_Client;
     protected UD_FooterHelper_Client ud_footerHelper_Client;
@@ -163,24 +152,6 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     protected EmailHelper_Client emailHelper_Client;
 
-
-    public Date now = new java.util.Date();
-    public DateFormat emailFormat = new SimpleDateFormat("DDD_HH_mm_SSS");
-    public DateFormat gMailSearchDate = new java.text.SimpleDateFormat("yy/MM/dd");
-
-    public String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    public String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
-
-    public String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
-
-    // Declare an array of friend emails to pass
-//    String[] friendEmails = {emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5};
-
-
     /**
      * Set your own pause time
      * @param time Time in ms
@@ -193,6 +164,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
     }
 
+    /**
+     * Generates the token used for creating the public Sauce Labs
+     * results URL
+     * @param jobId The job ID generated from Sauce Labs
+     * @return token
+     * @throws IOException
+     */
     private String generateToken(String jobId) throws IOException {
         String message = authentication.getUsername() + ":" + authentication.getAccessKey();
         try {
@@ -203,6 +181,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
     }
 
+    /**
+     * Creates the link to the Sauce Labs results
+     *
+     * @param jobId The job ID generated from Sauce Labs
+     * @return URL
+     * @throws IOException
+     */
     private String getResultsUrl(String jobId) throws IOException {
         String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
         String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";

@@ -35,7 +35,7 @@ public class Perks_RegistrationFlow1Test extends iTestCasePerksSauce {
 				
 		logoutPerks();
         visitPerksFirstTime();//return to homepage
-		resetPasswordPerks();
+		resetPasswordPerks(emailClient);
 		
 		//doChecksCityHomePageLoggedOut();
 

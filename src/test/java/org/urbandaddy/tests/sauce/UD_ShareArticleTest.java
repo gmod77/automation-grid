@@ -2,20 +2,12 @@ package org.urbandaddy.tests.sauce;
 
 import org.testng.Reporter;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 import org.urbandaddy.com.common.Analyzer;
 import org.urbandaddy.com.helpers.EmailHelper_Client;
 import org.urbandaddy.com.sauce.iTestCaseUDSauce;
 
 
 public class UD_ShareArticleTest extends iTestCaseUDSauce {
-
-    private static Logger testbaseLog;
-
-    static {
-        testbaseLog = Logger.getLogger(Analyzer.class);
-    }
-
 
     String dateA;
     String emailClientA;

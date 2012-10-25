@@ -53,7 +53,7 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
         goBackToUDHomepage();
 
         Reporter.log("Complete a password reset", true);
-		resetPasswordUD();
+		resetPasswordUD(emailClient);
 
         Reporter.log("Redo checks while logged out", true);
 		doChecksCityHomePageLoggedOut();

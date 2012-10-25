@@ -17,11 +17,8 @@ public interface UDBase {
     String JENKINSEMAIL = "udtesterjenkins@gmail.com";
     String JENKINSEMAILPW = "commonud";
 
-    //String UDcity = "";
-    //String UDcityPerks = "";
     String PASSWORD="12345";
     String NEW_PASSWORD="1234";
-    //String lastURL = "";
 
     String CUR_DIR = System.getProperty("user.dir");
 

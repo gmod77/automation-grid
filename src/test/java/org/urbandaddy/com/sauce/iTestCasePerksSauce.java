@@ -56,7 +56,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     /**
      * Sign into the perks site
      */
-    public void signInPerks(){
+    public void signInPerks(String emailClient){
 
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
         perks_sealHelper_Client = new Perks_SealHelper_Client(client);
@@ -110,7 +110,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Send a perks password reset email
      *
      */
-    public void resetPasswordPerks(){
+    public void resetPasswordPerks(String emailClient){
 
 		// perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
 		// perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
@@ -143,7 +143,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
-        System.out.println(emailClient);
+        System.out.println(email);
 
         //step1, 1st signup modal:
         //a. Click SignUp Seal

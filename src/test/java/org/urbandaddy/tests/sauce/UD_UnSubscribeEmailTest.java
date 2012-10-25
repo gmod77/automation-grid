@@ -55,12 +55,13 @@ public class UD_UnSubscribeEmailTest extends iTestCaseUDSauce {
     @Test (groups = {"unsubscribe"}, dependsOnGroups = {"createAndUnsubscribe"})
     public void unsubscribeConfirmation() {
         emailHelper_Client = new EmailHelper_Client(client);
+        String date = emailHelper_Client.generateDate("yy/MM/dd");
 
         Reporter.log("Logging into Gmail",true);
         emailHelper_Client.loginToGmail();
 
         Reporter.log("Searching For Account Modification Email",true);
-        Boolean flag = emailHelper_Client.doEmailSearch("To: " + emailClient + " Subject: You've Changed After: " + gMailSearchDate.format(now),30000);
+        Boolean flag = emailHelper_Client.doEmailSearch("To: " + emailClient + " Subject: You've Changed After: " + date,30000);
         Assert.assertTrue("Email wasn't found", flag);
 
         Reporter.log("Confirming Email",true);

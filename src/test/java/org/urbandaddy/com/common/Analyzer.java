@@ -32,7 +32,7 @@ public class Analyzer implements IRetryAnalyzer {
         testbaseLog.trace("running retry logic for '" + result.getName() +
              "' on class " + this.getClass().getName());
         if (count < MAX_COUNT) {
-
+            result.getTestContext().getSkippedTests().removeResult(result.getMethod());
             count += 1;
             return true;
         }
