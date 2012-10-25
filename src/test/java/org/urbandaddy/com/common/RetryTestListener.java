@@ -3,7 +3,6 @@ package org.urbandaddy.com.common;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
-import org.testng.log4testng.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,24 +13,20 @@ import org.testng.log4testng.Logger;
  */
 public class RetryTestListener extends TestListenerAdapter{
 
-    private static Logger testbaseLog;
-
-    static {
-        testbaseLog = Logger.getLogger(RetryTestListener.class);
-    }
-    private int count = 0;
+    int count = 0;
 
     @Override
     public void onTestFailure(ITestResult result) {
-        Logger log = Logger.getLogger(RetryTestListener.class);
+
         Reporter.setCurrentTestResult(result);
 
         if(result.getMethod().getRetryAnalyzer().retry(result)) {
             count++;
             result.setStatus(ITestResult.SKIP);
-            testbaseLog.info("Setting test run attempt status to Skipped");
+            System.out.println("Setting test run attempt status to Skipped");
         } else {
-            testbaseLog.error("Retry limit exceeded for " + result.getName());
+            count = 0;
+            System.out.println("Retry limit exceeded for " + result.getName());
         }
         Reporter.setCurrentTestResult(null);
     }
