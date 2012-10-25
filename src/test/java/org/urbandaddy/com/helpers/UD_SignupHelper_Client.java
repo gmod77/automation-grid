@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
+
 import java.util.List;
 
 public class UD_SignupHelper_Client extends IHelper_Client {
@@ -53,15 +54,15 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 		el.click();
 	}
 	
-//Singup modal 1 
+//Sign up modal 1
 	
 	public void enterEmail(String email){
 		
-		String str = signupReader.getLocator("Step1.Email");		
-		//this.WaitForElementVisible(str, 100);		
-		WebElement el = findElementAndCheckBy(str);
-		el.clear();
-		el.sendKeys(email);
+		String str = signupReader.getLocator("Step1.Email");
+//		WebElement el = findElementAndCheckBy(str,5);
+//		el.clear();
+        WebElement el2 = findElementAndCheckBy(str,5);
+        el2.sendKeys(email);
 	}
 
 // Select Editions
@@ -208,20 +209,25 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 		el.click();
 	}
 	
-	public void clickJoin(){
-		String str = signupReader.getLocator("Step1.Join");
-		//this.WaitForElementVisible(str, 100);
-		WebElement el = findElementAndCheckBy(str);
-		el.click();
-//		seleniumClient.click(str);
+//	public void clickJoin(){
+//		String str = signupReader.getLocator("Step1.Join");
+//		//this.WaitForElementVisible(str, 100);
+//		WebElement el = findElementAndCheckBy(str);
+//		el.click();
+////		seleniumClient.click(str);
+//
+////		try {
+////			Thread.sleep(8000);
+////		} catch (InterruptedException e) {
+////			e.printStackTrace();
+////		}
+//	}
 
-//		try {
-//			Thread.sleep(8000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-	}
-	
+    public void clickJoin(){
+        WebElement form = findElementAndCheckBy("xpath","/html/body/div[5]/div/div/div/form",10);
+        form.submit();
+    }
+
 //Singup modal 2 (Help Us Help You)	
 	
 	public void enterPassword(String targetValue){
@@ -299,20 +305,28 @@ public void enterBirthday(String targetValue){
 		el.sendKeys(targetValue);
 	}
 	
-public void clickSubmit(){
-		String str = signupReader.getLocator("Step2.ClickSubmit");
-		//this.WaitForElementPresent(str, 20);
-		WebElement el = findElementAndCheckBy(str);
-		el.click();
+//public void clickSubmit(){
+//		String str = signupReader.getLocator("Step2.ClickSubmit");
+//		//this.WaitForElementPresent(str, 20);
+//		WebElement el = findElementAndCheckBy(str);
+//		el.click();
 
-//	try {
-//	Thread.sleep(5000);
-//	} catch (InterruptedException e) {
-//	e.printStackTrace();
-//		}
-}
+    public void clickSubmit(){
+        WebElement form = findElementAndCheckBy("xpath","/html/body/div[5]/div/div/div/form",10);
+        form.submit();
+    }
+
+
 
 // Signup modal 3: Invite Friends
+
+    public void enterEmailFriend(String email, int num) {
+        String str = signupReader.getLocator("Step3.InviteEmail" + num);
+        //this.WaitForElementVisible(str, 100);
+        WebElement el = findElementAndCheckBy(str);
+        el.clear();
+        el.sendKeys(email);
+    }
 
 public void enterEmailFriend1(String email){
 	
@@ -372,11 +386,16 @@ public Boolean isInvitePresent() {
     return result;
 }
 
+//public void clickInvite(){
+//
+//
+//	String str = signupReader.getLocator("Step3.ClickInvite");
+//	WebElement el = findElementAndCheckBy(str);
+//	el.click();
+//}
 public void clickInvite(){
-	
-	String str = signupReader.getLocator("Step3.ClickInvite");
-	WebElement el = findElementAndCheckBy(str);
-	el.click();
+    WebElement form = findElementAndCheckBy("xpath","/html/body/div[5]/div/div/div/form",10);
+    form.submit();
 }
 
 public void clickSkip(){
@@ -397,18 +416,15 @@ public Boolean isCloseModalPresent() {
 
 public void clickCloseFinalModal() {
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
+<<<<<<< HEAD
 	//this.WaitForElementPresent(str, 20);
 	WebElement el = findElementAndCheckBy(str,10);
+=======
+	WebElement el = findElementAndCheckBy(str);
+>>>>>>> origin/sauceTesting
 	el.click();
-
-	try {
-	    Thread.sleep(3000);
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-		}
-
 	}
-//	
+
 //	public void findAndClickInvitationEmail (String searchString){
 //		
 //		// find search box and enter the searchString parameter

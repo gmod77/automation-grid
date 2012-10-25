@@ -10,7 +10,11 @@ import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.locators.LocatorReader;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class EmailHelper_Client extends IHelper_Client implements UDBase {
@@ -21,6 +25,32 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 		super(client);
 		checkEmailReader = new LocatorReader("CheckEmail.xml");
 	}
+
+    public String generateDate(String dateFormat) {
+        //    DDD_HH_mm_SSS <-- should pass this format
+        Date now = new java.util.Date();
+        DateFormat df = new SimpleDateFormat(dateFormat);
+        return df.format(now);
+    }
+
+    public String generateEmailClient(String dateSet) {
+        String client = "udtesterjenkins+"+ dateSet + "@gmail.com";
+        return client;
+    }
+
+    public String[] generateFriendClient(int count, String dateSet) {
+        if (count > 5) {
+            count = 5;
+            System.out.println("Count set over 5, max is 5.");
+        }
+        String[] arr = new String[count];
+        for (int i = 0; i<count; i++) {
+            arr[i] = "udtesterjenkins+"+"friend_" + (i+1) + "_" + dateSet + "@gmail.com";
+        }
+        return arr;
+    }
+
+
 
 	public void clientLogInToGmail(){
 		//make sure you're logged out first 
@@ -50,7 +80,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         signOut.click();
     }
 
-	public void doEmailSearch (String searchString) {
+	public boolean doEmailSearch (String searchString, int timeout) {
         Boolean flag = false;
         Integer counter = 0;
         // find search box and enter the searchString parameter
@@ -66,27 +96,30 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 
                 //find search mail button and click it
                 String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
+                findElementAndCheckBy(smb).click();
                 client.findElement(By.cssSelector(".ts")).click();
                 flag = true;
             } catch (NoSuchElementException e) {
                 counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
+                System.out.println("Email wasn't found, trying again. Time out in> " + TimeUnit.MILLISECONDS.toSeconds(timeout) +" seconds.");
+                pause(timeout);
             }
         } while (!flag && counter<3);
 
         if (counter >=3) {
             System.out.println("Attempted email search 3 times> " + searchString);
+            return false;
+        } else {
+            return true;
         }
     }
 
-	public void findSignupEmail (String searchString){
+	public void findSignupEmail (String searchString, int timeout){
 
         Boolean flag = false;
         Integer counter = 0;
-		// find search box and enter the searchString parameter
+
+        // find search box and enter the searchString parameter
 
 		//assuming the single correct result came back, click that email
 
@@ -107,7 +140,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
             } catch (NoSuchElementException e) {
                 counter++;
                 System.out.println("Email wasn't found, trying again");
-                pause(5000);
+                pause(timeout);
             }
         } while (!flag && counter<3);
 
@@ -337,11 +370,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     }
 
     public void searchEmail(String searchString) {
-        try {
-           Assert.assertTrue(searchEmailBody(searchString));
-        } catch (AssertionError e) {
-            System.out.println("This is probably not the unsubscribe email.");
-        }
+           Assert.assertTrue(searchEmailBody(searchString),"Text or email not found.");
     }
 
     public void silverPopLogin(String email, String pass) {
@@ -415,36 +444,37 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
 
-        findSignupEmail("to: "+emailClient+" subject: Welcome to the Club");
+        findSignupEmail("to: "+emailClient+" subject: Welcome to the Club",10000);
         
     }
 
-    public void verifySharedArticleLoggedOutReceived(String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5) {
-        doEmailSearch("from: QA TESTER to: " + emailFriend1);
-        doEmailSearch("from: QA TESTER to: " + emailFriend2);
-        doEmailSearch("from: QA TESTER to: " + emailFriend3);
-        doEmailSearch("from: QA TESTER to: " + emailFriend4);
-        doEmailSearch("from: QA TESTER to: " + emailFriend5);
+    public void verifySharedArticleLoggedOutReceived(String[] emailFriends) {
+
+        for (int i = 0; i<emailFriends.length; i++) {
+            doEmailSearch("from: QA TESTER to: " + emailFriends[i],10000);
+        }
+
     }
 
-    public void verifySharedArticleLoggedInReceived(String emailClient, String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5) {
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend1));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend2));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend3));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend4));
-        doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriend5));
+    public void verifySharedArticleLoggedInReceived(String emailClient, String[] emailFriends) {
+        for (int i = 0; i<emailFriends.length; i++) {
+            doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriends[i]),10000);
+        }
     }
 
     /**
      * Check that invitation emails were received
      */
-    public void verifyInvitationsUDEmailsReceived(String emailFriend1, String emailFriend2, String emailFriend3, String emailFriend4, String emailFriend5){
-
-        findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
-        findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
-        findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
-        findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
-        findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
+    public void verifyInvitationsUDEmailsReceived(String[] friends){
+        for (int i = 0; i<friends.length; i++) {
+            doEmailSearch("to: "+ friends[i]+" subject: You're Invited",10000);
+        }
+//
+//        findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
+//        findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
+//        findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
+//        findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
+//        findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
     }
 
     /**

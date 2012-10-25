@@ -10,8 +10,11 @@
     <!--</test>-->
 
     <test name="UD Regression">
+        <parameter name="os" value="Windows 2003"/>
+        <parameter name="browser" value="firefox"/>
+        <parameter name="version" value="15"/>
         <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_SaveArticle" />
+            <class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest" />
         </classes>
     </test>
     <!--<test name="UD_Admin_Create_RoundUp">-->

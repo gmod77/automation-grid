@@ -6,6 +6,13 @@ import org.urbandaddy.com.sauce.iTestCaseUDSauce;
 
 
 public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
+    String date;
+    String emailClient;
+    String[] emailFriends;
+
+    public UD_SimpleChecksSauceTest() {
+        emailFriends = new String[5];
+    }
 
 //    @Test (groups = {"regression"})
 //    public void CheckWhileLoggedOut(){
@@ -27,7 +34,7 @@ public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
     public void UDshareArticleLoggedOut(){
         visitUDFirstTime();
         accessNewYorkFromUDHomepage();
-        shareArticle();
+        shareArticle(emailClient, emailFriends);
     }
 
     @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedOut"})
@@ -35,7 +42,7 @@ public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
         emailHelper_Client = new EmailHelper_Client(client);
 
         emailHelper_Client.loginToGmail();
-        emailHelper_Client.verifySharedArticleLoggedOutReceived(emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5);
+        emailHelper_Client.verifySharedArticleLoggedOutReceived(emailFriends);
         emailHelper_Client.logoutGmail();
 
     }
@@ -44,9 +51,12 @@ public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
     public void UDshareArticleLoggedIn(){
         visitUDFirstTime();
         accessNewYorkFromUDHomepage();
-        signUpUD_viaNewYork();
+        signUpUD_viaNewYorkStep1(emailClient);
+        signUpUD_viaNewYorkStep2(date);
+        signUpUD_viaNewYorkStep3(emailFriends);
+        signUpUD_viaNewYorkStep4();
         goBackToUDHomepage();
-        shareArticle();
+        shareArticle(emailClient,emailFriends);
     }
 
     @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedIn"})
@@ -54,7 +64,7 @@ public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
         emailHelper_Client = new EmailHelper_Client(client);
 
         emailHelper_Client.loginToGmail();
-        emailHelper_Client.verifySharedArticleLoggedInReceived(emailClient,emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5);
+        emailHelper_Client.verifySharedArticleLoggedInReceived(emailClient,emailFriends);
         emailHelper_Client.logoutGmail();
     }
 

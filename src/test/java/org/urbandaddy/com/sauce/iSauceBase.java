@@ -15,35 +15,34 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import org.urbandaddy.com.common.IHelper_Client;
+import org.urbandaddy.com.common.RetryTestListener;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.Date;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
-@Listeners({SauceOnDemandTestListener.class})
+@Listeners({SauceOnDemandTestListener.class, RetryTestListener.class})
 public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider, UDBase {
 
     public SauceOnDemandAuthentication authentication;
 
     protected RemoteWebDriver client;
 
-
     /**
      * If the tests can rely on the username/key to be supplied by environment variables or the existence
      * of a ~/.sauce-ondemand file, then we don't need to specify them as parameters, just create a new instance
      * of {@link SauceOnDemandAuthentication} using the no-arg constructor.
      *
-     * @param username
-     * @param key
-     * @param os
-     * @param browser
-     * @param version
-     * @param method
+     * @param username Sauce Labs User Name
+     * @param key Sauce Labs User Key
+     * @param os Requested Operating System
+     * @param browser Requested Browser Type
+     * @param version Requested Browser Version
+     * @param method Test Method
      * @throws Exception
      */
     @Parameters({"username", "key", "os", "browser", "version"})
@@ -60,17 +59,16 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("version HERE> " + version);
         System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
 
-
-        System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
-        System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
-        System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
-
-        System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
-        System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+//        System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
+//        System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
+//        System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
+//        System.out.println("SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
+//        System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
+//
+//        System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
+//        System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
+//        System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
+//        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
@@ -107,6 +105,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         this.client.setFileDetector(new LocalFileDetector());
     }
 
+
     /**
      * Grab the sessionid
      *
@@ -121,7 +120,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     @AfterMethod (alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
         System.out.println("METHOD END\n");
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+        Reporter.log(result.getMethod().getMethodName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
         client.quit();
     }
 
@@ -135,12 +134,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         return authentication;
     }
 
-    //declare helpers and other common variables
-
-    public String generateEmailClient (String e) {
-        return "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    }
-
+    //Declare helpers
     protected UD_HomepageHelper_Client ud_homepageHelper_Client;
     protected UD_HeaderHelper_Client ud_headerHelper_Client;
     protected UD_FooterHelper_Client ud_footerHelper_Client;
@@ -158,23 +152,6 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     protected EmailHelper_Client emailHelper_Client;
 
-
-    Date now = new java.util.Date();
-    java.text.DateFormat emailFormat = new java.text.SimpleDateFormat("DDD_HH_mm_SSS");
-
-    protected String emailClient = "udtesterjenkins+"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend1 = "udtesterjenkins+"+"friend_1_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend2 = "udtesterjenkins+"+"friend_2_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend3 = "udtesterjenkins+"+"friend_3_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend4 = "udtesterjenkins+"+"friend_4_"+emailFormat.format(now) + "@gmail.com";
-    protected String emailFriend5 = "udtesterjenkins+"+"friend_5_"+emailFormat.format(now) + "@gmail.com";
-
-    protected String MEMBER_SOURCE = "Member Source "+emailFormat.format(now);
-
-    // Declare an array of friend emails to pass
-    String[] friendEmails = {emailFriend1,emailFriend2,emailFriend3,emailFriend4,emailFriend5};
-
-
     /**
      * Set your own pause time
      * @param time Time in ms
@@ -187,6 +164,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
     }
 
+    /**
+     * Generates the token used for creating the public Sauce Labs
+     * results URL
+     * @param jobId The job ID generated from Sauce Labs
+     * @return token
+     * @throws IOException
+     */
     private String generateToken(String jobId) throws IOException {
         String message = authentication.getUsername() + ":" + authentication.getAccessKey();
         try {
@@ -197,6 +181,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
     }
 
+    /**
+     * Creates the link to the Sauce Labs results
+     *
+     * @param jobId The job ID generated from Sauce Labs
+     * @return URL
+     * @throws IOException
+     */
     private String getResultsUrl(String jobId) throws IOException {
         String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
         String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";

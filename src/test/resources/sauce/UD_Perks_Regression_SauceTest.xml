@@ -25,4 +25,10 @@
         </classes>
     </test>
 
+    <test name="UD_Unsubscribe">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_UnSubscribeEmailTest" />
+        </classes>
+    </test>
+
 </suite>

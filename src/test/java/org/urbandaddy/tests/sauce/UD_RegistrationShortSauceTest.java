@@ -2,14 +2,28 @@ package org.urbandaddy.tests.sauce;
 
 import org.testng.Reporter;
 import org.testng.annotations.Test;
+import org.urbandaddy.com.common.Analyzer;
 import org.urbandaddy.com.helpers.EmailHelper_Client;
 import org.urbandaddy.com.sauce.iTestCaseUDSauce;
 
 
 public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
 
-    @Test (groups = {"regression", "register"})
+    String date;
+    String emailClient;
+    String[] emailFriends;
+
+    public UD_RegistrationShortSauceTest() {
+        emailFriends = new String[5];
+    }
+
+    @Test (groups = {"regression", "register"}, retryAnalyzer = Analyzer.class)
     public void UDregisterAndCheck(){
+        emailHelper_Client = new EmailHelper_Client(client);
+
+        date = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
+        emailClient = emailHelper_Client.generateEmailClient(date);
+        emailFriends = emailHelper_Client.generateFriendClient(5,date);
 
         Reporter.log("Visiting Home Page for the first time", true);
         visitUDFirstTime();
@@ -18,7 +32,10 @@ public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
         accessNewYorkFromUDHomepage();
 
         Reporter.log("Sign up for a new account", true);
-        signUpUD_viaNewYork();
+        signUpUD_viaNewYorkStep1(emailClient);
+        signUpUD_viaNewYorkStep2(date);
+        signUpUD_viaNewYorkStep3(emailFriends);
+        signUpUD_viaNewYorkStep4();
 
         Reporter.log("Edit settings", true);
         editSettingsUD();
@@ -42,7 +59,7 @@ public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
         emailHelper_Client.verifyWelcomeUDEmailReceived(emailClient);
 
         Reporter.log("Verify Invitation Email was received", true);
-        emailHelper_Client.verifyInvitationsUDEmailsReceived(emailFriend1, emailFriend2, emailFriend3, emailFriend4, emailFriend5);
+        emailHelper_Client.verifyInvitationsUDEmailsReceived(emailFriends);
 
 
     }

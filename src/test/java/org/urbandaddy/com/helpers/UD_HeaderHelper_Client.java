@@ -56,7 +56,7 @@ public class UD_HeaderHelper_Client extends IHelper_Client {
 	public void clickSignUp(){
 		String str = headerReader.getLocator("LoggedOutHeader.SignUp");
 		//this.WaitForElementPresent(str, 20);
-		WebElement el = findElementAndCheckBy(str, 20);
+		WebElement el = findElementAndCheckBy(str, 5);
 		el.click();
 	}
 	

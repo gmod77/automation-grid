@@ -307,6 +307,14 @@ public class Perks_SignupHelper_Client extends IHelper_Client {
 
     // Signup modal 3: Invite Friends
 
+    public void enterEmailFriend(String email, int num) {
+        String str = signupReader.getLocator("Step3.InviteEmail" + num);
+        //this.WaitForElementVisible(str, 100);
+        WebElement el = findElementAndCheckBy(str,10);
+        el.clear();
+        el.sendKeys(email);
+    }
+
     public void enterEmailFriend1(String email){
         String str = signupReader.getLocator("Step3.InviteEmail1");
         WebElement el= findElementAndCheckBy(str,10);
