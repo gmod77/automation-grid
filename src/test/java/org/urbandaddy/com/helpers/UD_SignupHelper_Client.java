@@ -416,12 +416,8 @@ public Boolean isCloseModalPresent() {
 
 public void clickCloseFinalModal() {
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
-<<<<<<< HEAD
 	//this.WaitForElementPresent(str, 20);
 	WebElement el = findElementAndCheckBy(str,10);
-=======
-	WebElement el = findElementAndCheckBy(str);
->>>>>>> origin/sauceTesting
 	el.click();
 	}
 
