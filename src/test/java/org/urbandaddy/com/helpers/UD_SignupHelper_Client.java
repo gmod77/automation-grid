@@ -332,7 +332,7 @@ public void enterEmailFriend1(String email){
 	
 	String str = signupReader.getLocator("Step3.InviteEmail1");		
 	//this.WaitForElementVisible(str, 100);		
-	WebElement el = findElementAndCheckBy(str);
+	WebElement el = findElementAndCheckBy(str,5);
 	el.clear();
 	el.sendKeys(email);
 	
@@ -416,7 +416,9 @@ public Boolean isCloseModalPresent() {
 
 public void clickCloseFinalModal() {
 	String str = signupReader.getLocator("Step4.FinalConfirmationModal");
-	WebElement el = findElementAndCheckBy(str);
+	//this.WaitForElementPresent(str, 20);
+	WebElement el = findElementAndCheckBy(str,10);
+
 	el.click();
 	}
 
