@@ -13,20 +13,23 @@ import org.testng.ITestResult;
 
 public class Analyzer implements IRetryAnalyzer {
     private int count = 0;
-    private int MAX_COUNT = 3;
+    private int maxCount = 6;
 
     public Analyzer() {
         System.out.println(" ModeledAnalyzer constructor "
-            + this.getClass().getName());
+                + this.getClass().getName());
     }
 
     @Override
     public boolean retry(ITestResult result) {
+
         System.out.println("running retry logic for '" + result.getName() +
-             "' on class " + this.getClass().getName());
-        if (count < MAX_COUNT) {
+                "' on class " + this.getClass().getName());
+        if (count < maxCount) {
+            System.out.println("RETRY COUNT> " + count);
+            System.out.println("RETRY MAX COUNT> " + maxCount);
             result.getTestContext().getSkippedTests().removeResult(result.getMethod());
-            count += 1;
+            count++;
             return true;
         }
         return false;

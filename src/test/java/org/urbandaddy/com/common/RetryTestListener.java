@@ -13,16 +13,12 @@ import org.testng.TestListenerAdapter;
  */
 public class RetryTestListener extends TestListenerAdapter{
 
-    int count = 0;
-    int maxCount = 3;
-
     @Override
     public void onTestFailure(ITestResult result) {
 
         Reporter.setCurrentTestResult(result);
 
-        if(result.getMethod().getRetryAnalyzer().retry(result) && count < maxCount) {
-            count++;
+        if(result.getMethod().getRetryAnalyzer().retry(result)) {
             result.setStatus(ITestResult.SKIP);
             System.out.println("Setting test run attempt status to Skipped");
         } else {
@@ -30,9 +26,4 @@ public class RetryTestListener extends TestListenerAdapter{
         }
         Reporter.setCurrentTestResult(null);
     }
-    @Override
-    public void onTestSuccess(ITestResult result) {
-        count = 0;
-    }
-
 }
