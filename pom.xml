@@ -24,17 +24,17 @@
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_java_common</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.10</version>
         </dependency>
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_testng</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.10</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>LATEST</version>
+            <version>2.24.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
