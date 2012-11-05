@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="ParallelTests" verbose="10" parallel="tests" thread-count="10">
-    <!--<test name="Registration Test">-->
+    <test name="Registration Test">
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="browserVersion" value="3.6."/>-->
         <classes>
             <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
         </classes>
-    <!--</test>-->
+    </test>
 
     <!--<test name="UD Regression">-->
         <!--<parameter name="os" value="Windows 2003"/>-->
