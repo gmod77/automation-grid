@@ -88,13 +88,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
 
         // The below is for axis tests. The listener works find for single one shot tests.
-//        } else if (System.getProperty("SELENIUM_BROWSER") != null ){
-//            capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
-//            capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
-//            capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
-//            capabilities.setCapability("tags", "Axis_Test");
-//
-//        } else {
+        } else if (System.getProperty("SELENIUM_BROWSER") != null ){
+            capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
+            capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
+            capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
+            capabilities.setCapability("tags", "Axis_Test");
+
+        } else {
             capabilities = DesiredCapabilities.firefox();
         }
 
