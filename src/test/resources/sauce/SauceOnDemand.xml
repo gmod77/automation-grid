@@ -4,19 +4,19 @@
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="browserVersion" value="3.6."/>-->
-        <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>-->
-        <!--</classes>-->
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
+        </classes>
     <!--</test>-->
 
-    <test name="UD Regression">
-        <parameter name="os" value="Windows 2003"/>
-        <parameter name="browser" value="firefox"/>
-        <parameter name="version" value="15"/>
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest" />
-        </classes>
-    </test>
+    <!--<test name="UD Regression">-->
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="version" value="15"/>-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
     <!--<test name="UD_Admin_Create_RoundUp">-->
         <!--<classes>-->
             <!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />-->
