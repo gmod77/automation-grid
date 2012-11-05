@@ -163,7 +163,7 @@ public class IHelper_Client {
                 System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
-                    public WebElement apply(@Nullable WebDriver d) {
+                    public WebElement apply(WebDriver d) {
                         WebElement ret = null;
                         if (type.equals("name")) {
                             ret = d.findElement(By.name(ele));
@@ -207,7 +207,7 @@ public class IHelper_Client {
                 System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
-                    public WebElement apply(@Nullable WebDriver d) {
+                    public WebElement apply(WebDriver d) {
                         return d.findElement(ByLocator(ele));
                     }
                 });
@@ -234,7 +234,7 @@ public class IHelper_Client {
                 System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
-                    public WebElement apply(@Nullable WebDriver d) {
+                    public WebElement apply(WebDriver d) {
                         return d.findElement(ByLocator(ele));
                     }
                 });

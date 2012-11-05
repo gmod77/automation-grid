@@ -9,7 +9,6 @@ import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
-import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -3234,7 +3233,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
                 System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
-                    public WebElement apply(@Nullable WebDriver d) {
+                    public WebElement apply(WebDriver d) {
                         WebElement ret = null;
                         if (type.equals("name")) {
                             ret = d.findElement(By.name(ele));
