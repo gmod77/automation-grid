@@ -59,16 +59,16 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         System.out.println("version HERE> " + version);
         System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
 
-        System.out.println("SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
-        System.out.println("SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
-        System.out.println("SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
+        System.out.println("env SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
+        System.out.println("env SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
+        System.out.println("env SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
+        System.out.println("env SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
+        System.out.println("env SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
 
-        System.out.println("SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
-        System.out.println("SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
-        System.out.println("SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
-        System.out.println("SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+        System.out.println("prop SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
+        System.out.println("prop SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
+        System.out.println("prop SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
+        System.out.println("prop SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
@@ -88,13 +88,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
 
         // The below is for axis tests. The listener works find for single one shot tests.
-        } else if (System.getProperty("SELENIUM_BROWSER") != null ){
-            capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
-            capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
-            capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
-            capabilities.setCapability("tags", "Axis_Test");
-
-        } else {
+//        } else if (System.getProperty("SELENIUM_BROWSER") != null ){
+//            capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
+//            capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
+//            capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
+//            capabilities.setCapability("tags", "Axis_Test");
+//
+//        } else {
             capabilities = DesiredCapabilities.firefox();
         }
 
