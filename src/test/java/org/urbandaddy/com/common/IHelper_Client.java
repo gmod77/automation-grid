@@ -3,8 +3,8 @@ package org.urbandaddy.com.common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.internal.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class IHelper_Client {
