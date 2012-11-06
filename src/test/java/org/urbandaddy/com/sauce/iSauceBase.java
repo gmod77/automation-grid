@@ -84,9 +84,11 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                 capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
                 capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
                 capabilities.setCapability("tags", "Axis_Test");
+            System.out.println("AXIS TEST");
 
         } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
+            System.out.println("CHROME TEST");
 
         // The below is for axis tests. The listener works find for single one shot tests.
         } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
@@ -94,6 +96,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                 capabilities.setCapability("version", version);
                 capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
                 capabilities.setCapability("tags","Single_Test");
+            System.out.println("SINGLE/NON-AXIS TEST");
         } else {
             capabilities = DesiredCapabilities.firefox();
         }
