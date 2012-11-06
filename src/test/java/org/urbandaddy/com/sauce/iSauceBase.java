@@ -78,22 +78,22 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
-            capabilities.setBrowserName(browser);
-            capabilities.setCapability("version", version);
-            capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
-            capabilities.setCapability("tags","Single_Test");
+
+        if (System.getProperty("SELENIUM_BROWSER") != null ){
+                capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
+                capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
+                capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
+                capabilities.setCapability("tags", "Axis_Test");
 
         } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
 
         // The below is for axis tests. The listener works find for single one shot tests.
-        } else if (System.getProperty("SELENIUM_BROWSER") != null ){
-            capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
-            capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
-            capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
-            capabilities.setCapability("tags", "Axis_Test");
-
+        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
+                capabilities.setBrowserName(browser);
+                capabilities.setCapability("version", version);
+                capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
+                capabilities.setCapability("tags","Single_Test");
         } else {
             capabilities = DesiredCapabilities.firefox();
         }
