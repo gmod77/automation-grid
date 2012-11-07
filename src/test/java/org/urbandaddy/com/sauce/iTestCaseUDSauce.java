@@ -1,6 +1,7 @@
 package org.urbandaddy.com.sauce;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -152,7 +153,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // Grab the first article under "The Five You Need To Read"
         //client.findElement(By.xpath(".//*[@id='content']/div/div[1]/div[2]/div/div[2]/div[1]/p/a")).click();
-        WebElement bigFiveBox = client.findElementByClassName("wideContentBoxTxt");
+        WebElement bigFiveBox = client.findElement(By.className("wideContentBoxTxt"));
         bigFiveBox.findElement(By.className("boxOne")).findElement(By.tagName("a")).click();
 
         // Click the save button
@@ -275,7 +276,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // 18. Enter Note
 
-        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
 
         // 19. Enter Legal Line
 
@@ -414,7 +415,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // 18. Enter Note
 
-        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
 
         // 19. Enter Legal Line
 
@@ -813,7 +814,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
 //	20.   Copy is not needed
 
-        client.executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Weekender Article Copy Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Weekender Article Copy Test'))");
 
 //	21.   Enter text in Article Blurb
 
@@ -830,7 +831,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 //	24.   Enter Text in Note
 
 
-        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Weekender Article Copy Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Weekender Article Copy Test'))");
 
 //	25.   Enter Text in Legal Line
 
@@ -1326,7 +1327,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article[short]")).sendKeys("Three-Column Article/Feature Introduction Test "+ date);
 
 //enter Copy  
-        client.executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Three-Column Article Copy Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Three-Column Article Copy Test'))");
 
 //Article Blurb
         client.findElement(By.id("article[blurb]")).sendKeys("Three-Column Article Blurb Test "+ date);
@@ -1338,7 +1339,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_blurb_twitter")).sendKeys("Three-Column Twitter Blurb Test "+ date);
 
 //enter Note 
-        client.executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Three-Column Article Footer Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Three-Column Article Footer Test'))");
 
 //Legal Line
         client.findElement(By.id("article[footer_additional]")).sendKeys("Three-Column Legal Line Test "+ date);
@@ -1687,7 +1688,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //11. Enter footer text
         // figure out how to write to wysiwyg editor now!!!
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_universal_settings[footer_text]').SetHTML('Footer Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_universal_settings[footer_text]').SetHTML('Footer Text Test'))");
 
         //12. Link to a pdf for Rules and regs
 
@@ -1793,15 +1794,15 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //29. Add Header text
         // Make sure we're on the next page
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_container']/h1",10);
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
 
         //30. Add Subhead text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header2_text]').SetHTML('Signup Subheader Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header2_text]').SetHTML('Signup Subheader Text Test'))");
 
         //31. Add Bottom text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[bottom_text]').SetHTML('Signup Bottom Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[bottom_text]').SetHTML('Signup Bottom Text Test'))");
 
         //32. Click next step
 
@@ -1845,17 +1846,17 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //35. Add Header text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
         //this.pause4();
 
         //36. Add subheader text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
         //this.pause4();
 
         //37. Add bottom text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
         //this.pause4();
 
         //38. Click Next Step
@@ -1867,17 +1868,17 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //39. Add Invite Friends Head text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
         //this.pause4();
 
         //40. Add Invite Friends Subhead text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
         //this.pause4();
 
         //41. Add Invite Friends bottom text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
         //this.pause4();
 
         //42. Click Next Step
@@ -1889,15 +1890,15 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //43. Add thank you head text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header1_text]').SetHTML('Thank You Header Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header1_text]').SetHTML('Thank You Header Text Test'))");
 
         //44. Add thank you sub text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header2_text]').SetHTML('Thank You Subheader Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header2_text]').SetHTML('Thank You Subheader Text Test'))");
 
         //45. Add thank you bot text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[bottom_text]').SetHTML('Thank You Bottom Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[bottom_text]').SetHTML('Thank You Bottom Text Test'))");
 
         //46. Add twitter copy
 
@@ -1949,15 +1950,15 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //Add Closed head text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header1_text]').SetHTML('Closed Page Header Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header1_text]').SetHTML('Closed Page Header Text Test'))");
 
         //Add thank you sub text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header2_text]').SetHTML('Closed Page Subheader Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header2_text]').SetHTML('Closed Page Subheader Text Test'))");
 
         //Add thank you bot text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[bottom_text]').SetHTML('Closed Page Bottom Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[bottom_text]').SetHTML('Closed Page Bottom Text Test'))");
 
 
         // Choose Module 1 Image
@@ -2002,7 +2003,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //Email Body Text
 
-        client.executeScript("(FCKeditorAPI.GetInstance('pmt_invite_email_settings[body_text]').SetHTML('Invite Email Text Test'))");
+        ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_email_settings[body_text]').SetHTML('Invite Email Text Test'))");
 
         // Click Next Step
 

@@ -7,6 +7,7 @@ import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -30,7 +31,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
     public SauceOnDemandAuthentication authentication;
 
-    protected RemoteWebDriver client;
+    protected WebDriver client;
 
     /**
      * If the tests can rely on the username/key to be supplied by environment variables or the existence
@@ -54,21 +55,21 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                       @Optional("") String version,
                       Method method) throws Exception {
 
-        System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
-        System.out.println("browser HERE> " + browser);
-        System.out.println("version HERE> " + version);
-        System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
-
-        System.out.println("env SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
-        System.out.println("env SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
-        System.out.println("env SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
-        System.out.println("env SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
-        System.out.println("env SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
-
-        System.out.println("prop SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
-        System.out.println("prop SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
-        System.out.println("prop SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
-        System.out.println("prop SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
+//        System.out.println("\nSTARTING METHOD: " + method.getName() + "\n");
+//        System.out.println("browser HERE> " + browser);
+//        System.out.println("version HERE> " + version);
+//        System.out.println("os HERE> " + Platform.extractFromSysProperty(os));
+//
+//        System.out.println("env SELENIUM_BROWSER> " + System.getenv("SELENIUM_BROWSER"));
+//        System.out.println("env SELENIUM_VERSION> " + System.getenv("SELENIUM_VERSION"));
+//        System.out.println("env SELENIUM_PLATFORM> " + System.getenv("SELENIUM_PLATFORM"));
+//        System.out.println("env SELENIUM_DRIVER> " + System.getenv("SELENIUM_DRIVER"));
+//        System.out.println("env SELENIUM_STARTING_URL> " + System.getenv("SELENIUM_STARTING_URL"));
+//
+//        System.out.println("prop SELENIUM_BROWSER> " + System.getProperty("SELENIUM_BROWSER"));
+//        System.out.println("prop SELENIUM_VERSION> " + System.getProperty("SELENIUM_VERSION"));
+//        System.out.println("prop SELENIUM_PLATFORM> " + System.getProperty("SELENIUM_PLATFORM"));
+//        System.out.println("prop SELENIUM_DRIVER> " + System.getProperty("SELENIUM_DRIVER"));
 
 
         if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(key)) {
@@ -79,24 +80,29 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (System.getProperty("SELENIUM_BROWSER") != null ){
-                capabilities.setBrowserName(System.getProperty("SELENIUM_BROWSER"));
-                capabilities.setCapability("version", System.getProperty("SELENIUM_VERSION"));
-                capabilities.setCapability("platform", Platform.extractFromSysProperty(System.getProperty("SELENIUM_PLATFORM")));
-                capabilities.setCapability("tags", "Axis_Test");
+        // The below is for axis tests. The listener works find for single one shot tests.
+        String browserProp = System.getProperty("SELENIUM_BROWSER");
+        String versionProp = System.getProperty("SELENIUM_VERSION");
+        String platformProp = System.getProperty("SELENIUM_PLATFORM");
+
+        if (StringUtils.isNotBlank(browserProp) && StringUtils.isNotBlank(versionProp) && StringUtils.isNotBlank(platformProp)) {
+            capabilities.setBrowserName(browserProp);
+            capabilities.setCapability("version", versionProp);
+            capabilities.setCapability("platform", Platform.extractFromSysProperty(platformProp));
+            capabilities.setCapability("tags","Axis_Test");
             System.out.println("AXIS TEST");
+
+        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
+            capabilities.setBrowserName(browser);
+            capabilities.setCapability("version", version);
+            capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
+            capabilities.setCapability("tags","Single_Test");
+            System.out.println("SINGLE/NON-AXIS TEST");
 
         } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
             capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
             System.out.println("CHROME TEST");
 
-        // The below is for axis tests. The listener works find for single one shot tests.
-        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
-                capabilities.setBrowserName(browser);
-                capabilities.setCapability("version", version);
-                capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
-                capabilities.setCapability("tags","Single_Test");
-            System.out.println("SINGLE/NON-AXIS TEST");
         } else {
             capabilities = DesiredCapabilities.firefox();
         }
@@ -105,7 +111,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
-        this.client.setFileDetector(new LocalFileDetector());
+        ((RemoteWebDriver) client).setFileDetector(new LocalFileDetector());
     }
 
 
@@ -116,7 +122,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      */
     @Override
     public String getSessionId() {
-        SessionId sessionId = (client).getSessionId();
+        SessionId sessionId = ((RemoteWebDriver) client).getSessionId();
         return (sessionId == null) ? null : sessionId.toString();
     }
 
