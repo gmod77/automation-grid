@@ -3,7 +3,6 @@ package org.urbandaddy.com.common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.internal.Nullable;
 
 import java.util.List;
 
@@ -48,11 +47,7 @@ public class IHelper_Client {
 	}
 
 	public Boolean isElementPresent(String locator) {
-        if (findElementAndCheckBy(locator,5) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return findElementAndCheckBy(locator, 10) != null;
 	}
 
 	public void WaitForElementPresent(String locator, int timeout) {

@@ -380,10 +380,8 @@ public void enterEmailFriend5(String email){
 
 public Boolean isInvitePresent() {
 
-    Boolean result = false;
     String str = signupReader.getLocator("Step3.ClickInvite");
-    result = this.isElementPresent(str);
-    return result;
+    return this.isElementPresent(str);
 }
 
 //public void clickInvite(){
