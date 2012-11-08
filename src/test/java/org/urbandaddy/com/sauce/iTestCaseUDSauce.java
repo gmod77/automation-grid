@@ -2830,6 +2830,12 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //findElementAndCheckBy("xpath","/html/body/div[5]",10);
 
         //b. Enter email address
+        WebDriverWait wait = new WebDriverWait(client, 30);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        } catch (TimeoutException TE) {
+            System.out.println("EMAIL BOX NOT FOUND");
+        }
         // Stale element seems to happen here
 
         if (!StaleElementHandleByXpath(email)) {
