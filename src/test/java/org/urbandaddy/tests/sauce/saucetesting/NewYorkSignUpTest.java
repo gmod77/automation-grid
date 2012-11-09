@@ -100,12 +100,9 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
             capabilities.setCapability("tags","Single_Test");
             System.out.println("SINGLE/NON-AXIS TEST");
 
-        } else if (browser.equals("chrome") && StringUtils.isBlank(version) && StringUtils.isNotBlank(os)){
-            capabilities = DesiredCapabilities.chrome(); // Sauce doesn't want us to pass a browser version with chrome
-            System.out.println("CHROME TEST");
-
         } else {
             capabilities = DesiredCapabilities.firefox();
+            System.out.println("Failed to pass caps from Jenkins");
         }
 
         capabilities.setCapability("name", "Test Method: " + method.getName());
