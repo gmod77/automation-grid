@@ -150,6 +150,13 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         el1.click();
 
         // Click SignUp
+        WebDriverWait signUpWait = new WebDriverWait(client, 30);
+        try {
+            signUpWait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/div[2]/div/div[3]/div/div/a[2]")));
+        } catch (TimeoutException TE) {
+            throw new TimeoutException("Sign Up Link Didn't show up in time");
+        }
+
         WebElement el2 = client.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/div/a[2]"));
         el2.click();
 
