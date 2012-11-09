@@ -1509,8 +1509,10 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
             if(!popupHandle.contains(mwh))
             {
                 client.switchTo().window(popupHandle);
+
                 // click save
                 this.pause(3000);
+                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
                 client.findElement(By.id("save_button")).click();
 
                 //After finished your operation in pop-up just select the main window again

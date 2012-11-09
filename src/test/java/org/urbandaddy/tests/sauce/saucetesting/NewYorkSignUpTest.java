@@ -210,6 +210,15 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         el5.click();
 
 
+        WebDriverWait accountVisible = new WebDriverWait(client, 30);
+        try {
+            accountVisible.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")));
+        } catch (TimeoutException TE) {
+            throw new TimeoutException("POST TOOK TOO LONG");
+        }
+        String theEmail = client.findElement(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")).getText();
+        System.out.println("THE EMAIL> " + theEmail);
+
         //step2, 2nd signup modal:
         //enter PASSWORD
         ud_signupHelper_Client.enterPassword(PASSWORD);
