@@ -84,15 +84,15 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         String browserProp = System.getProperty("SELENIUM_BROWSER");
         String versionProp = System.getProperty("SELENIUM_VERSION");
         String platformProp = System.getProperty("SELENIUM_PLATFORM");
-
-        if (StringUtils.isNotBlank(browserProp) && StringUtils.isNotBlank(versionProp) && StringUtils.isNotBlank(platformProp)) {
+        //&& StringUtils.isNotBlank(versionProp)
+        if (StringUtils.isNotBlank(browserProp) && StringUtils.isNotBlank(platformProp)) {
             capabilities.setBrowserName(browserProp);
             capabilities.setCapability("version", versionProp);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(platformProp));
             capabilities.setCapability("tags","Axis_Test");
             System.out.println("AXIS TEST");
-
-        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
+        //&& StringUtils.isNotBlank(version)
+        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(os)) {
             capabilities.setBrowserName(browser);
             capabilities.setCapability("version", version);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
@@ -142,7 +142,7 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         var = date;
 
         client.get(UD_DOMAIN);
-        client.manage().addCookie(new Cookie("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
+        // client.manage().addCookie(new Cookie("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
 
         // Click NYC Link
         WebElement el1 = client.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[2]/a[12]"));
@@ -240,7 +240,10 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
 
         //step3, 3rd signup modal: Invite Friends
 
-        Assert.assertTrue(ud_signupHelper_Client.isInvitePresent());
+        //Assert.assertTrue(ud_signupHelper_Client.isInvitePresent());
+
+        WebDriverWait InviteFriendsWindow = new WebDriverWait(client, 30);
+        InviteFriendsWindow.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("ajaxSignupHolder")));
 
         for (int i = 0; i < friend.length; i++) {
             ud_signupHelper_Client.enterEmailFriend(friend[i],(i+1));
