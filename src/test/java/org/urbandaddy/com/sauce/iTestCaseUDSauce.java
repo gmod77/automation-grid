@@ -467,10 +467,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // 28. Add 2nd Image
         // 29. upload thumbnail size 139 x 95
-        // Local Mac
-        //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/thumbnail 3.jpg");
-        // For PC
-        //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\thumbnail 3.jpg");
 
         client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "thumbnail 3.jpg");
 
@@ -535,19 +531,12 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
                 client.switchTo().window(popupHandle2);
 
                 this.pause(3000);
-
-                // select Footer template
-
-               iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
-
-                //        d.	Click Save
+                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
                 client.findElement(By.id("save_button")).click();
                 this.pause(7000);
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh2);
-            } else {
-                //throw new NullPointerException("Derp");
             }
         }
 
@@ -1430,8 +1419,15 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         }
 
 //Add an Ad to the Bottom Module, 
-        iHelper_client.selectFromDropdown("_select_modules_center","option","Ad");
-
+        //iHelper_client.selectFromDropdown("_select_modules_center","option","Ad");
+        WebElement add_bottom_components = client.findElement(By.id("_select_modules_center"));
+        List<WebElement> add_bottom_components_options = add_bottom_components.findElements(By.tagName("option"));
+        for(WebElement option : add_bottom_components_options){
+            if(option.getText().equals("Ad")) {
+                option.click();
+                break;
+            }
+        }
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -1439,13 +1435,14 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         }
 
         //click on "Ad"
+        //client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click();
         client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         // Save default selection / assignment of newsletter slot
 
@@ -1463,8 +1460,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
                 client.switchTo().window(popupHandle);
                 // click save
                 this.pause(3000);
+                iHelper_client.selectFromDropdown(findElementAndCheckBy("name","newsletter_content_slot[name]",10),"option","Absolut Glimmer BOS 12-27-11 footer (Footer)");
                 findElementAndCheckBy("id","save_button",5).click();
-                //client.findElement(By.id("save_button")).click();
+                this.pause(7000);
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh);
@@ -1472,14 +1470,21 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         }
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
 //Add an Ad to the Right Module, 
-        iHelper_client.selectFromDropdown("_select_modules_right","option","Ad");
-
+        //iHelper_client.selectFromDropdown("_select_modules_right","option","Ad");
+        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
+        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
+        for(WebElement option : add_right_components_options){
+            if(option.getText().equals("Ad")) {
+                option.click();
+                break;
+            }
+        }
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -1487,8 +1492,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         }
 
         //click on "Ad"
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-
+        findElementAndCheckBy("xpath","//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a",5).click();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -1512,8 +1516,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
                 // click save
                 this.pause(3000);
-                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
+                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","Absolut Glimmer BOS 12-12-11 tower (Tower)");
                 client.findElement(By.id("save_button")).click();
+                this.pause(7000);
 
                 //After finished your operation in pop-up just select the main window again
                 client.switchTo().window(mwh);
@@ -1529,7 +1534,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         client.findElement(By.name("save")).click();
         this.pause(7000);
-
+/*
 //Click HTML Newsletter, 
 //Click Send Email, 
         //client.findElement(By.xpath("//html/body/div[3]/div/div/table/tbody/tr/td[2]/a[2]"));
@@ -1608,7 +1613,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 // Verify "Email has been sent successfully." success message
         Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Email has been sent successfully."));
 
-
+*/
     }
 
     /**
