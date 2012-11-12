@@ -12,17 +12,17 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
-import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.com.common.UDBase;
-import org.urbandaddy.com.helpers.*;
+import org.urbandaddy.com.helpers.EmailHelper_Client;
+import org.urbandaddy.com.helpers.UD_SignupHelper_Client;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.List;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
@@ -132,9 +132,9 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
 
     @Test
     public void SignUp() {
-        ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
+
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
-        ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
+
 
         String email;
         email = emailClient;
@@ -173,40 +173,38 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         }
         System.out.println("UD EMAIL CLIENT> " + email);
 
-        ud_signupHelper_Client.checkDriven();
-        ud_signupHelper_Client.checkJetset();
-        ud_signupHelper_Client.checkLasVegas();
-        ud_signupHelper_Client.checkNational();
-        ud_signupHelper_Client.checkSkiBoard();
+        List<WebElement> EditionCheckBoxes = client.findElement(By.id("signupEditions")).findElement(By.className("editionsCheckboxes")).findElements(By.className("editionListItem"));
+        for (int i = 0; i<EditionCheckBoxes.size();i++) {
+            if (!EditionCheckBoxes.get(i).findElement(By.tagName("input")).isSelected()) {
+                EditionCheckBoxes.get(i).findElement(By.tagName("input")).click();
+            }
+        }
 
         //click "more" link to show all Editorials
         WebElement el3 = client.findElement(By.xpath("/html/body/div[5]/div/div/div/form/div[4]/label/a"));
         el3.click();
 
-        // check all of them
-        ud_signupHelper_Client.checkAtlanta();
-        ud_signupHelper_Client.checkBoston();
-        ud_signupHelper_Client.checkChicago();
-        ud_signupHelper_Client.checkDallas();
-        ud_signupHelper_Client.checkDC();
-        ud_signupHelper_Client.checkLosAngeles();
-        ud_signupHelper_Client.checkMiami();
-        ud_signupHelper_Client.checkSanFrancisco();
+        List<WebElement> EditorialCheckBoxes = client.findElement(By.id("signupMoreEditions")).findElement(By.className("editionsCheckboxes")).findElements(By.className("editionListItem"));
+        for (int i = 0; i<EditorialCheckBoxes.size();i++) {
+            if (!EditorialCheckBoxes.get(i).findElement(By.tagName("input")).isSelected()) {
+                EditorialCheckBoxes.get(i).findElement(By.tagName("input")).click();
+            }
+        }
 
         //click "more" link to see the Perks editions
         WebElement el4 = client.findElement(By.xpath("/html/body/div[5]/div/div/div/form/div[5]/label/a"));
         el4.click();
 
-        // check all of them
-        ud_signupHelper_Client.checkBostonPerks();
-        ud_signupHelper_Client.checkChicagoPerks();
-        ud_signupHelper_Client.checkDCPerks();
-        ud_signupHelper_Client.checkLosAngelesPerks();
-        ud_signupHelper_Client.checkMiamiPerks();
-        ud_signupHelper_Client.checkNationalPerks();
+        List<WebElement> PerksCheckBoxes = client.findElement(By.id("signupPerksEditions")).findElement(By.className("editionsCheckboxes")).findElements(By.className("editionListItem"));
+        for (int i = 0; i<PerksCheckBoxes.size();i++) {
+            if (!PerksCheckBoxes.get(i).findElement(By.tagName("input")).isSelected()) {
+                PerksCheckBoxes.get(i).findElement(By.tagName("input")).click();
+            }
+        }
 
 
-        WebElement el5 = client.findElement(By.xpath("/html/body/div[5]/div/div/div/form/div[7]/div/input"));
+        //Click Join Button
+        WebElement el5 = client.findElement(By.className("select_editions")).findElement(By.className("buttonHolder")).findElement(By.tagName("input"));
         el5.click();
 
 
@@ -221,29 +219,60 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
 
         //step2, 2nd signup modal:
         //enter PASSWORD
-        ud_signupHelper_Client.enterPassword(PASSWORD);
+        WebElement enterPassword = client.findElement(By.id("flowPassword"));
+        enterPassword.clear();
+        enterPassword.sendKeys(PASSWORD);
+
+
         //confirm PASSWORD
-        ud_signupHelper_Client.confirmPassword(PASSWORD);
+        WebElement confirmPassword = client.findElement(By.id("flowPasswordRetype"));
+        confirmPassword.clear();
+        confirmPassword.sendKeys(PASSWORD);
+
         //First Name
-        ud_signupHelper_Client.enterFirstName("FN_"+var);
+        WebElement firstName = client.findElement(By.id("flowFirstName"));
+        firstName.clear();
+        firstName.sendKeys("FN_"+var);
+
+
         //Last Name
-        ud_signupHelper_Client.enterLastName("LN_"+var);
+        WebElement lastName = client.findElement(By.id("flowLastName"));
+        lastName.clear();
+        lastName.sendKeys("LN_"+var);
+
         //Gender
-        ud_signupHelper_Client.selectGender("Male");
-        //ud_signupHelper_Client.selectGender("Female");
-        //ud_signupHelper_Client.selectGenderRandom();
+        WebElement selectGender = client.findElement(By.id("flowGender"));
+        List <WebElement> gender = selectGender.findElements(By.tagName("option"));
+        for (WebElement option : gender){
+            if (option.getText().equals("Male")){
+                option.click();
+                break;
+            }
+        }
 
         //Income Range
-        ud_signupHelper_Client.selectIncomeRange("Less than $30,000");
+        WebElement selectIncome = client.findElement(By.id("flowIncome"));
+        List <WebElement> income = selectIncome.findElements(By.tagName("option"));
+        for (WebElement option : income){
+            if (option.getText().equals("Less than $30,000")){
+                option.click();
+                break;
+            }
+        }
 
         //Zip Code
-        ud_signupHelper_Client.enterZipCode("10001");
-        //Birthday (MM/DD/YYYY)
-        ud_signupHelper_Client.enterBirthday("07/07/1977");
-        //click "SUBMIT" button
+        WebElement enterZipCode = client.findElement(By.id("flowZip"));
+        enterZipCode.clear();
+        enterZipCode.sendKeys("10001");
 
-        //ud_signupHelper_Client.clickSubmit();
-        WebElement submit = client.findElement(By.xpath("/html/body/div[5]/div/div/div/form/div[3]/div[1]/input"));
+        //Birthday (MM/DD/YYYY)
+        WebElement enterBirthday = client.findElement(By.id("flowBirthday"));
+        enterBirthday.clear();
+        enterBirthday.sendKeys("07/07/1977");
+
+
+        //click "SUBMIT" button
+        WebElement submit = client.findElement(By.className("demos")).findElement(By.className("submitButtons")).findElement(By.tagName("input"));
         submit.click();
 
 
@@ -260,25 +289,15 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         }
 
         // Try submitting the form instead of clicking the invite button
-        WebElement invite = client.findElement(By.xpath("/html/body/div[5]/div/div/div/form/div/div/input"));
-        invite.click();
-
-        // ud_signupHelper_Client.clickSkip();
-        WebDriverWait wait1 = new WebDriverWait(client, 30);
-        try {
-            wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[5]/div/div/div/form/div/div[2]")));
-        } catch (TimeoutException TE) {
-            System.out.println("TIMED OUT WAITING FOR SPINNER TO STOP");
-        }
-
-        WebElement thanks = client.findElement(By.className("thanks"));
-        Assert.assertTrue(thanks.isDisplayed());
-
+        client.findElement(By.xpath("/html/body/div[5]/div/div/div/form[1]/div/div[1]/input")).click();
 
         //step4, 4th signup modal confirmation, close final confirm signup box
 
-        WebElement close = client.findElement(By.xpath("/html/body/div[5]/div/div/div/a"));
-        close.click();
+        WebDriverWait ThankYouWindow = new WebDriverWait(client, 30);
+        ThankYouWindow.until(ExpectedConditions.visibilityOfElementLocated(By.className("thanks")));
+
+        WebElement thanks = client.findElement(By.className("thanks"));
+        thanks.findElement(By.className("ajaxClose")).click();
 
         //end of registration
     }
@@ -295,21 +314,7 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
     }
 
     //Declare helpers
-    protected UD_HomepageHelper_Client ud_homepageHelper_Client;
-    protected UD_HeaderHelper_Client ud_headerHelper_Client;
-    protected UD_FooterHelper_Client ud_footerHelper_Client;
-    protected UD_SealHelper_Client ud_sealHelper_Client;
     protected UD_SignupHelper_Client ud_signupHelper_Client;
-    protected UD_RoundUP_Client ud_roundUP_client;
-    protected UD_UnSubscribeHelper_Client ud_unSubscribeHelper_client;
-    protected IHelper_Client iHelper_client;
-
-    protected Perks_HomepageHelper_Client perks_homepageHelper_Client;
-    protected Perks_HeaderHelper_Client perks_headerHelper_Client;
-    protected Perks_FooterHelper_Client perks_footerHelper_Client;
-    protected Perks_SealHelper_Client perks_sealHelper_Client;
-    protected Perks_SignupHelper_Client perks_signupHelper_Client;
-
     protected EmailHelper_Client emailHelper_Client;
 
     /**
