@@ -208,7 +208,7 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
         el5.click();
 
 
-        WebDriverWait accountVisible = new WebDriverWait(client, 30);
+        WebDriverWait accountVisible = new WebDriverWait(client, 60);
         try {
             accountVisible.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")));
         } catch (TimeoutException TE) {
