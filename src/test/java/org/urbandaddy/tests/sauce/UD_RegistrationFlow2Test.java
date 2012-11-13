@@ -43,9 +43,6 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
         Reporter.log("Edit settings", true);
  		editSettingsUD();
 
-        Reporter.log("Do homepage checks while logged in",true);
-		doChecksCityHomePageLoggedIn();
-
         Reporter.log("Log out", true);
 		logoutUD();
 
@@ -55,8 +52,35 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
         Reporter.log("Complete a password reset", true);
 		resetPasswordUD(emailClient);
 
+    }
+
+    @Test (groups = {"Regression"}, retryAnalyzer = Analyzer.class)
+    public void homePageChecksLoggedOut() {
+        Reporter.log("Visiting Home Page for the first time", true);
+        visitUDFirstTime();
+
+        Reporter.log("Access New York from the UD Homepage", true);
+        accessNewYorkFromUDHomepage();
+
         Reporter.log("Redo checks while logged out", true);
-		doChecksCityHomePageLoggedOut();
+        doChecksCityHomePageLoggedOut();
+
+    }
+
+    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
+    public void homePageChecksLoggedIn() {
+        Reporter.log("Visiting Home Page for the first time", true);
+        visitUDFirstTime();
+
+        Reporter.log("Access New York from the UD Homepage", true);
+        accessNewYorkFromUDHomepage();
+
+        Reporter.log("Login");
+        loginUD(emailClient,PASSWORD);
+
+        Reporter.log("Do homepage checks while logged in",true);
+        doChecksCityHomePageLoggedIn();
+
     }
 
     @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
