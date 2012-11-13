@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<suite name="ParallelTests" verbose="10" parallel="tests" thread-count="10">-->
+    <suite name="SingleTest" verbose="10">
+    <test name="Registration Test">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
+        </classes>
+    </test>
+
+    <!--<test name="UD Regression">-->
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="version" value="15"/>-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="UD_Admin_Create_RoundUp">-->
+        <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
+        <!--<parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />-->
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="version" value="15"/>-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Perks Regression">-->
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="version" value="15"/>-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1Test"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->
+    <!--<listeners>-->
+        <!--<listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>-->
+    <!--</listeners>-->
+</suite>
