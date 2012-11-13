@@ -16,7 +16,6 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import org.urbandaddy.com.common.IHelper_Client;
-import org.urbandaddy.com.common.RetryTestListener;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
@@ -26,7 +25,7 @@ import java.net.URL;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
-@Listeners({SauceOnDemandTestListener.class, RetryTestListener.class})
+@Listeners({SauceOnDemandTestListener.class})
 public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider, UDBase {
 
     public SauceOnDemandAuthentication authentication;
