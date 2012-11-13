@@ -59,7 +59,7 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
 		doChecksCityHomePageLoggedOut();
     }
 
-    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"})
+    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
     public void verifyUDEmailsReceived(){
         emailHelper_Client = new EmailHelper_Client(client);
 

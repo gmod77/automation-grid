@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.locators.LocatorReader;
@@ -443,14 +444,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      * Check for Welcome to UD email is received
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
-
+        Reporter.log("Searching for Welcome Email",true);
         findSignupEmail("to: "+emailClient+" subject: Welcome to the Club",10000);
-        
+
     }
 
     public void verifySharedArticleLoggedOutReceived(String[] emailFriends) {
-
         for (int i = 0; i<emailFriends.length; i++) {
+            Reporter.log("Logged out test: Searching for Shared article to friend " + (i+1),true);
             doEmailSearch("from: QA TESTER to: " + emailFriends[i],10000);
         }
 
@@ -458,6 +459,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 
     public void verifySharedArticleLoggedInReceived(String emailClient, String[] emailFriends) {
         for (int i = 0; i<emailFriends.length; i++) {
+            Reporter.log("Logged in test: Searching for Shared article to friend " + (i+1),true);
             doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriends[i]),10000);
         }
     }
@@ -467,21 +469,16 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyInvitationsUDEmailsReceived(String[] friends){
         for (int i = 0; i<friends.length; i++) {
+            Reporter.log("Searching for invitation email to friend " + (i+1),true);
             doEmailSearch("to: "+ friends[i]+" subject: You're Invited",10000);
         }
-//
-//        findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
-//        findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
-//        findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
-//        findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
-//        findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
     }
 
     /**
      * Check that the password reset email was received
      */
     public void verifyResetPasswordUDRequestReceivedandPasswordReset(String emailClient){
-
+        Reporter.log("Searching for password reset link",true);
         findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
         String link = getResetEmailLink();
 
@@ -500,9 +497,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      * @param emailClient Enter email to search with
      */
     public void verifyEditSettingsUDEmailReceived(String emailClient){
-        //checkEmailHelper_Client = new CheckEmailHelper_Client(client);
-
-        //checkEmailHelper_Client.findInvitationEmail1("to: " + email + " subject: You've Changed");
+        Reporter.log("Searching for account settings change mail",true);
         findInvitationEmail1("to: " + emailClient + " subject: You've Changed");
     }
 
