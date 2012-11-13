@@ -2573,7 +2573,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isNightlifeAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/nightlife"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/nightlife"))
             return true;
         return false;
 
@@ -2586,7 +2586,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isFoodAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/food"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/food"))
             return true;
         return false;
 
@@ -2599,7 +2599,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isFoodDrinkNationalAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/fooddrink"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/fooddrink"))
             return true;
         return false;
 
@@ -2612,7 +2612,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isEntertainmentAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/entertainment"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/entertainment"))
             return true;
         return false;
 
@@ -2625,7 +2625,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isTravelAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/travel"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/travel"))
             return true;
         return false;
 
@@ -2638,7 +2638,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isStyleAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/style"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/style"))
             return true;
         return false;
 
@@ -2651,7 +2651,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isGearAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/gear"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/gear"))
             return true;
         return false;
 
@@ -2664,7 +2664,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isLeisureAccessible(){
 
-        if (client.getCurrentUrl().equals(UD_DOMAIN + "/archives/" + UDcity + "/leisure"))
+        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/leisure"))
             return true;
         return false;
 
