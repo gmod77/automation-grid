@@ -2,6 +2,7 @@ package org.urbandaddy.tests.sauce;
 
 import org.testng.Reporter;
 import org.testng.annotations.Test;
+import org.urbandaddy.com.common.Analyzer;
 import org.urbandaddy.com.helpers.EmailHelper_Client;
 import org.urbandaddy.com.sauce.iTestCaseUDSauce;
 
@@ -16,7 +17,7 @@ public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
         emailFriends = new String[5];
     }
 
-    @Test (groups = {"regression", "register"})
+    @Test (groups = {"regression", "register"},retryAnalyzer = Analyzer.class)
     public void UDregisterAndCheck(){
         emailHelper_Client = new EmailHelper_Client(client);
 
@@ -51,7 +52,7 @@ public class UD_RegistrationShortSauceTest extends iTestCaseUDSauce {
     }
 
 
-    @Test (groups = {"check"}, dependsOnGroups = {"register"})
+    @Test (groups = {"check"}, dependsOnGroups = {"register"},retryAnalyzer = Analyzer.class)
     public void verifyUDEmailsReceived(){
         emailHelper_Client = new EmailHelper_Client(client);
 

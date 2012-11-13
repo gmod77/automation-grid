@@ -40,7 +40,7 @@ public class Perks_RegistrationFlow1Test extends iTestCasePerksSauce {
 		//doChecksCityHomePageLoggedOut();
 
     }
-    @Test (dependsOnGroups = {"perkSmoke"})
+    @Test (dependsOnGroups = {"perkSmoke"}, retryAnalyzer = Analyzer.class)
     public void perksConfirm() {
         emailHelper_Client = new EmailHelper_Client(client);
 

@@ -52,7 +52,7 @@ public class UD_UnSubscribeEmailTest extends iTestCaseUDSauce {
 
     }
 
-    @Test (groups = {"unsubscribe"}, dependsOnGroups = {"createAndUnsubscribe"})
+    @Test (groups = {"unsubscribe"}, dependsOnGroups = {"createAndUnsubscribe"}, retryAnalyzer = Analyzer.class)
     public void unsubscribeConfirmation() {
         emailHelper_Client = new EmailHelper_Client(client);
         String date = emailHelper_Client.generateDate("yy/MM/dd");
