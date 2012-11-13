@@ -2849,48 +2849,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
             throw new ElementNotVisibleException("Email didn't show up");
         }
         System.out.println("UD EMAIL CLIENT> " + email);
-//
-//        //c. Select Editions
-//        //New York, New York Perks are selected by default
-//        //check Driven
-//        ud_signupHelper_Client.checkDriven();
-//        ud_signupHelper_Client.checkJetset();
-//        ud_signupHelper_Client.checkLasVegas();
-//        ud_signupHelper_Client.checkNational();
-//        ud_signupHelper_Client.checkSkiBoard();
-//
-//        //click "more" link to show all Editorials
-//        ud_signupHelper_Client.clickMoreLinkNewYork1();
-//
-//        // check all of them
-//        ud_signupHelper_Client.checkAtlanta();
-//        ud_signupHelper_Client.checkBoston();
-//        ud_signupHelper_Client.checkChicago();
-//        ud_signupHelper_Client.checkDallas();
-//        ud_signupHelper_Client.checkDC();
-//        ud_signupHelper_Client.checkLosAngeles();
-//        ud_signupHelper_Client.checkMiami();
-//        ud_signupHelper_Client.checkSanFrancisco();
-//
-//        //click "more" link to see the Perks editions
-//        ud_signupHelper_Client.clickMoreLinkNewYork2();
-//
-//        // check all of them
-//        ud_signupHelper_Client.checkBostonPerks();
-//        ud_signupHelper_Client.checkChicagoPerks();
-//        ud_signupHelper_Client.checkDCPerks();
-//        ud_signupHelper_Client.checkLosAngelesPerks();
-//        ud_signupHelper_Client.checkMiamiPerks();
-//        ud_signupHelper_Client.checkNationalPerks();
-//
-//        //click "JOIN" button
-//
-//        ud_signupHelper_Client.clickJoin();
-    }
 
-    public void signUpUD_viaNewYorkStepA(){
-
-        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
+        //c. Select Editions
+        //New York, New York Perks are selected by default
 
         ud_signupHelper_Client.checkDriven();
         ud_signupHelper_Client.checkJetset();
@@ -2921,14 +2882,21 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         ud_signupHelper_Client.checkLosAngelesPerks();
         ud_signupHelper_Client.checkMiamiPerks();
         ud_signupHelper_Client.checkNationalPerks();
-    }
 
-    public void signUpUD_viaNewYorkStepB(){
-
-        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
-
+        //click "JOIN" button
         ud_signupHelper_Client.clickJoin();
+
+        //Wait for the ajax response back. The email address will be displayed in the 'Seal' sign up box.
+        WebDriverWait accountVisible = new WebDriverWait(client, 60);
+        try {
+            accountVisible.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")));
+        } catch (TimeoutException TE) {
+            throw new TimeoutException("POST TOOK TOO LONG");
+        }
+        String theEmail = client.findElement(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")).getText();
+        System.out.println("THE EMAIL> " + theEmail);
     }
+
     /**
      * Complete registration form by filling out
      * name, gender, income range, zip code, etc.
@@ -2967,13 +2935,10 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         ud_signupHelper_Client.enterZipCode("10001");
         //Birthday (MM/DD/YYYY)
         ud_signupHelper_Client.enterBirthday("07/07/1977");
+
         //click "SUBMIT" button
-
-        //ud_signupHelper_Client.clickSubmit();
-        WebElement submit = client.findElement(By.xpath("/html/body/div[5]/div/div/div/form/div[3]/div[1]/input"));
+        WebElement submit = client.findElement(By.className("demos")).findElement(By.className("submitButtons")).findElement(By.tagName("input"));
         submit.click();
-
-
 
     }
 
@@ -2984,9 +2949,10 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
-//step3, 3rd signup modal: Invite Friends
+    //step3, 3rd signup modal: Invite Friends
 
-        Assert.assertTrue(ud_signupHelper_Client.isInvitePresent());
+        WebDriverWait InviteFriendsWindow = new WebDriverWait(client, 30);
+        InviteFriendsWindow.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("ajaxSignupHolder")));
 
         for (int i = 0; i < friend.length; i++) {
             ud_signupHelper_Client.enterEmailFriend(friend[i],(i+1));
@@ -2995,23 +2961,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // Try submitting the form instead of clicking the invite button
         ud_signupHelper_Client.clickInvite();
-
-  		// ud_signupHelper_Client.clickSkip();
-        WebDriverWait wait = new WebDriverWait(client, 30);
-        try {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[5]/div/div/div/form/div/div[2]")));
-        } catch (TimeoutException TE) {
-            System.out.println("TIMED OUT WAITING FOR SPINNER TO STOP");
-        }
-
-    }
-
-
-
-    public void signUpUD_viaNewYorkStep35(){
-        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
-
-        ud_signupHelper_Client.findElementAndCheckBy("classname","thanks",10);
     }
 
     /**
@@ -3021,21 +2970,12 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //step4, 4th signup modal confirmation, close final confirm signup box
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
+        WebDriverWait ThankYouWindow = new WebDriverWait(client, 30);
+        ThankYouWindow.until(ExpectedConditions.visibilityOfElementLocated(By.className("thanks")));
+
         ud_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }
-
-    /**
-     * Runs all the New York sign up methods
-     *
-     */
-//    public void signUpUD_viaNewYork(){
-//
-//        this.signUpUD_viaNewYorkStep1();
-//        this.signUpUD_viaNewYorkStep2();
-//        this.signUpUD_viaNewYorkStep3();
-//        this.signUpUD_viaNewYorkStep4();
-//    }
 
     /**
      * Click the change city link from the homepage

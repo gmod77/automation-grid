@@ -34,13 +34,10 @@ public class UD_UnSubscribeEmailTest extends iTestCaseUDSauce {
         Reporter.log("Create an account:",true);
         Reporter.log("Sign up Step 1",true);
         signUpUD_viaNewYorkStep1(emailClient);
-        signUpUD_viaNewYorkStepA();
-        signUpUD_viaNewYorkStepB();
         Reporter.log("Sign up Step 2",true);
         signUpUD_viaNewYorkStep2(date);
         Reporter.log("Sign up Step 3",true);
         signUpUD_viaNewYorkStep3(emailFriends);
-        signUpUD_viaNewYorkStep35();
         Reporter.log("Sign u Step 4",true);
         signUpUD_viaNewYorkStep4();
 

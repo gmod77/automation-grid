@@ -278,8 +278,6 @@ public class NewYorkSignUpTest implements SauceOnDemandSessionIdProvider, SauceO
 
         //step3, 3rd signup modal: Invite Friends
 
-        //Assert.assertTrue(ud_signupHelper_Client.isInvitePresent());
-
         WebDriverWait InviteFriendsWindow = new WebDriverWait(client, 30);
         InviteFriendsWindow.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("ajaxSignupHolder")));
 
