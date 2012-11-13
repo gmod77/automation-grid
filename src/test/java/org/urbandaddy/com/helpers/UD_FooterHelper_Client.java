@@ -244,7 +244,7 @@ public class UD_FooterHelper_Client extends IHelper_Client {
 			WebElement el = client.findElement(ByLocator(str));
 			el.click();
 
-            return client.getCurrentUrl().equals(UDdomain + "/about");
+            return client.getCurrentUrl().contains(UDdomain + "/about");
 		}
 		
 		public Boolean isSignUpCityPresent(){

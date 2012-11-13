@@ -609,7 +609,7 @@ public void clickDriven(){
 
 public boolean isDrivenAccessible(){
 
-	if (client.getCurrentUrl().equals("http://driven.urbandaddy.com/"))
+	if (client.getCurrentUrl().contains("http://driven.urbandaddy.com/"))
 		return true;
 	return false;
 }
@@ -631,7 +631,7 @@ public boolean isDrivenNationalAccessible(){
 	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 
-	if (client.getCurrentUrl().equals("http://driven.urbandaddy.com/"))
+	if (client.getCurrentUrl().contains("http://driven.urbandaddy.com/"))
 		return true;
 	return false;
 }
@@ -712,7 +712,7 @@ public void clickParties(){
 
 public boolean isPartiesAccessible(){
 	
-	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
+	if (client.getCurrentUrl().contains("http://thechronicles.urbandaddy.com/"))
 		return true;
 	return false;
 }
@@ -736,7 +736,7 @@ public void clickPartiesLV(){
 
 public boolean isPartiesLVAccessible(){
 	
-	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
+	if (client.getCurrentUrl().contains("http://thechronicles.urbandaddy.com/"))
 		return true;
 	return false;
 }
@@ -760,7 +760,7 @@ public void clickPartiesNational(){
 
 public boolean isPartiesNationalAccessible(){
 		
-	if (client.getCurrentUrl().equals("http://thechronicles.urbandaddy.com/"))
+	if (client.getCurrentUrl().contains("http://thechronicles.urbandaddy.com/"))
 		return true;
 	return false;
 }
@@ -784,7 +784,7 @@ public void clickKempt(){
 
 public boolean isKemptAccessible(){
 	
-	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
+	if (client.getCurrentUrl().contains("http://www.getkempt.com/"))
 		return true;
 	return false;
 }
@@ -808,7 +808,7 @@ public void clickKemptLV(){
 
 public boolean isKemptLVAccessible(){
 
-	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
+	if (client.getCurrentUrl().contains("http://www.getkempt.com/"))
 		return true;
 	return false;
 }
@@ -832,7 +832,7 @@ public void clickKemptNational(){
 
 public boolean isKemptNationalAccessible(){
 		
-	if (client.getCurrentUrl().equals("http://www.getkempt.com/"))
+	if (client.getCurrentUrl().contains("http://www.getkempt.com/"))
 		return true;
 	return false;
 }
@@ -856,7 +856,7 @@ public void clickMobile(){
 
 public boolean isMobileAccessible(){
 	
-	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
+	if (client.getCurrentUrl().contains(UDdomain + "/mobile"))
 		return true;
 	return false;
 }
@@ -880,7 +880,7 @@ public void clickMobileLV(){
 
 public boolean isMobileLVAccessible(){
 	
-	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
+	if (client.getCurrentUrl().contains(UDdomain + "/mobile"))
 		return true;
 	return false;
 }
@@ -904,7 +904,7 @@ public void clickMobileNational(){
 
 public boolean isMobileNationalAccessible(){
 		
-	if (client.getCurrentUrl().equals(UDdomain + "/mobile"))
+	if (client.getCurrentUrl().contains(UDdomain + "/mobile"))
 		return true;
 	return false;
 }
