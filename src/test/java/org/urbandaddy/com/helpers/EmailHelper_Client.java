@@ -1,9 +1,6 @@
 package org.urbandaddy.com.helpers;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -102,6 +99,11 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
                 flag = true;
             } catch (NoSuchElementException e) {
                 counter++;
+                System.out.println("Email wasn't found, trying again. Time out in> " + TimeUnit.MILLISECONDS.toSeconds(timeout) +" seconds.");
+                pause(timeout);
+            } catch (StaleElementReferenceException sere) {
+                counter++;
+                System.out.println("Stale Element Reference");
                 System.out.println("Email wasn't found, trying again. Time out in> " + TimeUnit.MILLISECONDS.toSeconds(timeout) +" seconds.");
                 pause(timeout);
             }
@@ -445,14 +447,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
         Reporter.log("Searching for Welcome Email",true);
-        findSignupEmail("to: "+emailClient+" subject: Welcome to the Club",10000);
+        findSignupEmail("to: " + emailClient + " subject: Welcome to the Club", 10000);
 
     }
 
     public void verifySharedArticleLoggedOutReceived(String[] emailFriends) {
         for (int i = 0; i<emailFriends.length; i++) {
             Reporter.log("Logged out test: Searching for Shared article to friend " + (i+1),true);
-            doEmailSearch("from: QA TESTER to: " + emailFriends[i],10000);
+            doEmailSearch("from: QA TESTER to: " + emailFriends[i], 10000);
         }
 
     }
