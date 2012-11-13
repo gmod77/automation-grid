@@ -85,14 +85,14 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         String versionProp = System.getProperty("SELENIUM_VERSION");
         String platformProp = System.getProperty("SELENIUM_PLATFORM");
 
-        if (StringUtils.isNotBlank(browserProp) && StringUtils.isNotBlank(versionProp) && StringUtils.isNotBlank(platformProp)) {
+        if (StringUtils.isNotBlank(browserProp)&& StringUtils.isNotBlank(platformProp)) {
             capabilities.setBrowserName(browserProp);
             capabilities.setCapability("version", versionProp);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(platformProp));
             capabilities.setCapability("tags","Axis_Test");
             System.out.println("AXIS TEST");
 
-        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(version) && StringUtils.isNotBlank(os)) {
+        } else if (StringUtils.isNotBlank(browser)&& StringUtils.isNotBlank(os)) {
             capabilities.setBrowserName(browser);
             capabilities.setCapability("version", version);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
