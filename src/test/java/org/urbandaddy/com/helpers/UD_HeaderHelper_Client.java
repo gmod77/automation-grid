@@ -609,9 +609,7 @@ public void clickDriven(){
 
 public boolean isDrivenAccessible(){
 
-	if (client.getCurrentUrl().contains("http://driven.urbandaddy.com/"))
-		return true;
-	return false;
+    return client.getCurrentUrl().contains("http://driven.urbandaddy.com/");
 }
 
 public Boolean isDrivenNationalPresent(){
@@ -631,9 +629,7 @@ public boolean isDrivenNationalAccessible(){
 	WebElement el = findElementAndCheckBy(str, 20);
 	el.click();
 
-	if (client.getCurrentUrl().contains("http://driven.urbandaddy.com/"))
-		return true;
-	return false;
+    return client.getCurrentUrl().contains("http://driven.urbandaddy.com/");
 }
 
 public Boolean isPerksPresent(){

@@ -2664,9 +2664,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isLeisureAccessible(){
 
-        if (client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/leisure"))
-            return true;
-        return false;
+        return client.getCurrentUrl().contains(UD_DOMAIN + "/archives/" + UDcity + "/leisure");
 
     }
 
@@ -2677,9 +2675,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public boolean isPerksAccessible(){
 
-        if (client.getCurrentUrl().equals(PERKS_DOMAIN + UDcityPerks))
-            return true;
-        return false;
+        return client.getCurrentUrl().contains(PERKS_DOMAIN + UDcityPerks);
 
     }
 
