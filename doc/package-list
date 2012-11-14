@@ -3,8 +3,6 @@ org.urbandaddy.com.common
 org.urbandaddy.com.grid
 org.urbandaddy.com.helpers
 org.urbandaddy.com.sauce
-org.urbandaddy.helpers
-org.urbandaddy.helpers.Comm
 org.urbandaddy.locators
 org.urbandaddy.tests
 org.urbandaddy.tests.grid

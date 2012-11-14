@@ -8,7 +8,7 @@
         <parameter name="browser" value="firefox"/>
         <parameter name="version" value="15"/>
         <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_RegistrationShortSauceTest"/>
+            <class name="org.urbandaddy.tests.sauce.Perks_EditAccountTest"/>
         </classes>
     </test>
 
