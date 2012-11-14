@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+	<HomePage>
+      <AboutUs><![CDATA[//.//*[@id='footer_static_links']/ul/li[1]/a]]></AboutUs>
+      <SignUp><![CDATA[//.//*[@id='footer_static_links']/ul/li[2]/a]]></SignUp>
+      <MyAccount><![CDATA[//.//*[@id='footer_static_links']/ul/li[2]/a]]></MyAccount>
+      <Contact><![CDATA[//.//*[@id='footer_static_links']/ul/li[3]/a]]></Contact>
+      <Jobs><![CDATA[//.//*[@id='footer_static_links']/ul/li[4]/a]]></Jobs>
+      <Advertise><![CDATA[//.//*[@id='footer_static_links']/ul/li[5]/a]]></Advertise>
+      <Unsubscribe><![CDATA[//.//*[@id='footer_static_links']/ul/li[6]/a]]></Unsubscribe>
+      <EmailIssues><![CDATA[//.//*[@id='footer_static_links']/ul/li[7]/a]]></EmailIssues>
+      <PrivacyPolicy><![CDATA[//.//*[@id='footer_static_links']/ul/li[8]/a]]></PrivacyPolicy>
+      <UserAgreement><![CDATA[//.//*[@id='footer_static_links']/ul/li[9]/a]]></UserAgreement>
+      <EditorialPolicy><![CDATA[//.//*[@id='footer_static_links']/ul/li[10]/a]]></EditorialPolicy>
+
+      <Chicago><![CDATA[//.//*[@id='footer_editions']/ul/li[1]/a]]></Chicago>
+      <Miami><![CDATA[//.//*[@id='footer_editions']/ul/li[2]/a]]></Miami>
+      <NewYork><![CDATA[//.//*[@id='footer_editions']/ul/li[3]/a]]></NewYork>
+      <LosAngeles><![CDATA[//.//*[@id='footer_editions']/ul/li[4]/a]]></LosAngeles>
+      <National><![CDATA[//.//*[@id='footer_editions']/ul/li[5]/a]]></National>
+      <Houston><![CDATA[//.//*[@id='footer_editions']/ul/li[6]/a]]></Houston>
+	</HomePage>
+
+   
+</locators>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+	<HomePageFirstTimeVisitor>
+	    <ManeroLogo><![CDATA[//.//*[@id='header']/div[2]/h1/a]]></ManeroLogo>
+        <FBLike><![CDATA[//.//*[@id='uspeax52']/div/div[1]/div/button]]></FBLike>
+        <FBLikeCounter><![CDATA[//.//*[@id='uspeax51']/tbody/tr/td[2]/div/div[1]]]></FBLikeCounter>
+        <TweetButton><![CDATA[//.//*[@id='b']]]></TweetButton>
+        <Cultura><![CDATA[//.//*[@id='navbar_categories']/ul/li[1]/a]]></Cultura>
+        <Musica><![CDATA[//.//*[@id='navbar_categories']/ul/li[2]/a]]></Musica>
+        <Sports><![CDATA[//.//*[@id='navbar_categories']/ul/li[3]/a]]></Sports>
+        <Style><![CDATA[//.//*[@id='navbar_categories']/ul/li[4]/a]]></Style>
+        <Entertainment><![CDATA[//.//*[@id='navbar_categories']/ul/li[5]/a]]></Entertainment>
+        <Gadgets><![CDATA[//.//*[@id='navbar_categories']/ul/li[6]/a]]></Gadgets>
+        <Travel><![CDATA[//.//*[@id='navbar_categories']/ul/li[7]/a]]></Travel>
+        <NightLife><![CDATA[//.//*[@id='navbar_categories']/ul/li[8]/a]]></NightLife>
+
+        <Carousel><![CDATA[//.//*[@id='modules']/div[2]]]></Carousel>
+        <ShortList><![CDATA[//.//*[@id='modules']/div[3]/div[2]]]></ShortList>
+   </HomePageFirstTimeVisitor>
+   
+</locators>

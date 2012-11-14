@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+
+    <Step1>
+   	    <Email><![CDATA[email]]></Email>
+        <SelectEditionsChicago><![CDATA[member_editions_3]]></SelectEditionsChicago>
+        <SelectEditionsMiami><![CDATA[member_editions_5]]></SelectEditionsMiami>
+        <SelectEditionsNewYork><![CDATA[member_editions_1]]></SelectEditionsNewYork>
+        <SelectEditionsLosAngeles><![CDATA[member_editions_2]]></SelectEditionsLosAngeles>
+        <SelectEditionsNational><![CDATA[member_editions_4]]></SelectEditionsNational>
+        <SelectEditionsHouston><![CDATA[member_editions_6]]></SelectEditionsHouston>
+
+       	<Join><![CDATA[//.//*[@id='myaccount_signup']/input]]></Join>
+   	    <ErrorMessage><![CDATA[//.//*[@id='sign_up_box']/div[2]]]></ErrorMessage>
+    </Step1>
+   	  
+    <Step2>
+   	    <EnterPassword><![CDATA[password]]></EnterPassword>
+   	    <ConfirmPassword><![CDATA[confirm_password]]></ConfirmPassword>
+        <EnterFirstName><![CDATA[first_name]]></EnterFirstName>
+   	    <EnterLastName><![CDATA[last_name]]></EnterLastName>
+   	    <SelectGender><![CDATA[gender]]></SelectGender>
+   	    <EnterZipCode><![CDATA[zip]]></EnterZipCode>
+   	    <EnterBirthday><![CDATA[birthdate]]></EnterBirthday>
+   	    <ClickSubmit><![CDATA[//.//*[@id='myaccount_demographics']/input]]></ClickSubmit>
+    </Step2>
+   
+    <Step3>
+   	    <InviteEmail1><![CDATA[invite_email1]]></InviteEmail1>
+   	    <InviteEmail2><![CDATA[invite_email2]]></InviteEmail2>
+   	    <InviteEmail3><![CDATA[invite_email3]]></InviteEmail3>
+   	    <InviteEmail4><![CDATA[invite_email4]]></InviteEmail4>
+   	    <InviteEmail5><![CDATA[invite_email5]]></InviteEmail5>
+   	  
+   	    <ClickInvite><![CDATA[//.//*[@id='sign_up_invites']/div[2]/form/input[3]]]></ClickInvite>
+   	    <ClickSkip><![CDATA[//.//*[@id='sign_up_invites']/div[3]/div[1]/a]]></ClickSkip>
+   	  
+   	    <ErrorMessage><![CDATA[//.//*[@id='sign_up_invites']/div[2]/div]]></ErrorMessage>
+    </Step3>
+   
+    <Step4>
+   	    <FinalConfirmationModal><![CDATA[//.//*[@id='sign_up_box']]]></FinalConfirmationModal>
+        <FBFriendUs><![CDATA[fb_button]]></FBFriendUs>
+        <TwitterFollowUs><![CDATA[twitter_button]]></TwitterFollowUs>
+        <PrivacyPolicyLink><![CDATA[//.//*[@id='box_footer']/ul/a[1]]]></PrivacyPolicyLink>
+        <UserAgreementLink><![CDATA[//.//*[@id='box_footer']/ul/a[2]]]></UserAgreementLink>
+        <CloseButton><![CDATA[signup-close]]></CloseButton>
+    </Step4>
+   
+</locators>

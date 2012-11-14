@@ -16,6 +16,7 @@
    </ResetPassword>
    <Settings>
    	  <EditSettings><![CDATA[//.//html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div[3]/a[2]]]></EditSettings>
+      <EditSettingsMyUd><![CDATA[//.//html/body/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div[3]/a[2]]]></EditSettingsMyUd>
    	  <PasswordMyUD><![CDATA[input_password]]></PasswordMyUD>
    	  <PasswordConfirmMyUD><![CDATA[input_password_retype]]></PasswordConfirmMyUD>
    	  <EditionsAtlanta><![CDATA[member_editions_22]]></EditionsAtlanta>

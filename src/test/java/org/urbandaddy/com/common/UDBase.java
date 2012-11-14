@@ -13,6 +13,8 @@ public interface UDBase {
     String UD_ADMIN_DOMAIN = "http://ud-branch.thedaddy.co/admin.php";
     String PERKS_DOMAIN = "http://perks-branch.thedaddy.co";
 
+    String MANERO_DOMAIN = "http://manero-branch.thedaddy.co";
+
     String GOOGLE_EMAIL_LINK = "https://mail.google.com/mail/u/0/?logout&hl=en";
     String JENKINSEMAIL = "udtesterjenkins@gmail.com";
     String JENKINSEMAILPW = "commonud";

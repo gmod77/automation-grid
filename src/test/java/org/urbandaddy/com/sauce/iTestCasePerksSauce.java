@@ -1,6 +1,8 @@
 package org.urbandaddy.com.sauce;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
@@ -20,13 +22,23 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      */
     public void editSettingsPerks(){
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-
+        //Reuse methods in UD client
+        ud_sealHelper_Client = new UD_SealHelper_Client(client);
         lastURL = client.getCurrentUrl();
 
         perks_headerHelper_Client.clickMyAccount();
         perks_headerHelper_Client.isMyAccountAccessible();
 
-        client.get(lastURL);
+        ud_sealHelper_Client.clickEditSettingsMyUD();
+        ud_sealHelper_Client.enterPasswordMyUD(PASSWORD);
+        ud_sealHelper_Client.confirmPasswordMyUD(PASSWORD);
+
+        ud_sealHelper_Client.checkDCPerks();
+
+
+        ud_sealHelper_Client.clickUpdate();
+        this.pause(3000);
+        ud_sealHelper_Client.clickClose();
     }
 
     /**
@@ -78,12 +90,14 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         perks_signupHelper_Client.enterSigninPassword(PASSWORD);
 
         perks_signupHelper_Client.clickSignIn();
+    }
 
+    public void checkPerksHomepageCityFooter () {
 
-        // do all footer checks	for logged in state
-        perks_footerHelper_Client = new Perks_FooterHelper_Client(client);
-        //this.checkPerksHomepageCityFooterLoggedIn();
+    }
 
+    public void returnToPerks() {
+        client.get(PERKS_DOMAIN);
     }
 
     /**
@@ -97,13 +111,15 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         //click logout confirmation OK
         this.pause(3000);
-        client.findElement(By.xpath("//html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span")).click();
+        client.findElement(By.xpath("//html/body/div/div/div[4]/ul/li[3]/a")).click();
 
 
         // do all footer checks	for logged out state
         //perks_footerHelper_Client = new Perks_FooterHelper_Client(client);
         //this.checkPerksHomepageCityFooterLoggedOut();
 
+        WebDriverWait waitForContinue = new WebDriverWait(client, 30);
+        waitForContinue.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span"))).click();
     }
 
     /**
