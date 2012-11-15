@@ -1198,6 +1198,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //		n.      Click Save
 
         client.findElement(By.name("save")).click();
+        this.pause(3000);
 
     }
 
