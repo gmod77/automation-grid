@@ -531,7 +531,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
                 client.switchTo().window(popupHandle2);
 
                 this.pause(3000);
-                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
+                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","//html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
                 client.findElement(By.id("save_button")).click();
                 this.pause(7000);
 
