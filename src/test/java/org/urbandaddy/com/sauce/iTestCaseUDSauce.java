@@ -1534,7 +1534,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         client.findElement(By.name("save")).click();
         this.pause(7000);
-/*
+
 //Click HTML Newsletter, 
 //Click Send Email, 
         //client.findElement(By.xpath("//html/body/div[3]/div/div/table/tbody/tr/td[2]/a[2]"));
@@ -1613,7 +1613,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 // Verify "Email has been sent successfully." success message
         Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Email has been sent successfully."));
 
-*/
     }
 
     /**
