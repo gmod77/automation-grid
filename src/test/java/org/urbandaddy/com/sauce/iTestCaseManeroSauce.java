@@ -279,6 +279,7 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
      *
      */
     public void unSubscribeFromEmails(){
+        //TODO Finishs this
         // Declare helpers
         ud_sealHelper_Client = new UD_SealHelper_Client(client);
         ud_unSubscribeHelper_client = new UD_UnSubscribeHelper_Client(client);
@@ -327,19 +328,12 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
      * "successfully unsubscribed"
      */
     public void unSubscribeMailConfirm(){
+        //TODO
         emailHelper_Client = new EmailHelper_Client(client);
 
         emailHelper_Client.searchEmail("successfully unsubscribed");
     }
 
-    public void silverPopConfirm(){
-        emailHelper_Client = new EmailHelper_Client(client);
-
-        emailHelper_Client.silverPopLogin("gmodin@urbandaddy.com", "commonUD77%");
-        emailHelper_Client.navigateToSearch();
-        Assert.assertTrue(emailHelper_Client.optOutSearch("udtesterjenkins+268_12_59_498@gmail.com"));
-
-    }
 
     public boolean StaleElementHandleByXpath (String email){
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
@@ -377,17 +371,22 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
         manero_headerHelper_client.clickSignUp();
 
         //b. Enter email address
-        WebDriverWait wait = new WebDriverWait(client, 30);
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
-        } catch (TimeoutException TE) {
-            System.out.println("EMAIL BOX NOT FOUND");
-        }
-        // Stale element seems to happen here
 
-        if (!StaleElementHandleByXpath(email)) {
-            throw new ElementNotVisibleException("Email didn't show up");
-        }
+        WebDriverWait waitForBox = new WebDriverWait(client,30);
+        waitForBox.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("box_header")));
+
+//
+//        WebDriverWait wait = new WebDriverWait(client, 30);
+//        try {
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+//        } catch (TimeoutException TE) {
+//            System.out.println("EMAIL BOX NOT FOUND");
+//        }
+//        // Stale element seems to happen here
+//
+//        if (!StaleElementHandleByXpath(email)) {
+//            throw new ElementNotVisibleException("Email didn't show up");
+//        }
         System.out.println("MANERO EMAIL CLIENT> " + email);
 
         //c. Select Editions
