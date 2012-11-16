@@ -17,7 +17,7 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
     }
 
     @Test (groups = {"Regression", "Register" }, retryAnalyzer = Analyzer.class)
-	public void UDregisterAndCheck(){
+	public void ManeroRegistrationCheck(){
         emailHelper_Client = new EmailHelper_Client(client);
 
         date = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
@@ -44,7 +44,7 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
     }
 
     @Test (groups = {"Regression"}, retryAnalyzer = Analyzer.class)
-    public void homePageChecksLoggedOut() {
+    public void ManeroHomePageChecksLoggedOut() {
         Reporter.log("Visiting Home Page for the first time", true);
         visitManeroFirstTime();
 
