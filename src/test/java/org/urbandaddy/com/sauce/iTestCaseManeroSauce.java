@@ -31,6 +31,7 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
     private Manero_HeaderHelper_Client manero_headerHelper_client;
     private Manero_SignupHelper_Client manero_signupHelper_client;
     private Manero_HomepageHelper_Client manero_HomepageHelper_Client;
+    private Manero_LoginHelper_Client manero_loginHelper_client;
 
 ///// Sign-up methods
 
@@ -165,21 +166,21 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
         Assert.assertTrue(manero_HomepageHelper_Client.isShortListPresent());
 
         manero_HomepageHelper_Client.clickCultura();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickEntertainment();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickGadgets();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickMusica();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickNightLife();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickSports();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickStyle();
-        this.pause(7000);
+        //this.pause(7000);
         manero_HomepageHelper_Client.clickTravel();
-        this.pause(7000);
+        //this.pause(7000);
     }
 
     /**
@@ -224,7 +225,7 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
     public void checkManeroHomepageFooterLoggedOut(){
 
         //do all homepage footer checks
-        ud_footerHelper_Client = new UD_FooterHelper_Client(client);
+        manero_footerHelper_client = new Manero_FooterHelper_Client(client);
         Assert.assertTrue(manero_footerHelper_client.isAboutUsHomePresent());
         Assert.assertTrue(manero_footerHelper_client.isAdvertiseHomePresent());
         Assert.assertTrue(manero_footerHelper_client.isChicagoHomePresent());
@@ -559,24 +560,7 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
 ///////////////  Login/SignOut methods
 
     /**
-     * Login using params from this class
-     *
-     */
-    public void loginManero(String emailClient){
-        //TODO Create Manero Login Helper
-        manero_headerHelper_client = new Manero_HeaderHelper_Client(client);
-
-        client.get(MANERO_DOMAIN);
-
-        manero_headerHelper_client.clickMemberLogIn();
-        ud_sealHelper_Client.enterEmailAddress(emailClient);
-        ud_sealHelper_Client.enterPassword(PASSWORD);
-        ud_sealHelper_Client.clickLogin();
-
-    }
-
-    /**
-     * Overloaded login class, use to pass email and PASSWORD in via
+     * Login method, use to pass email and PASSWORD in via
      * other tests.
      * ex. currently used in UD_Unsubscribe_EditionsPerks
      * @param email Email address
@@ -585,20 +569,13 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
     public void loginManero(String email, String pw){
         //TODO Create Overloaded Version
         manero_headerHelper_client = new Manero_HeaderHelper_Client(client);
-        ud_sealHelper_Client = new UD_SealHelper_Client(client);
+        manero_loginHelper_client = new Manero_LoginHelper_Client(client);
 
-        client.get(UD_DOMAIN);
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         manero_headerHelper_client.clickMemberLogIn();
-        ud_sealHelper_Client.enterEmailAddress(email);
-        ud_sealHelper_Client.enterPassword(pw);
-        ud_sealHelper_Client.clickLogin();
+        manero_loginHelper_client.enterEmailAddress(email);
+        manero_loginHelper_client.enterPassword(pw);
+        manero_loginHelper_client.clickLogin();
 
     }
 
@@ -615,15 +592,13 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
      * Perform a PASSWORD reset.
      */
     public void resetPasswordUD(String emailClient){
-        //TODO finish this
-        ud_sealHelper_Client = new UD_SealHelper_Client(client);
+        manero_loginHelper_client = new Manero_LoginHelper_Client(client);
         manero_headerHelper_client = new Manero_HeaderHelper_Client(client);
 
         manero_headerHelper_client.clickMemberLogIn();
-        ud_sealHelper_Client.clickResetPassword();
-        ud_sealHelper_Client.enterEmailToReset(emailClient);
-        ud_sealHelper_Client.clickSend();
-
+        manero_loginHelper_client.clickResetPassword();
+        manero_loginHelper_client.enterEmailToReset(emailClient);
+        manero_loginHelper_client.clickSend();
     }
 
     /**
@@ -632,21 +607,22 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
      *
      */
     public void editSettingsUD(){
-        //TODO finish this
-        ud_sealHelper_Client = new UD_SealHelper_Client(client);
+        manero_loginHelper_client= new Manero_LoginHelper_Client(client);
 
-        ud_sealHelper_Client.clickEditSettings();
-        ud_sealHelper_Client.enterPasswordMyUD(PASSWORD);
-        ud_sealHelper_Client.confirmPasswordMyUD(PASSWORD);
+        manero_loginHelper_client.clickEditSettings();
+        manero_loginHelper_client.editPassword(PASSWORD);
+        manero_loginHelper_client.confirmPassword(PASSWORD);
 
-        ud_sealHelper_Client.checkDC();
-        ud_sealHelper_Client.checkPhilly();
-        ud_sealHelper_Client.checkSeattle();
-        ud_sealHelper_Client.checkDCPerks();
+        manero_loginHelper_client.checkEditionChicago();
+        manero_loginHelper_client.checkEditionNewYork();
+        manero_loginHelper_client.checkEditionNational();
 
-        ud_sealHelper_Client.clickUpdate();
-        this.pause(3000);
-        ud_sealHelper_Client.clickClose();
+        manero_loginHelper_client.clickUpdate();
+
+        WebDriverWait messageWait = new WebDriverWait(client, 30);
+        messageWait.until(ExpectedConditions.visibilityOf(manero_loginHelper_client.checkMessageBox()));
+
+        manero_loginHelper_client.clickClose();
 
     }
 

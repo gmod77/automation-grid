@@ -47,38 +47,38 @@ public class Manero_HomepageHelper_Client extends IHelper_Client {
     }
 
     public void clickMusica() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Musica");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }
 
     public void clickSports() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Sports");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }
     public void clickStyle() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Style");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }
     public void clickEntertainment() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Entertainment");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }
     public void clickGadgets() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Gadgets");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }
     public void clickTravel() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Travel");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }
     public void clickNightLife() {
-        String str = signupReader.getLocator("HomePageFirstTimeVisitor.Cultura");
+        String str = signupReader.getLocator("HomePageFirstTimeVisitor.NightLife");
         WebElement el = findElementAndCheckBy(str,timeOut);
         el.click();
     }

@@ -3,12 +3,12 @@
 
     <Step1>
    	    <Email><![CDATA[email]]></Email>
-        <SelectEditionsChicago><![CDATA[//.//html/body/div[5]/div/form/fieldset/div/ul/li[2]/div]]></SelectEditionsChicago>
-        <SelectEditionsMiami><![CDATA[//.//html/body/div[5]/div/form/fieldset/div/ul/li[3]/div]]></SelectEditionsMiami>
-        <SelectEditionsNewYork><![CDATA[//.//html/body/div[5]/div/form/fieldset/div/ul/li[4]/div]]></SelectEditionsNewYork>
-        <SelectEditionsLosAngeles><![CDATA[//.//html/body/div[5]/div/form/fieldset/div/ul/li[5]/div]]></SelectEditionsLosAngeles>
-        <SelectEditionsNational><![CDATA[//.//html/body/div[5]/div/form/fieldset/div/ul/li/div]]></SelectEditionsNational>
-        <SelectEditionsHouston><![CDATA[//.//html/body/div[5]/div/form/fieldset/div/ul/li[6]/div]]></SelectEditionsHouston>
+        <SelectEditionsChicago><![CDATA[//.//*[@id='sign_up_editions']/ul/li[2]/div]]></SelectEditionsChicago>
+        <SelectEditionsMiami><![CDATA[//.//*[@id='sign_up_editions']/ul/li[3]/div]]></SelectEditionsMiami>
+        <SelectEditionsNewYork><![CDATA[//.//*[@id='sign_up_editions']/ul/li[4]/div]]></SelectEditionsNewYork>
+        <SelectEditionsLosAngeles><![CDATA[//.//*[@id='sign_up_editions']/ul/li[5]/div]]></SelectEditionsLosAngeles>
+        <SelectEditionsNational><![CDATA[//.//*[@id='sign_up_editions']/ul/li/div]]></SelectEditionsNational>
+        <SelectEditionsHouston><![CDATA[//.//*[@id='sign_up_editions']/ul/li[6]/div]]></SelectEditionsHouston>
 
        	<Join><![CDATA[//.//*[@id='myaccount_signup']/input]]></Join>
    	    <ErrorMessage><![CDATA[//.//*[@id='sign_up_box']/div[2]]]></ErrorMessage>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<locators>
+	<Signon>
+      <EmailAddress><![CDATA[email_address]]></EmailAddress>
+      <Password><![CDATA[password]]></Password>
+      <Login><![CDATA[//.//*[@id='myaccount_login']/input]]></Login>
+      <ResetPasswordLink><![CDATA[//.//*[@id='login']/div[2]/a]]></ResetPasswordLink>
+   </Signon>
+   <ResetPassword>
+   	  <ResetEmail><![CDATA[//.//*[@id='email']]]></ResetEmail>
+   	  <Send><![CDATA[//.//*[@id='myaccount_forgot_password']/div[1]/input]]></Send>
+      <Cancel><![CDATA[//.//*[@id='myaccount_forgot_password']/div[1]/a]]></Cancel>
+   </ResetPassword>
+   <Settings>
+   	  <EditSettings><![CDATA[//.//*[@id='account_header']/a]]></EditSettings>
+      <EditEmail><![CDATA[//.//*[@id='email']]]></EditEmail>
+      <EditPassword><![CDATA[//.//*[@id='password']]]></EditPassword>
+      <ConfirmPassword><![CDATA[//.//*[@id='confirm_password']]]></ConfirmPassword>
+      <DefaultCity><![CDATA[//.//*[@id='myaccount_edit']/ul/li[3]/div]]></DefaultCity>
+      <FirstName><![CDATA[//.//*[@id='first_name']]]></FirstName>
+      <LastName><![CDATA[//.//*[@id='last_name']]]></LastName>
+      <Gender><![CDATA[//.//*[@id='myaccount_edit']/ul/li[6]/div]]></Gender>
+      <ZipCode><![CDATA[//.//*[@id='zip']]]></ZipCode>
+      <Birthdate><![CDATA[//.//*[@id='birthdate']]]></Birthdate>
+      <EditionChicago><![CDATA[//.//*[@id='myaccount_edit']/div[2]/div[1]/div]]></EditionChicago>
+      <EditionMiami><![CDATA[//.//*[@id='myaccount_edit']/div[2]/div[2]/div]]></EditionMiami>
+      <EditionNewYork><![CDATA[//.//*[@id='myaccount_edit']/div[2]/div[3]/div]]></EditionNewYork>
+      <EditionLA><![CDATA[//.//*[@id='myaccount_edit']/div[2]/div[4]/div]]></EditionLA>
+      <EditionNational><![CDATA[//.//*[@id='myaccount_edit']/div[2]/div[5]/div]]></EditionNational>
+      <EditionHouston><![CDATA[//.//*[@id='myaccount_edit']/div[2]/div[6]/div]]></EditionHouston>
+
+      <Update><![CDATA[//.//*[@id='myaccount_edit']/div[3]/input]]></Update>
+      <MessageBox><![CDATA[//.//*[@id='edit-settings']/div[2]]]></MessageBox>
+   	  <Close><![CDATA[//html/body/div[3]/a]]></Close>
+   </Settings>
+
+</locators>
