@@ -1,6 +1,7 @@
 package org.urbandaddy.com.sauce;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.urbandaddy.com.common.UDBase;
@@ -119,7 +120,11 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         //this.checkPerksHomepageCityFooterLoggedOut();
 
         WebDriverWait waitForContinue = new WebDriverWait(client, 30);
-        waitForContinue.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span"))).click();
+        try {
+            waitForContinue.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span"))).click();
+        } catch (UnhandledAlertException uae) {
+            //Workaround for Safari
+        }
     }
 
     /**
