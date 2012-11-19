@@ -13,11 +13,11 @@
 		</classes>
 	</test>
 
-    <test name="Article_Share">
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest"/>
-        </classes>
-    </test>
+    <!--<test name="Article_Share">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
     <test name="Article_Save">
         <classes>
