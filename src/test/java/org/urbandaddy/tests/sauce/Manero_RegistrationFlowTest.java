@@ -75,23 +75,23 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
 //
 //    }
 //
-//    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
-//    public void verifyUDEmailsReceived(){
-//        emailHelper_Client = new EmailHelper_Client(client);
-//
-//        Reporter.log("Log in to Gmail", true);
-//        emailHelper_Client.loginToGmail();
-//
-//        Reporter.log("Verify Welcome to UD Email was received", true);
-//        emailHelper_Client.verifyWelcomeUDEmailReceived(emailClient);
-//
-//        Reporter.log("Verify Invitation Email was received", true);
-//        emailHelper_Client.verifyInvitationsUDEmailsReceived(emailFriends);
-//
+    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
+    public void verifyUDEmailsReceived(){
+        emailHelper_Client = new EmailHelper_Client(client);
+
+        Reporter.log("Log in to Gmail", true);
+        emailHelper_Client.loginToGmail();
+
+        Reporter.log("Verify Welcome to UD Email was received", true);
+        emailHelper_Client.verifyWelcomeManeroEmailReceived(emailClient);
+
+        Reporter.log("Verify Invitation Email was received", true);
+        emailHelper_Client.verifyInvitationsManeroEmailsReceived(emailFriends);
+
 //        Reporter.log("Verify Password Reset Email was received", true);
 //        emailHelper_Client.verifyResetPasswordUDRequestReceivedandPasswordReset(emailClient);
 //
 //        Reporter.log("Verify Edit Settings Email was received", true);
 //        emailHelper_Client.verifyEditSettingsUDEmailReceived(emailClient);
-//    }
+    }
 }

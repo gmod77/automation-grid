@@ -48,8 +48,6 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         return arr;
     }
 
-
-
 	public void clientLogInToGmail(){
 		//make sure you're logged out first 
 		client.get(GOOGLE_EMAIL_LINK);
@@ -117,245 +115,6 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         }
     }
 
-	public void findSignupEmail (String searchString, int timeout){
-
-        Boolean flag = false;
-        Integer counter = 0;
-
-        // find search box and enter the searchString parameter
-
-		//assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(timeout);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-	}
-	
-	public void findInvitationEmail1 (String searchString){
-
-        Boolean flag = false;
-        Integer counter = 0;
-        // find search box and enter the searchString parameter
-
-        //assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-    }
-
-	public void findInvitationEmail2 (String searchString){
-
-        Boolean flag = false;
-        Integer counter = 0;
-        // find search box and enter the searchString parameter
-
-        //assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-    }
-	
-	public void findInvitationEmail3 (String searchString){
-
-        Boolean flag = false;
-        Integer counter = 0;
-        // find search box and enter the searchString parameter
-
-        //assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-    }
-	
-	public void findInvitationEmail4 (String searchString){
-
-        Boolean flag = false;
-        Integer counter = 0;
-        // find search box and enter the searchString parameter
-
-        //assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-    }
-
-	public void findInvitationEmail5 (String searchString){
-
-        Boolean flag = false;
-        Integer counter = 0;
-        // find search box and enter the searchString parameter
-
-        //assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-    }
-	
-	public void findResetEmailRequest (String searchString){
-
-        Boolean flag = false;
-        Integer counter = 0;
-        // find search box and enter the searchString parameter
-
-        //assuming the single correct result came back, click that email
-
-        do {
-            try {
-                String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
-                //el1.sendKeys(searchString);
-                el1.clear();
-                el1.sendKeys(searchString);
-
-                //find search mail button and click it
-                String smb = checkEmailReader.getLocator("Gmail.SearchMailButton");
-                WebElement el2 = findElementAndCheckBy(smb,5);
-                el2.click();
-                client.findElement(By.cssSelector(".ts")).click();
-                flag = true;
-            } catch (NoSuchElementException e) {
-                counter++;
-                System.out.println("Email wasn't found, trying again");
-                pause(5000);
-            }
-        } while (!flag && counter<3);
-
-        if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
-        }
-    }
-
     public String getResetEmailLink () {
         WebElement link = client.findElement(By.partialLinkText("here"));
         return link.getAttribute("href");
@@ -389,15 +148,10 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     public void navigateToSearch() {
 
         WebElement dbSection = findElementAndCheckBy("classname","borderRight",10);
-
         dbSection.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/table/tbody/tr/td/div/div/div[3]/div/table[2]/tbody/tr[2]/td/ul/li[5]/a")).click();
-
         WebElement dbs = findElementAndCheckBy("xpath","//*[@id=\"UD Dev\"]",10);
-
         dbs.click();
-
         WebElement searchTab = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div/div[4]/div/div[3]/div/div/div/span",10);
-
         searchTab.click();
     }
 
@@ -443,11 +197,29 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     }
 
     /**
+     * Check for Welcome to Manero email is received
+     */
+    public void verifyWelcomeManeroEmailReceived(String emailClient){
+        Reporter.log("Searching for Welcome Email",true);
+        doEmailSearch("to: " + emailClient + " subject: We Embrace You", 10000);
+    }
+
+    /**
+     * Check that invitation emails were received
+     */
+    public void verifyInvitationsManeroEmailsReceived(String[] friends){
+        for (int i = 0; i<friends.length; i++) {
+            Reporter.log("Searching for invitation email to friend " + (i+1),true);
+            doEmailSearch("to: "+ friends[i]+" subject: You've been invited to join Manero Club Social y Deportivo",10000);
+        }
+    }
+
+    /**
      * Check for Welcome to UD email is received
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
         Reporter.log("Searching for Welcome Email",true);
-        findSignupEmail("to: " + emailClient + " subject: Welcome to the Club", 10000);
+        doEmailSearch("to: " + emailClient + " subject: Welcome to the Club", 10000);
 
     }
 
@@ -481,7 +253,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyResetPasswordUDRequestReceivedandPasswordReset(String emailClient){
         Reporter.log("Searching for password reset link",true);
-        findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
+        doEmailSearch("to: "+emailClient+" subject: UD | Password Reset Request", 10000);
         String link = getResetEmailLink();
 
         //client.get(link);
@@ -500,7 +272,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyEditSettingsUDEmailReceived(String emailClient){
         Reporter.log("Searching for account settings change mail",true);
-        findInvitationEmail1("to: " + emailClient + " subject: You've Changed");
+        doEmailSearch("to: " + emailClient + " subject: You've Changed", 10000);
     }
 
     /**

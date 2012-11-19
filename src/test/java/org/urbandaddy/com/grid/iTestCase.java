@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import org.testng.internal.Nullable;
 import org.urbandaddy.com.helpers.*;
 
 import java.io.File;
@@ -343,7 +342,7 @@ public abstract class iTestCase extends TestCase {
 
         emailHelper_Client = new EmailHelper_Client(client);
 
-        emailHelper_Client.findSignupEmail("to: "+emailClient+" subject: Welcome to the Club",10000);
+        emailHelper_Client.doEmailSearch("to: "+emailClient+" subject: Welcome to the Club", 10000);
     }
 
     /**
@@ -352,11 +351,11 @@ public abstract class iTestCase extends TestCase {
     public void verifyInvitationsUDEmailsReceived(){
         emailHelper_Client = new EmailHelper_Client(client);
 
-        emailHelper_Client.findInvitationEmail1("to: "+emailFriend1+" subject: You're Invited");
-        emailHelper_Client.findInvitationEmail2("to: "+emailFriend2+" subject: You're Invited");
-        emailHelper_Client.findInvitationEmail3("to: "+emailFriend3+" subject: You're Invited");
-        emailHelper_Client.findInvitationEmail4("to: "+emailFriend4+" subject: You're Invited");
-        emailHelper_Client.findInvitationEmail5("to: "+emailFriend5+" subject: You're Invited");
+        emailHelper_Client.doEmailSearch("to: "+emailFriend1+" subject: You're Invited", 10000);
+        emailHelper_Client.doEmailSearch("to: "+emailFriend2+" subject: You're Invited", 10000);
+        emailHelper_Client.doEmailSearch("to: "+emailFriend3+" subject: You're Invited", 10000);
+        emailHelper_Client.doEmailSearch("to: "+emailFriend4+" subject: You're Invited", 10000);
+        emailHelper_Client.doEmailSearch("to: "+emailFriend5+" subject: You're Invited", 10000);
     }
 
     /**
@@ -367,7 +366,7 @@ public abstract class iTestCase extends TestCase {
         //  resetEmailHelper_Client = new ResetEmailHelper_Client(client);
         //  ud_sealHelper_Client = new UD_SealHelper_Client(client);
 
-        emailHelper_Client.findResetEmailRequest("to: "+emailClient+" subject: UD | Password Reset Request");
+        emailHelper_Client.doEmailSearch("to: "+emailClient+" subject: UD | Password Reset Request", 10000);
         String link = emailHelper_Client.getResetEmailLink();
         //client.get(link);
         System.out.println(link);
@@ -385,7 +384,7 @@ public abstract class iTestCase extends TestCase {
     public void verifyEditSettingsUDEmailReceived(){
         emailHelper_Client = new EmailHelper_Client(client);
 
-        emailHelper_Client.findInvitationEmail1("to: "+emailClient+" subject: You've Changed");
+        emailHelper_Client.doEmailSearch("to: "+emailClient+" subject: You've Changed", 10000);
     }
 
     /**
@@ -396,7 +395,7 @@ public abstract class iTestCase extends TestCase {
     public void verifyEditSettingsUDEmailReceived(String email){
         emailHelper_Client = new EmailHelper_Client(client);
 
-        emailHelper_Client.findInvitationEmail1("to: " + email + " subject: You've Changed");
+        emailHelper_Client.doEmailSearch("to: " + email + " subject: You've Changed", 10000);
     }
 
     /**
