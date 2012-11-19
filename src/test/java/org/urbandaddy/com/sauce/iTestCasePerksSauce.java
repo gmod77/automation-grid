@@ -1,6 +1,7 @@
 package org.urbandaddy.com.sauce;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.urbandaddy.com.common.UDBase;
@@ -119,7 +120,11 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         //this.checkPerksHomepageCityFooterLoggedOut();
 
         WebDriverWait waitForContinue = new WebDriverWait(client, 30);
-        waitForContinue.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span"))).click();
+        try {
+            waitForContinue.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span"))).click();
+        } catch (UnhandledAlertException uae) {
+            //Workaround for Safari
+        }
     }
 
     /**
@@ -255,35 +260,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      */
     public void signUpPerks_viaNewYorkStep3(String[] friends){
 
-
-        //	perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
-        //	perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-        //
-        //	perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
-
-        //step3, 3rd signup modal: Invite Friends
-
-//		ud_signupHelper_Client.clickInvite();
-
         for (int i = 0; i < friends.length; i++) {
             perks_signupHelper_Client.enterEmailFriend(friends[i],(i+1));
             System.out.println(friends[i]);
         }
-
-
-
-//        perks_signupHelper_Client.enterEmailFriend1(emailFriend1);
-//        perks_signupHelper_Client.enterEmailFriend2(emailFriend2);
-//        perks_signupHelper_Client.enterEmailFriend3(emailFriend3);
-//        perks_signupHelper_Client.enterEmailFriend4(emailFriend4);
-//        perks_signupHelper_Client.enterEmailFriend5(emailFriend5);
-//
-//        System.out.println(emailFriend1);
-//        System.out.println(emailFriend2);
-//        System.out.println(emailFriend3);
-//        System.out.println(emailFriend4);
-//        System.out.println(emailFriend5);
-
 
 
         perks_signupHelper_Client.clickInvite();

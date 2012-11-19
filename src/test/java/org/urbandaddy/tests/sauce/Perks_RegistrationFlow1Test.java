@@ -32,8 +32,10 @@ public class Perks_RegistrationFlow1Test extends iTestCasePerksSauce {
 
         editSettingsPerks();
 		//doChecksCityHomePageLoggedIn();
-				
+
+        returnToPerks();
 		logoutPerks();
+
         visitPerksFirstTime();//return to homepage
 		resetPasswordPerks(emailClient);
 		
@@ -45,22 +47,11 @@ public class Perks_RegistrationFlow1Test extends iTestCasePerksSauce {
         emailHelper_Client = new EmailHelper_Client(client);
 
 		emailHelper_Client.loginToGmail();
-		
+
 		emailHelper_Client.verifyWelcomeUDEmailReceived(emailClient);
 		emailHelper_Client.verifyInvitationsUDEmailsReceived(emailFriends);
 		//verifyEditSettingsUDEmailReceived();
 		emailHelper_Client.verifyResetPasswordUDRequestReceivedandPasswordReset(emailClient);
-		
-
-//		
-//		logoutUD();
-//		doChecksCityHomePageLoggedOut();
-//		
-//		signInPerks();
-//		editSettingsPerks();
-//		logoutPerks();
-		
-//		doChecksCityHomePageLoggedIn();
 
 	}
 }
