@@ -253,7 +253,7 @@ public abstract class iTestCaseManeroSauce extends iSauceBase implements UDBase 
     public void checkManeroHomePageFooterLoggedIn(){
 
         //do all city homepage footer checks for logged in state
-        ud_footerHelper_Client = new UD_FooterHelper_Client(client);
+        manero_footerHelper_client = new Manero_FooterHelper_Client(client);
         Assert.assertTrue(manero_footerHelper_client.isAboutUsHomePresent());
         Assert.assertTrue(manero_footerHelper_client.isAdvertiseHomePresent());
         Assert.assertTrue(manero_footerHelper_client.isChicagoHomePresent());

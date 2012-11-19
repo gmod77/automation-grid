@@ -16,7 +16,7 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
         emailFriends = new String[5];
     }
 
-    @Test (groups = {"Regression", "Register" }, retryAnalyzer = Analyzer.class)
+    @Test(groups = {"Regression", "Register" }, retryAnalyzer = Analyzer.class)
 	public void ManeroRegistrationCheck(){
         emailHelper_Client = new EmailHelper_Client(client);
 
@@ -37,9 +37,9 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
         Reporter.log("Sign u Step 4",true);
         signUpManeroStep4();
 
-
         Reporter.log("Log out", true);
 		logoutManero();
+
 
     }
 
@@ -52,29 +52,30 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
 
         Reporter.log("Check Header", true);
         checkManeroHomepageHeaderLoggedOut();
+
         Reporter.log("Check Footer", true);
         checkManeroHomepageFooterLoggedOut();
 
     }
 
-//    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
-//    public void homePageChecksLoggedIn() {
-//        Reporter.log("Visiting Home Page for the first time", true);
-//        visitManeroFirstTime();
-//
-//        Reporter.log("Login");
-//        loginManero(emailClient,PASSWORD);
-//
-//        Reporter.log("Check Header",true);
-//        checkManeroHomepageHeaderLoggedIn();
-//
-//        client.navigate().refresh();
-//
-//        Reporter.log("Check Footer", true);
-//        checkManeroHomePageFooterLoggedIn();
-//
-//    }
-//
+    @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
+    public void homePageChecksLoggedIn() {
+        Reporter.log("Visiting Home Page for the first time", true);
+        visitManeroFirstTime();
+
+        Reporter.log("Login");
+        loginManero(emailClient,PASSWORD);
+
+        Reporter.log("Check Header",true);
+        checkManeroHomepageHeaderLoggedIn();
+
+        //client.navigate().refresh();
+
+        Reporter.log("Check Footer", true);
+        checkManeroHomePageFooterLoggedIn();
+
+    }
+
     @Test (groups = {"Regression"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
     public void verifyUDEmailsReceived(){
         emailHelper_Client = new EmailHelper_Client(client);
@@ -88,10 +89,5 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
         Reporter.log("Verify Invitation Email was received", true);
         emailHelper_Client.verifyInvitationsManeroEmailsReceived(emailFriends);
 
-//        Reporter.log("Verify Password Reset Email was received", true);
-//        emailHelper_Client.verifyResetPasswordUDRequestReceivedandPasswordReset(emailClient);
-//
-//        Reporter.log("Verify Edit Settings Email was received", true);
-//        emailHelper_Client.verifyEditSettingsUDEmailReceived(emailClient);
     }
 }
