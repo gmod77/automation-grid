@@ -3,6 +3,7 @@ package org.urbandaddy.com.common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 
 import java.util.List;
 
@@ -155,7 +156,7 @@ public class IHelper_Client {
 
         do {
             try {
-                System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
+                Reporter.log("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
                     public WebElement apply(WebDriver d) {
@@ -173,15 +174,15 @@ public class IHelper_Client {
                         } else if (type.equals("id")) {
                             ret = d.findElement(By.id(ele));
                         }
-                        System.out.println("Found> " + ele);
+                        Reporter.log("Found> " + ele);
                         return ret;
                     }
                 });
                 flag = true;
             } catch (TimeoutException e) {
                 counter++;
-                System.out.println("Attempt " + counter + ": Could not find> " + ele);
-                System.out.println("Trying again");
+                Reporter.log("Attempt " + counter + ": Could not find> " + ele);
+                Reporter.log("Trying again");
             }
         } while (counter <= 2 && !flag);
         if (a == null) {
@@ -199,7 +200,7 @@ public class IHelper_Client {
 
         do {
             try {
-                System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
+                Reporter.log("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
                     public WebElement apply(WebDriver d) {
@@ -226,7 +227,7 @@ public class IHelper_Client {
 
         do {
             try {
-                System.out.println("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
+                Reporter.log("Trying to find the element> " + ele + "\nTimeout in> " + timeout + " seconds.");
                 a = (new WebDriverWait(client, timeout)).until(new ExpectedCondition<WebElement>() {
                     @Override
                     public WebElement apply(WebDriver d) {
