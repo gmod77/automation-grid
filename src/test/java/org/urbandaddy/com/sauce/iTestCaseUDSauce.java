@@ -103,7 +103,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         String articleTitle = iHelper_client.findElementAndCheckBy("xpath","//html/body/div/div[3]/div/div/h1/span",5).getText();
         System.out.println("Article Title> " + articleTitle);
         // Click on the Forward button
-        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='weekenderContentHolder']/div[1]/div[8]/a[1]",5).click();
+        iHelper_client.findElementAndCheckBy("xpath",".//*[@id='shareTools']/div[2]/a[3]",5).click();
 
         // Handle popup window
         String handler = popUpHandler("Forward to a Friend",client);
@@ -158,13 +158,13 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         bigFiveBox.findElement(By.className("boxOne")).findElement(By.tagName("a")).click();
 
         // Click the save button
-        findElementAndCheckBy("xpath","//*[@id=\"buttonSave\"]",10).click();
+        findElementAndCheckBy("xpath",".//*[@id='shareTools']/div[2]/a[4]",10).click();
 
         // Save the URL
         String url = client.getCurrentUrl();
 
         // Confirm save button disappeared
-        Assert.assertFalse(client.findElement(By.xpath("//*[@id=\"buttonSave\"]")).isDisplayed());
+        Assert.assertFalse(client.findElement(By.xpath(".//*[@id='shareTools']/div[2]/a[4]")).isDisplayed());
 
         // Navigate to MyUD
         client.get("http://ud-branch.thedaddy.co/myud");

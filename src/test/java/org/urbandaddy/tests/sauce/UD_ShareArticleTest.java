@@ -41,7 +41,7 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         shareArticle(emailClientA, emailFriendsA);
     }
 
-    @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedOut"})
+    @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedOut"}, retryAnalyzer = Analyzer.class)
     public void checkSharedArticleLoggedOut(){
         emailHelper_Client = new EmailHelper_Client(client);
 
@@ -86,7 +86,7 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         shareArticle(emailClientB, emailFriendsB);
     }
 
-    @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedIn"})
+    @Test (groups = {"shareArticle"}, dependsOnGroups = {"shareloggedIn"}, retryAnalyzer = Analyzer.class)
     public void checkSharedArticleLoggedIn() {
         emailHelper_Client = new EmailHelper_Client(client);
 
