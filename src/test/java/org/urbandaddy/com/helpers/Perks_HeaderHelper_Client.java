@@ -34,11 +34,8 @@ public class Perks_HeaderHelper_Client extends IHelper_Client {
 	}
 	
 	public boolean isMyAccountAccessible(){
-
-		if (client.getCurrentUrl().equals("http://ud-branch.thedaddy.co/myud"))
-			return true;
-		return false;
-	}
+        return client.getCurrentUrl().contains("http://ud-branch.thedaddy.co/myud");
+    }
 	
 	public void clickSignUp(){
 		String str = headerReader.getLocator("LoggedOutHeader.SignUp");

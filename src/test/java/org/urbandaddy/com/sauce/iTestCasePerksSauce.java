@@ -108,17 +108,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
 
+        //click logout in header
         perks_headerHelper_Client.clickLogout();
 
-        //click logout confirmation OK
-        this.pause(3000);
-        client.findElement(By.xpath("//html/body/div/div/div[4]/ul/li[3]/a")).click();
-
-
-        // do all footer checks	for logged out state
-        //perks_footerHelper_Client = new Perks_FooterHelper_Client(client);
-        //this.checkPerksHomepageCityFooterLoggedOut();
-
+        //click logout confirmation
         WebDriverWait waitForContinue = new WebDriverWait(client, 30);
         try {
             waitForContinue.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div[2]/div/a/span"))).click();

@@ -98,7 +98,7 @@ public class UD_SealHelper_Client extends IHelper_Client {
 
     public void clickEditSettingsMyUD(){
         String str = sealReader.getLocator("Settings.EditSettingsMyUd");
-        WebElement el = findElementAndCheckBy(str);
+        WebElement el = findElementAndCheckBy(str, 20);
         el.click();
     }
 
