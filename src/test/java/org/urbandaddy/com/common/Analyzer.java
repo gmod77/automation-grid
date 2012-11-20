@@ -13,7 +13,7 @@ import org.testng.ITestResult;
 
 public class Analyzer implements IRetryAnalyzer {
     private int count = 0;
-    private int maxCount = 1;
+    private int maxCount = 0;
 
     public Analyzer() {
         System.out.println(" ModeledAnalyzer constructor "

@@ -43,12 +43,12 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.get(UD_DOMAIN);
         client.manage().deleteAllCookies();
         client.get(UD_DOMAIN);
-        client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
 
+        client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
     }
 
-    public String getUdCookie (WebDriver client) {
-        return client.manage().getCookieNamed("udsubpop").toString();
+    public Set<Cookie> getUdCookie() {
+        return client.manage().getCookies();
     }
 
     public void doHomePageChecks() {
@@ -2207,52 +2207,47 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         Assert.assertTrue(ud_headerHelper_Client.isKemptPresent());
         Assert.assertTrue(ud_headerHelper_Client.isMobilePresent());
 
-        ud_headerHelper_Client.clickNightlife();
-        this.pause(7000);
-        Assert.assertTrue(isNightlifeAccessible());
-        ud_headerHelper_Client.clickFood();
-        this.pause(7000);
-        Assert.assertTrue(isFoodAccessible());
-        ud_headerHelper_Client.clickStyle();
-        this.pause(7000);
-        Assert.assertTrue(isStyleAccessible());
-        ud_headerHelper_Client.clickGear();
-        this.pause(7000);
-        Assert.assertTrue(isGearAccessible());
-        ud_headerHelper_Client.clickLeisure();
-        this.pause(7000);
-
         lastURL = client.getCurrentUrl();
 
-        Assert.assertTrue(isLeisureAccessible());
+        ud_headerHelper_Client.clickNightlife();
+        this.pause(7000);
+        Assert.assertTrue(isNightlifeAccessible(),"Night Life Wasn't Accessible");
+        ud_headerHelper_Client.clickFood();
+        this.pause(7000);
+        Assert.assertTrue(isFoodAccessible(),"Food wasn't accessible");
+        ud_headerHelper_Client.clickStyle();
+        this.pause(7000);
+        Assert.assertTrue(isStyleAccessible(), "Style wasn't accessible");
+        ud_headerHelper_Client.clickGear();
+        this.pause(7000);
+        Assert.assertTrue(isGearAccessible(), "Gear wasn't accessible");
+        ud_headerHelper_Client.clickLeisure();
+        this.pause(7000);
+        Assert.assertTrue(isLeisureAccessible(),"Leisure wasn't accessible");
+
         ud_headerHelper_Client.clickDriven();
         this.pause(7000);
-        Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible());
-        //client.navigate().back();
+        Assert.assertTrue(ud_headerHelper_Client.isDrivenAccessible(), "Driven wasn't accessible");
         client.get(lastURL);
 
         ud_headerHelper_Client.clickPerks();
         this.pause(7000);
-        Assert.assertTrue(isPerksAccessible());
-        //client.navigate().back();
+        Assert.assertTrue(isPerksAccessible(),"Perks wasn't accessible");
         client.get(lastURL);
 
         ud_headerHelper_Client.clickParties();
         this.pause(7000);
-        Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible());
-        //client.navigate().back();
+        Assert.assertTrue(ud_headerHelper_Client.isPartiesAccessible(), "Parties wasn't accessible");
         client.get(lastURL);
 
         ud_headerHelper_Client.clickKempt();
         this.pause(7000);
-        Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible());
-        //client.navigate().back();
+        Assert.assertTrue(ud_headerHelper_Client.isKemptAccessible(), "Kempt wasn't accessible");
         client.get(lastURL);
 
         ud_headerHelper_Client.clickMobile();
         this.pause(7000);
-        Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible());
-        //client.navigate().back();
+        Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible(), "Mobile wasn't accessible");
         client.get(lastURL);
 
 
@@ -3179,17 +3174,17 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         client.get(UD_DOMAIN);
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         ud_headerHelper_Client.clickMemberLogIn();
         ud_sealHelper_Client.enterEmailAddress(email);
         ud_sealHelper_Client.enterPassword(pw);
         ud_sealHelper_Client.clickLogin();
 
+        WebDriverWait accountVisible = new WebDriverWait(client, 60);
+        try {
+            accountVisible.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")));
+        } catch (TimeoutException TE) {
+            throw new TimeoutException("POST TOOK TOO LONG");
+        }
     }
 
     /**

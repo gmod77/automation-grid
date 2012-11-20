@@ -31,24 +31,21 @@ public class UD_SealHelper_Client extends IHelper_Client {
 	
 	public void enterEmailAddress(String emailAdress){
 		
-		String str = sealReader.getLocator("Signon.EmailAddress");		
-		////this.WaitForElementPresent(str, 20);		
-		WebElement el = findElementAndCheckBy(str);
-		el.clear();
+		String str = sealReader.getLocator("Signon.EmailAddress");
+		WebElement el = findElementAndCheckBy(str,20);
+		//el.clear();
 		el.sendKeys(emailAdress);
 	}
 	
 	public void enterPassword(String password){
 		String str = sealReader.getLocator("Signon.Password");
-		//this.WaitForElementPresent(str, 20);
-		WebElement el = findElementAndCheckBy(str);
-		el.clear();
+		WebElement el = findElementAndCheckBy(str,20);
+		//el.clear();
 		el.sendKeys(password);
 	}
 	
 	public void clickLogin(){
 		String str = sealReader.getLocator("Signon.Login");
-		//this.WaitForElementPresent(str, 20);
 		WebElement el = findElementAndCheckBy(str);
 		el.click();
 	}
