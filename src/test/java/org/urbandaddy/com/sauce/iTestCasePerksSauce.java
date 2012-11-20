@@ -261,11 +261,6 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         perks_signupHelper_Client.clickInvite();
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 //		perks_signupHelper_Client.clickSkip();
     }
 
@@ -275,7 +270,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      */
     public void signUpPerks_viaNewYorkStep4(){
         //step4, 4th signup modal confirmation, close final confirm signup box
-        this.pause(3000);
+
+        WebDriverWait ThankYouWindow = new WebDriverWait(client, 30);
+        ThankYouWindow.until(ExpectedConditions.visibilityOfElementLocated(By.className("close-button")));
+
         perks_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }

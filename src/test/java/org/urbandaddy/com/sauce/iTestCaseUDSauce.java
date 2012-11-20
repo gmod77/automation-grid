@@ -2883,7 +2883,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         ud_signupHelper_Client.clickJoin();
 
         //Wait for the ajax response back. The email address will be displayed in the 'Seal' sign up box.
-        WebDriverWait accountVisible = new WebDriverWait(client, 60);
+        WebDriverWait accountVisible = new WebDriverWait(client, 90);
         try {
             accountVisible.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")));
         } catch (TimeoutException TE) {

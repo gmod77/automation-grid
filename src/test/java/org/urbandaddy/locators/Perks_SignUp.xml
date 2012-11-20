@@ -80,7 +80,7 @@
    </Step3>
    
    <Step4>
-   	  <FinalConfirmationModal><![CDATA[//html/body/div[5]/div[2]/div/div]]></FinalConfirmationModal>
+   	  <FinalConfirmationModal><![CDATA[//.//*[@id='modalContent']/div/div[1]]]></FinalConfirmationModal>
    </Step4>
    
 </locators>
