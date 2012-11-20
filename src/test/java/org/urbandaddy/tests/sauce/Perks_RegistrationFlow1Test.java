@@ -42,16 +42,16 @@ public class Perks_RegistrationFlow1Test extends iTestCasePerksSauce {
 		//doChecksCityHomePageLoggedOut();
 
     }
-//    @Test (dependsOnGroups = {"perkSmoke"}, retryAnalyzer = Analyzer.class)
-//    public void perksConfirm() {
-//        emailHelper_Client = new EmailHelper_Client(client);
-//
-//		emailHelper_Client.loginToGmail();
-//
-//		emailHelper_Client.verifyWelcomeUDEmailReceived(emailClient);
-//		emailHelper_Client.verifyInvitationsUDEmailsReceived(emailFriends);
-//		//verifyEditSettingsUDEmailReceived();
-//		emailHelper_Client.verifyResetPasswordUDRequestReceivedandPasswordReset(emailClient);
-//
-//	}
+    @Test (dependsOnGroups = {"perkSmoke"}, retryAnalyzer = Analyzer.class)
+    public void perksConfirm() {
+        emailHelper_Client = new EmailHelper_Client(client);
+
+		emailHelper_Client.loginToGmail();
+
+		emailHelper_Client.verifyWelcomeUDEmailReceived(emailClient);
+		emailHelper_Client.verifyInvitationsUDEmailsReceived(emailFriends);
+		//verifyEditSettingsUDEmailReceived();
+		emailHelper_Client.verifyResetPasswordUDRequestReceivedandPasswordReset(emailClient);
+
+	}
 }
