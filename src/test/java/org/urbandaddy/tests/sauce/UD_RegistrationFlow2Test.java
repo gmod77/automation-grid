@@ -41,17 +41,24 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
         signUpUD_viaNewYorkStep4();
 
         Reporter.log("Edit settings", true);
- 		editSettingsUD();
+		editSettingsUD();
 
         Reporter.log("Log out", true);
 		logoutUD();
 
-        Reporter.log("Return to homepage", true);
-        goBackToUDHomepage();
+    }
 
-        Reporter.log("Complete a password reset", true);
-		resetPasswordUD(emailClient);
+    @Test (groups = {"Regression", "PWReset"}, dependsOnGroups = {"Register"}, retryAnalyzer = Analyzer.class)
+    public void ResetUDAccountPW() {
 
+        Reporter.log("Visiting Home Page for the first time", true);
+        visitUDFirstTime();
+
+        Reporter.log("Access New York from the UD Homepage", true);
+        accessNewYorkFromUDHomepage();
+
+        Reporter.log("Do Password Reset", true);
+        resetPasswordUD(emailClient);
     }
 
     @Test (groups = {"Regression"}, retryAnalyzer = Analyzer.class)
