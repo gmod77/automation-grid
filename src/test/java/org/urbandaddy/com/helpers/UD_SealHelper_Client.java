@@ -56,7 +56,7 @@ public class UD_SealHelper_Client extends IHelper_Client {
 	public void clickResetPassword(){
 		String str = sealReader.getLocator("Signon.ResetPasswordLinkSub");
 		//this.WaitForElementPresent(str, 20);
-		WebElement el = findElementAndCheckBy(str);
+		WebElement el = findElementAndCheckBy(str, 20);
 		el.click();
 	}
 	

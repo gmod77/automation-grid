@@ -19,11 +19,11 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <test name="Article_Save">
-        <classes>
-            <class name="org.urbandaddy.tests.sauce.UD_SaveArticleTest"/>
-        </classes>
-    </test>
+    <!--<test name="Article_Save">-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.UD_SaveArticleTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
     <test name="UD_Unsubscribe">
         <classes>

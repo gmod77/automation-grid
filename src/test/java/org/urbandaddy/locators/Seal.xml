@@ -11,6 +11,7 @@
    <ResetPassword>
    	  <ResetEmail><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[1]]]></ResetEmail>
    	  <ResetEmailSub><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[1]]]></ResetEmailSub>
+
    	  <Send><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[2]]]></Send>
    	  <SendSub><![CDATA[//.//*[@id='headSignUpHolder']/div/div[2]/div[3]/form/input[2]]]></SendSub>
    </ResetPassword>
