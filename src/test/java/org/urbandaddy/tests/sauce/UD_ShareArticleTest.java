@@ -76,7 +76,7 @@ public class UD_ShareArticleTest extends iTestCaseUDSauce {
         Reporter.log("Sign up Step 2",true);
         signUpUD_viaNewYorkStep2(dateB);
         Reporter.log("Sign up Step 3",true);
-        signUpUD_viaNewYorkStep3(emailFriendsB);
+        signUpUD_viaNewYorkStep3(emailFriendsB,true);
         Reporter.log("Sign u Step 4",true);
         signUpUD_viaNewYorkStep4();
         Reporter.log("Returning to the homepage",true);

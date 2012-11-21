@@ -7,6 +7,7 @@ import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.locators.LocatorReader;
 
 import java.util.List;
+import java.util.Random;
 
 public class UD_SignupHelper_Client extends IHelper_Client {
 	
@@ -240,76 +241,99 @@ public class UD_SignupHelper_Client extends IHelper_Client {
 	}
 	
 	public void confirmPassword(String targetValue){
-		
-		String str = signupReader.getLocator("Step2.ConfirmPassword");		
-		//this.WaitForElementPresent(str, 20);		
+		String str = signupReader.getLocator("Step2.ConfirmPassword");
 		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
 	
 	public void enterFirstName(String targetValue){
-	
-	String str = signupReader.getLocator("Step2.EnterFirstName");		
-	//this.WaitForElementPresent(str, 20);		
-	WebElement el = findElementAndCheckBy(str);
-	el.clear();
-	el.sendKeys(targetValue);
-}
+        String str = signupReader.getLocator("Step2.EnterFirstName");
+        WebElement el = findElementAndCheckBy(str);
+        el.clear();
+        el.sendKeys(targetValue);
+    }
 
-public void enterLastName(String lastName){
-	
-	String str = signupReader.getLocator("Step2.EnterLastName");		
-	//this.WaitForElementPresent(str, 20);		
-	WebElement el = findElementAndCheckBy(str);
-	el.clear();
-	el.sendKeys(lastName);
-}
+    public void enterLastName(String lastName){
+        String str = signupReader.getLocator("Step2.EnterLastName");
+        WebElement el = findElementAndCheckBy(str);
+        el.clear();
+        el.sendKeys(lastName);
+    }
 
-public void selectGender(String targetValue){
-	String str=signupReader.getLocator("Step2.SelectGender");
-	List <WebElement> options = client.findElements(By.tagName("option"));
-	for (WebElement option : options){
-		    if (targetValue.equalsIgnoreCase(option.getText())){
-		     option.click();
-		     break;
-		    }
-	}
-}
-	
-public void selectIncomeRange(String targetValue){
-	String str=signupReader.getLocator("Step2.SelectIncomeRange");
-	List <WebElement> options = client.findElements(By.tagName("option"));
-	for (WebElement option : options){
-		    if (targetValue.equalsIgnoreCase(option.getText())){
-		     option.click();
-		     break;
-		    }
-	}
-}
-public void enterZipCode(String targetValue){
-		
-		String str = signupReader.getLocator("Step2.EnterZipCode");		
-		//this.WaitForElementPresent(str, 20);		
+    public void selectGender(String targetValue){
+        List <WebElement> options = client.findElements(By.tagName("option"));
+        for (WebElement option : options){
+            if (targetValue.equalsIgnoreCase(option.getText())){
+             option.click();
+             break;
+            }
+        }
+    }
+
+    public void selectGenderRandom() {
+        Random generator = new Random();
+        int rnd = generator.nextInt(2);
+        String gender;
+        if (rnd == 0) {
+            gender = "Male";
+        } else {
+            gender = "Female";
+        }
+        String str = signupReader.getLocator("Step2.SelectGender");
+        WebElement el = findElementAndCheckBy(str);
+        List <WebElement> options = el.findElements(By.tagName("option"));
+        for (WebElement option : options){
+            if (gender.equalsIgnoreCase(option.getText())){
+                option.click();
+                break;
+            }
+        }
+    }
+
+    public void selectIncomeRange(String targetValue){
+        String str = signupReader.getLocator("Step2.SelectIncomeRange");
+        WebElement el = findElementAndCheckBy(str);
+        List <WebElement> options = el.findElements(By.tagName("option"));
+        for (WebElement option : options){
+            if (targetValue.equalsIgnoreCase(option.getText())){
+             option.click();
+             break;
+            }
+        }
+    }
+
+    public void selectIncomeRangeRandom() {
+        Random generator = new Random();
+        int rnd = generator.nextInt(9);
+        String[] income = {"Less than $30,000","$30,000-$44,999","$45,000-$59,999","$60,000-$74,999",
+                "$75,000-$99,999","$100,000-$199,999","$200,000-$299,999","$300,000-$499,999","$500,000+"};
+        String str = signupReader.getLocator("Step2.SelectIncomeRange");
+        WebElement el = findElementAndCheckBy(str);
+        List <WebElement> options = el.findElements(By.tagName("option"));
+        for (WebElement option : options){
+            if (income[rnd].equalsIgnoreCase(option.getText())){
+                option.click();
+                break;
+            }
+        }
+    }
+
+    public void enterZipCode(String targetValue){
+		String str = signupReader.getLocator("Step2.EnterZipCode");
 		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
 	
-public void enterBirthday(String targetValue){
+    public void enterBirthday(String targetValue){
 		
-		String str = signupReader.getLocator("Step2.EnterBirthday");		
-		//this.WaitForElementPresent(str, 20);		
+		String str = signupReader.getLocator("Step2.EnterBirthday");
 		WebElement el = findElementAndCheckBy(str);
 		el.clear();
 		el.sendKeys(targetValue);
 	}
-	
-//public void clickSubmit(){
-//		String str = signupReader.getLocator("Step2.ClickSubmit");
-//		//this.WaitForElementPresent(str, 20);
-//		WebElement el = findElementAndCheckBy(str);
-//		el.click();
+
 
     public void clickSubmit(){
         WebElement form = findElementAndCheckBy("xpath","/html/body/div[5]/div/div/div/form",10);

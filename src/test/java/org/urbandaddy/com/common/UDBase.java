@@ -16,7 +16,10 @@ public interface UDBase {
     String MANERO_DOMAIN = "http://manero-branch.thedaddy.co";
 
     String GOOGLE_EMAIL_LINK = "https://mail.google.com/mail/u/0/?logout&hl=en";
-    String JENKINSEMAIL = "udtesterjenkins@gmail.com";
+
+    String EMAIL_USER_NAME = "udtesterjenkins";
+    String EMAIL_DOMAIN = "@gmail.com";
+    String JENKINSEMAIL = EMAIL_USER_NAME + EMAIL_DOMAIN;
     String JENKINSEMAILPW = "commonud";
 
     String PASSWORD="12345";

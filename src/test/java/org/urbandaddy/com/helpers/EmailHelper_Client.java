@@ -17,6 +17,9 @@ import java.util.concurrent.TimeUnit;
 
 public class EmailHelper_Client extends IHelper_Client implements UDBase {
 
+    private int emailTimeOut = 15000; //Timeout in MS for retrying emails
+    private int globalTimeOut = 10; //Timeout in SEC for finding elements
+    
 	private LocatorReader checkEmailReader;
 
 	public EmailHelper_Client(WebDriver client) {
@@ -32,7 +35,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     }
 
     public String generateEmailClient(String dateSet) {
-        String client = "udtesterjenkins+"+ dateSet + "@gmail.com";
+        String client = EMAIL_USER_NAME + "+"+ dateSet + EMAIL_DOMAIN;
         return client;
     }
 
@@ -43,7 +46,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         }
         String[] arr = new String[count];
         for (int i = 0; i<count; i++) {
-            arr[i] = "udtesterjenkins+"+"friend_" + (i+1) + "_" + dateSet + "@gmail.com";
+            arr[i] = EMAIL_USER_NAME + "+friend_" + (i+1) + "_" + dateSet + EMAIL_DOMAIN;
         }
         return arr;
     }
@@ -53,21 +56,21 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 		client.get(GOOGLE_EMAIL_LINK);
 		
 		String Email = checkEmailReader.getLocator("Gmail.Email");
-		WebElement em = findElementAndCheckBy(Email,20);
+		WebElement em = findElementAndCheckBy(Email, globalTimeOut);
 		em.sendKeys(JENKINSEMAIL);
 		this.pause(2000);
 		
 		String Passwd = checkEmailReader.getLocator("Gmail.Password");
-		WebElement ps = findElementAndCheckBy(Passwd, 20);
+		WebElement ps = findElementAndCheckBy(Passwd, globalTimeOut);
 		ps.sendKeys(JENKINSEMAILPW);
 		
 		String Signin = checkEmailReader.getLocator("Gmail.SignIn");
-		WebElement si = findElementAndCheckBy(Signin,20);
+		WebElement si = findElementAndCheckBy(Signin, globalTimeOut);
 		si.click();
 		
 		// wait for the search box to appear
         String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-        findElementAndCheckBy(sb,20);
+        findElementAndCheckBy(sb, globalTimeOut);
 		
 	}	
 
@@ -85,7 +88,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         do {
             try {
                 String sb = checkEmailReader.getLocator("Gmail.SearchBox");
-                WebElement el1 = findElementAndCheckBy(sb,5);
+                WebElement el1 = findElementAndCheckBy(sb, globalTimeOut);
                 //el1.sendKeys(searchString);
                 el1.clear();
                 el1.sendKeys(searchString);
@@ -147,18 +150,18 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
 
     public void navigateToSearch() {
 
-        WebElement dbSection = findElementAndCheckBy("classname","borderRight",10);
+        WebElement dbSection = findElementAndCheckBy("classname","borderRight", globalTimeOut);
         dbSection.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/table/tbody/tr/td/div/div/div[3]/div/table[2]/tbody/tr[2]/td/ul/li[5]/a")).click();
-        WebElement dbs = findElementAndCheckBy("xpath","//*[@id=\"UD Dev\"]",10);
+        WebElement dbs = findElementAndCheckBy("xpath","//*[@id=\"UD Dev\"]", globalTimeOut);
         dbs.click();
-        WebElement searchTab = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div/div[4]/div/div[3]/div/div/div/span",10);
+        WebElement searchTab = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div/div[4]/div/div[3]/div/div/div/span", globalTimeOut);
         searchTab.click();
     }
 
     public boolean optOutSearch(String email) {
         boolean flag;
         flag = false;
-        WebElement searchOptOutBox = findElementAndCheckBy("id","searchOptOutsCheckBox",10);
+        WebElement searchOptOutBox = findElementAndCheckBy("id","searchOptOutsCheckBox", globalTimeOut);
         searchOptOutBox.click();
 
         Select select = new Select(client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[3]/select")));
@@ -172,7 +175,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         WebElement searchButton = client.findElement(By.xpath("/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[3]/table/tbody/tr/td[5]/button"));
         searchButton.click();
 
-        WebElement result = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[5]/table/tbody/tr",10);
+        WebElement result = findElementAndCheckBy("xpath","/html/body/form/table[3]/tbody/tr/td/div[2]/div/div[3]/div[3]/div/div[5]/table/tbody/tr", globalTimeOut);
         List<WebElement> columns = result.findElements(By.tagName("td"));
 
         for (WebElement column : columns) {
@@ -201,7 +204,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyWelcomeManeroEmailReceived(String emailClient){
         Reporter.log("Searching for Welcome Email",true);
-        doEmailSearch("to: " + emailClient + " subject: We Embrace You", 10000);
+        doEmailSearch("to: " + emailClient + " subject: We Embrace You", emailTimeOut);
     }
 
     /**
@@ -210,7 +213,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     public void verifyInvitationsManeroEmailsReceived(String[] friends){
         for (int i = 0; i<friends.length; i++) {
             Reporter.log("Searching for invitation email to friend " + (i+1),true);
-            doEmailSearch("to: "+ friends[i]+" subject: You've been invited to join Manero Club Social y Deportivo",10000);
+            doEmailSearch("to: "+ friends[i]+" subject: You've been invited to join Manero Club Social y Deportivo", emailTimeOut);
         }
     }
 
@@ -219,14 +222,14 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyWelcomeUDEmailReceived(String emailClient){
         Reporter.log("Searching for Welcome Email",true);
-        doEmailSearch("to: " + emailClient + " subject: Welcome to the Club", 10000);
+        doEmailSearch("to: " + emailClient + " subject: Welcome to the Club", emailTimeOut);
 
     }
 
     public void verifySharedArticleLoggedOutReceived(String[] emailFriends) {
         for (int i = 0; i<emailFriends.length; i++) {
             Reporter.log("Logged out test: Searching for Shared article to friend " + (i+1),true);
-            doEmailSearch("from: QA TESTER to: " + emailFriends[i], 10000);
+            doEmailSearch("from: QA TESTER to: " + emailFriends[i], emailTimeOut);
         }
 
     }
@@ -234,7 +237,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     public void verifySharedArticleLoggedInReceived(String emailClient, String[] emailFriends) {
         for (int i = 0; i<emailFriends.length; i++) {
             Reporter.log("Logged in test: Searching for Shared article to friend " + (i+1),true);
-            doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriends[i]),10000);
+            doEmailSearch(String.format("from: %s to: %s subject: FW: UD |", emailClient, emailFriends[i]), emailTimeOut);
         }
     }
 
@@ -244,7 +247,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     public void verifyInvitationsUDEmailsReceived(String[] friends){
         for (int i = 0; i<friends.length; i++) {
             Reporter.log("Searching for invitation email to friend " + (i+1),true);
-            doEmailSearch("to: "+ friends[i]+" subject: You're Invited",10000);
+            doEmailSearch("to: "+ friends[i]+" subject: You're Invited", emailTimeOut);
         }
     }
 
@@ -253,11 +256,13 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyResetPasswordUDRequestReceivedandPasswordReset(String emailClient){
         Reporter.log("Searching for password reset link",true);
-        doEmailSearch("to: "+emailClient+" subject: UD | Password Reset Request", 10000);
-        String link = getResetEmailLink();
-
+        if (doEmailSearch("to: "+emailClient+" subject: UD | Password Reset Request", emailTimeOut)) {
+            String link = getResetEmailLink();
+            System.out.println(link);
+        } else {
+            Reporter.log("WARNING: Password Reset Email wasn't received in time.",true);
+        }
         //client.get(link);
-        System.out.println(link);
         //  checkEmailHelper_Client.clickResetEmailRequestLink();
 //        	resetEmailHelper_Client.enterNewPassword(newpassword);
 //        	resetEmailHelper_Client.confirmNewPassword(newpassword);
@@ -272,7 +277,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
      */
     public void verifyEditSettingsUDEmailReceived(String emailClient){
         Reporter.log("Searching for account settings change mail",true);
-        doEmailSearch("to: " + emailClient + " subject: You've Changed", 10000);
+        doEmailSearch("to: " + emailClient + " subject: You've Changed", emailTimeOut);
     }
 
     /**

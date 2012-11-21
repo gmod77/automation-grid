@@ -103,7 +103,7 @@
    	  <ClickInvite><![CDATA[//html/body/div[5]/div/div/div/form/div/div/input]]></ClickInvite>
 
    	  <ClickSkip><![CDATA[//html/body/div[5]/div/div/div/div[5]/a]]></ClickSkip>
-   	  
+
    	  <ErrorMessage><![CDATA[//.//*[@id='misc_email_1']]]></ErrorMessage>
    	  
    </Step3>

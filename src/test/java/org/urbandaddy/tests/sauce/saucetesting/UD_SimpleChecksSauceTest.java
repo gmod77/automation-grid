@@ -53,7 +53,7 @@ public class UD_SimpleChecksSauceTest extends iTestCaseUDSauce {
         accessNewYorkFromUDHomepage();
         signUpUD_viaNewYorkStep1(emailClient);
         signUpUD_viaNewYorkStep2(date);
-        signUpUD_viaNewYorkStep3(emailFriends);
+        signUpUD_viaNewYorkStep3(emailFriends,true);
         signUpUD_viaNewYorkStep4();
         goBackToUDHomepage();
         shareArticle(emailClient,emailFriends);

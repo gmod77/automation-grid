@@ -43,7 +43,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.get(UD_DOMAIN);
         client.manage().deleteAllCookies();
         client.get(UD_DOMAIN);
-
         client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
     }
 
@@ -2824,13 +2823,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
 
-        //go to /home/nyc
-		//ud_homepageHelper_Client.clickNewYork();
-
         //step1, 1st signup modal:
         //a. Click SignUp Seal
         ud_headerHelper_Client.clickSignUp();
-        //findElementAndCheckBy("xpath","/html/body/div[5]",10);
 
         //b. Enter email address
         WebDriverWait wait = new WebDriverWait(client, 30);
@@ -2889,8 +2884,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         } catch (TimeoutException TE) {
             throw new TimeoutException("POST TOOK TOO LONG");
         }
-        String theEmail = client.findElement(By.xpath("/html/body/div/div[2]/div[3]/div[2]/div[2]/div/div[2]/div")).getText();
-        System.out.println("THE EMAIL> " + theEmail);
     }
 
     /**
@@ -2911,12 +2904,13 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //Last Name
         ud_signupHelper_Client.enterLastName("LN_"+var);
         //Gender
-        ud_signupHelper_Client.selectGender("Male");
+        //ud_signupHelper_Client.selectGender("Male");
         //ud_signupHelper_Client.selectGender("Female");
-        //ud_signupHelper_Client.selectGenderRandom();
+        ud_signupHelper_Client.selectGenderRandom();
 
         //Income Range
-        ud_signupHelper_Client.selectIncomeRange("Less than $30,000");
+        ud_signupHelper_Client.selectIncomeRangeRandom();
+        //ud_signupHelper_Client.selectIncomeRange("Less than $30,000");
 //		ud_signupHelper_Client.selectIncomeRange("$30,000-$44,999");
 //		ud_signupHelper_Client.selectIncomeRange("$45,000-$59,999");
 //		ud_signupHelper_Client.selectIncomeRange("$60,000-$74,999");
@@ -2941,22 +2935,24 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
     /**
      * Fills out the refer a friend form.
      */
-    public void signUpUD_viaNewYorkStep3(String[] friend){
+    public void signUpUD_viaNewYorkStep3(String[] friend, Boolean skip){
 
         ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
     //step3, 3rd signup modal: Invite Friends
+        if (!skip) {
+            WebDriverWait InviteFriendsWindow = new WebDriverWait(client, 30);
+            InviteFriendsWindow.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("ajaxSignupHolder")));
 
-        WebDriverWait InviteFriendsWindow = new WebDriverWait(client, 30);
-        InviteFriendsWindow.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("ajaxSignupHolder")));
+            for (int i = 0; i < friend.length; i++) {
+                ud_signupHelper_Client.enterEmailFriend(friend[i],(i+1));
+                System.out.println(friend[i]);
+                }
+            ud_signupHelper_Client.clickInvite();
+        } else {
+            ud_signupHelper_Client.clickSkip();
+         }
 
-        for (int i = 0; i < friend.length; i++) {
-            ud_signupHelper_Client.enterEmailFriend(friend[i],(i+1));
-            System.out.println(friend[i]);
-        }
-
-        // Try submitting the form instead of clicking the invite button
-        ud_signupHelper_Client.clickInvite();
     }
 
     /**
@@ -3098,7 +3094,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public void accessNewYorkFromUDHomepage(){
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
-
 
         ud_homepageHelper_Client.clickNewYork();
         UDcity = "nyc";
