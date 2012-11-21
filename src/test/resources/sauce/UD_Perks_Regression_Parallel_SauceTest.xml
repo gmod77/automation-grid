@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Frontend Smoke Test" parallel="tests" thread-count="5" verbose="10">
+
+	<test name="UD_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.UD_RegistrationFlow2Test" />
+		</classes>
+	</test>
+
+    <test name="UD_Unsubscribe">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_UnSubscribeEmailTest" />
+        </classes>
+    </test>
+
+	<test name="Perks_Smoke">
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1Test" />
+		</classes>
+	</test>
+
+    <test name="Article_Share">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest"/>
+        </classes>
+    </test>
+
+    <test name="Article_Save">
+        <classes>
+            <class name="org.urbandaddy.tests.sauce.UD_SaveArticleTest"/>
+        </classes>
+    </test>
+
+</suite>
