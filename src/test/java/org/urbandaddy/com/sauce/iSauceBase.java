@@ -127,9 +127,14 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     }
 
     @AfterMethod (alwaysRun = true)
-    public void tearDown(ITestResult result) throws Exception {
+    public void tearDown(ITestResult result) {
         System.out.println("METHOD END\n");
-        Reporter.log(result.getMethod().getMethodName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+        String resultsUrl = getResultsUrl(getSessionId());
+        if (resultsUrl == null) {
+            Reporter.log("Token generation failed, results URL unavailable",true);
+        } else {
+            Reporter.log(result.getMethod().getMethodName() + " SauceResultsUrl> " + resultsUrl,true);
+        }
         client.quit();
     }
 
@@ -180,14 +185,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @return token
      * @throws IOException
      */
-    private String generateToken(String jobId) throws IOException {
+    private String generateToken(String jobId) {
         String message = authentication.getUsername() + ":" + authentication.getAccessKey();
         try {
             return tokenGenerate(message, jobId);
         } catch (Exception e) {
-            throw new IOException("Token Generation Failed");
+            return null;
         }
-        //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
     }
 
     /**
@@ -197,11 +201,15 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @return URL
      * @throws IOException
      */
-    private String getResultsUrl(String jobId) throws IOException {
+    private String getResultsUrl(String jobId) {
         String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
         String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";
         String token = generateToken(jobId);
-        return String.format(JOB_ID_FORMAT, jobId, token);
+        if (token == null) {
+            return String.format(JOB_ID_FORMAT, jobId, token);
+        } else {
+            return null;
+        }
     }
 
 
