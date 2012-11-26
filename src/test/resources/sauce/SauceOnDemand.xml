@@ -35,11 +35,14 @@
     <test name="Perks Regression">
         <parameter name="username" value="cloudbees_urbandaddy" />
         <parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />
-        <parameter name="os" value="Mac 10.6"/>
-        <parameter name="browser" value="safari"/>
-        <parameter name="version" value="5"/>
+        <!--<parameter name="os" value="Mac 10.6"/>-->
+        <!--<parameter name="browser" value="safari"/>-->
+        <!--<parameter name="version" value="5"/>-->
+        <parameter name="os" value="Linux"/>
+        <parameter name="browser" value="chrome"/>
+        <!--<parameter name="version" value="8"/>-->
         <classes>
-            <class name="org.urbandaddy.tests.sauce.Perks_RegistrationFlow1Test"/>
+            <class name="org.urbandaddy.tests.sauce.saucetesting.UD_RegistrationTinySauceTest"/>
         </classes>
     </test>
     <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->

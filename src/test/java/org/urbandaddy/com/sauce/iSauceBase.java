@@ -113,6 +113,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                 capabilities);
         ((RemoteWebDriver) client).setFileDetector(new LocalFileDetector());
         Reporter.log(method.getName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+        Reporter.log(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", getSessionId(), method.getName()));
     }
 
 
