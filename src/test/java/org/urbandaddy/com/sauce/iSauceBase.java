@@ -112,6 +112,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         ((RemoteWebDriver) client).setFileDetector(new LocalFileDetector());
+        Reporter.log(method.getName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
     }
 
 
@@ -127,14 +128,8 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
     }
 
     @AfterMethod (alwaysRun = true)
-    public void tearDown(ITestResult result) {
-        System.out.println("METHOD END\n");
-        String resultsUrl = getResultsUrl(getSessionId());
-        if (resultsUrl == null) {
-            Reporter.log("Token generation failed, results URL unavailable",true);
-        } else {
-            Reporter.log(result.getMethod().getMethodName() + " SauceResultsUrl> " + resultsUrl,true);
-        }
+    public void tearDown(ITestResult result) throws Exception {
+        System.out.println("METHOD END " + result.getMethod().getMethodName());
         client.quit();
     }
 
@@ -185,13 +180,14 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @return token
      * @throws IOException
      */
-    private String generateToken(String jobId) {
+    private String generateToken(String jobId) throws IOException {
         String message = authentication.getUsername() + ":" + authentication.getAccessKey();
         try {
             return tokenGenerate(message, jobId);
         } catch (Exception e) {
-            return null;
+            throw new IOException("Token Generation Failed");
         }
+        //System.out.println("https://saucelabs.com/jobs/" + jobId +"?auth=" + token);
     }
 
     /**
@@ -201,15 +197,11 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @return URL
      * @throws IOException
      */
-    private String getResultsUrl(String jobId) {
+    private String getResultsUrl(String jobId) throws IOException {
         String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
         String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";
         String token = generateToken(jobId);
-        if (token == null) {
-            return String.format(JOB_ID_FORMAT, jobId, token);
-        } else {
-            return null;
-        }
+        return String.format(JOB_ID_FORMAT, jobId, token);
     }
 
 
