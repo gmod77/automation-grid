@@ -40,7 +40,7 @@ public class UD_RegistrationFlow2Test extends iTestCaseUDSauce{
         signUpUD_viaNewYorkStep2(date);
         Reporter.log("Sign up Step 3",true);
         signUpUD_viaNewYorkStep3(emailFriends, false);
-        Reporter.log("Sign u Step 4",true);
+        Reporter.log("Sign up Step 4",true);
         signUpUD_viaNewYorkStep4();
 
         Reporter.log("Edit settings", true);
