@@ -40,12 +40,12 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
     String[] friend;
 
     public UD_Mobile_SmokeTest() {
-        emailHelper_Client = new EmailHelper_Client(client);
+//        emailHelper_Client = new EmailHelper_Client(client);
 
         friend = new String[5];
-        date = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
-        emailClient = emailHelper_Client.generateEmailClient(date);
-        friend = emailHelper_Client.generateFriendClient(5,date);
+//        date = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
+//        emailClient = emailHelper_Client.generateEmailClient(date);
+//        friend = emailHelper_Client.generateFriendClient(5,date);
     }
 
 
@@ -135,7 +135,7 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
     @Test
     public void SignUp() {
 
-        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
+//        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
 
 
         String email;
@@ -461,8 +461,8 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
     }
 
     //Declare helpers
-    protected UD_SignupHelper_Client ud_signupHelper_Client;
-    protected EmailHelper_Client emailHelper_Client;
+//    protected UD_SignupHelper_Client ud_signupHelper_Client;
+//    protected EmailHelper_Client emailHelper_Client;
 
     /**
      * Set your own pause time
@@ -507,25 +507,25 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
         return String.format(JOB_ID_FORMAT, jobId, token);
     }
 
-    private boolean StaleElementHandleByXpath (String email){
-        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
-        int count = 0;
-        boolean flag = false;
-        do {
-            try {
-                ud_signupHelper_Client.enterEmail(email);
-                count++;
-                flag = true;
-            } catch (StaleElementReferenceException e) {
-                e.toString();
-                System.out.println("Trying to recover from a stale element: " + e.getMessage());
-            }
-        } while (count < 4 && !flag);
-        if (count >= 4) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    private boolean StaleElementHandleByXpath (String email){
+//        ud_signupHelper_Client = new UD_SignupHelper_Client(client);
+//        int count = 0;
+//        boolean flag = false;
+//        do {
+//            try {
+//                ud_signupHelper_Client.enterEmail(email);
+//                count++;
+//                flag = true;
+//            } catch (StaleElementReferenceException e) {
+//                e.toString();
+//                System.out.println("Trying to recover from a stale element: " + e.getMessage());
+//            }
+//        } while (count < 4 && !flag);
+//        if (count >= 4) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
 }
