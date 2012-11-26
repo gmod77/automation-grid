@@ -34,7 +34,7 @@ public class Manero_RegistrationFlowTest extends iTestCaseManeroSauce {
         signUpManeroStep2(date);
         Reporter.log("Sign up Step 3",true);
         signUpManeroStep3(emailFriends);
-        Reporter.log("Sign u Step 4",true);
+        Reporter.log("Sign up Step 4",true);
         signUpManeroStep4();
 
         Reporter.log("Log out", true);
