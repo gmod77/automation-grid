@@ -1,6 +1,5 @@
 package org.urbandaddy.com.sauce;
 
-
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
@@ -85,14 +84,14 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         String versionProp = System.getProperty("SELENIUM_VERSION");
         String platformProp = System.getProperty("SELENIUM_PLATFORM");
 
-        if (StringUtils.isNotBlank(browserProp)&& StringUtils.isNotBlank(platformProp)) {
+        if (StringUtils.isNotBlank(browserProp) && StringUtils.isNotBlank(platformProp)) {
             capabilities.setBrowserName(browserProp);
             capabilities.setCapability("version", versionProp);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(platformProp));
             capabilities.setCapability("tags","Axis_Test");
             System.out.println("AXIS TEST");
 
-        } else if (StringUtils.isNotBlank(browser)&& StringUtils.isNotBlank(os)) {
+        } else if (StringUtils.isNotBlank(browser) && StringUtils.isNotBlank(os)) {
             capabilities.setBrowserName(browser);
             capabilities.setCapability("version", version);
             capabilities.setCapability("platform", Platform.extractFromSysProperty(os));
@@ -128,6 +127,13 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         return (sessionId == null) ? null : sessionId.toString();
     }
 
+    /**
+     * Execute at the end of a test method. Just print out the name of the method. Used for
+     * tracking in console out.
+     *
+     * @param result
+     * @throws Exception
+     */
     @AfterMethod (alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
         System.out.println("METHOD END " + result.getMethod().getMethodName());

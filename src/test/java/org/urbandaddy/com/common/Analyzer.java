@@ -4,11 +4,8 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 /**
- * Created with IntelliJ IDEA.
- * User: sargenziano
- * Date: 10/23/12
- * Time: 4:10 PM
- * To change this template use File | Settings | File Templates.
+ * Test retry analyzer.
+ *
  */
 
 public class Analyzer implements IRetryAnalyzer {

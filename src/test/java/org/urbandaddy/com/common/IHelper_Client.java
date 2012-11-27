@@ -7,6 +7,12 @@ import org.testng.Reporter;
 
 import java.util.List;
 
+/**
+ * This class contains general helping methods for all
+ * tests. Other helper classes are built off of this.
+ *
+ */
+
 public class IHelper_Client {
 
 	public WebDriver client;
@@ -29,6 +35,13 @@ public class IHelper_Client {
         }
     }
 
+    /**
+     * Method to pull the specific locator found in the
+     * XML dictionaries
+     *
+     * @param locator
+     * @return
+     */
 	public By ByLocator(String locator) {
 		By result = null;
 
@@ -43,47 +56,58 @@ public class IHelper_Client {
 		} else {
 			result = By.id(locator);
 		}
-
 		return result;
 	}
 
+    /**
+     * Returns a boolean value based on the existance
+     * of an element.
+     *
+     * @param locator
+     * @return
+     */
 	public Boolean isElementPresent(String locator) {
         return findElementAndCheckBy(locator, 10) != null;
 	}
 
+    /**
+     * Wait for an element based on a locator.
+     *
+     * @param locator
+     * @param timeout
+     */
 	public void WaitForElementPresent(String locator, int timeout) {
 
 		for (int i = 0; i < timeout; i++) {
 			if (isElementPresent(locator)) {
 				break;
 			}
-
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
+    /**
+     * Wait for an element to be enabled based on a locator.
+     *
+     * @param locator
+     * @param timeout
+     */
 	public void WaitForElementEnabled(String locator, int timeout) {
 
 		for (int i = 0; i < timeout; i++) {
 			if (isElementPresent(locator)) {
-				//if (client.findElement(ByLocator(locator)).isEnabled()) {
                 if (findElementAndCheckBy(locator).isEnabled()) {
 					break;
 				}
 			}
-
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
+    /**
+     * Wait for an element to not be enabled based on a locator.
+     *
+     * @param locator
+     * @param timeout
+     */
 	public void WaitForElementNotEnabled(String locator, int timeout) {
 
 		for (int i = 0; i < timeout; i++) {

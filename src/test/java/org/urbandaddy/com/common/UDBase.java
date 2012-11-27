@@ -1,11 +1,8 @@
 package org.urbandaddy.com.common;
 
 /**
- * Created with IntelliJ IDEA.
- * User: sargenziano
- * Date: 10/16/12
- * Time: 4:05 PM
- * To change this template use File | Settings | File Templates.
+ * Common strings used across all tests.
+ *
  */
 public interface UDBase {
 
