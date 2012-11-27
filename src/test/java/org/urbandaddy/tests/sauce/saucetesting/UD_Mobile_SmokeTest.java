@@ -111,6 +111,8 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         ((RemoteWebDriver) client).setFileDetector(new LocalFileDetector());
+        Reporter.log(method.getName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+        Reporter.log(String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", getSessionId(), method.getName()));
     }
 
 
@@ -127,8 +129,7 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
 
     @AfterMethod (alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
-        System.out.println("METHOD END\n");
-        Reporter.log(result.getMethod().getMethodName() + " SauceResultsUrl> " + getResultsUrl(getSessionId()), true);
+        System.out.println("METHOD END " + result.getMethod().getMethodName());
         client.quit();
     }
 
@@ -285,9 +286,7 @@ public class UD_Mobile_SmokeTest implements SauceOnDemandSessionIdProvider, Sauc
 								
 		//use the City icon on the upper-right corner to navigate to the main page
 		client.findElement(By.xpath("//html/body/div/div/a/img")).click();
-		
-		client.quit();
-        
+
         //
 
 //        client.get(UD_DOMAIN);
