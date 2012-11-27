@@ -86,10 +86,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      */
     public void loginUDAdmin(){
         client.get(UD_ADMIN_DOMAIN);
-        client.findElement(By.id("username")).sendKeys("jenkins");
-        client.findElement(By.id("password")).sendKeys("jenkins900!!");
+        client.findElement(By.id("username")).sendKeys(UD_ADMIN_USERNAME);
+        client.findElement(By.id("password")).sendKeys(UD_ADMIN_PW);
         client.findElement(By.name("commit")).click();
-        //client.get(UD_ADMIN_DOMAIN+"/admin.php/articles");
     }
 
     /**

@@ -25,7 +25,7 @@ import java.net.URL;
 
 import static org.urbandaddy.com.helpers.HMacHelper.tokenGenerate;
 
-@Listeners({SauceOnDemandTestListener.class, RetryTestListener.class})
+@Listeners({SauceOnDemandTestListener.class})
 public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider, UDBase {
 
     public SauceOnDemandAuthentication authentication;
