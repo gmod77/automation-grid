@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
+import java.security.PrivateKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -282,12 +283,39 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     }
 
     public void adminCreatePerkGeneral() {
+        String paragraph = "No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. All of them had hair of gold like their mother the youngest one in curls. The Love Boat soon will be making another run. The Love Boat promises something for everyone. All of them had hair of gold like their mother the youngest one in curls. black gold Sunday Monday Happy Days. Tuesday Wednesday Happy Days. Thursday Friday Happy Days.Saturday what a day. Groovin' all week with you. Makin their way the only way they know how. That's just a little bit more than the law will allow. Why do we always come here? I guess well never know. Its like a kind of torture to have to watch the show.";
+        String finePrint = "<ul>\n" +
+                "<li>This Perk requires a Perk Certificate, which will be generated within 24 hours of purchase. </li>\n" +
+                "<li>Orders placed on Friday or over the weekend will be processed the following business day. </li>\n" +
+                "<li>Offer cannot be combined with other offers. </li>\n" +
+                "<li>The code found on your Perk Certificate will be your unique promo code for the Hickoree&rsquo;s website.</li>\n" +
+                "</ul>";
+        String desc = "<p>Culpa  carles pinterest stumptown sunt, officia  cosby sweater mustache vegan.</p>\n" +
+                "<p>Commodo mlkshk readymade pitchfork.  Marfa laboris  yr, put a bird on it  whatever artisan banksy cray authentic occupy adipisicing anim.</p>\n" +
+                "<p>Adipisicing nulla  culpa  raw denim umami photo booth:</p>\n" +
+                "<ul>\n" +
+                "</ul>\n" +
+                "<ul>\n" +
+                "<li><strong>Magna swag velit, wolf shoreditch narwhal</strong> stumptown before they sold out  mixtape skateboard american apparel viral squid. </li>\n" +
+                "<li><strong>Id  cillum   wayfarers, umami whatever </strong>keytar food truck nulla  odd future pop-up  mixtape VHS quis. </li>\n" +
+                "<li><strong>High life lomo biodiesel post-ironic,</strong> direct trade   tempor squid voluptate  mcsweeney's butcher. </li>\n" +
+                "<li>Street art keytar occaecat   freegan kale chips, tattooed banksy polaroid next level. </li>\n" +
+                "<li>Voluptate    vinyl laboris, <em>mollit  cardigan labore small batch</em> ethical chillwave   gastropub 8-bit truffaut ut pour-over kale chips. </li>\n" +
+                "<li>Blog reprehenderit   vice portland, polaroid whatever post-ironic farm-to-table. </li>\n" +
+                "<li>Forage  iphone DIY, <span style=\"text-decoration: underline;\">reprehenderit  authentic hella</span> typewriter.</li>\n" +
+                "</ul>\n" +
+                "<ul>\n" +
+                "</ul>";
+
         // Under GENERAL tab put data in:
         // Business name
-        client.findElement(By.id("business_name")).sendKeys("QA Test " + r);
+        client.findElement(By.id("business_name")).sendKeys("QA Test Biz" + r);
+
+        // Fine Print
+        client.findElement(By.id("addtl_info_copy")).sendKeys(finePrint);
 
         // Description
-        client.findElement(By.id("description")).sendKeys("QA Test Copy " + r);
+        client.findElement(By.id("description")).sendKeys(desc);
 
         // Subject
         String internalName = "QA Test Subject " + r;
@@ -295,6 +323,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         // Offer
         client.findElement(By.id("offer")).sendKeys("QA Test Offer " + r);
+
+        // Offer Summation
+        client.findElement(By.id("offer_summation")).sendKeys(paragraph);
 
         // Internal name
         client.findElement(By.id("perk_internal_name")).sendKeys("QA Test Internal Name " + r);
@@ -314,6 +345,34 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         // change status to Enabled
         Select status = new Select(client.findElement(By.id("status")));
         status.selectByVisibleText("Enabled");
+    }
+
+    public void adminCreatePerkDashboard () {
+        client.findElement(By.id("product_info_tabs_group_44")).click();
+
+        client.findElement(By.id("dashboard1_text_middle")).sendKeys("<sup>$</sup>1");
+        client.findElement(By.id("dashboard1_text_top")).clear();
+        client.findElement(By.id("dashboard1_text_top")).sendKeys("UD MEMBERS");
+
+        client.findElement(By.id("dashboard2_text_middle")).sendKeys("<grey><sup>$</sup><strike>100</strike></grey>");
+        client.findElement(By.id("dashboard2_text_top")).clear();
+        client.findElement(By.id("dashboard2_text_top")).sendKeys("EVERYONE ELSE");
+
+        client.findElement(By.id("dashboard3_text_middle")).sendKeys("99%");
+        client.findElement(By.id("dashboard3_text_top")).clear();
+        client.findElement(By.id("dashboard3_text_top")).sendKeys("SAVING");
+
+        Select dashPos1 = new Select(client.findElement(By.id("dashboard_position_1")));
+        dashPos1.selectByVisibleText("Dashboard 1");
+
+        Select dashPos2 = new Select(client.findElement(By.id("dashboard_position_2")));
+        dashPos2.selectByVisibleText("Dashboard 2");
+
+        Select dashPos3 = new Select(client.findElement(By.id("dashboard_position_3")));
+        dashPos3.selectByVisibleText("Dashboard 3");
+
+        Select dashPos4 = new Select(client.findElement(By.id("dashboard_position_4")));
+        dashPos4.selectByVisibleText("Countdown");
     }
 
     public void adminCreatePerkInventoryCounters () {
