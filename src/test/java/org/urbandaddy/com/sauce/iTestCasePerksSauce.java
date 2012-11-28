@@ -1,13 +1,9 @@
 package org.urbandaddy.com.sauce;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.UnhandledAlertException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Reporter;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
@@ -15,9 +11,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
-
-//Workflow specific imports
 
 /**
  * This class contains all Perks domain specific tests
@@ -26,12 +21,11 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
     String lastURL;
 
-
+    //Make a random number for perks admin creation
     Random generator = new Random();
     int r = (generator.nextInt(6) + 1) * 20;
 
     // Perks
-
     /**
      * After login navigate to account settings
      */
@@ -50,7 +44,6 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         ud_sealHelper_Client.checkDCPerks();
 
-
         ud_sealHelper_Client.clickUpdate();
         this.pause(3000);
         ud_sealHelper_Client.clickClose();
@@ -61,7 +54,6 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      *
      */
     public void visitPerksFirstTime(){
-
         // enter UD domain name, hit enter, arrive on homepage
         client.get(PERKS_DOMAIN);
         client.manage().deleteAllCookies();
@@ -72,7 +64,6 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Sign into the perks site
      */
     public void signInPerks(String emailClient){
-
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
         perks_sealHelper_Client = new Perks_SealHelper_Client(client);
 
@@ -90,7 +81,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     }
 
     public void checkPerksHomepageCityFooter () {
-
+        //TODO
     }
 
     public void returnToPerks() {
@@ -101,7 +92,6 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Log out of perks
      */
     public void logoutPerks(){
-
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
 
         //click logout in header
@@ -121,10 +111,8 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      *
      */
     public void resetPasswordPerks(String emailClient){
-
 		// perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
 		// perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-
 		// perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
         System.out.println(emailClient);
@@ -146,11 +134,8 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * for perks by clicking editions and editorials.
      */
     public void signUpPerks_viaNewYorkStep1(String email){
-
-
         perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
         perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-
         perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
         System.out.println(email);
@@ -202,7 +187,6 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * Name, Gender, Income Range, etc.
      */
     public void signUpPerks_viaNewYorkStep2(String date){
-
         //step2, 2nd signup modal:
         //enter password
         perks_signupHelper_Client.enterPassword(PASSWORD);
@@ -243,15 +227,11 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * used to the log
      */
     public void signUpPerks_viaNewYorkStep3(String[] friends){
-
         for (int i = 0; i < friends.length; i++) {
             perks_signupHelper_Client.enterEmailFriend(friends[i],(i+1));
             System.out.println(friends[i]);
         }
-
-
         perks_signupHelper_Client.clickInvite();
-
 //		perks_signupHelper_Client.clickSkip();
     }
 
@@ -261,13 +241,15 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      */
     public void signUpPerks_viaNewYorkStep4(){
         //step4, 4th signup modal confirmation, close final confirm signup box
-
         WebDriverWait ThankYouWindow = new WebDriverWait(client, 30);
         ThankYouWindow.until(ExpectedConditions.visibilityOfElementLocated(By.className("close-button")));
 
         perks_signupHelper_Client.clickCloseFinalModal();
         //end of registration
     }
+
+
+    // Perks creation methods below
 
     public void adminPerksLogin() {
         client.get(PERKS_ADMIN_DOMAIN);
@@ -277,12 +259,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     }
 
     public void adminCreatePerk() {
-
         // Handle notification window
         if (client.findElement(By.id("message-popup-window")).isDisplayed()) {
             client.findElement(By.id("message-popup-window")).findElement(By.xpath("/html/body/div/div[4]/div/a")).click();
         }
-
 
         // Click on manage products under Catalog--Get the URL and open that instead.
         client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[4]/ul/li/a")).getAttribute("href"));
@@ -299,7 +279,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         productType.selectByVisibleText("Simple Product");
         // click continue,
         client.findElement(By.id("continue_button")).findElement(By.tagName("button")).click();
+    }
 
+    public void adminCreatePerkGeneral() {
         // Under GENERAL tab put data in:
         // Business name
         client.findElement(By.id("business_name")).sendKeys("QA Test " + r);
@@ -308,7 +290,8 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("description")).sendKeys("QA Test Copy " + r);
 
         // Subject
-        client.findElement(By.id("name")).sendKeys("QA Test Subject " + r);
+        String internalName = "QA Test Subject " + r;
+        client.findElement(By.id("name")).sendKeys(internalName);
 
         // Offer
         client.findElement(By.id("offer")).sendKeys("QA Test Offer " + r);
@@ -331,13 +314,15 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         // change status to Enabled
         Select status = new Select(client.findElement(By.id("status")));
         status.selectByVisibleText("Enabled");
+    }
 
+    public void adminCreatePerkInventoryCounters () {
         // INVENTORY COUNTERS:
         // Click Inventory Counters
         client.findElement(By.id("product_info_tabs_group_48")).click();
 
         // Choose future date for Timer End Date
-        client.findElement(By.id("countdown_end_date")).sendKeys(getFutureDate());
+        client.findElement(By.id("countdown_end_date")).sendKeys(getFutureDate(3));
 
         // Put 1200 in Timer End Hour
         client.findElement(By.id("countdown_end_hour")).sendKeys("1200");
@@ -345,7 +330,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         // Choose D in Timer Format
         Select timerFormat = new Select(client.findElement(By.id("countdown_format")));
         timerFormat.selectByVisibleText("D");
+    }
 
+    public void adminCreatePerkPrice() {
         // PRICES:
         // Click Prices
         client.findElement(By.id("product_info_tabs_group_38")).click();
@@ -359,7 +346,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         // tax class none
         Select taxClass = new Select(client.findElement(By.id("tax_class_id")));
         taxClass.selectByVisibleText("None");
+    }
 
+    public void adminCreatePerkImages() {
         // IMAGES
         // Click Images
         client.findElement(By.id("product_info_tabs_group_40")).click();
@@ -368,7 +357,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         // Choose an image
         // Click upload files
         // Select that image as the Large Module
+    }
 
+    public void adminCreatePerkInventory() {
         // INVENTORY:
         // Click inventory
         client.findElement(By.id("product_info_tabs_inventory")).click();
@@ -384,14 +375,18 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         Select inventoryStockAvailability = new Select(client.findElement(By.id("inventory_stock_availability")));
         inventoryStockAvailability.selectByVisibleText("In Stock");
+    }
 
+    public void adminCreatePerkWebSite() {
         // WEBSITES:
         // Click Websites
         client.findElement(By.id("product_info_tabs_websites")).click();
 
         // Check Main Website
         client.findElement(By.id("product_website_1")).click();
+    }
 
+    public void adminCreatePerkCategories() {
         // CATEGORIES:
         // Click Categories
         client.findElement(By.id("product_info_tabs_categories")).click();
@@ -401,18 +396,19 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         iconWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("product_info_tabs_categories_content")));
 
         // Choose what edition you want it to appear in
-        WebElement one = client.findElement(By.id("product-categories")).findElement(By.className("x-tree-root-node")).findElements(By.className("x-tree-node")).get(1);
-        WebElement two = one.findElement(By.className("x-tree-node-ct")).findElements(By.className("x-tree-node")).get(1);
-        WebElement three = two.findElement(By.className("x-tree-node-el")).findElement(By.tagName("input"));
-        three.click();
+        client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div/form/div[18]/div/fieldset/div/ul/div/li[2]/ul/li[2]/div/a/span")).click();
+    }
 
+    public void adminCreatePerkReporting() {
         // REPORTING
         // Click Reporting
         client.findElement(By.id("product_info_tabs_group_75")).click();
 
         // Input Rev Share
         client.findElement(By.id("ud_rev_share")).sendKeys("54321" + r);
+    }
 
+    public void adminCreatePerkSave() {
         // click Save
         client.findElement(By.className("content-buttons")).findElements(By.tagName("button")).get(2).click();
     }
@@ -421,19 +417,32 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         // The perk is now created, but to make it appear on the site you must:
         // click on Manage Categories under Catalog,
         client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[4]/ul/li[2]/a")).getAttribute("href"));
-        // choose the edition you want the perk to show in (i.e. Chicago),
-        // click on the Category Products tab,
-        // Reorder the positions of all the products listed 1-X,
+        // choose the edition you want the perk to show in -- NATIONAL
+        WebElement tree = client.findElement(By.id("tree-div"));
+        tree.findElements(By.className("x-tree-node")).get(10).findElement(By.tagName("a")).click();
+
+        // Wait for the spinner to go away
+        WebDriverWait spinner = new WebDriverWait(client, 30);
+        spinner.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading_mask_loader")));
+
+        // click on the Category Products tab
+        client.findElement(By.id("category_info_tabs_products")).click();
+        // Reorder the positions of all the products listed 1-X
+        List<WebElement> rows = client.findElement(By.id("catalog_category_products_table")).findElement(By.tagName("tbody")).findElements(By.tagName("tr"));
+        for (int i = 0; i < rows.size() ;i++) {
+            rows.get(i).findElements(By.tagName("td")).get(5).findElement(By.tagName("input")).clear();
+            rows.get(i).findElements(By.tagName("td")).get(5).findElement(By.tagName("input")).sendKeys(Integer.toString(i+1));
+        }
         // click Save Category
+        client.findElement(By.className("content-buttons")).findElements(By.tagName("button")).get(2).findElement(By.tagName("span")).click();
     }
 
-    private String getFutureDate() {
+    private String getFutureDate(int days) {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
-        c.add(Calendar.DATE,14);
-        String futureDate = dateFormat.format(c.getTime());
-        return futureDate;
+        c.add(Calendar.DATE,days);
+        return dateFormat.format(c.getTime());
     }
 }
