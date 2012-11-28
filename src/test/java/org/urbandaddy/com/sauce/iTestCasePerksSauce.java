@@ -466,6 +466,19 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("ud_rev_share")).sendKeys("54321" + r);
     }
 
+    public void adminCreatePerkModuleSize() {
+        // MODULE
+        // Click Module
+        client.findElement(By.id("product_info_tabs_group_49")).click();
+
+        // Pick a random size
+        String[] sizes = {"large","medium","small","tall"};
+        Random gen = new Random();
+        int r = (generator.nextInt(3));
+        Select moduleSize = new Select(client.findElement(By.id("module_size")));
+        moduleSize.selectByVisibleText(sizes[r]);
+    }
+
     public void adminCreatePerkSave() {
         // click Save
         client.findElement(By.className("content-buttons")).findElements(By.tagName("button")).get(2).click();

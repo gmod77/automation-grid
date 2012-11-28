@@ -41,6 +41,9 @@ public class Perks_Admin_CreatePerk extends iTestCasePerksSauce {
         Reporter.log("Filling out Perk Reporting Tab",true);
         adminCreatePerkReporting();
 
+        Reporter.log("Selecting random perk size", true);
+        adminCreatePerkModuleSize();
+
         Reporter.log("Saving perk",true);
         adminCreatePerkSave();
 
