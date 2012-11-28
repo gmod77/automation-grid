@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
-import java.security.PrivateKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,7 +23,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
     //Make a random number for perks admin creation
     Random generator = new Random();
-    int r = (generator.nextInt(6) + 1) * 20;
+    int r = (generator.nextInt(6) + 1) * 2;
 
     // Perks
     /**
@@ -504,4 +503,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         c.add(Calendar.DATE,days);
         return dateFormat.format(c.getTime());
     }
+
+    // Perk confirm tests
+
+
+
 }

@@ -20,6 +20,9 @@ public class Perks_Admin_CreatePerk extends iTestCasePerksSauce {
         Reporter.log("Filling out General Tab",true);
         adminCreatePerkGeneral();
 
+        Reporter.log("Filling out Dashboard Options",true);
+        adminCreatePerkDashboard();
+
         Reporter.log("Filling out Inventory Counters",true);
         adminCreatePerkInventoryCounters();
 
