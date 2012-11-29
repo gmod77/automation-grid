@@ -870,8 +870,12 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 //Add an Ad to the Bottom Module, 
         dropDownSelector("_select_modules_center","Ad");
 
+        WebDriverWait ad1Wait = new WebDriverWait(client,30);
+        ad1Wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")));
+
         //click on "Ad"
         String bottomAdEdit = client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+
         client.get(bottomAdEdit);
 
         adminNewsLetterAdEdit("Absolut Glimmer ATL 12-27-11 footer");
@@ -880,8 +884,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 //Add an Ad to the Right Module, 
         dropDownSelector("_select_modules_right","Ad");
 
+        WebDriverWait ad2Wait = new WebDriverWait(client,30);
+        ad2Wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")));
+
         //click on "Ad"
-        String rightAdEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+        String rightAdEdit = client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
         client.get(rightAdEdit);
 
         adminNewsLetterAdEdit("Abbadabba's ATL 11-15-11 A tower");
