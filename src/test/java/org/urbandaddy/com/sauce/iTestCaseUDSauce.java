@@ -861,7 +861,8 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         dropDownSelector("_select_modules_left","Sponsored Love");
 
         //click on "Sponsored Love"
-        String sponsoredLoveEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[3]/table/tbody/tr/td[5]/a")).getAttribute("href");
+        String sponsoredLoveEdit = client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[4]/table/tbody/tr/td[5]/a")).getAttribute("href");
+
         client.get(sponsoredLoveEdit);
 
         adminNewsLetterAdEdit("Absolut Miami MIA 2-21-12 SL");
