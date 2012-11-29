@@ -185,6 +185,22 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
     }
 
+    /**
+     * Used in creation of articles. After opening the edit newsletter slot
+     * page, set the name of the adName and then save the ad slot.
+     *
+     * @param adName
+     */
+    public void adminNewsLetterAdEdit (String adName) {
+        client.findElement(By.id("newsletter_content_slot_name")).sendKeys(adName);
+        client.findElement(By.name("save")).click();
+
+        WebDriverWait adConfWait = new WebDriverWait(client,20);
+        adConfWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("save-ok")));
+
+        client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset/div[10]/div/a")).click();
+    }
+
         /**
         * Create a round up article
         *
@@ -325,37 +341,13 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         waitForNewsLetterLink.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")));
 
         //set main window handle before pop-ups pop up
-        String parentWindowHandle = client.getWindowHandle();
+        //String parentWindowHandle = client.getWindowHandle();
 
         // Click link for popup window
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-        pause(3000);
+        String adComponent = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+        client.get(adComponent);
 
-        // Get all window handles
-        Set<String> allWindows = client.getWindowHandles();
-
-        //handle pop-up window
-        //this method will you handle of all opened windows
-        Iterator<String> windowItr=allWindows.iterator();
-
-        while(windowItr.hasNext())
-        {
-            String popupHandle2=windowItr.next().toString();
-            if(!popupHandle2.contains(parentWindowHandle))
-            {
-                client.switchTo().window(popupHandle2);
-                WebDriverWait waitForDiv = new WebDriverWait(client,30);
-                waitForDiv.until(ExpectedConditions.visibilityOfElementLocated(By.id("content_div")));
-        //	c.	Choose any Tower add.
-                Select slot = new Select(client.findElement(By.name("newsletter_content_slot[name]")));
-                slot.selectByVisibleText("49ers SF 11-8-11 tower (Tower)");
-                client.findElement(By.id("save_button")).click();
-
-            }
-        }
-        // After finished your operation in pop-up just select the main window again
-        client.switchTo().window(parentWindowHandle);
-        pause(3000);
+        adminNewsLetterAdEdit("49ers SF 11-8-11 tower");
 
         // 33. Click "here" to add the individual articles
         client.get(UD_ADMIN_DOMAIN+"/multiarticle/edit/id/"+articleID);
@@ -420,6 +412,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         Assert.assertTrue(ud_roundUP_client.isTowerAdPresent());
     }
 
+    public void dropDownSelector (String dropDownID, String value) {
+        Select dropdown = new Select(client.findElement(By.id(dropDownID)));
+        dropdown.selectByVisibleText(value);
+    }
+
     /**
      * Create a Weekender Article
      *
@@ -435,87 +432,40 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         this.pause(7000);
 
 //	4. Change status to Approved
-
-        WebElement status = client.findElement(By.id("article_article_status_id"));
-        List<WebElement> status_options = status.findElements(By.tagName("option"));
-        for(WebElement option : status_options){
-            if(option.getText().equals("Approved")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_article_status_id","Approved");
 
 //	5.  Click Dedicated
-
         client.findElement(By.id("article_is_dedicated")).click();
 
 //	6.  Change Template to Weekender
-
-        WebElement template = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> template_options = template.findElements(By.tagName("option"));
-        for(WebElement option : template_options){
-            if(option.getText().equals("Weekender")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_article_template_id","Weekender");
 
 //	7.  Choose any ad campaign
-
-        WebElement ad_campaign = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> ad_campaign_options = ad_campaign.findElements(By.tagName("option"));
-        for(WebElement option : ad_campaign_options){
-            if(option.getText().equals("Groupon")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_ad_campaign_id","Groupon");
 
 //	8.  Choose any Author
-
-        WebElement author = client.findElement(By.id("article_author_id"));
-        List<WebElement> author_options = author.findElements(By.tagName("option"));
-        for(WebElement option : author_options){
-            if(option.getText().equals("Russ Brandom")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_author_id","Russ Brandom");
 
 //	9.  Enter in From Display “test <test@test.com>”
-
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
 //	10.   Choose QA Segment
-
-        WebElement segment = client.findElement(By.id("details_segment"));
-        List<WebElement> segment_options = segment.findElements(By.tagName("option"));
-        for(WebElement option : segment_options){
-            if(option.getText().equals("QA Addresses")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("details_segment","QA Addresses");
 
 //	11.   Enter an Article title
-
         client.findElement(By.id("article_name")).sendKeys("Test Weekender Article Title "+ date);
 
 //	12.   Enter a Business Name/Subject
-
         client.findElement(By.id("article_business_name")).sendKeys("Test Weekender Business Name "+ date);
 
 //	13.   Enter an Article Subheader
-
         client.findElement(By.id("article_teaser")).sendKeys("Test Weekender Article Subheader "+ date);
 
 //	14.   Enter a Email Subject Line
-
         client.findElement(By.id("article_email_subject_line")).sendKeys("Test Weekender Email Subject "+ date);
 
 //	15.   Choose any weekender category
-
-        //default selection is "NYC: Nightlife"
+        dropDownSelector("article_edition_category_id","NYC: The Weekender");
 
 //	16.   Click Save
 
@@ -542,21 +492,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-
-        WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options1){
-            if(option.getText().equals("Option_A_Left_Column")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_image_article_image_position_id","Option_A_Left_Column");
 
         //click "save and add" button
-
         client.findElement(By.name("save_and_add")).click();
         this.pause(7000);
-
 
         //browse to 2nd image
         client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image002_EmailBanner.jpg");
@@ -565,18 +505,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-
-        WebElement article2_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options2 = article2_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options2){
-            if(option.getText().equals("Email_Banner")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_image_article_image_position_id","Email_Banner");
 
         //click "save and add" button
-
         client.findElement(By.name("save_and_add")).click();
         this.pause(7000);
 
@@ -587,18 +518,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-
-        WebElement article3_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options3 = article3_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options3){
-            if(option.getText().equals("Thumbnail")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_image_article_image_position_id","Thumbnail");
 
         //click "save and add" button
-
         client.findElement(By.name("save")).click();
         this.pause(7000);
 
@@ -606,206 +528,68 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.get(UD_ADMIN_DOMAIN+"/articles/edit/id/"+articleID);
 
 //	18.   Enter text in photo credit
-
         client.findElement(By.id("article[photo_credit]")).sendKeys("Weekender Photo Credits Test "+ date);
 
 //	19.   Enter text in Article Feature
-
         client.findElement(By.id("article[short]")).sendKeys("Weekender Article/Feature Introduction Test "+ date);
 
 //	20.   Copy is not needed
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[content]').SetHTML('Weekender Article Copy Test'))");
 
 //	21.   Enter text in Article Blurb
-
         client.findElement(By.id("article[blurb]")).sendKeys("Weekender Article Blurb Test "+ date);
 
 //	22.   Enter Text in iPhone Blurb
-
         client.findElement(By.id("article[blurb_iphone]")).sendKeys("Weekender iPhone Blurb Test "+ date);
 
 //	23.   Enter Text in Twitter Blurb
-
         client.findElement(By.id("article_blurb_twitter")).sendKeys("Weekender Twitter Blurb Test "+ date);
 
 //	24.   Enter Text in Note
-
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Weekender Article Copy Test'))");
 
 //	25.   Enter Text in Legal Line
-
         client.findElement(By.id("article[footer_additional]")).sendKeys("Weekender Legal Line Test "+ date);
 
 //	26.   Add Ad to Bottom module
 //		a.	Select ad from component dropdown
-
-        WebElement add_bottom_components = client.findElement(By.id("_select_modules_center"));
-        List<WebElement> add_bottom_components_options = add_bottom_components.findElements(By.tagName("option"));
-
-        for(WebElement option : add_bottom_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        dropDownSelector("_select_modules_center","Ad");
 
 //		b.	Click on newsletter_ad
-
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-//		c.	Choose any Footer ad.   
-        //set main window handle before pop-ups pop up
-        String mwh=client.getWindowHandle();
-
-        //handle pop-up window
-        Set<?> s_add1=client.getWindowHandles();
-        //this method will you handle of all opened windows
-
-        Iterator<?> ite_add1=s_add1.iterator();
-
-        while(ite_add1.hasNext())
-        {
-            String popupHandle=ite_add1.next().toString();
-            if(!popupHandle.contains(mwh))
-            {
-                client.switchTo().window(popupHandle);
-
-                // select Footer template
-
-                WebElement bottom_ad_type = findElementAndCheckBy("name","newsletter_content_slot[name]",5);
-
-                List<WebElement> bottom_ad_type_options = bottom_ad_type.findElements(By.tagName("option"));
-                for(WebElement option : bottom_ad_type_options){
-                    if(option.getText().equals("49ers SF 11-8-11 footer (Footer)")) {
-                        option.click();
-                        break;
-                    }
-                }
-
-                //d. 	Click Save
-
-                WebElement clickMe = findElementAndCheckBy("id", "save_button", 5);
-                clickMe.click();
-                this.pause(7000);
-
-                //After finished your operation in pop-up just select the main window again
-                client.switchTo().window(mwh);
-            }
-        }
-
-
+        String centerNewsletterAdEditLink = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+        client.get(centerNewsletterAdEditLink);
+        // Choose any footer ad
+        adminNewsLetterAdEdit("49ers SF 11-8-11 footer");
 
 //	27.   Add Ad to Right Module
 //		a.	Select ad from component dropdown
-
 //        		a.	Select ad from component dropdown
-        WebElement add_right_components = findElementAndCheckBy("id","_select_modules_right",5);
-        //WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
-        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
+        dropDownSelector("_select_modules_right","Ad");
 
-        for(WebElement option : add_right_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 //		b.	Click on newsletter_ad
+        String rightNewsletterAdEditLink = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+        client.get(rightNewsletterAdEditLink);
 
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-//		c.	Choose any Tower add.      
-        //set main window handle before pop-ups pop up
-        String mwh2=client.getWindowHandle();
-
-        //handle pop-up window
-        Set<?> s_add2=client.getWindowHandles();
-        //this method will you handle of all opened windows
-
-        Iterator<?> ite_add2=s_add2.iterator();
-
-        while(ite_add2.hasNext())
-        {
-            String popupHandle2=ite_add2.next().toString();
-            if(!popupHandle2.contains(mwh2))
-            {
-                client.switchTo().window(popupHandle2);
-
-                this.pause(3000);
-
-                // select Footer template
-
-                WebElement right_ad_type = findElementAndCheckBy("name","newsletter_content_slot[name]",5);
-                List<WebElement> right_ad_type_options = right_ad_type.findElements(By.tagName("option"));
-                for(WebElement option : right_ad_type_options){
-                    if(option.getText().equals("49ers SF 11-8-11 tower (Tower)")) {
-                        option.click();
-                        break;
-                    }
-                }
-//        d.	Click Save
-                client.findElement(By.id("save_button")).click();
-                this.pause(7000);
-
-                //After finished your operation in pop-up just select the main window again
-                client.switchTo().window(mwh2);
-            }
-        }
-
+        //		c.	Choose any Tower add.
+        adminNewsLetterAdEdit("49ers SF 11-8-11 tower");
 
 //	28.   Enter text in keywords
-
         client.findElement(By.id("article_keywords")).sendKeys("Weekender Keywords Test Keywords "+ date);
 
 //	29.   Choose business type
-
-        WebElement business_type = findElementAndCheckBy("id","article_business_type_id",5);
-        List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
-        for(WebElement option : business_type_options){
-            if(option.getText().equals("Clothing")) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("article_business_type_id","Clothing");
 
 //	30.   Enter text in business specialty
-
         client.findElement(By.id("article_business_specialty")).sendKeys("Weekender Business Specialty Test "+ date);
 
 //	31.   Click save
-
         client.findElement(By.name("save")).click();
         this.pause(7000);
-
 
 //	32.   Click “here” next to Template this takes you to individual weekenders
         //html/body/div[3]/div/div[2]/form/fieldset/div[5]/div/a
 
 //		or:
-
         client.get(UD_ADMIN_DOMAIN+"/multiarticle/edit/id/"+articleID);
         this.pause(7000);
 
@@ -813,204 +597,116 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //1
 //		a.       Choose the day
+        Select daySelector1 = new Select(client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/select")));
+        daySelector1.selectByVisibleText("Monday");
 
-        WebElement day1 = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/select"));
-        List<WebElement> day1_options = day1.findElements(By.tagName("option"));
-        for(WebElement option : day1_options){
-            if(option.getText().equals("Monday")) {
-                option.click();
-                break;
-            }
-        }
-
-//		b.      Click show day image in title
-
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/input[2]")).click();
-
+//		b.      Click show day image in title (not needed, will duplicate the day name)
+        //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div/input[2]")).click();
 
 //		c.       Enter text in Header
-
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[5]/input")).sendKeys("Weekender Header1 Test "+ date);
 
-
 //		d.      Enter text in Subheader
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[6]/input")).sendKeys("Weekender SubHeader1 Test "+ date);
 
-
 //		e.      Put in some url for subheader URl
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[7]/input")).sendKeys("www.google.com");
 
-
 //		f.        Click choose file under image and put in an image
-
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[8]/input")).sendKeys(IMAGE_PATH + "solon.jpg");
 
-
 //		g.       Check image url
-
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[9]/input")).click();
 
-
 //		h.      Put in some url for image url
-
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[9]/input[2]")).sendKeys("http://images.sodahead.com/polls/001076173/even_kittens_are_going_bad_answer_2_xlarge.jpeg");
 
-
 //		i.         Enter text in Alt
-
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[2]/td/div[10]/input")).sendKeys("Weekender Alt Test"+ date);
-
 
 //		j.        Enter text in Copy
 //		k.       Enter text in 411
-
 //		l.         Repeat for others
-
-
         //2
 //		a.       Choose the day    
-
-        WebElement day2 = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/select"));
-        List<WebElement> day2_options = day2.findElements(By.tagName("option"));
-        for(WebElement option : day2_options){
-            if(option.getText().equals("Tuesday")) {
-                option.click();
-                break;
-            }
-        }
+        Select daySelector2 = new Select(client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/select")));
+        daySelector2.selectByVisibleText("Tuesday");
 
 //		b.      Click show day image in title
-
         //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div/input[2]")).click();
 
 //		c.       Enter text in Header
-
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[5]/input")).sendKeys("Weekender Header2 Test "+ date);
 
 //		d.      Enter text in Subheader
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[6]/input")).sendKeys("Weekender SubHeader2 Test "+ date);
 
-
 //		e.      Put in some url for subheader URl
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[7]/input")).sendKeys("www.yahoo.com");
 
-
 //		f.        Click choose file under image and put in an image
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[8]/input")).sendKeys(IMAGE_PATH + "plato.jpg");
 
-
 //		g.       Check image url
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[9]/input")).click();
 
-
 //		h.      Put in some url for image url
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[9]/input[2]")).sendKeys("http://t0.gstatic.com/images?q=tbn:ANd9GcTYj5WyrHaLj6lqad-dIiNUTQSaKkuJmJtUKiPX3SbIpCfS-1aFqyr-mDWF");
 
-
 //		i.         Enter text in Alt
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[4]/td/div[10]/input")).sendKeys("Weekender Alt2 Test"+ date);
-
 
 //		j.        Enter text in Copy
 //		k.       Enter text in 411
 //		l.         Repeat for others
-
-
         //3
 
 //		a.       Choose the day   
+        Select daySelector3 = new Select(client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/select")));
+        daySelector3.selectByVisibleText("Thursday");
 
-        WebElement day3 = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/select"));
-        List<WebElement> day3_options = day3.findElements(By.tagName("option"));
-        for(WebElement option : day3_options){
-            if(option.getText().equals("Thursday")) {
-                option.click();
-                break;
-            }
-        }
-
-//		b.      Click show day image in title
-
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/input[2]")).click();
-
+//		b.      Click show day image in title (Not needed, will double the Date text
+        //client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div/input[2]")).click();
 
 //		c.       Enter text in Header
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[5]/input")).sendKeys("Weekender Header3 Test "+ date);
 
-
 //		d.      Enter text in Subheader
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[6]/input")).sendKeys("Weekender SubHeader3 Test "+ date);
 
-
 //		e.      Put in some url for subheader URl
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[7]/input")).sendKeys("www.cnn.com");
 
-
 //		f.        Click choose file under image and put in an image
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[8]/input")).sendKeys(IMAGE_PATH + "socrates.jpg");
 
-
 //		g.       Check image url
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[9]/input")).click();
 
 //		h.      Put in some url for image url
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[9]/input[2]")).sendKeys("http://imagecache6.allposters.com/LRG/38/3842/UJXYF00Z.jpg");
 
-
 //		i.         Enter text in Alt
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[6]/td/div[10]/input")).sendKeys("Weekender Alt3 Test"+ date);
-
 
 //		j.        Enter text in Copy
 //		k.       Enter text in 411
-
-
 //		m.    Delete slots you do not want to use
 //		slot 4:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
-
         this.pause(7000);
 
 //		slot 5:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[10]/td/div[11]/input
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
         this.pause(7000);
 
 //		slot 6:/html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[12]/td/div[11]/input
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/table/tbody/tr[8]/td/div[11]/input")).click();
         this.pause(7000);
 
-
-
-
         //		n.      Click Save
-
         client.findElement(By.name("save")).click();
         this.pause(3000);
-
     }
 
     /**
@@ -1025,26 +721,24 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.get(UD_ADMIN_DOMAIN+"/articles/create");
 
         //Set Status to Approved
-        iHelper_client.selectFromDropdown("article_article_status_id","option","Approved");
+        dropDownSelector("article_article_status_id","Approved");
 
         //Check Dedicated
         client.findElement(By.id("article_is_dedicated")).click();
 
         //Select Three-Column Template
-        iHelper_client.selectFromDropdown("article_article_template_id","option","Three-Column");
+        dropDownSelector("article_article_template_id","Three-Column");
 
         //Select Author: Russ Brandom
-        iHelper_client.selectFromDropdown("article_author_id","option","Russ Brandom");
+        dropDownSelector("article_author_id","Russ Brandom");
 
         //From display
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
         //Select Segment: QA
-        iHelper_client.selectFromDropdown("details_segment","option","QA Addresses");
+        dropDownSelector("details_segment", "QA Addresses");
 
         //Enter Article Title:
-
-        //client.findElement(By.id("article_name")).clear();
         client.findElement(By.id("article_name")).sendKeys("Test Three-Column Article Title "+ date);
 
         //Enter Business Name/Subject
@@ -1081,14 +775,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-
-        iHelper_client.selectFromDropdown("article_image_article_image_position_id","option","Option_A_Left_Column");
+        dropDownSelector("article_image_article_image_position_id", "Option_A_Left_Column");
 
         //click "save and add" button
-
         client.findElement(By.name("save_and_add")).click();
         this.pause(7000);
-
 
 //browse to 2nd image
         client.findElement(By.id("article_image_name")).sendKeys(IMAGE_PATH + "image002_EmailBanner.jpg");
@@ -1097,11 +788,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-
-        iHelper_client.selectFromDropdown("article_image_article_image_position_id","option","Email_Banner");
+        dropDownSelector("article_image_article_image_position_id", "Email_Banner");
 
         //click "save and add" button
-
         client.findElement(By.name("save_and_add")).click();
         this.pause(7000);
 
@@ -1112,10 +801,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         //enter Position for 1st image: Option A Left Column
-        iHelper_client.selectFromDropdown("article_image_article_image_position_id","option","Thumbnail");
+        dropDownSelector("article_image_article_image_position_id", "Thumbnail");
 
 //click "save and add" button
-
         client.findElement(By.name("save")).click();
         this.pause(7000);
 
@@ -1150,200 +838,57 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_keywords")).sendKeys("Three-Column Keywords Test Keywords "+ date);
 
 //Business type
-        iHelper_client.selectFromDropdown("article_business_type_id","option","Clothing");
+        dropDownSelector("article_business_type_id","Clothing");
 
 //Business specialty
-
         client.findElement(By.id("article_business_specialty")).sendKeys("Three-Column Business Specialty Test "+ date);
 
 //Save
         client.findElement(By.name("save")).click();
         this.pause(7000);
 
-// Add Vitals to the Left Module,
-        iHelper_client.selectFromDropdown("_select_modules_left","option","Vitals");
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+// Add Vitals to the Left Module
+        dropDownSelector("_select_modules_left","Vitals");
 
 //Add Sponsored Love to the Left Module,	    
+        dropDownSelector("_select_modules_left","Sponsored Love");
 
-        iHelper_client.selectFromDropdown("_select_modules_left","option","Sponsored Love");
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         //set main window handle before pop-ups pop up
         String mwh=client.getWindowHandle();
 
         //click on "Sponsored Love"
-        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[3]/table/tbody/tr/td[5]/a")).click();
+        String sponsoredLoveEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[3]/table/tbody/tr/td[5]/a")).getAttribute("href");
+        client.get(sponsoredLoveEdit);
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        adminNewsLetterAdEdit("Absolut Miami MIA 2-21-12 SL");
 
-        // Save default selection / assignment of newsletter slot
-
-        //handle pop-up window
-        Set<?> s=client.getWindowHandles();
-        //this method will you handle of all opened windows
-
-        Iterator<?> ite=s.iterator();
-
-        while(ite.hasNext())
-        {
-            String popupHandle=ite.next().toString();
-            if(!popupHandle.contains(mwh))
-            {
-                client.switchTo().window(popupHandle);
-                this.pause(3000);
-                // click save
-                client.findElement(By.id("save_button")).click();
-
-                //After finished your operation in pop-up just select the main window again
-                client.switchTo().window(mwh);
-            }
-        }
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 //Add Tools to the left Module,
-
-        iHelper_client.selectFromDropdown("_select_modules_left","option","Tools");
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        dropDownSelector("_select_modules_left","Tools");
 
 //Add an Ad to the Bottom Module, 
-        //iHelper_client.selectFromDropdown("_select_modules_center","option","Ad");
-        WebElement add_bottom_components = client.findElement(By.id("_select_modules_center"));
-        List<WebElement> add_bottom_components_options = add_bottom_components.findElements(By.tagName("option"));
-        for(WebElement option : add_bottom_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        dropDownSelector("_select_modules_center","Ad");
 
         //click on "Ad"
-        //client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-        client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
+        String bottomAdEdit = client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+        client.get(bottomAdEdit);
 
-        // Save default selection / assignment of newsletter slot
+        adminNewsLetterAdEdit("Absolut Glimmer ATL 12-27-11 footer");
 
-        //handle pop-up window
-        Set<?> s2=client.getWindowHandles();
-        //this method will you handle of all opened windows
-
-        Iterator<?> ite2=s2.iterator();
-
-        while(ite2.hasNext())
-        {
-            String popupHandle=ite2.next().toString();
-            if(!popupHandle.contains(mwh))
-            {
-                client.switchTo().window(popupHandle);
-                // click save
-                this.pause(3000);
-                iHelper_client.selectFromDropdown(findElementAndCheckBy("name","newsletter_content_slot[name]",10),"option","Absolut Glimmer BOS 12-27-11 footer (Footer)");
-                findElementAndCheckBy("id","save_button",5).click();
-                this.pause(7000);
-
-                //After finished your operation in pop-up just select the main window again
-                client.switchTo().window(mwh);
-            }
-        }
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 //Add an Ad to the Right Module, 
-        //iHelper_client.selectFromDropdown("_select_modules_right","option","Ad");
-        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
-        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
-        for(WebElement option : add_right_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        dropDownSelector("_select_modules_right","Ad");
+
 
         //click on "Ad"
-        findElementAndCheckBy("xpath","//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a",5).click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        String rightAdEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
+        client.get(rightAdEdit);
 
-        // Save default selection / assignment of newsletter slot
+        adminNewsLetterAdEdit("Abbadabba's ATL 11-15-11 A tower");
 
-        //handle pop-up window
-        Set<?> s3=client.getWindowHandles();
-        //this method will you handle of all opened windows
-
-        Iterator<?> ite3=s3.iterator();
-
-        while(ite3.hasNext())
-        {
-            String popupHandle=ite3.next().toString();
-            if(!popupHandle.contains(mwh))
-            {
-                client.switchTo().window(popupHandle);
-
-                // click save
-                this.pause(3000);
-                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","/html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","Absolut Glimmer BOS 12-12-11 tower (Tower)");
-                client.findElement(By.id("save_button")).click();
-                this.pause(7000);
-
-                //After finished your operation in pop-up just select the main window again
-                client.switchTo().window(mwh);
-            }
-        }
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//Click Save, 
-
+//Click Save
         client.findElement(By.name("save")).click();
         this.pause(7000);
 
@@ -1397,7 +942,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //Set Status to Approved
 
-        iHelper_client.selectFromDropdown("article_article_status_id","option","Ready to Send");
+        dropDownSelector("article_article_status_id","Ready to Send");
 
         //Save
         client.findElement(By.name("save")).click();
@@ -1416,15 +961,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         // And acknowledge the alert (equivalent to clicking "OK")
         alert3.accept();
 
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-// Verify "Email has been sent successfully." success message
-        Assert.assertTrue(client.findElement(By.xpath("//html/body/div[3]/div/div/h2")).getText().contains("Email has been sent successfully."));
-
+        // Verify "Email has been sent successfully." success message
+        WebDriverWait successMessage = new WebDriverWait(client,30);
+        successMessage.until(ExpectedConditions.visibilityOfElementLocated(By.className("save-ok")));
     }
 
     /**
@@ -1465,40 +1004,26 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("pmt_universal_settings_name")).sendKeys(campaignName);
 
         //4. Choose Campaign end date some day in the future
-
         client.findElement(By.id("pmt_universal_settings_campaign_end_date")).sendKeys("2013-08-23 17:39");
 
         //5. Uncheck Campaign Disabled
-
         client.findElement(By.id("pmt_universal_settings_campaign_disabled")).click();
 
         //Select Member source created earlier
-
-        WebElement status = client.findElement(By.id("pmt_universal_settings_member_source_id"));
-        List<WebElement> status_options = status.findElements(By.tagName("option"));
-        for(WebElement option : status_options){
-            if(option.getText().equals(memberSource)) {
-                option.click();
-                break;
-            }
-        }
+        dropDownSelector("pmt_universal_settings_member_source_id",memberSource);
 
         //6. Check User picks editions
-
         client.findElement(By.id("pmt_universal_settings_user_picks_editions")).click();
 
         //7. Check User invites friends
-
         client.findElement(By.id("pmt_universal_settings_user_invites_friends")).click();
 
         //8. Choose a background image, must be 1280 by 568
-
         String PMTBackground = IMAGE_PATH + "background image.jpg";
         System.out.println(PMTBackground);
         client.findElement(By.id("pmt_universal_settings_background_image_path")).sendKeys(PMTBackground);
 
         //9. Choose a logo, must be 250 by 100
-
         //selected by Default
 
         //10. Choose a new Accent color hex, ex: 00FFFF
@@ -1510,105 +1035,78 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_universal_settings[footer_text]').SetHTML('Footer Text Test'))");
 
         //12. Link to a pdf for Rules and regs
-
-        // not sure why this won't work
+        //Web Browser needs adobe installed so it can confirm this is a PDF
         String PMTPdf = IMAGE_PATH + "rules_regulations.pdf";
         System.out.println(PMTPdf);
         client.findElement(By.id("pmt_universal_settings_rules_and_regulations_path")).sendKeys(PMTPdf);
 
         //13. Click SAVE
         //???	 ↓ Only PDF files are allowed  ↓ for Rules and Regulations field???
-
         client.findElement(By.name("save")).click();
 
         // Make sure Success message displays
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
-
         client.findElement(By.name("save_and_add")).click();
 
         //19. Click Add Partner
         // Partner 1
-
         WebElement addPartner = findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[2]/input",10);
         addPartner.click();
 
         //20. Enter partner name
-
         client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner1 "+  date);
 
         //21. Enter opt in text
-
         client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text1 "+  date);
 
         //22. Enter privacy policy url
-
         client.findElement(By.id("pmt_partner_settings_privacy_policy_url")).sendKeys("http://ud-branch.thedaddy.co/privacypolicy");
 
         //23. Enter text in privacy policy label
-
         client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label1 "+  date);
 
         //24. Choose logo, must be 170 by 97
-
         client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(IMAGE_PATH + "partner logo-1.png");
 
         //25. Click Save
-
         client.findElement(By.name("save")).click();
         findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
 
         //26. Click List
-
         client.findElement(By.xpath(".//*[@id='sf_admin_edit_form']/ul/li[1]/input")).click();
-
 
         //27. Repeat Steps 19-26 for 2nd partner slot
 
         //19. Click Add Partner
         // Partner 2
-
         WebElement addPartner2 = findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[2]/input",10);
         addPartner2.click();
 
-
         //20. Enter partner name
-
         client.findElement(By.id("pmt_partner_settings_name")).sendKeys("Partner2 "+  date);
 
         //21. Enter opt in text
-
         client.findElement(By.id("pmt_partner_settings_opt_in_text")).sendKeys("Opt in text2 "+  date);
 
         //22. Enter privacy policy url
-
         client.findElement(By.id("pmt_partner_settings_privacy_policy_url")).sendKeys("http://ud-branch.thedaddy.co/privacypolicy");
 
         //23. Enter text in privacy policy label
-
         client.findElement(By.id("pmt_partner_settings_privacy_policy_label")).sendKeys("Privacy policy label2 "+  date);
 
         //24. Choose logo, must be 170 by 97
-
         client.findElement(By.id("pmt_partner_settings_logo_path")).sendKeys(IMAGE_PATH + "partner logo-2.png");
 
         //25. Click Save
-
         client.findElement(By.name("save")).click();
         findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
         //26. Click List
-
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_edit_form']/ul/li[1]/input",10).click();
-        //client.findElement(By.xpath(".//*[@id='sf_admin_edit_form']/ul/li[1]/input")).click();
-
 
         //28. Click Next Step
-
         findElementAndCheckBy("xpath","//html/body/div[3]/div/div[3]/ul/li[4]/input",10).click();
-//        client.findElement(By.xpath("//html/body/div[3]/div/div[3]/ul/li[4]/input")).click();
-//        this.pause(3000);
-
 
         //29. Add Header text
         // Make sure we're on the next page
@@ -1616,21 +1114,17 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header1_text]').SetHTML('Signup Header Text Test'))");
 
         //30. Add Subhead text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[header2_text]').SetHTML('Signup Subheader Text Test'))");
 
         //31. Add Bottom text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_signup_settings[bottom_text]').SetHTML('Signup Bottom Text Test'))");
 
         //32. Click next step
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //33. Select all editions
-
         //find editions selector
         Select EditionsMulitpleSelection = new Select(client.findElement(By.id("unassociated_preselected_editions")));
 
@@ -1660,193 +1154,148 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         EditionsMulitpleSelection.selectByVisibleText("Ski & Board");
 
         //34. Click Right blue arrow to move them to the Selected column
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset/div[2]/div/div/div[2]/input")).click();
 
         //35. Add Header text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header1_text]').SetHTML('Editions Header Text Test'))");
         //this.pause4();
 
         //36. Add subheader text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[header2_text]').SetHTML('Editions Subheader Text Test'))");
         //this.pause4();
 
         //37. Add bottom text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_edition_settings[bottom_text]').SetHTML('Editions Bottom Text Test'))");
         //this.pause4();
 
         //38. Click Next Step
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
 
         //39. Add Invite Friends Head text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header1_text]').SetHTML('Invite Friends Header Text Test'))");
         //this.pause4();
 
         //40. Add Invite Friends Subhead text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[header2_text]').SetHTML('Invite Friends Subheader Text Test'))");
         //this.pause4();
 
         //41. Add Invite Friends bottom text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_friends_settings[bottom_text]').SetHTML('Invite Friends Bottom Text Test'))");
         //this.pause4();
 
         //42. Click Next Step
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Wait for success message
         findElementAndCheckBy("xpath","/html/body/div[3]/div/div[2]/div/h2",10);
 
-
         //43. Add thank you head text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header1_text]').SetHTML('Thank You Header Text Test'))");
 
         //44. Add thank you sub text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[header2_text]').SetHTML('Thank You Subheader Text Test'))");
 
         //45. Add thank you bot text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_thank_you_settings[bottom_text]').SetHTML('Thank You Bottom Text Test'))");
 
         //46. Add twitter copy
-
         client.findElement(By.id("pmt_thank_you_settings_twitter_copy")).sendKeys("Twitter copy "+  date);
 
         //47. Add FB title
-
         client.findElement(By.id("pmt_thank_you_settings_facebook_title")).sendKeys("FB Title copy "+  date);
 
         //48. Add FB Copy
-
         client.findElement(By.id("pmt_thank_you_settings_facebook_copy")).sendKeys("FB copy "+  date);
 
         //49. Choose FB image, must be 50 X 50
-
         client.findElement(By.id("pmt_thank_you_settings_facebook_image_path")).sendKeys(IMAGE_PATH + "fb-image-test.jpg");
 
         //50. Choose Module 1 Image
-
         client.findElement(By.id("pmt_thank_you_settings_module1_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-driven.jpg");
 
         //51. Add Module 1 URL
-
         client.findElement(By.id("pmt_thank_you_settings_module1_url")).sendKeys("http://www.ThankYouSettingsModule1url.com");
 
         //52. Choose Module 2 image
-
         client.findElement(By.id("pmt_thank_you_settings_module2_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
 
         //53. Add module 2 url
-
         client.findElement(By.id("pmt_thank_you_settings_module2_url")).sendKeys("http://www.ThankYouSettingsModule2url.com");
 
         //54. Choose Module 3 image
-
         client.findElement(By.id("pmt_thank_you_settings_module3_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-perks.jpg");
 
         //55. Add module 3 url
-
         client.findElement(By.id("pmt_thank_you_settings_module3_url")).sendKeys("http://www.ThankYouSettingsModule3url.com");
 
         //56. Click Next Step
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         //Check for success message
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //57. Repeat Steps for the Closed page
-
         //Add Closed head text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header1_text]').SetHTML('Closed Page Header Text Test'))");
 
         //Add thank you sub text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[header2_text]').SetHTML('Closed Page Subheader Text Test'))");
 
         //Add thank you bot text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_closed_settings[bottom_text]').SetHTML('Closed Page Bottom Text Test'))");
 
-
         // Choose Module 1 Image
-
         client.findElement(By.id("pmt_closed_settings_module1_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-driven.jpg");
 
         //51. Add Module 1 URL
-
         client.findElement(By.id("pmt_closed_settings_module1_url")).sendKeys("http://www.ClosedSettingsModule1url.com");
 
         //52. Choose Module 2 image
-
         client.findElement(By.id("pmt_closed_settings_module2_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-jetset.jpg");
 
         //53. Add module 2 url
-
         client.findElement(By.id("pmt_closed_settings_module2_url")).sendKeys("http://www.ClosedSettingsModule2url.com");
 
         //54. Choose Module 3 image
-
         client.findElement(By.id("pmt_closed_settings_module3_image_path")).sendKeys(IMAGE_PATH + "Thank You-Campaign Closed Page Image Module-perks.jpg");
 
         //55. Add module 3 url
-
         client.findElement(By.id("pmt_closed_settings_module3_url")).sendKeys("http://www.ClosedSettingsModule3url.com");
 
         //56. Click Next Step
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         // Check for success message
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //58. Invite Email Settings
-
         //Choose Invite Email Header Image
-
         client.findElement(By.id("pmt_invite_email_settings_header_image_path")).sendKeys(IMAGE_PATH + "email-header Image.jpg");
 
         //Subject Text
-
         client.findElement(By.id("pmt_invite_email_settings_subject_text")).sendKeys("Email subject text "+  date);
 
         //Email Body Text
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('pmt_invite_email_settings[body_text]').SetHTML('Invite Email Text Test'))");
 
         // Click Next Step
-
         client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/ul/li[4]/input")).click();
         //Check for success message
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_content']/div/h2",10);
 
         //59. Go to newly created campaign
-
         //Back to PMT Universal Settings List
-
         client.get(UD_ADMIN_DOMAIN+"/pmt_universal_settings");
+
         // Make sure the page shows up
         findElementAndCheckBy("xpath",".//*[@id='sf_admin_container']/h1",10);
-
 
         // Get the campaign just created
         System.out.println(campaignName);
         WebElement campaignLink = client.findElement(By.linkText(campaignName));
         client.get(campaignLink.getAttribute("href"));
 
-
         //60. 		Check for elements
-
         //a. Campaign Name = Title of the Page
         //Assert.assertTrue(client.getTitle().equalsIgnoreCase(campaignName));
 
@@ -1988,9 +1437,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      *
      */
     public void goBackToUDHomepage(){
-
         client.get(UD_DOMAIN);
-
     }
 
     /**
@@ -1999,7 +1446,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
      *
      */
     public void checkUDHomepageCityHeaderLoggedOut(){
-
         //do all homepage footer checks
         ud_headerHelper_Client = new UD_HeaderHelper_Client(client);
         Assert.assertTrue(ud_headerHelper_Client.isNightlifePresent());
@@ -2055,8 +1501,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         this.pause(7000);
         Assert.assertTrue(ud_headerHelper_Client.isMobileAccessible(), "Mobile wasn't accessible");
         client.get(lastURL);
-
-
     }
 
     /**
