@@ -197,69 +197,37 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // After login go to create the article
         client.get(UD_ADMIN_DOMAIN+"/articles/create");
-        this.pause(7000);
 
         // 4. change status to approved
-        WebElement status = client.findElement(By.id("article_article_status_id"));
-        List<WebElement> status_options = status.findElements(By.tagName("option"));
-        for(WebElement option : status_options){
-            if(option.getText().equals("Approved")) {
-                option.click();
-                break;
-            }
-        }
+        Select status = new Select(client.findElement(By.id("article_article_status_id")));
+        status.selectByVisibleText("Approved");
 
         // 5. click dedicated
         client.findElement(By.id("article_is_dedicated")).click();
 
         // 6. choose Roundup template
-        WebElement template = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> template_options = template.findElements(By.tagName("option"));
-        for(WebElement option : template_options){
-            if(option.getText().equals("Roundup")) {
-                option.click();
-                break;
-            }
-        }
+        Select template = new Select(client.findElement(By.id("article_article_template_id")));
+        template.selectByVisibleText("Roundup");
 
         // 7. choose any ad campaign
-        WebElement ad_campaign = client.findElement(By.id("article_article_template_id"));
-        List<WebElement> ad_campaign_options = ad_campaign.findElements(By.tagName("option"));
-        for(WebElement option : ad_campaign_options){
-            if(option.getText().equals("Groupon")) {
-                option.click();
-                break;
-            }
-        }
+        Select ad_campaign = new Select(client.findElement(By.id("article_article_template_id")));
+        ad_campaign.selectByVisibleText("Groupon");
 
         // 8. choose any author
-        WebElement author = client.findElement(By.id("article_author_id"));
-        List<WebElement> author_options = author.findElements(By.tagName("option"));
-        for(WebElement option : author_options){
-            if(option.getText().equals("Russ Brandom")) {
-                option.click();
-                break;
-            }
-        }
+        Select author = new Select(client.findElement(By.id("article_author_id")));
+        author.selectByVisibleText("Russ Brandom");
 
         // 9.  Enter in From Display "test <test@test.com>"
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
         // 10. choose segment qa addresses
-        WebElement segment = client.findElement(By.id("details_segment"));
-        List<WebElement> segment_options = segment.findElements(By.tagName("option"));
-        for(WebElement option : segment_options){
-            if(option.getText().equals("QA Addresses")) {
-                option.click();
-                break;
-            }
-        }
+        Select segment = new Select(client.findElement(By.id("details_segment")));
+        segment.selectByVisibleText("QA Addresses");
 
         // 11. Enter an Article title
         client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+ date);
 
         // 12. Enter Email subject line
-
         client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+ date);
 
         // 13. Enter Article Business Subject
@@ -267,48 +235,35 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // 14. DO NOT ENTER COPY
         // 15. Enter Article Blurb
-
         client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+ date);
 
         // 16. Enter IPHone Blurb
-
         client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+ date);
 
         // 17. Enter Twitter Blurb
-
         client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+ date);
 
         // 18. Enter Note
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
 
         // 19. Enter Legal Line
-
         client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+ date);
 
         // 20. Enter Keywords
-
         client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+ date);
 
         // 21. Choose business type
-
-        WebElement business_type = client.findElement(By.id("article_business_type_id"));
-        List<WebElement> business_type_options = business_type.findElements(By.tagName("option"));
-        for(WebElement option : business_type_options){
-            if(option.getText().equals("Clothing")) {
-                option.click();
-                break;
-            }
-        }
+        Select business_type = new Select(client.findElement(By.id("article_business_type_id")));
+        business_type.selectByVisibleText("Clothing");
 
         // 22. Enter Business Specialty
         client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+ date);
+
         // 23. Click Save
         client.findElement(By.name("save")).click();
         this.pause(7000);
 
         // Get Article ID
-
         String articleLink = client.getCurrentUrl();
 
         String[] separated = articleLink.split("/");
@@ -317,8 +272,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         // 24. Click add Image
         // go to create image page
         client.get(UD_ADMIN_DOMAIN+"/article_images/create");
-        this.pause(7000);
-
 
         // 25. Upload Email_Banner size 552 x 135
 
@@ -333,15 +286,8 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         // 26. choose position Email_banner
-
-        WebElement article1_position = client.findElement(By.id("article_image_article_image_position_id"));
-        List<WebElement> position_options1 = article1_position.findElements(By.tagName("option"));
-        for(WebElement option : position_options1){
-            if(option.getText().equals("Email_Banner")) {
-                option.click();
-                break;
-            }
-        }
+        Select article1_position = new Select(client.findElement(By.id("article_image_article_image_position_id")));
+        article1_position.selectByVisibleText("Email_Banner");
 
         // 27. click  save
 
@@ -359,46 +305,44 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         iHelper_client = new IHelper_Client(client);
         emailHelper_Client = new EmailHelper_Client(client);
         String date = emailHelper_Client.generateDate("DDD_HH_mm_SSS");
-        
+
         // 1. log into the UD admin
         // 2. Click on articles
         // 3. click on create
 
         // After login go to create the article
         client.get(UD_ADMIN_DOMAIN+"/articles/create");
-        this.pause(7000);
 
         // 4. change status to approved
-        iHelper_client.selectFromDropdown("article_article_status_id","option","Approved");
-
+        Select status = new Select(client.findElement(By.id("article_article_status_id")));
+        status.selectByVisibleText("Approved");
 
         // 5. click dedicated
         client.findElement(By.id("article_is_dedicated")).click();
 
         // 6. choose Roundup template
-        iHelper_client.selectFromDropdown("article_article_template_id","option","Roundup");
-
+        Select template = new Select(client.findElement(By.id("article_article_template_id")));
+        template.selectByVisibleText("Roundup");
 
         // 7. choose any ad campaign
-        iHelper_client.selectFromDropdown("article_article_template_id","option","Groupon");
-
+        Select ad_campaign = new Select(client.findElement(By.id("article_ad_campaign_id")));
+        ad_campaign.selectByVisibleText("Groupon");
 
         // 8. choose any author
-        iHelper_client.selectFromDropdown("article_author_id","option","Russ Brandom");
-
+        Select author = new Select(client.findElement(By.id("article_author_id")));
+        author.selectByVisibleText("Russ Brandom");
 
         // 9.  Enter in From Display "test <test@test.com>"
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
         // 10. choose segment qa addresses
-        iHelper_client.selectFromDropdown("details_segment","option","QA Addresses");
-
+        Select segment = new Select(client.findElement(By.id("details_segment")));
+        segment.selectByVisibleText("QA Addresses");
 
         // 11. Enter an Article title
         client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+ date);
 
         // 12. Enter Email subject line
-
         client.findElement(By.id("article_email_subject_line")).sendKeys("Test Round Up Email Subject "+ date);
 
         // 13. Enter Article Business Subject
@@ -406,41 +350,36 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         // 14. DO NOT ENTER COPY
         // 15. Enter Article Blurb
-
         client.findElement(By.id("article[blurb]")).sendKeys("Round Up Article Blurb Test "+ date);
 
         // 16. Enter IPHone Blurb
-
         client.findElement(By.id("article[blurb_iphone]")).sendKeys("Round Up iPhone Blurb Test "+ date);
 
         // 17. Enter Twitter Blurb
-
         client.findElement(By.id("article_blurb_twitter")).sendKeys("Round Up Twitter Blurb Test "+ date);
 
         // 18. Enter Note
-
         ((RemoteWebDriver) client).executeScript("(FCKeditorAPI.GetInstance('article[footer]').SetHTML('Round Up Article Copy Test'))");
 
         // 19. Enter Legal Line
-
         client.findElement(By.id("article[footer_additional]")).sendKeys("Round Up Legal Line Test "+ date);
 
         // 20. Enter Keywords
-
         client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+ date);
 
         // 21. Choose business type
-
-        iHelper_client.selectFromDropdown("article_business_type_id","option","Clothing");
+        Select business_type = new Select(client.findElement(By.id("article_business_type_id")));
+        business_type.selectByVisibleText("Clothing");
 
         // 22. Enter Business Specialty
         client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+ date);
+
         // 23. Click Save
         client.findElement(By.name("save")).click();
-        this.pause(7000);
+        WebDriverWait saveOkWait = new WebDriverWait(client,30);
+        saveOkWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("save-ok")));
 
         // Get Article ID
-
         String articleLink = client.getCurrentUrl();
 
         String[] separated = articleLink.split("/");
@@ -449,19 +388,22 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         // 24. Click add Image
         // go to create image page
         client.get(UD_ADMIN_DOMAIN+"/article_images/create");
-        this.pause(7000);
-
 
         // 25. Upload Email_Banner size 552 x 135
 
+        // Local Mac
+        //client.findElement(By.id("article_image_name")).sendKeys("/Users/sargenzi/Desktop/UDImages/email banner 3.jpg");
+        // For PC
+        //client.findElement(By.id("article_image_name")).sendKeys("C:\\Users\\Administrator\\Desktop\\ud\\email banner 3.jpg");
         String image1 = IMAGE_PATH + "email banner 3.jpg";
+        System.out.println(image1);
         client.findElement(By.id("article_image_name")).sendKeys(image1);
         //enter Article ID
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         // 26. choose position Email_banner
-
-        iHelper_client.selectFromDropdown(findElementAndCheckBy("id","article_image_article_image_position_id",5),"option","Email_Banner");
+        Select article1_position = new Select(client.findElement(By.id("article_image_article_image_position_id")));
+        article1_position.selectByVisibleText("Email_Banner");
 
         // 27. click  save
 
@@ -493,56 +435,42 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //        		a.	Select ad from component dropdown
 
         //iHelper_client.selectFromDropdown("_select_modules_right","option","Ad");
-        WebElement add_right_components = client.findElement(By.id("_select_modules_right"));
-        List<WebElement> add_right_components_options = add_right_components.findElements(By.tagName("option"));
-        for(WebElement option : add_right_components_options){
-            if(option.getText().equals("Ad")) {
-                option.click();
-                break;
-            }
-        }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Select add_right_components = new Select(client.findElement(By.id("_select_modules_right")));
+        add_right_components.selectByVisibleText("Ad");
+
         //		b.	Click on newsletter_ad
 
-        findElementAndCheckBy("xpath","//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a",5).click();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WebDriverWait waitForNewsLetterLink = new WebDriverWait(client,30);
+        waitForNewsLetterLink.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")));
+        client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).click();
 
         //	c.	Choose any Tower add.
         //set main window handle before pop-ups pop up
-        String mwh2=client.getWindowHandle();
-
+        String parentWindowHandle = client.getWindowHandle();
+        pause(3000);
+        Set<String> allWindows = client.getWindowHandles();
         //handle pop-up window
-        Set<?> s_add2=client.getWindowHandles();
+
         //this method will you handle of all opened windows
+        Iterator<String> windowItr=allWindows.iterator();
 
-        Iterator<?> ite_add2=s_add2.iterator();
-
-        while(ite_add2.hasNext())
+        while(windowItr.hasNext())
         {
-            String popupHandle2=ite_add2.next().toString();
-            if(!popupHandle2.contains(mwh2))
+            String popupHandle2=windowItr.next().toString();
+            if(!popupHandle2.contains(parentWindowHandle))
             {
                 client.switchTo().window(popupHandle2);
-
-                this.pause(3000);
-                iHelper_client.selectFromDropdown(findElementAndCheckBy("xpath","//html/body/div/div[2]/div/div/form/fieldset/div/div/select",5),"option","49ers SF 11-8-11 tower (Tower)");
+                WebDriverWait waitForDiv = new WebDriverWait(client,30);
+                waitForDiv.until(ExpectedConditions.visibilityOfElementLocated(By.id("content_div")));
+                Select slot = new Select(client.findElement(By.name("newsletter_content_slot[name]")));
+                slot.selectByVisibleText("49ers SF 11-8-11 tower (Tower)");
                 client.findElement(By.id("save_button")).click();
-                this.pause(7000);
-
                 //After finished your operation in pop-up just select the main window again
-                client.switchTo().window(mwh2);
             }
         }
 
+        client.switchTo().window(parentWindowHandle);
+        pause(3000);
 
         // 33. Click "here" to add the individual articles
         client.get(UD_ADMIN_DOMAIN+"/multiarticle/edit/id/"+articleID);
