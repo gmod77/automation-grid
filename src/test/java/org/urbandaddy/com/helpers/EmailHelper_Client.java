@@ -111,7 +111,7 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
         } while (!flag && counter<3);
 
         if (counter >=3) {
-            System.out.println("Attempted email search 3 times> " + searchString);
+            System.out.println("WARNING: Attempted email search 3 times> " + searchString);
             return false;
         } else {
             return true;
