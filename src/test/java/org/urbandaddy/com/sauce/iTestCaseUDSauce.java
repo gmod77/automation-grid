@@ -199,6 +199,10 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         adConfWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("save-ok")));
 
         client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset/div[10]/div/a")).click();
+
+        //Wait for main edit page to return
+        WebDriverWait backToAdmin = new WebDriverWait(client,30);
+        backToAdmin.until(ExpectedConditions.visibilityOfElementLocated(By.name("save")));
     }
 
         /**
