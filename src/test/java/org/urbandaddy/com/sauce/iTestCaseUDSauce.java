@@ -850,12 +850,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 // Add Vitals to the Left Module
         dropDownSelector("_select_modules_left","Vitals");
 
-//Add Sponsored Love to the Left Module,	    
+        //Add Tools to the left Module,
+        dropDownSelector("_select_modules_left","Tools");
+
+        //Add Sponsored Love to the Left Module,
         dropDownSelector("_select_modules_left","Sponsored Love");
-
-
-        //set main window handle before pop-ups pop up
-        String mwh=client.getWindowHandle();
 
         //click on "Sponsored Love"
         String sponsoredLoveEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[3]/table/tbody/tr/td[5]/a")).getAttribute("href");
@@ -863,15 +862,10 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         adminNewsLetterAdEdit("Absolut Miami MIA 2-21-12 SL");
 
-
-//Add Tools to the left Module,
-        dropDownSelector("_select_modules_left","Tools");
-
 //Add an Ad to the Bottom Module, 
         dropDownSelector("_select_modules_center","Ad");
 
         //click on "Ad"
-
         String bottomAdEdit = client.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
         client.get(bottomAdEdit);
 
@@ -880,7 +874,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
 //Add an Ad to the Right Module, 
         dropDownSelector("_select_modules_right","Ad");
-
 
         //click on "Ad"
         String rightAdEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");

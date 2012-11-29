@@ -61,7 +61,7 @@ public class UD_UnSubscribeEmailTest extends iTestCaseUDSauce {
         emailHelper_Client.loginToGmail();
 
         Reporter.log("Searching For Account Modification Email",true);
-        Boolean flag = emailHelper_Client.doEmailSearch("To: " + emailClient + " Subject: You've Changed After: " + date,30000);
+        Boolean flag = emailHelper_Client.doEmailSearch("To: " + emailClient + " Subject: You've Changed After: " + date,60000);
         Assert.assertTrue("Email wasn't found", flag);
 
         Reporter.log("Confirming Email",true);
