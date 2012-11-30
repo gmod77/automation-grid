@@ -1,6 +1,7 @@
 package org.urbandaddy.com.sauce;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -331,6 +332,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
         // SKU
         client.findElement(By.id("sku")).sendKeys("QA54321A"+r);
+
+        // Show Qty set to no
+        Select showQty = new Select(client.findElement(By.id("show_qty")));
+        showQty.selectByVisibleText("No");
 
         // Module Headline
         client.findElement(By.id("subheader")).sendKeys("QA Test Headline " + r);
