@@ -1,6 +1,5 @@
 package org.urbandaddy.tests.sauce;
 
-import junit.framework.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.urbandaddy.com.common.Analyzer;
@@ -61,10 +60,14 @@ public class UD_UnSubscribeEmailTest extends iTestCaseUDSauce {
         emailHelper_Client.loginToGmail();
 
         Reporter.log("Searching For Account Modification Email",true);
-        emailHelper_Client.doEmailSearch("To: " + emailClient + " Subject: You've Changed After: " + date,60000);
+        Boolean flag = emailHelper_Client.doEmailSearch("To: " + emailClient + " Subject: You've Changed After: " + date,60000);
 
-        Reporter.log("Confirming Email",true);
-        emailHelper_Client.searchEmail("successfully unsubscribed");
+        if (flag) {
+            Reporter.log("Confirming Email",true);
+            emailHelper_Client.searchEmail("successfully unsubscribed");
+        } else {
+            Reporter.log("WARNING: Unsubscribe email was not found. Manually confirm.",true);
+        }
 
         Reporter.log("Logging out of Gmail",true);
         emailHelper_Client.logoutGmail();
