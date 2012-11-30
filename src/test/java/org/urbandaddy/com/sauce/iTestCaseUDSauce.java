@@ -223,30 +223,25 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.get(UD_ADMIN_DOMAIN+"/articles/create");
 
         // 4. change status to approved
-        Select status = new Select(client.findElement(By.id("article_article_status_id")));
-        status.selectByVisibleText("Approved");
+        dropDownSelector("article_article_status_id","Approved");
 
         // 5. click dedicated
         client.findElement(By.id("article_is_dedicated")).click();
 
         // 6. choose Roundup template
-        Select template = new Select(client.findElement(By.id("article_article_template_id")));
-        template.selectByVisibleText("Roundup");
+        dropDownSelector("article_article_template_id","Roundup");
 
         // 7. choose any ad campaign
-        Select ad_campaign = new Select(client.findElement(By.id("article_ad_campaign_id")));
-        ad_campaign.selectByVisibleText("Groupon");
+        dropDownSelector("article_ad_campaign_id", "Groupon");
 
         // 8. choose any author
-        Select author = new Select(client.findElement(By.id("article_author_id")));
-        author.selectByVisibleText("Russ Brandom");
+        dropDownSelector("article_author_id", "Russ Brandom");
 
         // 9.  Enter in From Display "test <test@test.com>"
         client.findElement(By.id("details_from_display")).sendKeys("test <test@test.com>");
 
         // 10. choose segment qa addresses
-        Select segment = new Select(client.findElement(By.id("details_segment")));
-        segment.selectByVisibleText("QA Addresses");
+        dropDownSelector("details_segment","QA Addresses");
 
         // 11. Enter an Article title
         client.findElement(By.id("article_name")).sendKeys("Test Round Up Article Title "+ date);
@@ -277,8 +272,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_keywords")).sendKeys("Round Up Keywords Test Keywords "+ date);
 
         // 21. Choose business type
-        Select business_type = new Select(client.findElement(By.id("article_business_type_id")));
-        business_type.selectByVisibleText("Clothing");
+        dropDownSelector("article_business_type_id","Clothing");
 
         // 22. Enter Business Specialty
         client.findElement(By.id("article_business_specialty")).sendKeys("Round Up Business Specialty Test "+ date);
@@ -307,8 +301,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         // 26. choose position Email_banner
-        Select article1_position = new Select(client.findElement(By.id("article_image_article_image_position_id")));
-        article1_position.selectByVisibleText("Email_Banner");
+        dropDownSelector("article_image_article_image_position_id","Email_Banner");
 
         // 27. click  save
         client.findElement(By.name("save_and_add")).click();
@@ -322,8 +315,7 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("article_image_article_id")).sendKeys(articleID);
 
         // 30. choose position thumbnail
-        Select article_thumbnail = new Select(client.findElement(By.id("article_image_article_image_position_id")));
-        article_thumbnail.selectByVisibleText("Thumbnail");
+        dropDownSelector("article_image_article_image_position_id","Thumbnail");
 
         // 31. click save
         client.findElement(By.name("save_and_add")).click();
@@ -335,17 +327,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         //		a.	Select ad from component dropdown
 
         //        		a.	Select ad from component dropdown
-
-        //iHelper_client.selectFromDropdown("_select_modules_right","option","Ad");
-        Select add_right_components = new Select(client.findElement(By.id("_select_modules_right")));
-        add_right_components.selectByVisibleText("Ad");
+        dropDownSelector("_select_modules_right","Ad");
 
         //		b.	Click on newsletter_ad
         WebDriverWait waitForNewsLetterLink = new WebDriverWait(client,30);
         waitForNewsLetterLink.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")));
-
-        //set main window handle before pop-ups pop up
-        //String parentWindowHandle = client.getWindowHandle();
 
         // Click link for popup window
         String adComponent = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
@@ -558,7 +544,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 //	26.   Add Ad to Bottom module
 //		a.	Select ad from component dropdown
         dropDownSelector("_select_modules_center","Ad");
-        this.pause(2000);
+        // Wait for link to show up
+        WebDriverWait waitCenterAd = new WebDriverWait(client,30);
+        waitCenterAd.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")));
 
 //		b.	Click on newsletter_ad
         String centerNewsletterAdEditLink = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
@@ -570,7 +558,8 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 //		a.	Select ad from component dropdown
 //        		a.	Select ad from component dropdown
         dropDownSelector("_select_modules_right","Ad");
-        this.pause(2000);
+        WebDriverWait waitRightAd = new WebDriverWait(client,30);
+        waitRightAd.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")));
 
 //		b.	Click on newsletter_ad
         String rightNewsletterAdEditLink = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
@@ -860,7 +849,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         //Add Sponsored Love to the Left Module,
         dropDownSelector("_select_modules_left","Sponsored Love");
-
+        //Wait for link to appear
+        WebDriverWait waitSponsoredLoveLink = new WebDriverWait(client,30);
+        waitSponsoredLoveLink.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[4]/table/tbody/tr/td[5]/a")));
         //click on "Sponsored Love"
         String sponsoredLoveEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[3]/div/ul/li[4]/table/tbody/tr/td[5]/a")).getAttribute("href");
 
@@ -868,9 +859,11 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
         adminNewsLetterAdEdit("Absolut Miami MIA 2-21-12 SL");
 
-//Add an Ad to the Bottom Module, 
+//Add an Ad to the Center Module,
         dropDownSelector("_select_modules_center","Ad");
-        this.pause(2000);
+        //Wait for link to appear
+        WebDriverWait waitCenterAd = new WebDriverWait(client,30);
+        waitCenterAd.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")));
         //click on "Ad"
         String bottomAdEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[4]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
         client.get(bottomAdEdit);
@@ -880,7 +873,9 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
 
 //Add an Ad to the Right Module, 
         dropDownSelector("_select_modules_right","Ad");
-        this.pause(2000);
+        //Wait for link to appear
+        WebDriverWait waitRightAd = new WebDriverWait(client,30);
+        waitRightAd.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")));
         //click on "Ad"
         String rightAdEdit = client.findElement(By.xpath("//html/body/div[3]/div/div[2]/form/fieldset[7]/div/div/div/div[2]/div/div/table/tbody/tr[3]/td[5]/div/ul/li/table/tbody/tr/td[5]/a")).getAttribute("href");
         client.get(rightAdEdit);
