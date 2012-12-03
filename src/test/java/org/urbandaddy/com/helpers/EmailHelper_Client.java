@@ -1,7 +1,9 @@
 package org.urbandaddy.com.helpers;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.urbandaddy.com.common.IHelper_Client;
@@ -35,8 +37,8 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     }
 
     public String generateEmailClient(String dateSet) {
-        String client = EMAIL_USER_NAME + "+"+ dateSet + EMAIL_DOMAIN;
-        return client;
+        return EMAIL_USER_NAME + "+"+ dateSet + EMAIL_DOMAIN;
+
     }
 
     public String[] generateFriendClient(int count, String dateSet) {
@@ -119,6 +121,8 @@ public class EmailHelper_Client extends IHelper_Client implements UDBase {
     }
 
     public String getResetEmailLink () {
+        WebDriverWait waitForLink = new WebDriverWait(client, 30);
+        waitForLink.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("here")));
         WebElement link = client.findElement(By.partialLinkText("here"));
         return link.getAttribute("href");
     }
