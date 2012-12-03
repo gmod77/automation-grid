@@ -22,29 +22,29 @@
             <!--<class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest" />-->
         <!--</classes>-->
     <!--</test>-->
-    <!--<test name="UD_Admin_Create_RoundUp">-->
-        <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
-        <!--<parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />-->
-        <!--<parameter name="os" value="Windows 2003"/>-->
-        <!--<parameter name="browser" value="firefox"/>-->
-        <!--<parameter name="version" value="15"/>-->
-        <!--<classes>-->
-            <!--<class name="org.urbandaddy.tests.sauce.UD_Admin_Article_Three_ColumnTest" />-->
-        <!--</classes>-->
-    <!--</test>-->
-    <test name="Perks Regression">
+    <test name="UD_Admin_Create_RoundUp">
         <parameter name="username" value="cloudbees_urbandaddy" />
         <parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />
-        <!--<parameter name="os" value="Mac 10.6"/>-->
-        <!--<parameter name="browser" value="safari"/>-->
-        <!--<parameter name="version" value="5"/>-->
-        <parameter name="os" value="Linux"/>
-        <parameter name="browser" value="chrome"/>
-        <!--<parameter name="version" value="8"/>-->
+        <parameter name="os" value="Windows 2003"/>
+        <parameter name="browser" value="firefox"/>
+        <parameter name="version" value="14"/>
         <classes>
-            <class name="org.urbandaddy.tests.sauce.saucetesting.UD_RegistrationTinySauceTest"/>
+            <class name="org.urbandaddy.tests.sauce.Perks_Admin_CreatePerk" />
         </classes>
     </test>
+    <!--<test name="Perks Regression">-->
+        <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
+        <!--<parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />-->
+        <!--&lt;!&ndash;<parameter name="os" value="Mac 10.6"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<parameter name="browser" value="safari"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<parameter name="version" value="5"/>&ndash;&gt;-->
+        <!--<parameter name="os" value="Linux"/>-->
+        <!--<parameter name="browser" value="chrome"/>-->
+        <!--&lt;!&ndash;<parameter name="version" value="8"/>&ndash;&gt;-->
+        <!--<classes>-->
+            <!--<class name="org.urbandaddy.tests.sauce.saucetesting.UD_RegistrationTinySauceTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
     <!-- Do not need to declare listener if you're putting it into the code! it seems to duplicate output-->
     <!--<listeners>-->
         <!--<listener class-name="com.saucelabs.testng.SauceOnDemandTestListener"/>-->
