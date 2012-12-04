@@ -1,7 +1,6 @@
-/.settings
 /target
 /.idea
 .DS_Store
 urbandaddy-testsuite.iml
 .classpath
-.project
+
