@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.Assertion;
 import org.urbandaddy.com.common.IHelper_Client;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
@@ -46,10 +47,10 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
     }
 
-    public Set<Cookie> getUdCookie() {
-        return client.manage().getCookies();
-    }
-
+    /**
+     * Complete all the header and footer checks on the homepage
+     *
+     */
     public void doHomePageChecks() {
         //do all homepage checks
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
