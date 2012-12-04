@@ -46,10 +46,6 @@ public abstract class iTestCaseUDSauce extends iSauceBase implements UDBase {
         client.manage().addCookie(new Cookie ("udsubpop", "3","ud-branch.thedaddy.co", "/", null));
     }
 
-    public Set<Cookie> getUdCookie() {
-        return client.manage().getCookies();
-    }
-
     public void doHomePageChecks() {
         //do all homepage checks
         ud_homepageHelper_Client = new UD_HomepageHelper_Client(client);
