@@ -6,13 +6,15 @@ package org.urbandaddy.com.common;
  */
 public interface UDBase {
 
+    String UD_DOMAIN_BASE = "ud-mirror.thedaddy.co";
     //String UD_DOMAIN = "http://ud-branch.thedaddy.co";
-    String UD_DOMAIN = "http://ud-mirror.thedaddy.co";
+    String UD_DOMAIN = "http://" + UD_DOMAIN_BASE;
     String UD_ADMIN_DOMAIN = "http://ud-branch.thedaddy.co/admin.php";
     String UD_ADMIN_USERNAME = "jenkins";
     String UD_ADMIN_PW = "jenkins900!!";
 
-    String PERKS_DOMAIN = "http://perks-mirror.thedaddy.co";
+    String PERKS_DOMAIN_BASE = "perks-mirror.thedaddy.co";
+    String PERKS_DOMAIN = "http://" + PERKS_DOMAIN_BASE;
     //String PERKS_DOMAIN = "http://perks-branch.thedaddy.co";
     String PERKS_ADMIN_DOMAIN = "https://perks-branch.thedaddy.co/index.php/admin";
     String PERKS_ADMIN_USERNAME = "jenkins";
