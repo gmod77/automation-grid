@@ -64,6 +64,30 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.uncommons</groupId>
+            <artifactId>reportng</artifactId>
+            <version>1.1.2</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -83,38 +107,45 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
+                    <systemPropertyVariables>
+                        <org.uncommons.reportng.title>UrbanDaddy QA Test Report</org.uncommons.reportng.title>
+                    </systemPropertyVariables>
+                    <properties>
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>false</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter,org.testng.reporters.XMLReporter</value>
+                        </property>
+                        <property>
+                            <name>outputDir</name>
+                            <value>target/surefire-reports/html</value>
+                        </property>
+                        <!--<property>-->
+                            <!--<name>reporter</name>-->
+                            <!--<value>org.testng.reporters.XMLReporter</value>-->
+                        <!--</property>-->
+                    </properties>
+                    <workingDirectory>target/surefire-reports/html/</workingDirectory>
                     <!-- Skip the normal tests, we'll run them in the integration-test phase -->
                     <!--Skip not needed, run in test phase-->
                     <!--<skip>true</skip>-->
-
-                         <!-- <systemPropertyVariables>
-                         <name>server</name>
-                         <value>{urbandaddy.qa.server_url}</value>
-                         </systemPropertyVariables> -->
-
                     <suiteXmlFiles>
-                        <!-- <file>src/test/resources/suite_US.xml</file> -->
                         <file>${project.basedir}/src/test/resources/${suite_filename}</file>
                     </suiteXmlFiles>
-                    <parallel>both</parallel>
-                    <!--<properties>-->
-                        <!--<property>-->
-                            <!--<name>reporter</name>-->
-                            <!--<value>org.testng.reporters.XMLReporter,org.testng.reporters.JUnitReportReporter</value>-->
-                        <!--</property>-->
-                    <!--</properties>-->
                 </configuration>
-
                 <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>integration-test</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>test</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<skip>false</skip>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
+                <!--<execution>-->
+                <!--<phase>integration-test</phase>-->
+                <!--<goals>-->
+                <!--<goal>test</goal>-->
+                <!--</goals>-->
+                <!--<configuration>-->
+                <!--<skip>false</skip>-->
+                <!--</configuration>-->
+                <!--</execution>-->
                 <!--</executions>-->
             </plugin>
         </plugins>
@@ -130,6 +161,10 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>java-net</id>
+            <url>http://download.java.net/maven/2</url>
         </repository>
     </repositories>
 
