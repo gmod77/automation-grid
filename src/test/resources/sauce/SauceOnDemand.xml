@@ -22,14 +22,14 @@
             <!--<class name="org.urbandaddy.tests.sauce.UD_ShareArticleTest" />-->
         <!--</classes>-->
     <!--</test>-->
-    <test name="UD_Admin_Create_RoundUp">
+    <test name="PerksRegression">
         <parameter name="username" value="cloudbees_urbandaddy" />
         <parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />
         <parameter name="os" value="Windows 2003"/>
         <parameter name="browser" value="firefox"/>
         <parameter name="version" value="14"/>
         <classes>
-            <class name="org.urbandaddy.tests.sauce.Perks_Admin_CreatePerk" />
+            <class name="org.urbandaddy.tests.sauce.Perks_PagesRegressionTest" />
         </classes>
     </test>
     <!--<test name="Perks Regression">-->

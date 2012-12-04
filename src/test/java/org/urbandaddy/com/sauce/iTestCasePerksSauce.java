@@ -1,10 +1,13 @@
 package org.urbandaddy.com.sauce;
 
+import junit.framework.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 import org.urbandaddy.com.common.UDBase;
 import org.urbandaddy.com.helpers.*;
 
@@ -249,6 +252,119 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         //end of registration
     }
 
+    // Perks Page Verification methods
+
+    public int getPerksLinkCount() {
+        WebElement editionBlocks = client.findElement(By.cssSelector(".edition-blocks"));
+        return editionBlocks.findElements(By.cssSelector(".block.item.last")).size();
+    }
+
+    public String[] getPerksLinks(int count) {
+        String[] links = new String[count];
+        WebElement editionBlocks = client.findElement(By.cssSelector(".edition-blocks"));
+        List<WebElement> editionUrls = editionBlocks.findElements(By.cssSelector(".block.item.last"));
+        for (int i = 0; i < editionUrls.size(); i++) {
+            links[i] = editionUrls.get(i).findElement(By.className("block-inner")).findElement(By.className("block-content")).findElement(By.tagName("a")).getAttribute("href");
+        }
+        return links;
+    }
+
+    public void checkPerksPages(String[] urls) {
+        String[] links = urls;
+        for (int i = 0; i < links.length; i++) {
+            client.get(links[i]);
+            if (!client.getCurrentUrl().contains("promotions")) {
+                WebDriverWait forPage = new WebDriverWait(client, 30);
+                forPage.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-logo")));
+                Reporter.log("Checking Perk> " + client.getCurrentUrl(),true);
+                confirmPerkElements();
+            } else {
+                // TODO Figure out how to handle promotions
+            }
+
+        }
+    }
+
+    public void confirmPerkElements() {
+
+        SoftAssert m_assert = new SoftAssert();
+        m_assert.assertTrue(checkGetItNow(), "Check for Get It Now");
+        m_assert.assertTrue(checkGetItPosition(), "Check Get It Now Position");
+        m_assert.assertTrue(checkUDPrice(), "Check UD Price");
+        m_assert.assertTrue(checkEveryoneElsePrice(), "Check Everyone Else Price");
+        m_assert.assertTrue(checkCounterHolder(), "Check Counter Holder");
+        m_assert.assertAll();
+    }
+
+    /**
+     * Check the position of the Get It Now button. Should be 39 as long as copy
+     * doesn't wrap it over.
+     * @return boolean
+     */
+    public boolean checkGetItPosition() {
+        return checkGetItNow() && client.findElement(By.className("book-now")).getAttribute("offsetLeft").equals("39");
+    }
+
+    /**
+     * Click the Get It Now link
+     */
+    public void clickGetItNow() {
+        if (checkGetItNow()) {
+            client.findElement(By.className("book-now")).click();
+        }
+    }
+
+    /**
+     * Check for the existence of the UD Member price
+     * @return boolean
+     */
+    public boolean checkUDPrice() {
+        return client.findElements(By.className("value-block")).get(0).isDisplayed();
+    }
+
+    /**
+     * Check for the existence of the Everyone Else price
+     * @return
+     */
+    public boolean checkEveryoneElsePrice() {
+        return client.findElements(By.className("value-block")).get(1).isDisplayed();
+    }
+
+    /**
+     * Check that the counter is displayed
+     *
+     * @return
+     */
+    public boolean checkCounterHolder() {
+        return client.findElement(By.className("counter-holder")).isDisplayed();
+    }
+
+    /**
+     * Check that Get It Now is displayed
+     * @return
+     */
+    public boolean checkGetItNow() {
+        return client.findElement(By.className("book-now")).isDisplayed();
+    }
+
+    /**
+     * Check if the Age Popup Displays
+     * @return
+     */
+    public boolean checkAgePopup() {
+        return client.findElement(By.className("verifyScreen")).isDisplayed();
+    }
+
+
+
+    public void handleAgePopup() {
+        Select mo = new Select(client.findElement(By.xpath(".//*[@id='modalContent']/div[3]/div[2]/div/div[3]/div[1]/div/div[2]/div[1]")));
+        mo.selectByVisibleText("January");
+        Select day = new Select(client.findElement(By.xpath(".//*[@id='modalContent']/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/div[1]")));
+        day.selectByVisibleText("20");
+        Select year = new Select(client.findElement(By.xpath(".//*[@id='modalContent']/div[3]/div[2]/div/div[3]/div[3]/div/div[2]/div[1]")));
+        year.selectByVisibleText("1970");
+    }
 
     // Perks creation methods below
 
