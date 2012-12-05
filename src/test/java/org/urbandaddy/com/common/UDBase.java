@@ -34,6 +34,6 @@ public interface UDBase {
 
     String CUR_DIR = System.getProperty("user.dir");
 
-    String IMAGE_PATH = "src/test/upload_data/";
+    String IMAGE_PATH = CUR_DIR + "/src/test/upload_data/";
 
 }

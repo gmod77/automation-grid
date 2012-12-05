@@ -104,11 +104,30 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-empty-directory</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="${basedir}/target/surefire-reports/html" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
                     <systemPropertyVariables>
                         <org.uncommons.reportng.title>UrbanDaddy QA Test Report</org.uncommons.reportng.title>
+                        <org.uncommons.reportng.velocity-log>false</org.uncommons.reportng.velocity-log>
                     </systemPropertyVariables>
                     <properties>
                         <property>
@@ -121,10 +140,9 @@
                         </property>
                         <property>
                             <name>outputDir</name>
-                            <value>target/surefire-reports/html</value>
+                            <value>${project.build.directory}/surefire-reports/html</value>
                         </property>
                     </properties>
-                    <workingDirectory>target/</workingDirectory>
                     <suiteXmlFiles>
                         <file>${project.basedir}/src/test/resources/${suite_filename}</file>
                     </suiteXmlFiles>
