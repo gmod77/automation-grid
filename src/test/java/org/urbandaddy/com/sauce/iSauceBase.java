@@ -205,7 +205,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
      * @return URL
      * @throws IOException
      */
-    private String getResultsUrl(String jobId) throws IOException {
+    public String getResultsUrl(String jobId) throws IOException {
         String PUBLICURL = "https://saucelabs.com/jobs/%1$s";
         String JOB_ID_FORMAT = PUBLICURL + "?auth=%2$s";
         String token = generateToken(jobId);

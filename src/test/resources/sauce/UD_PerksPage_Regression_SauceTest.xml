@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Perks Page Regression Suite" verbose="10">
+
+	<test name="Perks Page Regression">
+        <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
+        <!--<parameter name="key" value="3f541489-1c79-457b-9b26-ece624eff198" />-->
+        <!--<parameter name="os" value="Windows 2003"/>-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<parameter name="version" value="14"/>-->
+		<classes>
+			<class name="org.urbandaddy.tests.sauce.Perks_PagesRegressionTest" />
+		</classes>
+	</test>
+
+</suite>

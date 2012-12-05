@@ -13,10 +13,7 @@ import org.urbandaddy.com.helpers.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * This class contains all Perks domain specific tests
@@ -62,6 +59,34 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.get(PERKS_DOMAIN);
         client.manage().deleteAllCookies();
         client.get(PERKS_DOMAIN);
+    }
+
+    /**
+     * Navigate to the Perks domain selcting a city
+     * national
+     * new-york
+     * chicago
+     * boston
+     * washington-dc
+     * los-angeles
+     * @param city
+     */
+    public void visitPerksFirstTime(String city){
+        client.get(PERKS_DOMAIN + "/" + city + ".html");
+    }
+
+    /**
+     * Navigate to the Perks domain selcting a city
+     * national
+     * new-york
+     * chicago
+     * boston
+     * washington-dc
+     * los-angeles
+     * @param city
+     */
+    public void visitPerksProdFirstTime(String city){
+        client.get(PERKS_PROD_DOMAIN + "/" + city + ".html");
     }
 
     /**
@@ -259,29 +284,64 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         return editionBlocks.findElements(By.cssSelector(".block.item.last")).size();
     }
 
-    public String[] getPerksLinks(int count) {
-        String[] links = new String[count];
-        WebElement editionBlocks = client.findElement(By.cssSelector(".edition-blocks"));
-        List<WebElement> editionUrls = editionBlocks.findElements(By.cssSelector(".block.item.last"));
-        for (int i = 0; i < editionUrls.size(); i++) {
-            links[i] = editionUrls.get(i).findElement(By.className("block-inner")).findElement(By.className("block-content")).findElement(By.tagName("a")).getAttribute("href");
-        }
-        return links;
+    public List<WebElement> getEditionBlocks() {
+        WebElement editionBlock = client.findElement(By.cssSelector(".edition-blocks"));
+        return editionBlock.findElements(By.cssSelector(".block.item.last"));
     }
 
-    public void checkPerksPages(String[] urls) {
-        String[] links = urls;
-        for (int i = 0; i < links.length; i++) {
-            client.get(links[i]);
-            if (!client.getCurrentUrl().contains("promotions")) {
+    public List<String> getPerkNames(List<WebElement> editionBlocks) {
+        List<String> list = new ArrayList<String>();
+        for (WebElement editionBlock : editionBlocks) {
+            list.add(editionBlock.findElement(By.className("block-content")).findElement(By.tagName("a")).getAttribute("title"));
+        }
+        return list;
+    }
+
+    public List<String> getPerkText(List<WebElement> editionBlocks) {
+        List<String> list = new ArrayList<String>();
+        for (WebElement editionBlock : editionBlocks) {
+            list.add(editionBlock.findElement(By.className("block-content")).findElement(By.tagName("a")).getText());
+        }
+        return list;
+    }
+
+    public List<String> getPerkNameAndText(List<WebElement> editionBlocks) {
+        List<String> list = new ArrayList<String>();
+        for (WebElement editionBlock : editionBlocks) {
+            String a = editionBlock.findElement(By.className("block-content")).findElement(By.tagName("a")).getAttribute("title");
+            String b = editionBlock.findElement(By.className("block-content")).findElement(By.tagName("a")).getText();
+            list.add(a + " - " + b + "\n");
+        }
+        return list;
+    }
+
+    public List<String> getPerksLinks(List<WebElement> editionBlocks) {
+        List<String> list = new ArrayList<String>();
+        for (WebElement editionUrl : editionBlocks) {
+            list.add(editionUrl.findElement(By.className("block-content")).findElement(By.tagName("a")).getAttribute("href"));
+        }
+        return list;
+    }
+
+    public void checkPerksPages(List<String> links) {
+        for (String link : links) {
+            client.get(link);
+            WebElement wrapper = client.findElement(By.className("wrapper"));
+
+            if (!wrapper.findElements(By.className("products")).isEmpty()) {
+                // Multi product
+                Reporter.log("Multi>Can't confirm yet " + link ,true);
+            } else if (!wrapper.findElements(By.className("service")).isEmpty()) {
+                // 3 product
+                Reporter.log("3>Can't confirm yet " + link, true);
+            } else if (!wrapper.findElements(By.className("product-dashboard")).isEmpty()) {
                 WebDriverWait forPage = new WebDriverWait(client, 30);
                 forPage.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-logo")));
-                Reporter.log("Checking Perk> " + client.getCurrentUrl(),true);
+                Reporter.log("Checking Perk> " + client.getCurrentUrl(), true);
                 confirmPerkElements();
             } else {
-                // TODO Figure out how to handle promotions
+                Reporter.log("Mystery perk!",true);
             }
-
         }
     }
 
