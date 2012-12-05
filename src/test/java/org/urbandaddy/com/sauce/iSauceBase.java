@@ -107,6 +107,7 @@ public class iSauceBase implements SauceOnDemandSessionIdProvider, SauceOnDemand
         }
 
         capabilities.setCapability("name", "Test Method: " + method.getName());
+
         this.client = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);

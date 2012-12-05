@@ -3,7 +3,7 @@
     <suite name="SingleTest" verbose="10">
     <!--<test name="Registration Test">-->
         <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
-        <!--<parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />-->
+        <!--<parameter name="key" value="3f541489-1c79-457b-9b26-ece624eff198" />-->
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="version" value="15"/>-->
@@ -14,7 +14,7 @@
 
     <!--<test name="UD Regression">-->
         <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
-        <!--<parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />-->
+        <!--<parameter name="key" value="3f541489-1c79-457b-9b26-ece624eff198" />-->
         <!--<parameter name="os" value="Windows 2003"/>-->
         <!--<parameter name="browser" value="firefox"/>-->
         <!--<parameter name="version" value="15"/>-->
@@ -24,17 +24,21 @@
     <!--</test>-->
     <test name="PerksRegression">
         <parameter name="username" value="cloudbees_urbandaddy" />
-        <parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />
+        <parameter name="key" value="3f541489-1c79-457b-9b26-ece624eff198" />
         <parameter name="os" value="Windows 2003"/>
         <parameter name="browser" value="firefox"/>
         <parameter name="version" value="14"/>
         <classes>
+<<<<<<< HEAD
             <class name="org.urbandaddy.tests.sauce.Perks_PagesRegressionTest" />
+=======
+            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />
+>>>>>>> 6305cda6c9284efecdb3c441cd405bee24dbbd24
         </classes>
     </test>
     <!--<test name="Perks Regression">-->
         <!--<parameter name="username" value="cloudbees_urbandaddy" />-->
-        <!--<parameter name="key" value="2fde881b-f036-485a-aa9e-4ccae1a2e32f" />-->
+        <!--<parameter name="key" value="3f541489-1c79-457b-9b26-ece624eff198" />-->
         <!--&lt;!&ndash;<parameter name="os" value="Mac 10.6"/>&ndash;&gt;-->
         <!--&lt;!&ndash;<parameter name="browser" value="safari"/>&ndash;&gt;-->
         <!--&lt;!&ndash;<parameter name="version" value="5"/>&ndash;&gt;-->
