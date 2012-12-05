@@ -29,11 +29,7 @@
         <parameter name="browser" value="firefox"/>
         <parameter name="version" value="14"/>
         <classes>
-<<<<<<< HEAD
             <class name="org.urbandaddy.tests.sauce.Perks_PagesRegressionTest" />
-=======
-            <class name="org.urbandaddy.tests.sauce.UD_Admin_Create_RoundUPTest" />
->>>>>>> 6305cda6c9284efecdb3c441cd405bee24dbbd24
         </classes>
     </test>
     <!--<test name="Perks Regression">-->
