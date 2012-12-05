@@ -124,6 +124,7 @@
                             <value>target/surefire-reports/html</value>
                         </property>
                     </properties>
+                    <workingDirectory>target/</workingDirectory>
                     <suiteXmlFiles>
                         <file>${project.basedir}/src/test/resources/${suite_filename}</file>
                     </suiteXmlFiles>
