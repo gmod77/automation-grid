@@ -117,7 +117,7 @@
                         </property>
                         <property>
                             <name>listener</name>
-                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter,org.testng.reporters.XMLReporter</value>
+                            <value>org.uncommons.reportng.HTMLReporter,org.testng.reporters.XMLReporter</value>
                         </property>
                         <property>
                             <name>outputDir</name>
