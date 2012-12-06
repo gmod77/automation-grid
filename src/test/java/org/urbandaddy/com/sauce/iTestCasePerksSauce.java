@@ -69,7 +69,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * boston
      * washington-dc
      * los-angeles
-     * @param city
+     * @param city input the city name
      */
     public void visitPerksFirstTime(String city){
         client.get(PERKS_DOMAIN + "/" + city + ".html");
@@ -83,7 +83,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      * boston
      * washington-dc
      * los-angeles
-     * @param city
+     * @param city input the city name
      */
     public void visitPerksProdFirstTime(String city){
         client.get(PERKS_PROD_DOMAIN + "/" + city + ".html");
@@ -330,23 +330,78 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
             if (!wrapper.findElements(By.className("products")).isEmpty()) {
                 // Multi product
-                Reporter.log("Multi>Can't confirm yet " + link ,true);
+                waitForPerkHeaderLogo();
+                Reporter.log("Checking Perk> " + client.getCurrentUrl(), true);
+                Reporter.log("Multi-product perk.",true);
+                confirmMultiProductPerk();
+
+                List<WebElement> products = getProductList();
+                List<String> productNames = getProductNameList(products);
+                int i = 0;
+                for (String productName : productNames) {
+                    i++;
+                            Reporter.log("Found Product " + i + "> " + productName,true);
+
+                }
             } else if (!wrapper.findElements(By.className("service")).isEmpty()) {
                 // 3 product
-                Reporter.log("3>Can't confirm yet " + link, true);
-            } else if (!wrapper.findElements(By.className("product-dashboard")).isEmpty()) {
-                WebDriverWait forPage = new WebDriverWait(client, 30);
-                forPage.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-logo")));
+                waitForPerkHeaderLogo();
                 Reporter.log("Checking Perk> " + client.getCurrentUrl(), true);
-                confirmPerkElements();
+                Reporter.log("3 Product perk.",true);
+                confirmThreeProductElements();
+
+                List<WebElement> offers = getOffers();
+                List<String> offerNames = getOfferName(offers);
+                int i = 0;
+                for (String offerName : offerNames) {
+                    i++;
+                    Reporter.log("Found Offer " + i +"> " + offerName,true);
+                }
+
+            } else if (!wrapper.findElements(By.className("product-dashboard")).isEmpty()) {
+                waitForPerkHeaderLogo();
+                Reporter.log("Checking Perk> " + client.getCurrentUrl(), true);
+                Reporter.log("Regular perk");
+                confirmRegularPerkElements();
             } else {
                 Reporter.log("Mystery perk!",true);
             }
         }
     }
 
-    public void confirmPerkElements() {
+    public void confirmMultiProductPerk() {
+        SoftAssert m_assert = new SoftAssert();
+        m_assert.assertTrue(!client.findElements(By.className("copy")).isEmpty(),"Checked for Copy, not found.");
+        m_assert.assertTrue(!client.findElements(By.className("products")).isEmpty(),"Checked for Products, not found.");
+        m_assert.assertAll();
+    }
 
+    /**
+     * Get the list of products on the page
+     * @return list
+     */
+    public List<WebElement> getProductList() {
+        WebElement products = client.findElement(By.cssSelector(".products"));
+        return products.findElements(By.cssSelector(".product"));
+    }
+
+    public List<String> getProductNameList(List<WebElement> products) {
+        List<String> list = new ArrayList<String>();
+        for (WebElement product : products) {
+            list.add(product.findElement(By.cssSelector(".title")).getText().trim());
+        }
+        return list;
+    }
+    /**
+     * Performs asserts on the regular perk style page
+     * Checks for the Get It Now button.
+     * Checks the exact position of the get it now button
+     * Checks for the price
+     * Checks for the everyone else price
+     * Checks for the counter
+     *
+     */
+    public void confirmRegularPerkElements() {
         SoftAssert m_assert = new SoftAssert();
         m_assert.assertTrue(checkGetItNow(), "Check for Get It Now");
         m_assert.assertTrue(checkGetItPosition(), "Check Get It Now Position");
@@ -354,6 +409,50 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         m_assert.assertTrue(checkEveryoneElsePrice(), "Check Everyone Else Price");
         m_assert.assertTrue(checkCounterHolder(), "Check Counter Holder");
         m_assert.assertAll();
+    }
+
+    /**
+     * Perform asserts on the 3 product perk
+     * Currently checks that copy and offers exist on the page
+     *
+     */
+    public void confirmThreeProductElements() {
+        SoftAssert m_assert = new SoftAssert();
+        m_assert.assertTrue(!client.findElements(By.className("copy")).isEmpty(),"Checked for Copy, not found.");
+        m_assert.assertTrue(!client.findElements(By.className("offers")).isEmpty(),"Checked for offers, not found.");
+        m_assert.assertAll();
+    }
+
+    /**
+     * Wait for the header logo to appear on the perk page
+     */
+    public void waitForPerkHeaderLogo() {
+        WebDriverWait forPage = new WebDriverWait(client, 30);
+        forPage.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-logo")));
+    }
+
+    /**
+     * Get the list of offers found on a multi offer perk
+     *
+     * @return List of offers as WebElements
+     */
+    public List<WebElement> getOffers() {
+        WebElement offerBlock = client.findElement(By.className("offers"));
+        return offerBlock.findElements(By.className("offer"));
+    }
+
+    /**
+     * Get the list of the offer names found on the perk
+     * page.
+     * @param offers WebElement
+     * @return List of offer names
+     */
+    public List<String> getOfferName(List<WebElement> offers) {
+        List<String> list = new ArrayList<String>();
+        for (WebElement offer : offers) {
+            list.add(offer.findElement(By.className("name")).getText().trim());
+        }
+        return list;
     }
 
     /**
@@ -384,7 +483,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
     /**
      * Check for the existence of the Everyone Else price
-     * @return
+     * @return boolean
      */
     public boolean checkEveryoneElsePrice() {
         return client.findElements(By.className("value-block")).get(1).isDisplayed();
@@ -393,7 +492,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     /**
      * Check that the counter is displayed
      *
-     * @return
+     * @return boolean
      */
     public boolean checkCounterHolder() {
         return client.findElement(By.className("counter-holder")).isDisplayed();
@@ -401,7 +500,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
     /**
      * Check that Get It Now is displayed
-     * @return
+     * @return boolean
      */
     public boolean checkGetItNow() {
         return client.findElement(By.className("book-now")).isDisplayed();
@@ -409,14 +508,17 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
     /**
      * Check if the Age Popup Displays
-     * @return
+     * @return boolean
      */
     public boolean checkAgePopup() {
         return client.findElement(By.className("verifyScreen")).isDisplayed();
     }
 
 
-
+    /**
+     * When purchasing a perk, and not signed in,
+     * age verification popup can appear.
+     */
     public void handleAgePopup() {
         Select mo = new Select(client.findElement(By.xpath(".//*[@id='modalContent']/div[3]/div[2]/div/div[3]/div[1]/div/div[2]/div[1]")));
         mo.selectByVisibleText("January");

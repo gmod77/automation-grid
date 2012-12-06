@@ -2,6 +2,8 @@ package org.urbandaddy.tests.sauce;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.urbandaddy.com.common.Analyzer;
 import org.urbandaddy.com.sauce.iTestCasePerksSauce;
@@ -16,12 +18,21 @@ public class Perks_PagesRegressionTest extends iTestCasePerksSauce {
 //    boston
 //    washington-dc
 //    los-angeles
-
+//
+    @Parameters ({"prodCheck"})
 	@Test (groups = {"PerksRegression"}, retryAnalyzer = Analyzer.class)
-	public void perksRegressionNational() throws Exception {
+	public void perksRegressionNational(String prodCheck) throws Exception {
+
         int count = 0;
         Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
-		visitPerksProdFirstTime("national");
+
+        String city = "national";
+
+        if (prodCheck.equals("false")) {
+            visitPerksFirstTime(city);
+        } else {
+            visitPerksProdFirstTime(city);
+        }
 
         List<WebElement> editionBlocks = getEditionBlocks();
 
@@ -35,100 +46,139 @@ public class Perks_PagesRegressionTest extends iTestCasePerksSauce {
         checkPerksPages(getPerksLinks(editionBlocks));
 
     }
-
-    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
-    public void perksRegressionNewYork() throws Exception{
-        int count = 0;
-
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
-        visitPerksProdFirstTime("new-york");
-
-        List<WebElement> editionBlocks = getEditionBlocks();
-
-        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
-
-        for (String perk : getPerkNameAndText(editionBlocks)) {
-            count++;
-            Reporter.log("Perk " +count + "> " + perk,true);
-        }
-
-        checkPerksPages(getPerksLinks(editionBlocks));
-
-    }
-
-    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
-    public void perksRegressionChicago() throws Exception{
-        int count = 0;
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
-        visitPerksProdFirstTime("chicago");
-
-        List<WebElement> editionBlocks = getEditionBlocks();
-
-        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
-
-        for (String perk : getPerkNameAndText(editionBlocks)) {
-            count++;
-            Reporter.log("Perk " +count + "> " + perk,true);
-        }
-
-        checkPerksPages(getPerksLinks(editionBlocks));
-
-    }
-
-    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
-    public void perksRegressionBoston() throws Exception{
-        int count = 0;
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
-        visitPerksProdFirstTime("boston");
-
-        List<WebElement> editionBlocks = getEditionBlocks();
-
-        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
-
-        for (String perk : getPerkNameAndText(editionBlocks)) {
-            count++;
-            Reporter.log("Perk " +count + "> " + perk,true);
-        }
-
-        checkPerksPages(getPerksLinks(editionBlocks));
-
-    }
-
-    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
-    public void perksRegressionDC() throws Exception{
-        int count = 0;
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
-        visitPerksProdFirstTime("washington-dc");
-
-        List<WebElement> editionBlocks = getEditionBlocks();
-
-        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
-
-        for (String perk : getPerkNameAndText(editionBlocks)) {
-            count++;
-            Reporter.log("Perk " +count + "> " + perk,true);
-        }
-
-        checkPerksPages(getPerksLinks(editionBlocks));
-
-    }
-
-    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
-    public void perksRegressionLA() throws Exception{
-        int count = 0;
-        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
-        visitPerksProdFirstTime("los-angeles");
-
-        List<WebElement> editionBlocks = getEditionBlocks();
-
-        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
-
-        for (String perk : getPerkNameAndText(editionBlocks)) {
-            count++;
-            Reporter.log("Perk " +count + "> " + perk,true);
-        }
-
-        checkPerksPages(getPerksLinks(editionBlocks));
-
-    }
+//
+//    @Parameters ({"prodCheck"})
+//    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
+//    public void perksRegressionNewYork(@Optional("false") String prodCheck) throws Exception{
+//        int count = 0;
+//
+//        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+//
+//        String city = "new-york";
+//
+//        if (prodCheck.equals("false")) {
+//            visitPerksFirstTime(city);
+//        } else {
+//            visitPerksProdFirstTime(city);
+//        }
+//        List<WebElement> editionBlocks = getEditionBlocks();
+//
+//        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
+//
+//        for (String perk : getPerkNameAndText(editionBlocks)) {
+//            count++;
+//            Reporter.log("Perk " +count + "> " + perk,true);
+//        }
+//
+//        checkPerksPages(getPerksLinks(editionBlocks));
+//
+//    }
+//
+//    @Parameters ({"prodCheck"})
+//    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
+//    public void perksRegressionChicago(@Optional("false") String prodCheck) throws Exception{
+//        int count = 0;
+//        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+//
+//        String city = "chicago";
+//
+//        if (prodCheck.equals("false")) {
+//            visitPerksFirstTime(city);
+//        } else {
+//            visitPerksProdFirstTime(city);
+//        }
+//
+//        List<WebElement> editionBlocks = getEditionBlocks();
+//
+//        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
+//
+//        for (String perk : getPerkNameAndText(editionBlocks)) {
+//            count++;
+//            Reporter.log("Perk " +count + "> " + perk,true);
+//        }
+//
+//        checkPerksPages(getPerksLinks(editionBlocks));
+//
+//    }
+//
+//    @Parameters ({"prodCheck"})
+//    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
+//    public void perksRegressionBoston(@Optional("false") String prodCheck) throws Exception{
+//        int count = 0;
+//        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+//
+//        String city = "boston";
+//
+//        if (prodCheck.equals("false")) {
+//            visitPerksFirstTime(city);
+//        } else {
+//            visitPerksProdFirstTime(city);
+//        }
+//
+//        List<WebElement> editionBlocks = getEditionBlocks();
+//
+//        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
+//
+//        for (String perk : getPerkNameAndText(editionBlocks)) {
+//            count++;
+//            Reporter.log("Perk " +count + "> " + perk,true);
+//        }
+//
+//        checkPerksPages(getPerksLinks(editionBlocks));
+//
+//    }
+//
+//    @Parameters ({"prodCheck"})
+//    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
+//    public void perksRegressionDC(@Optional("false") String prodCheck) throws Exception{
+//        int count = 0;
+//        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+//
+//        String city = "washington-dc";
+//
+//        if (prodCheck.equals("false")) {
+//            visitPerksFirstTime(city);
+//        } else {
+//            visitPerksProdFirstTime(city);
+//        }
+//
+//        List<WebElement> editionBlocks = getEditionBlocks();
+//
+//        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
+//
+//        for (String perk : getPerkNameAndText(editionBlocks)) {
+//            count++;
+//            Reporter.log("Perk " +count + "> " + perk,true);
+//        }
+//
+//        checkPerksPages(getPerksLinks(editionBlocks));
+//
+//    }
+//
+//    @Parameters ({"prodCheck"})
+//    @Test (groups = "PerksRegression", retryAnalyzer = Analyzer.class)
+//    public void perksRegressionLA(@Optional("false") String prodCheck) throws Exception{
+//        int count = 0;
+//        Reporter.log("SauceResultsUrl> " + getResultsUrl(getSessionId()),true);
+//
+//        String city = "los-angeles";
+//
+//        if (prodCheck.equals("false")) {
+//            visitPerksFirstTime(city);
+//        } else {
+//            visitPerksProdFirstTime(city);
+//        }
+//
+//        List<WebElement> editionBlocks = getEditionBlocks();
+//
+//        Reporter.log("Perks found on page> " + getPerksLinkCount(),true);
+//
+//        for (String perk : getPerkNameAndText(editionBlocks)) {
+//            count++;
+//            Reporter.log("Perk " +count + "> " + perk,true);
+//        }
+//
+//        checkPerksPages(getPerksLinks(editionBlocks));
+//
+//    }
 }
