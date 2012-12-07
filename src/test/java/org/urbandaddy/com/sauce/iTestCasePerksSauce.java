@@ -544,7 +544,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         }
 
         // Click on manage products under Catalog--Get the URL and open that instead.
-        client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[4]/ul/li/a")).getAttribute("href"));
+        client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[3]/ul/li/a")).getAttribute("href"));
 
         // click Add Product,
         client.findElement(By.xpath("/html/body/div/div[3]/div/div[2]/table/tbody/tr/td[2]")).findElement(By.tagName("button")).click();
@@ -561,7 +561,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     }
 
     public void adminCreatePerkGeneral() {
-        String paragraph = "No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. All of them had hair of gold like their mother the youngest one in curls. The Love Boat soon will be making another run. The Love Boat promises something for everyone. All of them had hair of gold like their mother the youngest one in curls. black gold Sunday Monday Happy Days. Tuesday Wednesday Happy Days. Thursday Friday Happy Days.Saturday what a day. Groovin' all week with you. Makin their way the only way they know how. That's just a little bit more than the law will allow. Why do we always come here? I guess well never know. Its like a kind of torture to have to watch the show.";
+        String paragraph = "No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. All of them had hair of gold like their mother the youngest one in curls. The Love Boat soon will be making another run. The Love Boat promises something for everyone. All of them had hair of gold like their mother the youngest one in curls. black gold Sunday Monday Happy Days. Tuesday Wednesday Happy Days. Thursday Friday Happy Days.Saturday what a day. Groovin' all week with you. Makin their way the only way they know how.";
         String finePrint = "<ul>\n" +
                 "<li>This Perk requires a Perk Certificate, which will be generated within 24 hours of purchase. </li>\n" +
                 "<li>Orders placed on Friday or over the weekend will be processed the following business day. </li>\n" +
@@ -666,6 +666,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("countdown_end_date")).sendKeys(getFutureDate(3));
 
         // Put 1200 in Timer End Hour
+        client.findElement(By.id("countdown_end_hour")).clear();
         client.findElement(By.id("countdown_end_hour")).sendKeys("1200");
 
         // Choose D in Timer Format
@@ -737,13 +738,15 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         iconWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("product_info_tabs_categories_content")));
 
         // Choose what edition you want it to appear in
-        client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div/form/div[18]/div/fieldset/div/ul/div/li[2]/ul/li[2]/div/a/span")).click();
+        //client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div/form/div[18]/div/fieldset/div/ul/div/li[2]/ul/li[2]/div/a/span")).click();
+        client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div/form/div[21]/div/fieldset/div/ul/div/li/ul/li/div/a/span")).click();
+
     }
 
     public void adminCreatePerkReporting() {
         // REPORTING
         // Click Reporting
-        client.findElement(By.id("product_info_tabs_group_75")).click();
+        client.findElement(By.id("product_info_tabs_group_68")).click();
 
         // Input Rev Share
         client.findElement(By.id("ud_rev_share")).sendKeys("54321" + r);
@@ -765,15 +768,18 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     public void adminCreatePerkSave() {
         // click Save
         client.findElement(By.className("content-buttons")).findElements(By.tagName("button")).get(2).click();
+        WebDriverWait wait = new WebDriverWait(client, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success-msg")));
     }
 
     public void makePerkVisible() {
         // The perk is now created, but to make it appear on the site you must:
         // click on Manage Categories under Catalog,
-        client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[4]/ul/li[2]/a")).getAttribute("href"));
+        client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[3]/ul/li[2]/ul/li/a")).getAttribute("href"));
+
         // choose the edition you want the perk to show in -- NATIONAL
         WebElement tree = client.findElement(By.id("tree-div"));
-        tree.findElements(By.className("x-tree-node")).get(10).findElement(By.tagName("a")).click();
+        tree.findElements(By.className("x-tree-node")).get(1).findElement(By.tagName("a")).click();
 
         // Wait for the spinner to go away
         WebDriverWait spinner = new WebDriverWait(client, 30);
@@ -788,7 +794,12 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
             rows.get(i).findElements(By.tagName("td")).get(5).findElement(By.tagName("input")).sendKeys(Integer.toString(i+1));
         }
         // click Save Category
-        client.findElement(By.className("content-buttons")).findElements(By.tagName("button")).get(2).findElement(By.tagName("span")).click();
+        client.findElement(By.className("content-buttons")).findElements(By.tagName("button")).get(3).findElement(By.tagName("span")).click();
+
+        // Wait for success message
+        WebDriverWait successWait = new WebDriverWait(client,30);
+        successWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success-msg")));
+
     }
 
     private String getFutureDate(int days) {
