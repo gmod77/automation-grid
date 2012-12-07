@@ -115,6 +115,7 @@
                         <configuration>
                             <tasks>
                                 <mkdir dir="${basedir}/target/surefire-reports/html" />
+                                <mkdir dir="${basedir}/target/surefire-reports/xml" />
                             </tasks>
                         </configuration>
                     </execution>
@@ -136,7 +137,7 @@
                         </property>
                         <property>
                             <name>listener</name>
-                            <value>org.uncommons.reportng.HTMLReporter,org.testng.reporters.XMLReporter</value>
+                            <value>org.uncommons.reportng.HTMLReporter,org.testng.reporters.XMLReporter,org.uncommons.reportng.JUnitXMLReporter</value>
                         </property>
                         <property>
                             <name>outputDir</name>
