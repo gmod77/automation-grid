@@ -1,8 +1,7 @@
 package org.urbandaddy.com.sauce;
 
-import junit.framework.Assert;
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -46,7 +45,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         ud_sealHelper_Client.checkDCPerks();
 
         ud_sealHelper_Client.clickUpdate();
-        this.pause(3000);
+
+        WebDriverWait wait = new WebDriverWait(client,30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".edit_settings>.signupBoxMessage")));
+
         ud_sealHelper_Client.clickClose();
     }
 
@@ -140,9 +142,9 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
      *
      */
     public void resetPasswordPerks(String emailClient){
-		// perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
-		// perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
-		// perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
+		perks_homepageHelper_Client = new Perks_HomepageHelper_Client(client);
+		perks_headerHelper_Client = new Perks_HeaderHelper_Client(client);
+		perks_signupHelper_Client = new Perks_SignupHelper_Client(client);
 
         System.out.println(emailClient);
 
@@ -155,7 +157,10 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         perks_signupHelper_Client.enterForgotPasswordEmail(emailClient);
 
         perks_signupHelper_Client.clickSend();
-        this.pause(3000);
+
+        WebDriverWait wait = new WebDriverWait(client, 30);
+        wait.until(ExpectedConditions.textToBePresentInElement(By.className("errorfield"),"You'll receive an email shortly allowing you to reset your password."));
+
     }
 
     /**
@@ -539,7 +544,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
 
     public void adminCreatePerk() {
         // Handle notification window
-        if (client.findElement(By.id("message-popup-window")).isDisplayed()) {
+        if (!client.findElements(By.id("message-popup-window")).isEmpty()) {
             client.findElement(By.id("message-popup-window")).findElement(By.xpath("/html/body/div/div[4]/div/a")).click();
         }
 
