@@ -595,9 +595,11 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("business_name")).sendKeys("QA Test Biz" + r);
 
         // Fine Print
+        client.findElement(By.id("addtl_info_copy")).clear();
         client.findElement(By.id("addtl_info_copy")).sendKeys(finePrint);
 
         // Description
+        client.findElement(By.id("description")).clear();
         client.findElement(By.id("description")).sendKeys(desc);
 
         // Subject
@@ -605,6 +607,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.findElement(By.id("name")).sendKeys(internalName);
 
         // Offer
+        client.findElement(By.id("offer")).clear();
         client.findElement(By.id("offer")).sendKeys("QA Test Offer " + r);
 
         // Offer Summation
@@ -621,12 +624,15 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         showQty.selectByVisibleText("No");
 
         // Module Headline
+        client.findElement(By.id("subheader")).clear();
         client.findElement(By.id("subheader")).sendKeys("QA Test Headline " + r);
 
         // Iphone Headline
+        client.findElement(By.id("subheader_iphone")).clear();
         client.findElement(By.id("subheader_iphone")).sendKeys("QA Test Iphone Headline " + r);
 
         // Item Page Headline
+        client.findElement(By.id("subheader_product")).clear();
         client.findElement(By.id("subheader_product")).sendKeys("QA Test Item Page Headline " + r);
 
         // change status to Enabled
@@ -637,14 +643,17 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     public void adminCreatePerkDashboard () {
         client.findElement(By.id("product_info_tabs_group_44")).click();
 
+        client.findElement(By.id("dashboard1_text_middle")).clear();
         client.findElement(By.id("dashboard1_text_middle")).sendKeys("<sup>$</sup>1");
         client.findElement(By.id("dashboard1_text_top")).clear();
         client.findElement(By.id("dashboard1_text_top")).sendKeys("UD MEMBERS");
 
+        client.findElement(By.id("dashboard2_text_middle")).clear();
         client.findElement(By.id("dashboard2_text_middle")).sendKeys("<grey><sup>$</sup><strike>100</strike></grey>");
         client.findElement(By.id("dashboard2_text_top")).clear();
         client.findElement(By.id("dashboard2_text_top")).sendKeys("EVERYONE ELSE");
 
+        client.findElement(By.id("dashboard3_text_middle")).clear();
         client.findElement(By.id("dashboard3_text_middle")).sendKeys("99%");
         client.findElement(By.id("dashboard3_text_top")).clear();
         client.findElement(By.id("dashboard3_text_top")).sendKeys("SAVING");
