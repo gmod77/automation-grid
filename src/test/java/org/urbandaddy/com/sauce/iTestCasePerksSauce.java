@@ -552,7 +552,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         client.get(client.findElement(By.xpath("/html/body/div/div/div[3]/ul/li[3]/ul/li/a")).getAttribute("href"));
 
         // click Add Product,
-        client.findElement(By.xpath("/html/body/div/div[3]/div/div[2]/table/tbody/tr/td[2]")).findElement(By.tagName("button")).click();
+        client.findElement(By.cssSelector(".content-header .a-right>button")).click();
 
         // Change Attribute Set to Perk,
         Select attributeSet = new Select(client.findElement(By.id("attribute_set_id")));
@@ -566,7 +566,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
     }
 
     public void adminCreatePerkGeneral() {
-        String paragraph = "No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. All of them had hair of gold like their mother the youngest one in curls. The Love Boat soon will be making another run. The Love Boat promises something for everyone. All of them had hair of gold like their mother the youngest one in curls. black gold Sunday Monday Happy Days. Tuesday Wednesday Happy Days. Thursday Friday Happy Days.Saturday what a day. Groovin' all week with you. Makin their way the only way they know how.";
+        String paragraph = "No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. All of them had hair of gold like their mother the youngest one in curls. The Love Boat soon will be making another run. The Love Boat promises something for everyone. All of them had hair of gold like their mother the youngest one in curls. black gold Sunday Monday Happy Days. Tuesday Wednesday Happy Days. Thursday Friday Happy Days.Saturday what a day.";
         String finePrint = "<ul>\n" +
                 "<li>This Perk requires a Perk Certificate, which will be generated within 24 hours of purchase. </li>\n" +
                 "<li>Orders placed on Friday or over the weekend will be processed the following business day. </li>\n" +
@@ -743,9 +743,7 @@ public abstract class iTestCasePerksSauce extends iSauceBase implements UDBase {
         iconWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("product_info_tabs_categories_content")));
 
         // Choose what edition you want it to appear in
-        //client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div/form/div[18]/div/fieldset/div/ul/div/li[2]/ul/li[2]/div/a/span")).click();
-        client.findElement(By.xpath("/html/body/div/div[3]/div/div/div[2]/div/form/div[21]/div/fieldset/div/ul/div/li/ul/li/div/a/span")).click();
-
+        client.findElement(By.cssSelector("#product-categories .x-tree-root-node>.x-tree-node:nth-of-type(1)>.x-tree-node-ct>.x-tree-node:nth-of-type(1) a")).click();
     }
 
     public void adminCreatePerkReporting() {
