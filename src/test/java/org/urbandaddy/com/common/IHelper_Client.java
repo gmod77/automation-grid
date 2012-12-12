@@ -15,17 +15,17 @@ import java.util.List;
 
 public class IHelper_Client {
 
-	public WebDriver client;
-	//public Selenium seleniumClient;
+    public WebDriver client;
+    //public Selenium seleniumClient;
 
-	public IHelper_Client(WebDriver webdriver) {
-		client = webdriver;
-		//seleniumClient = new WebDriverBackedSelenium(client, "http://ud-branch.thedaddy.co");
-	}
-	
-	public void Log(String logMsg){
-		System.out.println(logMsg);
-	}
+    public IHelper_Client(WebDriver webdriver) {
+        client = webdriver;
+        //seleniumClient = new WebDriverBackedSelenium(client, "http://ud-branch.thedaddy.co");
+    }
+    
+    public void Log(String logMsg){
+        System.out.println(logMsg);
+    }
 
     public void pause(int time) {
         try {
@@ -42,22 +42,22 @@ public class IHelper_Client {
      * @param locator
      * @return
      */
-	public By ByLocator(String locator) {
-		By result = null;
+    public By ByLocator(String locator) {
+        By result = null;
 
-		if (locator.startsWith("//")) {
-			result = By.xpath(locator);
-		} else if (locator.startsWith("css=")) {
-			result = By.cssSelector(locator.replace("css=", ""));
-		} else if (locator.startsWith("link=")) {
-			result = By.linkText(locator.replace("#", ""));
-		} else if (locator.startsWith("#")) {
-			result = By.name(locator.replace("#", ""));
-		} else {
-			result = By.id(locator);
-		}
-		return result;
-	}
+        if (locator.startsWith("//")) {
+            result = By.xpath(locator);
+        } else if (locator.startsWith("css=")) {
+            result = By.cssSelector(locator.replace("css=", ""));
+        } else if (locator.startsWith("link=")) {
+            result = By.linkText(locator.replace("#", ""));
+        } else if (locator.startsWith("#")) {
+            result = By.name(locator.replace("#", ""));
+        } else {
+            result = By.id(locator);
+        }
+        return result;
+    }
 
     /**
      * Returns a boolean value based on the existance
@@ -66,9 +66,9 @@ public class IHelper_Client {
      * @param locator
      * @return
      */
-	public Boolean isElementPresent(String locator) {
+    public Boolean isElementPresent(String locator) {
         return findElementAndCheckBy(locator, 10) != null;
-	}
+    }
 
     /**
      * Wait for an element based on a locator.
@@ -76,14 +76,14 @@ public class IHelper_Client {
      * @param locator
      * @param timeout
      */
-	public void WaitForElementPresent(String locator, int timeout) {
+    public void WaitForElementPresent(String locator, int timeout) {
 
-		for (int i = 0; i < timeout; i++) {
-			if (isElementPresent(locator)) {
-				break;
-			}
-		}
-	}
+        for (int i = 0; i < timeout; i++) {
+            if (isElementPresent(locator)) {
+                break;
+            }
+        }
+    }
 
     /**
      * Wait for an element to be enabled based on a locator.
@@ -91,16 +91,16 @@ public class IHelper_Client {
      * @param locator
      * @param timeout
      */
-	public void WaitForElementEnabled(String locator, int timeout) {
+    public void WaitForElementEnabled(String locator, int timeout) {
 
-		for (int i = 0; i < timeout; i++) {
-			if (isElementPresent(locator)) {
+        for (int i = 0; i < timeout; i++) {
+            if (isElementPresent(locator)) {
                 if (findElementAndCheckBy(locator).isEnabled()) {
-					break;
-				}
-			}
-		}
-	}
+                    break;
+                }
+            }
+        }
+    }
 
     /**
      * Wait for an element to not be enabled based on a locator.
@@ -108,59 +108,59 @@ public class IHelper_Client {
      * @param locator
      * @param timeout
      */
-	public void WaitForElementNotEnabled(String locator, int timeout) {
+    public void WaitForElementNotEnabled(String locator, int timeout) {
 
-		for (int i = 0; i < timeout; i++) {
-			if (isElementPresent(locator)) {
-				//if (!client.findElement(ByLocator(locator)).isEnabled()) {
+        for (int i = 0; i < timeout; i++) {
+            if (isElementPresent(locator)) {
+                //if (!client.findElement(ByLocator(locator)).isEnabled()) {
                 if (!findElementAndCheckBy(locator).isEnabled()) {
-					break;
-				}
-			}
+                    break;
+                }
+            }
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public void WaitForElementVisible(String locator, int timeout) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void WaitForElementVisible(String locator, int timeout) {
 
-		for (int i = 0; i < timeout; i++) {
-			if (isElementPresent(locator)) {
-				//if (client.findElement(ByLocator(locator)).isDisplayed()) {
+        for (int i = 0; i < timeout; i++) {
+            if (isElementPresent(locator)) {
+                //if (client.findElement(ByLocator(locator)).isDisplayed()) {
                 if (findElementAndCheckBy(locator).isDisplayed()) {
-					break;
-				}
-			}
+                    break;
+                }
+            }
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-	public void WaitForElementNotVisible(String locator, int timeout) {
+    public void WaitForElementNotVisible(String locator, int timeout) {
 
-		for (int i = 0; i < timeout; i++) {
-			if (isElementPresent(locator)) {
-				//if (!client.findElement(ByLocator(locator)).isDisplayed()) {
+        for (int i = 0; i < timeout; i++) {
+            if (isElementPresent(locator)) {
+                //if (!client.findElement(ByLocator(locator)).isDisplayed()) {
                 if (!findElementAndCheckBy(locator).isDisplayed()) {
-					break;
-				}
-			}
+                    break;
+                }
+            }
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     /**
      * Use the findElement method to extend some functionality to searching for
